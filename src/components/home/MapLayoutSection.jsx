@@ -22,6 +22,51 @@ function statusCounts(plots) {
   );
 }
 
+function plotNoKey(plotNo) {
+  return String(plotNo ?? '').trim().toLowerCase();
+}
+
+function plotNoNumeric(plotNo) {
+  const n = Number(String(plotNo ?? '').replace(/[^\d.]/g, ''));
+  return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY;
+}
+
+function statusRank(status) {
+  const key = String(status || '').toLowerCase();
+  if (key === 'sold') return 0;
+  if (key === 'registered') return 1;
+  if (key === 'booked') return 2;
+  return 3;
+}
+
+/** One chip per plot number — keeps board UI, drops mapping duplicates. */
+function dedupePlotsByNumber(items) {
+  const map = new Map();
+  for (const item of items || []) {
+    const key = plotNoKey(item.plotNo);
+    if (!key) continue;
+    const existing = map.get(key);
+    if (!existing) {
+      map.set(key, item);
+      continue;
+    }
+    const byStatus = statusRank(item.status) - statusRank(existing.status);
+    if (byStatus < 0) {
+      map.set(key, item);
+      continue;
+    }
+    if (byStatus > 0) continue;
+    const aPriced = existing.plotCost != null && Number(existing.plotCost) > 0 ? 1 : 0;
+    const bPriced = item.plotCost != null && Number(item.plotCost) > 0 ? 1 : 0;
+    if (bPriced > aPriced) map.set(key, item);
+  }
+  return Array.from(map.values()).sort((a, b) => {
+    const diff = plotNoNumeric(a.plotNo) - plotNoNumeric(b.plotNo);
+    if (diff !== 0) return diff;
+    return String(a.plotNo).localeCompare(String(b.plotNo));
+  });
+}
+
 /**
  * Homepage / public map-layout section: live DXF layout embed + plot status board.
  */
@@ -38,8 +83,8 @@ export default function MapLayoutSection({ compact = true }) {
   async function loadPlots() {
     setLoading(true);
     try {
-      const data = await mapBookingService.listPlots({ pageSize: 500, unique: false });
-      setPlots(data.items || []);
+      const data = await mapBookingService.listPlots({ pageSize: 500, unique: true });
+      setPlots(dedupePlotsByNumber(data.items || []));
     } catch {
       setPlots([]);
     } finally {
@@ -187,7 +232,7 @@ export default function MapLayoutSection({ compact = true }) {
         </div>
 
         <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-          <h3 className="text-sm font-semibold text-brand-900">Plot availability</h3>
+          <h3 className="text-sm font-semibold text-brand-900">Sky line Infra Anne Enclave</h3>
           <p className="mt-1 text-xs text-gray-500">
             {loading
               ? 'Loading plots…'
@@ -201,10 +246,10 @@ export default function MapLayoutSection({ compact = true }) {
               {previewPlots.map((plot) => {
                 const status = String(plot.status || 'available').toLowerCase();
                 const color = PLOT_STATUS_COLORS[status] || '#d1d5db';
-                const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId);
+                const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId || selected.plotNo === plot.plotNo);
                 return (
                   <button
-                    key={plot.id || plot.externalId}
+                    key={`plot-${plot.plotNo}`}
                     type="button"
                     title={`${plot.plotNo} · ${PLOT_STATUS_LABELS[status] || status}`}
                     onClick={() => setSelected(plot)}
