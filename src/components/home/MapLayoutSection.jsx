@@ -38,7 +38,7 @@ export default function MapLayoutSection({ compact = true }) {
   async function loadPlots() {
     setLoading(true);
     try {
-      const data = await mapBookingService.listPlots({ pageSize: 500, unique: true });
+      const data = await mapBookingService.listPlots({ pageSize: 500, unique: false });
       setPlots(data.items || []);
     } catch {
       setPlots([]);
@@ -111,7 +111,7 @@ export default function MapLayoutSection({ compact = true }) {
     <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
-          <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">Map Layout</h2>
+          <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">Sky line Infra Anne Enclave</h2>
           <p className="mt-1 text-sm text-gray-500">
             Explore the interactive layout, check plot availability, and book your preferred plot.
           </p>
@@ -177,7 +177,7 @@ export default function MapLayoutSection({ compact = true }) {
           )}
           <iframe
             key={iframeKey}
-            title="Merit Map Layout"
+            title="Sky line Infra Anne Enclave"
             src={`${MAP_LAYOUT_URL}/?embed=1`}
             className={`w-full border-0 ${compact ? 'h-[420px]' : 'h-[70vh] min-h-[560px]'}`}
             loading="eager"
