@@ -1,0 +1,108 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #f0f4f8;
+  --color-brand-100: #d9e2ec;
+  --color-brand-200: #bcccdc;
+  --color-brand-300: #9fb3c8;
+  --color-brand-400: #d49b28;
+  --color-brand-500: #c88e28;
+  --color-brand-600: #0f2a4a;
+  --color-brand-700: #0b2240;
+  --color-brand-800: #08182e;
+  --color-brand-900: #051020;
+
+  --color-gold-50: #fdf9f0;
+  --color-gold-100: #f9f0d9;
+  --color-gold-200: #f3e0b3;
+  --color-gold-300: #eacb83;
+  --color-gold-400: #e0b452;
+  --color-gold-500: #d49b28;
+  --color-gold-600: #c88e28;
+  --color-gold-700: #a3701a;
+  --color-gold-800: #7d5212;
+
+  --color-warm-white: #ffffff;
+
+  --font-sans: "Inter", "Noto Sans Telugu", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-warm-white);
+  color: #0f172a;
+  font-family: var(--font-sans);
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Hide scrollbar for horizontal mobile strips, keep it scrollable */
+.scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.lang-te {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+}
+
+/* Global branded loader — pulse + soft gold/navy glow */
+@keyframes loader-mark-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+}
+
+@keyframes loader-mark-glow {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.92);
+    box-shadow: 0 0 0 0 rgba(212, 155, 40, 0.35);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.08);
+    box-shadow: 0 0 28px 8px rgba(212, 155, 40, 0.28);
+  }
+}
+
+.loader-mark-img {
+  animation: loader-mark-pulse 1.6s ease-in-out infinite;
+  will-change: transform;
+  filter: drop-shadow(0 4px 12px rgba(8, 24, 46, 0.35));
+}
+
+.loader-mark-glow {
+  background: radial-gradient(circle, rgba(212, 155, 40, 0.45) 0%, rgba(15, 42, 74, 0.15) 55%, transparent 70%);
+  animation: loader-mark-glow 1.6s ease-in-out infinite;
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader-mark-img,
+  .loader-mark-glow {
+    animation: none;
+  }
+}
+

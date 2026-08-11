@@ -1,0 +1,82 @@
+export const PROFILE_MENU = {
+  buyer: [
+    { key: 'myProfile', path: '/buyer/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
+    { key: 'wishlist', path: '/buyer/favourites', labelKey: 'profileMenu.wishlist', icon: 'Heart' },
+    { key: 'interestedProperties', path: '/buyer/interests', labelKey: 'profileMenu.interestedProperties', icon: 'MessageSquareHeart' },
+    { key: 'bookings', path: '/buyer/bookings', labelKey: 'nav.bookings', icon: 'ClipboardList' },
+    { key: 'documents', path: '/buyer/documents', labelKey: 'nav.myDocuments', icon: 'FolderOpen' },
+    { key: 'scheduleVisits', path: '/buyer/visits', labelKey: 'profileMenu.scheduleVisits', icon: 'CalendarCheck' },
+    { key: 'promotions', path: '/buyer/promotions', labelKey: 'nav.myPromotions', icon: 'Megaphone' },
+    { key: 'savedSearches', path: '/buyer/saved-searches', labelKey: 'profileMenu.savedSearches', icon: 'BookmarkCheck' },
+    { key: 'myProperties', path: '/buyer/my-properties', labelKey: 'profileMenu.myProperties', icon: 'Building2' },
+    { key: 'notifications', path: '/buyer/notifications', labelKey: 'profileMenu.notifications', icon: 'Bell' },
+    { key: 'settings', path: '/buyer/settings', labelKey: 'profileMenu.settings', icon: 'Settings' },
+  ],
+  seller: [
+    { key: 'myProfile', path: '/seller/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
+    { key: 'myProperties', path: '/seller/properties', labelKey: 'profileMenu.myProperties', icon: 'Building2' },
+    { key: 'addProperty', path: '/seller/properties/new', labelKey: 'profileMenu.addProperty', icon: 'PlusSquare' },
+    { key: 'propertyEnquiries', path: '/seller/enquiries', labelKey: 'profileMenu.propertyEnquiries', icon: 'Inbox' },
+    { key: 'visits', path: '/seller/visits', labelKey: 'profileMenu.visits', icon: 'CalendarCheck' },
+    { key: 'analytics', path: '/seller/analytics', labelKey: 'profileMenu.analytics', icon: 'BarChart3' },
+    { key: 'notifications', path: '/seller/notifications', labelKey: 'profileMenu.notifications', icon: 'Bell' },
+    { key: 'settings', path: '/seller/settings', labelKey: 'profileMenu.settings', icon: 'Settings' },
+  ],
+  mediator: [
+    { key: 'myProfile', path: '/mediator/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
+    { key: 'assignedProperties', path: '/mediator/properties', labelKey: 'profileMenu.assignedProperties', icon: 'Building2' },
+    { key: 'clientLeads', path: '/mediator/leads', labelKey: 'profileMenu.clientLeads', icon: 'Users' },
+    { key: 'visits', path: '/mediator/visits', labelKey: 'profileMenu.visits', icon: 'CalendarCheck' },
+    { key: 'commissionHistory', path: '/mediator/commission', labelKey: 'profileMenu.commissionHistory', icon: 'HandCoins' },
+    { key: 'myWallet', path: '/mediator/wallet', labelKey: 'nav.myWallet', icon: 'Wallet' },
+    { key: 'bankDetails', path: '/mediator/bank-details', labelKey: 'nav.bankDetails', icon: 'Landmark' },
+    { key: 'notifications', path: '/mediator/notifications', labelKey: 'profileMenu.notifications', icon: 'Bell' },
+    { key: 'settings', path: '/mediator/settings', labelKey: 'profileMenu.settings', icon: 'Settings' },
+  ],
+  admin: [
+    { key: 'dashboard', path: '/admin/dashboard', labelKey: 'profileMenu.dashboard', icon: 'LayoutDashboard' },
+    { key: 'users', path: '/admin/users', labelKey: 'profileMenu.customerManagement', icon: 'Users' },
+    { key: 'properties', path: '/admin/properties', labelKey: 'profileMenu.properties', icon: 'Building2' },
+    { key: 'employeeManagement', path: '/admin/employees', labelKey: 'profileMenu.employeeManagement', icon: 'BadgeCheck' },
+    { key: 'agentManagement', path: '/admin/agents', labelKey: 'profileMenu.agentManagement', icon: 'IdCard' },
+    { key: 'analytics', path: '/admin/reports', labelKey: 'profileMenu.analytics', icon: 'BarChart3' },
+    { key: 'reports', path: '/admin/reports', labelKey: 'profileMenu.reports', icon: 'FileBarChart' },
+    { key: 'cms', path: '/admin/cms', labelKey: 'profileMenu.cms', icon: 'FileText' },
+    { key: 'settings', path: '/admin/settings', labelKey: 'profileMenu.settings', icon: 'Settings' },
+  ],
+  employee: [
+    { key: 'dashboard', path: '/employee/dashboard', labelKey: 'profileMenu.dashboard', icon: 'LayoutDashboard', permission: 'EMPLOYEE_DASHBOARD_VIEW' },
+    { key: 'assignedVerifications', path: '/employee/verifications', labelKey: 'profileMenu.assignedVerifications', icon: 'BadgeCheck', permission: 'USER_VERIFICATION_VIEW' },
+    { key: 'propertyModeration', path: '/employee/properties', labelKey: 'profileMenu.propertyModeration', icon: 'Building2', permission: 'PROPERTY_MODERATION_VIEW' },
+    { key: 'assignedEnquiries', path: '/employee/enquiries', labelKey: 'profileMenu.assignedEnquiries', icon: 'Inbox', permission: 'ENQUIRY_VIEW' },
+    { key: 'visits', path: '/employee/visits', labelKey: 'profileMenu.visits', icon: 'CalendarCheck', permission: 'VISIT_VIEW' },
+    { key: 'followUps', path: '/employee/follow-ups', labelKey: 'profileMenu.followUps', icon: 'PhoneCall', permission: 'FOLLOWUP_VIEW' },
+    { key: 'notifications', path: '/employee/notifications', labelKey: 'profileMenu.notifications', icon: 'Bell', permission: 'NOTIFICATIONS_VIEW' },
+    { key: 'reports', path: '/employee/reports', labelKey: 'nav.reports', icon: 'BarChart3', permission: 'REPORTS_VIEW' },
+    { key: 'profile', path: '/employee/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
+  ],
+};
+
+PROFILE_MENU.customer = PROFILE_MENU.buyer;
+PROFILE_MENU.agent = PROFILE_MENU.mediator;
+PROFILE_MENU.sales_member = [
+  { key: 'myProfile', path: '/sales/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
+  { key: 'dashboard', path: '/sales/dashboard', labelKey: 'profileMenu.dashboard', icon: 'LayoutDashboard' },
+  { key: 'customers', path: '/sales/customers', labelKey: 'nav.customers', icon: 'Users' },
+  { key: 'agents', path: '/sales/agents', labelKey: 'nav.agents', icon: 'IdCard' },
+  { key: 'leads', path: '/sales/leads', labelKey: 'nav.leads', icon: 'MessageSquareHeart' },
+  { key: 'bookings', path: '/sales/bookings', labelKey: 'nav.bookings', icon: 'ClipboardList' },
+  { key: 'notifications', path: '/sales/notifications', labelKey: 'profileMenu.notifications', icon: 'Bell' },
+  { key: 'settings', path: '/sales/settings', labelKey: 'profileMenu.settings', icon: 'Settings' },
+];
+
+export const PROFILE_ROUTE = {
+  buyer: '/buyer/profile',
+  customer: '/buyer/profile',
+  agent: '/mediator/profile',
+  seller: '/seller/profile',
+  mediator: '/mediator/profile',
+  admin: '/admin/settings',
+  employee: '/employee/profile',
+  sales_member: '/sales/profile',
+};

@@ -1,0 +1,644 @@
+{
+  "greeting": "Welcome back, {{name}}",
+  "greetingShort": "Hello, {{name}}",
+  "memberId": "Member ID",
+  "common": {
+    "breadcrumbHome": "Dashboard",
+    "viewAll": "View All",
+    "recent": "Recent",
+    "noItems": "Nothing here yet",
+    "reactivate": "Reactivate",
+    "deactivate": "Deactivate"
+  },
+  "pagination": {
+    "showing": "Showing {{from}}–{{to}} of {{total}}",
+    "showingRecords": "Showing {{from}}–{{to}} of {{total}} records",
+    "pageOf": "Page {{page}} of {{totalPages}}",
+    "rowsPerPage": "Rows per page",
+    "first": "First",
+    "last": "Last"
+  },
+  "admin": {
+    "summary": "Summary",
+    "pendingRegistrations": "Pending Registrations",
+    "pendingProperties": "Pending Properties",
+    "totalUsers": "Total Users",
+    "totalProperties": "Total Properties",
+    "totalRevenue": "Active Listings Value",
+    "reportCategories": "Report Categories",
+    "totalVisits": "Total Visits",
+    "totalEnquiries": "Total Enquiries",
+    "totalNotifications": "Notifications",
+    "userManagement": "User Management",
+    "customerManagement": "Customer Management",
+    "employeeManagement": "Employee Management",
+    "employeeManagementHint": "Create employees and assign module permissions.",
+    "agentManagement": "Agent Management",
+    "newCustomerRegistration": "New Customer Registration",
+    "newAgentRegistration": "New Agent Registration",
+    "propertyModeration": "Property Moderation",
+    "propertyManagement": "Property Management",
+    "categoryManagement": "Category Management",
+    "mediaRuleManagement": "Property Media Rule Management",
+    "cmsContent": "CMS Content",
+    "reports": "Reports",
+    "auditLog": "Audit Log",
+    "approvalActions": "Approval Actions",
+    "rejectionReason": "Rejection Reason",
+    "addEmployee": "Add Employee",
+    "propertiesByCategory": "Properties by Category",
+    "usersByRole": "Registered Users by Role"
+  },
+  "seller": {
+    "activeProperties": "Active Properties",
+    "draftProperties": "Draft Properties",
+    "pendingReview": "Pending Review",
+    "changesRequested": "Changes Requested",
+    "rejectedProperties": "Rejected",
+    "soldInactive": "Sold / Inactive",
+    "totalViews": "Total Views",
+    "enquiries": "Enquiries",
+    "propertyAnalytics": "Property Analytics",
+    "contactEnquiries": "Contact Enquiries",
+    "visitRequests": "Visit Requests"
+  },
+  "buyer": {
+    "searchProperties": "Search Properties",
+    "budgetRange": "Budget Range",
+    "savedProperties": "Saved Properties",
+    "recentlyViewed": "Recently Viewed",
+    "myInterests": "My Interests",
+    "visitRequests": "Visit Requests",
+    "compareProperties": "Compare Properties"
+  },
+  "mediator": {
+    "assignedLeads": "Assigned Leads",
+    "buyers": "Buyers",
+    "sellers": "Sellers",
+    "properties": "Properties",
+    "visitSchedule": "Visit Schedule",
+    "followUps": "Follow-ups",
+    "propertySharing": "Property Sharing",
+    "leadPipeline": "Lead Pipeline"
+  },
+  "employee": {
+    "assignedVerifications": "Assigned Verifications",
+    "propertyModeration": "Property Moderation",
+    "enquiries": "Enquiries",
+    "followUps": "Follow-ups",
+    "workSummary": "Work Summary"
+  },
+  "employeeDashboard": {
+    "totalAssigned": "Total Assigned",
+    "pending": "Pending",
+    "inProgress": "In Progress",
+    "completed": "Completed",
+    "overdue": "Overdue",
+    "assignedEnquiries": "Assigned Enquiries",
+    "todaysFollowUps": "Today's Follow-ups",
+    "upcomingVisits": "Upcoming Visits",
+    "todaysTasks": "Today's Tasks",
+    "overdueTasks": "Overdue Tasks",
+    "recentAssignments": "Recent Assignments",
+    "upcomingFollowUps": "Upcoming Follow-ups",
+    "upcomingVisitsSection": "Upcoming Site Visits",
+    "recentNotifications": "Recent Notifications",
+    "workCompletionSummary": "Work Completion Summary"
+  },
+  "table": {
+    "name": "Name",
+    "role": "Role",
+    "memberId": "Member ID",
+    "status": "Status",
+    "actions": "Actions",
+    "mobile": "Mobile",
+    "email": "Email",
+    "buyer": "Buyer",
+    "phone": "Phone",
+    "message": "Message",
+    "action": "Action",
+    "details": "Details",
+    "when": "When",
+    "price": "Price",
+    "views": "Views",
+    "city": "City",
+    "category": "Category",
+    "title": "Title",
+    "propertyId": "Property ID",
+    "assignedTo": "Assigned To",
+    "assignedEmployee": "Assigned Employee",
+    "assignedMediator": "Assigned Mediator",
+    "location": "Location",
+    "record": "Related Record",
+    "aadhaarNumber": "Aadhaar Number",
+    "panNumber": "PAN Number",
+    "occupation": "Occupation",
+    "aadhaarProof": "Aadhaar Proof",
+    "panProof": "PAN Proof"
+  },
+  "filters": {
+    "role": "Role",
+    "all": "All",
+    "status": "Status",
+    "search": "Search",
+    "overdue": "Overdue",
+    "employee": "Employee",
+    "priority": "Priority",
+    "dueDate": "Due Date",
+    "unassignedOnly": "Unassigned only",
+    "clear": "Clear filters"
+  },
+  "verificationStatus": {
+    "pending_review": "Pending Review",
+    "in_review": "In Review",
+    "correction_requested": "Correction Requested",
+    "recommended_approval": "Recommended for Approval",
+    "recommended_rejection": "Recommended for Rejection",
+    "completed": "Completed"
+  },
+  "moderationStatus": {
+    "submitted": "Submitted",
+    "in_review": "In Review",
+    "changes_requested": "Changes Requested",
+    "recommended_approval": "Recommended for Approval",
+    "recommended_rejection": "Recommended for Rejection",
+    "completed": "Completed"
+  },
+  "priority": {
+    "low": "Low",
+    "medium": "Medium",
+    "high": "High"
+  },
+  "enquiryDetail": {
+    "nextFollowUp": "Next Follow-up Date & Time",
+    "saveFollowUp": "Save Follow-up",
+    "scheduleVisit": "Schedule Visit",
+    "markComplete": "Mark Complete"
+  },
+  "enquiryStatus": {
+    "new": "New",
+    "contacted": "Contacted",
+    "followup_required": "Follow-up Required",
+    "visit_requested": "Visit Requested",
+    "converted": "Converted",
+    "closed": "Closed",
+    "not_interested": "Not Interested"
+  },
+  "placeholders": {
+    "fullName": "Full name",
+    "mobile": "Mobile number",
+    "email": "Email address",
+    "search": "Search..."
+  },
+  "toast": {
+    "assignmentSuccess": "Assignment successful.",
+    "reassignmentSuccess": "Reassignment successful.",
+    "userStatusUpdated": "User marked {{status}}.",
+    "employeeAdded": "Employee added successfully.",
+    "employeeUpdated": "Employee updated successfully.",
+    "employeeDeleted": "Employee deleted.",
+    "permissionsUpdated": "Permissions updated.",
+    "categoryCreated": "Category created successfully.",
+    "categoryUpdated": "Category updated successfully.",
+    "categoryDeleted": "Category deleted successfully.",
+    "categoryDeleteBlocked": "Cannot delete: this category is used by existing properties.",
+    "duplicateSlug": "This slug is already in use. Choose a different one.",
+    "mediaRuleUpdated": "Media rule updated successfully.",
+    "mediaRuleRestored": "Media rule restored to defaults.",
+    "cmsUpdated": "Content updated successfully.",
+    "settingsUpdated": "Settings updated successfully.",
+    "exportSuccess": "Export downloaded successfully.",
+    "exportEmpty": "No records to export.",
+    "propertyUpdated": "Property updated successfully.",
+    "registrationApproved": "Approved. Member ID: {{memberId}}",
+    "registrationRejected": "Registration rejected.",
+    "assignmentUpdated": "Assignment updated successfully.",
+    "profileUpdated": "Profile updated successfully."
+  },
+  "modal": {
+    "rejectionReason": "Rejection Reason",
+    "rejectionReasonPlaceholder": "Explain why this application is being rejected",
+    "requestedChanges": "Requested Changes",
+    "requestedChangesPlaceholder": "Explain what changes are needed",
+    "submit": "Submit",
+    "confirmDeleteTitle": "Delete this category?",
+    "confirmDeleteBody": "This action cannot be undone."
+  },
+  "employeePermissions": {
+    "manage": "Manage Permissions",
+    "assigned": "permissions assigned",
+    "title": "Permissions for {{name}}"
+  },
+  "permissionLabels": {
+    "EMPLOYEE_DASHBOARD_VIEW": "View Employee Dashboard",
+    "USER_VERIFICATION_VIEW": "View User Verifications",
+    "USER_VERIFICATION_RECOMMEND": "Recommend User Verification Decisions",
+    "USER_VERIFICATION_CORRECTION_REQUEST": "Request User Verification Corrections",
+    "PROPERTY_MODERATION_VIEW": "View Property Moderation",
+    "PROPERTY_MODERATION_RECOMMEND": "Recommend Property Moderation Decisions",
+    "PROPERTY_MODERATION_CORRECTION_REQUEST": "Request Property Changes",
+    "ENQUIRY_VIEW": "View Enquiries",
+    "ENQUIRY_UPDATE": "Update Enquiries",
+    "CALL_NOTES_MANAGE": "Manage Call Notes",
+    "VISIT_VIEW": "View Visits",
+    "VISIT_UPDATE": "Update Visits",
+    "FOLLOWUP_VIEW": "View Follow-ups",
+    "FOLLOWUP_MANAGE": "Manage Follow-ups",
+    "NOTIFICATIONS_VIEW": "View Notifications",
+    "INTERNAL_NOTES_VIEW": "View Internal Notes",
+    "INTERNAL_NOTES_MANAGE": "Manage Internal Notes",
+    "REPORTS_VIEW": "View Reports",
+    "VIEW_UNASSIGNED_RECORDS": "View Unassigned Records"
+  },
+  "assignment": {
+    "assignedTo": "Assigned to {{name}}",
+    "unassigned": "Unassigned",
+    "assignEmployee": "Assign Employee",
+    "reassignEmployee": "Reassign Employee",
+    "assignMediator": "Assign Mediator",
+    "selectEmployee": "Select Employee",
+    "assignmentNote": "Assignment Note",
+    "assignmentStatus": "Assignment Status",
+    "assignedDate": "Assigned Date",
+    "dueDateTime": "Due Date/Time",
+    "viewUnassignedRecords": "Can view unassigned records",
+    "assignedBy": "Assigned by {{name}}",
+    "assignedAt": "Assigned on {{date}}",
+    "registeredAt": "Registered on {{date}}",
+    "noneAvailable": "No employees available",
+    "error": {
+      "inactiveEmployee": "Inactive employee cannot be assigned.",
+      "unknownType": "Unknown record type."
+    }
+  },
+  "category": {
+    "title": "Category Management",
+    "addCategory": "Add Category",
+    "editCategory": "Edit Category",
+    "nameEn": "Name (English)",
+    "nameTe": "Name (Telugu)",
+    "descriptionEn": "Description (English)",
+    "descriptionTe": "Description (Telugu)",
+    "slug": "Slug",
+    "image": "Image URL",
+    "icon": "Icon",
+    "transactionTypes": "Transaction Types",
+    "areaUnits": "Area Units",
+    "propertyFields": "Property-specific Fields",
+    "active": "Active",
+    "inactive": "Inactive",
+    "visible": "Visible",
+    "hidden": "Hidden",
+    "order": "Order",
+    "moveUp": "Move Up",
+    "moveDown": "Move Down",
+    "activate": "Activate",
+    "deactivate": "Deactivate",
+    "show": "Show",
+    "hide": "Hide",
+    "edit": "Edit",
+    "delete": "Delete",
+    "save": "Save Category",
+    "create": "Create Category",
+    "cancel": "Cancel",
+    "propertyCount": "{{count}} properties",
+    "slugHint": "Lowercase letters, numbers and hyphens only",
+    "propertyFieldsHint": "Comma-separated list of fields specific to this category",
+    "error": {
+      "notFound": "Category not found.",
+      "slugRequired": "Please provide a name or slug for this category."
+    }
+  },
+  "mediaRule": {
+    "title": "Property Media Rule Management",
+    "commonSlots": "Common Slots",
+    "countBasedSlots": "Count-based Slots",
+    "extraFeatures": "Allowed Extra Features",
+    "required": "Required",
+    "optional": "Optional",
+    "labelEn": "Label (English)",
+    "labelTe": "Label (Telugu)",
+    "maxFileSizeMb": "Max File Size (MB)",
+    "allowedExtensions": "Allowed File Types",
+    "captionRequired": "Caption Required",
+    "primaryEligible": "Eligible as Primary Image",
+    "order": "Order",
+    "restoreDefaults": "Restore Defaults",
+    "addSlot": "Add Slot",
+    "removeSlot": "Remove Slot",
+    "addExtraFeature": "Add Extra Feature",
+    "samplePreview": "Sample Slot Preview",
+    "moveUp": "Move Up",
+    "moveDown": "Move Down",
+    "slotId": "Slot ID",
+    "confirmRestoreTitle": "Restore default media rules?",
+    "confirmRestoreBody": "Any custom edits to this category's media rules will be lost."
+  },
+  "compare": {
+    "title": "Compare Properties",
+    "addToCompare": "Add to Compare",
+    "removeFromCompare": "Remove from Compare",
+    "compareNow": "Compare Now",
+    "maxReached": "You can compare up to 4 properties at a time.",
+    "minRequired": "Select at least 2 properties to compare.",
+    "alreadyAdded": "This property is already in your comparison.",
+    "empty": "No properties selected for comparison yet.",
+    "emptyHint": "Add 2-4 properties from the listings to compare them side by side.",
+    "clearAll": "Clear All",
+    "notAvailable": "Not available",
+    "inactiveNotice": "This property is no longer active and may have outdated information.",
+    "attribute": "Attribute"
+  },
+  "permission": {
+    "error": {
+      "notAuthenticated": "You must be logged in to perform this action.",
+      "wrongRole": "This action is not available for your account type.",
+      "missingPermission": "You do not have permission to perform this action."
+    }
+  },
+  "user": {
+    "error": {
+      "notFound": "User record not found."
+    }
+  },
+  "property": {
+    "error": {
+      "notFound": "Property record not found."
+    }
+  },
+  "moderation": {
+    "title": "Property Moderation",
+    "startReview": "Start Review",
+    "addModerationNote": "Add Moderation Note",
+    "requestChanges": "Request Changes",
+    "recommendApproval": "Recommend Approval",
+    "recommendRejection": "Recommend Rejection",
+    "markComplete": "Mark Review Complete",
+    "reasonLabel": "Reason",
+    "reasonPlaceholder": "Explain what needs to change",
+    "fieldsLabel": "Affected property fields",
+    "slotsLabel": "Affected image slots",
+    "missingSlots": "Missing required image slots",
+    "duplicateImages": "Duplicate image warning",
+    "moderationHistory": "Moderation History",
+    "sellerDetails": "Seller / Mediator Details",
+    "noRecordsFound": "No properties match your filters.",
+    "error": {
+      "reasonRequired": "A reason is required."
+    }
+  },
+  "verification": {
+    "title": "User Verification",
+    "startReview": "Start Review",
+    "requestCorrection": "Request Correction",
+    "recommendApproval": "Recommend Approval",
+    "recommendRejection": "Recommend Rejection",
+    "markComplete": "Mark Review Complete",
+    "reasonLabel": "Reason",
+    "reasonPlaceholder": "Explain what needs to be corrected or why rejection is recommended",
+    "fieldsLabel": "Fields requiring correction (optional)",
+    "recommendationNoteLabel": "Recommendation note",
+    "correctionHistory": "Correction History",
+    "auditTimeline": "Audit Timeline",
+    "registrationId": "Registration ID",
+    "requestedRole": "Requested Role",
+    "assignedDate": "Assigned Date",
+    "dueDate": "Due Date",
+    "lastUpdated": "Last Updated",
+    "priority": "Priority",
+    "mobileVerification": "Mobile Verification Status",
+    "noRecordsFound": "No verification records match your filters.",
+    "error": {
+      "reasonRequired": "A reason is required."
+    }
+  },
+  "followUp": {
+    "error": {
+      "notFound": "Follow-up not found."
+    }
+  },
+  "followUpTabs": {
+    "today": "Today",
+    "upcoming": "Upcoming",
+    "overdue": "Overdue",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "followUpRecordType": {
+    "userVerification": "User Verification",
+    "property": "Property",
+    "enquiry": "Enquiry",
+    "visit": "Visit"
+  },
+  "followUpStatus": {
+    "assigned": "Assigned",
+    "in_progress": "In Progress",
+    "completed": "Completed",
+    "cancelled": "Cancelled"
+  },
+  "followUpActions": {
+    "start": "Start",
+    "reschedule": "Reschedule",
+    "complete": "Complete",
+    "cancel": "Cancel",
+    "addNote": "Add Note",
+    "notePlaceholder": "Add a note"
+  },
+  "visit": {
+    "confirm": "Confirm Visit",
+    "reschedule": "Reschedule",
+    "markCompleted": "Mark Completed",
+    "markCancelled": "Mark Cancelled",
+    "markNoShow": "Mark No Show",
+    "addNote": "Add Note",
+    "notePlaceholder": "Add a visit note",
+    "outcome": "Outcome",
+    "status": {
+      "requested": "Requested",
+      "scheduled": "Scheduled",
+      "confirmed": "Confirmed",
+      "rescheduled": "Rescheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "no_show": "No Show"
+    },
+    "outcomeOptions": {
+      "interested": "Interested",
+      "needs_followup": "Needs Follow-up",
+      "negotiation": "Negotiation",
+      "not_interested": "Not Interested",
+      "deal_progressing": "Deal Progressing",
+      "closed": "Closed"
+    },
+    "error": {
+      "notFound": "Visit not found."
+    }
+  },
+  "enquiry": {
+    "error": {
+      "notFound": "Enquiry not found."
+    }
+  },
+  "notifications": {
+    "unread_one": "Unread ({{count}})",
+    "unread_other": "Unread ({{count}})",
+    "markAllRead": "Mark All as Read",
+    "types": {
+      "verification_assigned": "Verification Assigned",
+      "property_assigned": "Property Assigned",
+      "enquiry_assigned": "Enquiry Assigned",
+      "visit_assigned": "Visit Assigned",
+      "followup_due": "Follow-up Due",
+      "followup_overdue": "Follow-up Overdue",
+      "correction_requested": "Correction Submitted",
+      "property_correction_requested": "Property Correction Submitted",
+      "visit_rescheduled": "Visit Rescheduled",
+      "recommendation_submitted": "Recommendation Response"
+    }
+  },
+  "callNote": {
+    "title": "Call Notes",
+    "addCallNote": "Add Call Note",
+    "summaryPlaceholder": "Discussion summary",
+    "nextActionPlaceholder": "Next action",
+    "save": "Save Call Note",
+    "empty": "No call notes yet.",
+    "interestLabel": "Interest",
+    "nextActionLabel": "Next action",
+    "nextFollowUpLabel": "Next follow-up",
+    "direction": {
+      "incoming": "Incoming",
+      "outgoing": "Outgoing"
+    },
+    "result": {
+      "connected": "Connected",
+      "no_answer": "No Answer",
+      "busy": "Busy",
+      "switched_off": "Switched Off",
+      "invalid_number": "Invalid Number",
+      "call_back_requested": "Call Back Requested"
+    },
+    "interest": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High"
+    }
+  },
+  "document": {
+    "placeholder": "Preview not available",
+    "noFile": "No file uploaded",
+    "uploadedOn": "Uploaded on {{date}}",
+    "markVerified": "Mark as Verified",
+    "markUnclear": "Mark as Unclear",
+    "markMissing": "Mark as Missing",
+    "requestReplacement": "Request Replacement",
+    "reviewNotePlaceholder": "Employee review note (optional)",
+    "status": {
+      "verified": "Verified",
+      "unclear": "Unclear",
+      "missing": "Missing",
+      "replacement_requested": "Replacement Requested"
+    },
+    "types": {
+      "profilePhoto": "Profile Photo",
+      "identityProof": "Identity Proof",
+      "addressProof": "Address Proof",
+      "aadhaarProof": "Aadhaar Proof",
+      "panProof": "PAN Proof",
+      "ownershipDocument": "Property Ownership Document",
+      "approvalDocument": "Approval Document",
+      "layoutPlan": "Layout Plan",
+      "other": "Other Document"
+    }
+  },
+  "internalNote": {
+    "title": "Internal Notes",
+    "placeholder": "Add an internal note (visible to employees and admin only)",
+    "add": "Add Note",
+    "edit": "Edit",
+    "save": "Save",
+    "empty": "No internal notes yet.",
+    "error": {
+      "notOwner": "You can only edit or delete your own notes."
+    }
+  },
+  "reports": {
+    "title": "My Work Reports",
+    "completionRate": "Completion rate: {{rate}}%",
+    "completedOfTotal": "{{completed}} of {{total}} assigned tasks completed"
+  },
+  "settings": {
+    "autoApproveRegistrations": "Auto-approve new registrations",
+    "autoApproveProperties": "Auto-approve new properties",
+    "maxImageSize": "Maximum image size (MB)"
+  },
+  "contactSettings": {
+    "title": "Website Contact Details",
+    "hint": "These details appear on the Contact Us section and in the website footer."
+  },
+  "accountSettings": {
+    "language": "Language",
+    "emailNotifications": "Email notifications",
+    "smsNotifications": "SMS notifications"
+  },
+  "savedSearches": {
+    "title": "Saved Searches",
+    "nameLabel": "Search Name",
+    "namePlaceholder": "e.g. 2 BHK in Vijayawada",
+    "cityLabel": "City",
+    "categoryLabel": "Category",
+    "minPriceLabel": "Min Price",
+    "maxPriceLabel": "Max Price",
+    "save": "Save Search",
+    "run": "Run Search",
+    "delete": "Delete",
+    "empty": "You haven't saved any searches yet."
+  },
+  "analytics": {
+    "title": "Analytics",
+    "properties": "Properties",
+    "active": "Active",
+    "totalViews": "Total Views",
+    "enquiries": "Enquiries",
+    "visits": "Visits",
+    "viewsByProperty": "Views by Property"
+  },
+  "commission": {
+    "title": "Commission History",
+    "note": "Estimated at a flat {{rate}}% commission rate on the sale price of properties you brokered. This is an estimate, not a final settlement figure.",
+    "property": "Property",
+    "salePrice": "Sale Price",
+    "rate": "Rate",
+    "amount": "Commission",
+    "soldOn": "Sold On",
+    "empty": "No completed sales yet."
+  },
+  "cms": {
+    "aboutEn": "About (English)",
+    "aboutTe": "About (Telugu)",
+    "disclaimerEn": "Disclaimer (English)",
+    "disclaimerTe": "Disclaimer (Telugu)",
+    "contactPhone": "Contact Phone",
+    "contactEmail": "Contact Email",
+    "contactAddressEn": "Contact Address (English)",
+    "contactAddressTe": "Contact Address (Telugu)",
+    "contactWhatsapp": "WhatsApp Number",
+    "contactLandmarkEn": "Nearby Landmark (English)",
+    "contactLandmarkTe": "Nearby Landmark (Telugu)",
+    "contactMapUrl": "Map URL",
+    "businessHoursWeekdayEn": "Business Hours - Weekdays (English)",
+    "businessHoursWeekdayTe": "Business Hours - Weekdays (Telugu)",
+    "businessHoursSundayEn": "Business Hours - Sunday (English)",
+    "businessHoursSundayTe": "Business Hours - Sunday (Telugu)",
+    "saveContent": "Save Content"
+  },
+  "export": {
+    "buyers": "Buyers",
+    "sellers": "Sellers",
+    "mediators": "Mediators",
+    "employees": "Employees",
+    "properties": "Properties",
+    "enquiries": "Enquiries",
+    "exportToExcel": "Export to Excel"
+  }
+}

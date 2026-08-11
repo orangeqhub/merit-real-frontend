@@ -1,0 +1,217 @@
+import { api } from '../api/client';
+import { getAccessToken } from '../api/session';
+import { readJSON, writeJSON, STORAGE_KEYS } from '../utils/storage';
+
+function getLocalFavouriteIds() {
+  const ids = readJSON(STORAGE_KEYS.WISHLIST, []);
+  return Array.isArray(ids) ? ids.map(Number).filter(Boolean) : [];
+}
+
+function setLocalFavouriteIds(ids) {
+  const next = Array.isArray(ids) ? ids.map(Number).filter(Boolean) : [];
+  writeJSON(STORAGE_KEYS.WISHLIST, next);
+  return next;
+}
+
+function buildQuery(params = {}) {
+  const query = new URLSearchParams();
+  Object.entries(params).forEach(([key, value]) => {
+    if (value == null || value === '' || value === false) return;
+    if (['viewer', 'scopeMode', 'admin', 'silent', 'token'].includes(key)) return;
+    if (typeof value === 'object') return;
+    query.set(key, String(value));
+  });
+  const qs = query.toString();
+  return qs ? `?${qs}` : '';
+}
+
+function normalizeList(data, params = {}) {
+  if (Array.isArray(data)) {
+    return {
+      items: data,
+      total: data.length,
+      page: params.page || 1,
+      pageSize: params.pageSize || data.length || 20,
+      totalPages: 1,
+    };
+  }
+  return {
+    items: data?.items || [],
+    total: data?.total || 0,
+    page: data?.page || params.page || 1,
+    pageSize: data?.pageSize || params.pageSize || 20,
+    totalPages: data?.totalPages || 1,
+  };
+}
+
+function appendFormValue(formData, key, value) {
+  if (value == null || value === '') return;
+  if (typeof value === 'boolean') {
+    formData.append(key, value ? 'true' : 'false');
+    return;
+  }
+  if (typeof value === 'object') {
+    formData.append(key, JSON.stringify(value));
+    return;
+  }
+  formData.append(key, String(value));
+}
+
+function buildPropertyFormData(payload = {}, imageFiles = []) {
+  const formData = new FormData();
+  Object.entries(payload).forEach(([key, value]) => {
+    if (key === 'images' || key === 'imageFiles') return;
+    appendFormValue(formData, key, value);
+  });
+  (imageFiles || []).forEach((file) => {
+    if (file) formData.append('images', file);
+  });
+  return formData;
+}
+
+export const propertyService = {
+  async getProperties(params = {}) {
+    // Admin-only endpoint — never call from customer/agent portals
+    const useAdmin = params.admin === true;
+    const path = useAdmin
+      ? `/properties/admin/all${buildQuery({ ...params, includeAllStatuses: params.includeAllStatuses ?? true })}`
+      : `/properties${buildQuery(params)}`;
+    const options = useAdmin || params.token
+      ? { token: getAccessToken(), silent: params.silent ?? useAdmin }
+      : { silent: params.silent };
+    try {
+      const data = await api(path, options);
+      return normalizeList(data, params);
+    } catch (err) {
+      if (useAdmin && (err?.status === 401 || err?.status === 403)) {
+        // Wrong portal session — return empty instead of throwing repeatedly.
+        return normalizeList({ items: [], total: 0 }, params);
+      }
+      throw err;
+    }
+  },
+
+  async getPropertyById(id) {
+    try {
+      return await api(`/properties/${id}`);
+    } catch {
+      return null;
+    }
+  },
+
+  async getFeatured(limit = 8, location) {
+    const q = buildQuery({ limit, location });
+    return api(`/properties/featured${q}`, { silent: true });
+  },
+
+  async getLatest(limit = 8, location) {
+    const q = buildQuery({ limit, location });
+    return api(`/properties/latest${q}`, { silent: true });
+  },
+
+  async getTrending(limit = 8, location) {
+    const q = buildQuery({ limit, location });
+    return api(`/properties/trending${q}`, { silent: true });
+  },
+
+  async getRelated(property, limit = 4) {
+    if (!property?.id) return [];
+    return api(`/properties/${property.id}/related${buildQuery({ limit })}`, { silent: true });
+  },
+
+  async recordView(id) {
+    try {
+      await api(`/properties/${id}/view`, { method: 'POST', silent: true });
+    } catch {
+      // ignore view errors
+    }
+    return true;
+  },
+
+  async getRecentlyViewed() {
+    return [];
+  },
+
+  async toggleFavourite(_userId, propertyId) {
+    const id = Number(propertyId);
+    if (!id) return getLocalFavouriteIds();
+    const current = getLocalFavouriteIds();
+    const next = current.includes(id)
+      ? current.filter((x) => x !== id)
+      : [...current, id];
+    return setLocalFavouriteIds(next);
+  },
+
+  async getFavourites() {
+    const ids = getLocalFavouriteIds();
+    if (!ids.length) return [];
+    const properties = await Promise.all(
+      ids.map(async (id) => {
+        try {
+          return await propertyService.getPropertyById(id);
+        } catch {
+          return null;
+        }
+      })
+    );
+    return properties.filter(Boolean);
+  },
+
+  async getFavouriteIds() {
+    return getLocalFavouriteIds();
+  },
+
+  async createProperty(payload, imageFiles = []) {
+    const formData = buildPropertyFormData(payload, imageFiles);
+    return api('/properties', {
+      method: 'POST',
+      token: getAccessToken(),
+      formData,
+    });
+  },
+
+  async updateProperty(id, payload, imageFiles = []) {
+    const formData = buildPropertyFormData(payload, imageFiles);
+    return api(`/properties/${id}`, {
+      method: 'PATCH',
+      token: getAccessToken(),
+      formData,
+    });
+  },
+
+  async createDraft() {
+    throw new Error('Customer/Agent property posting is not enabled yet');
+  },
+
+  async updateDraft() {
+    throw new Error('Customer/Agent property posting is not enabled yet');
+  },
+
+  async submitForApproval() {
+    throw new Error('Customer/Agent property posting is not enabled yet');
+  },
+
+  async getBySeller() {
+    return [];
+  },
+
+  async moderate() {
+    throw new Error('Property moderation workflow is not enabled in Phase 1');
+  },
+
+  async deleteProperty(id) {
+    return api(`/properties/${id}`, {
+      method: 'DELETE',
+      token: getAccessToken(),
+    });
+  },
+
+  async assignRecord() {
+    throw new Error('Property assignment is not enabled in Phase 1');
+  },
+
+  async isUsedByAnyProperty(categorySlug) {
+    const data = await this.getProperties({ categorySlug, pageSize: 1, includeAllStatuses: true, admin: true });
+    return (data.total || 0) > 0;
+  },
+};

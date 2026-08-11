@@ -1,0 +1,99 @@
+{
+  "hero": {
+    "heading": "సరైన ఆస్తిని కనుగొనండి. మీ భవిష్యత్తును నిర్మించండి.",
+    "locationPlaceholder": "స్థానం",
+    "categoryPlaceholder": "ఆస్తి వర్గం",
+    "minPricePlaceholder": "కనీస ధర",
+    "maxPricePlaceholder": "గరిష్ట ధర",
+    "allCategories": "అన్ని వర్గాలు",
+    "sale": "అమ్మకం"
+  },
+  "category": {
+    "properties_one": "{{count}} ఆస్తి",
+    "properties_other": "{{count}} ఆస్తులు"
+  },
+  "breadcrumb": {
+    "home": "హోమ్",
+    "properties": "ఆస్తులు"
+  },
+  "filters": {
+    "title": "ఫిల్టర్‌లు",
+    "location": "స్థానం",
+    "category": "వర్గం",
+    "priceRange": "ధర పరిధి",
+    "areaRange": "వైశాల్యం పరిధి",
+    "areaUnit": "వైశాల్యం యూనిట్",
+    "bedrooms": "బెడ్‌రూమ్‌లు",
+    "bathrooms": "బాత్రూమ్‌లు",
+    "facing": "ఫేసింగ్",
+    "furnishing": "ఫర్నిషింగ్",
+    "approvalStatus": "ఆమోద స్థితి",
+    "featuredOrVerified": "ఫీచర్డ్ / ధృవీకరించబడింది",
+    "featured": "ఫీచర్డ్",
+    "verified": "ధృవీకరించబడింది",
+    "any": "ఏదైనా",
+    "openFilters": "ఫిల్టర్‌లు",
+    "clearAll": "అన్నీ క్లియర్ చేయండి"
+  },
+  "sort": {
+    "label": "క్రమాన్ని ఆధారంగా",
+    "newest": "సరికొత్తవి",
+    "priceLowToHigh": "ధర: తక్కువ నుండి ఎక్కువ",
+    "priceHighToLow": "ధర: ఎక్కువ నుండి తక్కువ",
+    "mostViewed": "ఎక్కువగా వీక్షించినవి",
+    "featured": "ఫీచర్డ్"
+  },
+  "card": {
+    "verified": "ధృవీకరించబడింది",
+    "featured": "ఫీచర్డ్",
+    "areaLabel": "వైశాల్యం",
+    "postedOn": "{{date}} న పోస్ట్ చేయబడింది",
+    "addToWishlist": "విష్‌లిస్ట్‌కు జోడించండి",
+    "removeFromWishlist": "విష్‌లిస్ట్ నుండి తీసివేయండి",
+    "addedToWishlist": "మీ విష్‌లిస్ట్‌కు జోడించబడింది.",
+    "removedFromWishlist": "మీ విష్‌లిస్ట్ నుండి తీసివేయబడింది."
+  },
+  "detail": {
+    "propertyId": "ఆస్తి ID",
+    "postedDate": "పోస్ట్ చేసిన తేదీ",
+    "updatedDate": "నవీకరించిన తేదీ",
+    "images": "చిత్రాలు అప్‌లోడ్ చేయబడ్డాయి",
+    "documentsAttached": "గుర్తింపు రుజువు మరియు యాజమాన్య పత్రాలు జోడించబడ్డాయి",
+    "documentsMissing": "పత్రాలు పెండింగ్‌లో ఉన్నాయి",
+    "views": "{{count}} వీక్షణలు",
+    "description": "వివరణ",
+    "propertyDimensions": "ఆస్తి కొలతలు",
+    "measurements": "కొలతలు",
+    "areaLabel": "వైశాల్యం",
+    "facts": "ఆస్తి వివరాలు",
+    "amenities": "సౌకర్యాలు",
+    "nearbyLandmarks": "సమీప ల్యాండ్‌మార్క్‌లు",
+    "locationMap": "స్థాన పటం",
+    "mapPlaceholder": "మ్యాప్‌ల ఇంటిగ్రేషన్ కనెక్ట్ అయిన తర్వాత మ్యాప్ ప్రివ్యూ అందుబాటులో ఉంటుంది.",
+    "relatedProperties": "సంబంధిత ఆస్తులు",
+    "contactSeller": "విక్రేతను సంప్రదించండి",
+    "contactMediator": "మధ్యవర్తిని సంప్రదించండి",
+    "disclaimer": "మెరిట్ రియల్ సొల్యూషన్స్ ఒక లిస్టింగ్ ప్లాట్‌ఫారమ్‌గా పనిచేస్తుంది. లావాదేవీకి ముందు అన్ని పత్రాలను స్వతంత్రంగా ధృవీకరించుకోండి.",
+    "facingLabel": "ఫేసింగ్",
+    "furnishingLabel": "ఫర్నిషింగ్",
+    "bedroomsLabel": "బెడ్‌రూమ్‌లు",
+    "bathroomsLabel": "బాత్రూమ్‌లు",
+    "hallsLabel": "హాళ్లు",
+    "balconiesLabel": "బాల్కనీలు",
+    "parkingLabel": "పార్కింగ్",
+    "ageLabel": "ఆస్తి వయస్సు",
+    "floorLabel": "అంతస్తు",
+    "negotiable": "చర్చించదగినది"
+  },
+  "whatsappMessage": "నమస్కారం, నేను \"{{title}}\" ఆస్తిపై ఆసక్తి కలిగి ఉన్నాను, ఆస్తి ID: {{id}}, స్థానం: {{location}}. {{url}} దయచేసి మరిన్ని వివరాలు షేర్ చేయండి.",
+  "categoryNames": {
+    "residentialPlot": "రెసిడెన్షియల్ ప్లాట్లు",
+    "openPlot": "ఓపెన్ ప్లాట్లు",
+    "commercialPlot": "కమర్షియల్ ప్లాట్లు",
+    "apartment": "అపార్ట్‌మెంట్లు",
+    "independentHouse": "ఇండిపెండెంట్ హౌస్‌లు",
+    "gatedCommunity": "గేటెడ్ కమ్యూనిటీలు",
+    "venture": "వెంచర్లు",
+    "agriculturalLand": "వ్యవసాయ భూములు"
+  }
+}

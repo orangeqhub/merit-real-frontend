@@ -1,0 +1,42 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 140" width="660" height="140">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800;900&amp;display=swap');
+      .brand-title {
+        font-family: 'Montserrat', 'Arial Black', -apple-system, sans-serif;
+        font-weight: 900;
+        fill: #FFFFFF;
+        font-size: 31px;
+        letter-spacing: 1.5px;
+      }
+    </style>
+  </defs>
+
+  <!-- Deep Blue Background -->
+  <rect width="660" height="140" rx="12" fill="#0B2240"/>
+
+  <!-- Logo Emblem Mark -->
+  <g transform="translate(20, 12)">
+    <!-- White M -->
+    <path d="M 10 110 L 10 18 L 48 74 L 86 18 L 122 18 L 122 110 L 98 110 L 98 48 L 70 90 L 50 90 L 36 68 L 36 110 Z" fill="#FFFFFF"/>
+    
+    <!-- Dark Gable Shadow -->
+    <path d="M 40 78 L 80 38 L 120 78 L 120 110 L 40 110 Z" fill="#0B2240"/>
+    
+    <!-- Gold Main Roof -->
+    <path d="M 75 28 L 124 72 L 124 110 L 98 110 L 98 84 L 75 64 L 54 84 L 42 74 Z" fill="#C88E28"/>
+    
+    <!-- Gold Roof Ridge / Eave Overhang -->
+    <path d="M 30 82 L 75 24 L 128 72" fill="none" stroke="#D49B28" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 42 78 L 75 46 L 110 78" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Window -->
+    <rect x="70" y="66" width="12" height="15" rx="1.5" fill="#FFFFFF"/>
+    <line x1="76" y1="66" x2="76" y2="81" stroke="#0B2240" stroke-width="2"/>
+    <line x1="70" y1="73.5" x2="82" y2="73.5" stroke="#0B2240" stroke-width="2"/>
+  </g>
+
+  <!-- Brand Name Text -->
+  <text x="160" y="82" class="brand-title">MERIT REAL SOLUTIONS</text>
+</svg>

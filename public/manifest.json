@@ -1,0 +1,12 @@
+{
+  "name": "Merit Real Solutions",
+  "short_name": "Merit",
+  "description": "Find the Right Property. Build Your Future.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#0F2A4A",
+  "icons": [
+    { "src": "/logo.png", "sizes": "any", "type": "image/png", "purpose": "any" }
+  ]
+}

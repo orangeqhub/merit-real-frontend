@@ -1,0 +1,8 @@
+{
+  "name": "Merit Real Solutions",
+  "description": "Real estate portal for property listings, buyers, sellers, employees, and admins.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

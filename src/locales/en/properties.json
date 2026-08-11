@@ -1,0 +1,100 @@
+{
+  "hero": {
+    "heading": "Find the Right Property. Build Your Future.",
+    "locationPlaceholder": "Location",
+    "categoryPlaceholder": "Property Category",
+    "minPricePlaceholder": "Min Price",
+    "maxPricePlaceholder": "Max Price",
+    "allCategories": "All Categories",
+    "sale": "Sale"
+  },
+  "category": {
+    "properties_one": "{{count}} Property",
+    "properties_other": "{{count}} Properties"
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "properties": "Properties"
+  },
+  "filters": {
+    "title": "Filters",
+    "location": "Location",
+    "category": "Category",
+    "priceRange": "Price Range",
+    "areaRange": "Area Range",
+    "areaUnit": "Area Unit",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "facing": "Facing",
+    "furnishing": "Furnishing",
+    "approvalStatus": "Approval Status",
+    "featuredOrVerified": "Featured / Verified",
+    "featured": "Featured",
+    "verified": "Verified",
+    "any": "Any",
+    "openFilters": "Filters",
+    "clearAll": "Clear All"
+  },
+  "sort": {
+    "label": "Sort By",
+    "newest": "Newest",
+    "priceLowToHigh": "Price: Low to High",
+    "priceHighToLow": "Price: High to Low",
+    "mostViewed": "Most Viewed",
+    "featured": "Featured"
+  },
+  "card": {
+    "verified": "Verified",
+    "featured": "Featured",
+    "areaLabel": "Area",
+    "postedOn": "Posted on {{date}}",
+    "addToWishlist": "Add to Wishlist",
+    "removeFromWishlist": "Remove from Wishlist",
+    "addedToWishlist": "Added to your wishlist.",
+    "removedFromWishlist": "Removed from your wishlist."
+  },
+  "detail": {
+    "propertyId": "Property ID",
+    "postedDate": "Posted Date",
+    "updatedDate": "Updated Date",
+    "images": "images uploaded",
+    "documentsAttached": "Identity Proof and Ownership Documents attached",
+    "documentsMissing": "Documents pending",
+    "views": "{{count}} Views",
+    "description": "Description",
+    "propertyDimensions": "Property Dimensions",
+    "measurements": "Measurements",
+    "areaLabel": "Area",
+    "facingLabel": "Facing",
+    "facts": "Property Facts",
+    "amenities": "Amenities",
+    "nearbyLandmarks": "Nearby Landmarks",
+    "locationMap": "Location Map",
+    "mapPlaceholder": "Map preview will be available once a maps integration is connected.",
+    "relatedProperties": "Related Properties",
+    "contactSeller": "Contact Seller",
+    "contactMediator": "Contact Mediator",
+    "disclaimer": "Merit Real Solutions acts as a listing platform. Please verify all documents independently before transacting.",
+    "facingLabel": "Facing",
+    "furnishingLabel": "Furnishing",
+    "bedroomsLabel": "Bedrooms",
+    "bathroomsLabel": "Bathrooms",
+    "hallsLabel": "Halls",
+    "balconiesLabel": "Balconies",
+    "parkingLabel": "Parking",
+    "ageLabel": "Age of Property",
+    "floorLabel": "Floor",
+    "negotiable": "Negotiable"
+  },
+  "whatsappMessage": "Hello, I am interested in the property \"{{title}}\", Property ID: {{id}}, Location: {{location}}. {{url}} Please share more details.",
+  "categoryNames": {
+    "residentialPlot": "Residential Plots",
+    "openPlot": "Open Plots",
+    "commercialPlot": "Commercial Plots",
+    "apartment": "Apartments",
+    "independentHouse": "Independent Houses",
+    "gatedCommunity": "Gated Communities",
+    "venture": "Ventures",
+    "agriculturalLand": "Agricultural Lands"
+  }
+}
