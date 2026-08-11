@@ -26,6 +26,7 @@ import { getLocalizedField } from '../../utils/localize';
 import { buildTelLink, buildWhatsAppLink } from '../../utils/contactLinks';
 import { toast } from '../../store/toastStore';
 import ImageGallery from '../../components/properties/ImageGallery';
+import PropertyLocationMap from '../../components/properties/PropertyLocationMap';
 import EmptyState from '../../components/common/EmptyState';
 import PromotionsCarousel from '../../components/promotions/PromotionsCarousel';
 import PropertyCard from '../../components/properties/PropertyCard';
@@ -379,9 +380,7 @@ export default function PropertyDetail() {
 
           <section className="mt-8">
             <h2 className="text-lg font-semibold text-brand-800">{t('detail.locationMap')}</h2>
-            <div className="mt-3 flex h-56 items-center justify-center rounded-xl border border-dashed border-gray-300 bg-gray-50 text-sm text-gray-400">
-              {t('detail.mapPlaceholder')}
-            </div>
+            <PropertyLocationMap property={property} />
           </section>
 
           <button
