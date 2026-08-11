@@ -1,6 +1,11 @@
 import { loaderService } from '../store/loaderStore';
 
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:3001/api').replace(/\/$/, '');
+/** Production API origin — used as default and to rewrite bad hosts like your_server_ip */
+export const SERVER_ORIGIN = 'http://187.127.163.100:3500';
+
+const API_BASE_URL = (
+  import.meta.env.VITE_API_BASE_URL || `${SERVER_ORIGIN}/api`
+).replace(/\/$/, '');
 
 export class ApiError extends Error {
   constructor(message, { status, code, errors } = {}) {
@@ -74,25 +79,36 @@ export async function api(path, { method = 'GET', body, token, headers, formData
 
 /** Origin without /api — used for uploaded asset URLs */
 export function getApiOrigin() {
-  return API_BASE_URL.replace(/\/api\/?$/, '');
+  return API_BASE_URL.replace(/\/api\/?$/, '') || SERVER_ORIGIN;
 }
 
+/**
+ * Resolve upload / media URLs to the live server.
+ * Rewrites placeholders like your_server_ip, localhost, and relative /uploads paths.
+ */
 export function resolveAssetUrl(pathOrUrl) {
   if (!pathOrUrl) return '';
-  const raw = String(pathOrUrl);
-  const origin = getApiOrigin();
+  let raw = String(pathOrUrl).trim();
+  if (!raw) return '';
+
+  // Replace placeholder host anywhere in the string (API often embeds this).
+  raw = raw
+    .replace(/https?:\/\/your_server_ip(?::\d+)?/gi, SERVER_ORIGIN)
+    .replace(/https?:\/\/localhost(?::\d+)?/gi, SERVER_ORIGIN)
+    .replace(/https?:\/\/127\.0\.0\.1(?::\d+)?/gi, SERVER_ORIGIN);
+
+  const origin = getApiOrigin() || SERVER_ORIGIN;
 
   if (raw.startsWith('http://') || raw.startsWith('https://')) {
     try {
       const parsed = new URL(raw);
       const host = parsed.hostname.toLowerCase();
-      const needsRewrite =
-        parsed.origin !== origin &&
-        (host === 'your_server_ip' ||
-          host === 'localhost' ||
-          host === '127.0.0.1' ||
-          parsed.pathname.startsWith('/uploads/'));
-      if (needsRewrite) {
+      if (
+        host === 'your_server_ip' ||
+        host === 'localhost' ||
+        host === '127.0.0.1' ||
+        (parsed.pathname.startsWith('/uploads/') && parsed.origin !== origin)
+      ) {
         return `${origin}${parsed.pathname}${parsed.search}${parsed.hash}`;
       }
     } catch {

@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Upload, X, RefreshCw, Star, ImageOff } from 'lucide-react';
+import { resolveAssetUrl } from '../../api/client';
 
 export default function ImageSlotUploader({
   label,
@@ -38,7 +39,7 @@ export default function ImageSlotUploader({
 
       <div className="mt-2 flex h-32 items-center justify-center overflow-hidden rounded-lg bg-gray-50">
         {image ? (
-          <img src={image.url} alt={image.caption || label} className="h-full w-full object-cover" />
+          <img src={resolveAssetUrl(image.url)} alt={image.caption || label} className="h-full w-full object-cover" />
         ) : (
           <ImageOff size={28} className="text-gray-300" />
         )}

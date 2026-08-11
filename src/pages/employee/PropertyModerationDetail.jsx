@@ -14,6 +14,7 @@ import { hasPermission } from '../../utils/permissions';
 import { toast } from '../../store/toastStore';
 import DocumentPreview from '../../components/employee/DocumentPreview';
 import InternalNotesPanel from '../../components/employee/InternalNotesPanel';
+import { resolveAssetUrl } from '../../api/client';
 
 const FIELD_OPTIONS = ['titleEn', 'descriptionEn', 'price', 'area', 'locationEn', 'amenities', 'approvals'];
 
@@ -165,7 +166,7 @@ export default function PropertyModerationDetail() {
                 return (
                   <div key={slot.id} className="rounded-lg border border-gray-200 p-2">
                     <div className="h-20 w-full overflow-hidden rounded bg-gray-50">
-                      {img ? <img src={img.url} alt={img.caption || slot.id} className="h-full w-full object-cover" /> : null}
+                      {img ? <img src={resolveAssetUrl(img.url)} alt={img.caption || slot.id} className="h-full w-full object-cover" /> : null}
                     </div>
                     <p className="mt-1 truncate text-xs text-gray-600">{resolveSlotLabel(slot, language, t)}</p>
                     {img?.isPrimary && <span className="text-[10px] font-semibold text-amber-600">{t('media.primaryImage', { ns: 'forms' })}</span>}

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { FileText, CheckCircle2, AlertTriangle, XCircle, RotateCcw } from 'lucide-react';
+import { resolveAssetUrl } from '../../api/client';
 
 const STATUS_STYLES = {
   verified: 'bg-green-50 text-green-700',
@@ -30,7 +31,7 @@ export default function DocumentPreview({ title, fileName, uploadDate, previewUr
 
       <div className="mt-2 flex h-32 items-center justify-center overflow-hidden rounded-lg bg-gray-50">
         {previewUrl ? (
-          <img src={previewUrl} alt={title} className="h-full w-full object-cover" />
+          <img src={resolveAssetUrl(previewUrl)} alt={title} className="h-full w-full object-cover" />
         ) : (
           <div className="flex flex-col items-center gap-1 text-gray-300">
             <FileText size={28} />

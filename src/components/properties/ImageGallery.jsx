@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { resolveAssetUrl } from '../../api/client';
 
 export default function ImageGallery({ images = [], title }) {
   const ordered = [...images].sort((a, b) => (b.isPrimary ? 1 : 0) - (a.isPrimary ? 1 : 0));
@@ -11,7 +12,11 @@ export default function ImageGallery({ images = [], title }) {
   return (
     <div>
       <div className="aspect-video w-full overflow-hidden rounded-xl bg-gray-100">
-        <img src={ordered[active].url} alt={ordered[active].caption || title} className="h-full w-full object-cover" />
+        <img
+          src={resolveAssetUrl(ordered[active].url)}
+          alt={ordered[active].caption || title}
+          className="h-full w-full object-cover"
+        />
       </div>
       {ordered.length > 1 && (
         <div className="mt-2 flex gap-2 overflow-x-auto scrollbar-none">
@@ -26,7 +31,7 @@ export default function ImageGallery({ images = [], title }) {
                 i === active ? 'border-brand-600' : 'border-transparent'
               }`}
             >
-              <img src={img.url} alt={img.caption || ''} className="h-full w-full object-cover" />
+              <img src={resolveAssetUrl(img.url)} alt={img.caption || ''} className="h-full w-full object-cover" />
             </button>
           ))}
         </div>

@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { getCategoryBySlug } from '../../../config/categories';
 import { useLanguageStore } from '../../../store/languageStore';
+import { resolveAssetUrl } from '../../../api/client';
 
 export default function Step8PreviewSubmit({ data }) {
   const { t } = useTranslation('properties');
@@ -11,7 +12,13 @@ export default function Step8PreviewSubmit({ data }) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200">
       <div className="h-56 bg-gray-100">
-        {primaryImage && <img src={primaryImage.url} alt={data.titleEn} className="h-full w-full object-cover" />}
+        {primaryImage && (
+          <img
+            src={resolveAssetUrl(primaryImage.url)}
+            alt={data.titleEn}
+            className="h-full w-full object-cover"
+          />
+        )}
       </div>
       <div className="space-y-3 p-5">
         <h2 className="text-xl font-bold text-brand-800">{data.titleEn}</h2>

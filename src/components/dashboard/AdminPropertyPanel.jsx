@@ -11,6 +11,7 @@ import { propertyService } from '../../services/propertyService';
 import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
 import MapLocationPicker from '../forms/MapLocationPicker';
+import { resolveAssetUrl } from '../../api/client';
 
 const EMPTY_FORM = {
   categoryId: '',
@@ -353,7 +354,7 @@ export default function AdminPropertyPanel() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           {primaryImage?.url ? (
-                            <img src={primaryImage.url} alt="" className="h-10 w-14 rounded-md object-cover" />
+                            <img src={resolveAssetUrl(primaryImage.url)} alt="" className="h-10 w-14 rounded-md object-cover" />
                           ) : (
                             <div className="flex h-10 w-14 items-center justify-center rounded-md bg-gray-100 text-[10px] text-gray-400">
                               No img

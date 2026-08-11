@@ -9,6 +9,7 @@ import EmptyState from '../../components/common/EmptyState';
 import TablePagination from '../../components/common/TablePagination';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
 import { useClientPagination } from '../../hooks/useClientPagination';
+import { resolveAssetUrl } from '../../api/client';
 
 const AREA_UNITS = ['sqft', 'sqyd', 'acre', 'cent'];
 const TRANSACTION_TYPES = ['sale'];
@@ -222,7 +223,7 @@ export default function Categories() {
                       <td className="px-4 py-3">
                         <div className="flex items-center gap-3">
                           {c.image ? (
-                            <img src={c.image} alt="" className="h-9 w-9 rounded-lg object-cover" />
+                            <img src={resolveAssetUrl(c.image)} alt="" className="h-9 w-9 rounded-lg object-cover" />
                           ) : (
                             <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-50 text-xs font-semibold text-brand-700">
                               {(c.nameEn || '?').slice(0, 1)}

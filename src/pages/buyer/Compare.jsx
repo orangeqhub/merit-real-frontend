@@ -7,6 +7,7 @@ import { useCompareStore, COMPARE_LIMITS } from '../../store/compareStore';
 import { useLanguageStore } from '../../store/languageStore';
 import { getLocalizedField } from '../../utils/localize';
 import EmptyState from '../../components/common/EmptyState';
+import { resolveAssetUrl } from '../../api/client';
 
 function naOr(value, na) {
   return value === undefined || value === null || value === '' ? na : value;
@@ -80,7 +81,7 @@ export default function Compare() {
                       </button>
                     </div>
                     {primaryImage && (
-                      <img src={primaryImage.url} alt={title} className="mt-2 h-28 w-full rounded-lg object-cover" />
+                      <img src={resolveAssetUrl(primaryImage.url)} alt={title} className="mt-2 h-28 w-full rounded-lg object-cover" />
                     )}
                     <div className="mt-2 flex flex-wrap gap-1.5">
                       {p.verified && (

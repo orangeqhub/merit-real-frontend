@@ -7,6 +7,7 @@ import { useCompareStore } from '../../store/compareStore';
 import { getLocalizedField } from '../../utils/localize';
 import { buildTelLink, buildWhatsAppLink } from '../../utils/contactLinks';
 import { toast } from '../../store/toastStore';
+import { resolveAssetUrl } from '../../api/client';
 
 function formatPrice(property) {
   const value = property.price;
@@ -47,7 +48,7 @@ export default function PropertyCard({ property }) {
       <Link to={`/properties/${property.id}`} className="relative block h-44 w-full overflow-hidden bg-gray-100">
         {primaryImage && (
           <img
-            src={primaryImage.url}
+            src={resolveAssetUrl(primaryImage.url)}
             alt={primaryImage.caption || title}
             loading="lazy"
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
