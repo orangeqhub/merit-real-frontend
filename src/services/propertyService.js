@@ -1,4 +1,4 @@
-import { api } from '../api/client';
+import { api, resolveAssetUrl } from '../api/client';
 import { getAccessToken } from '../api/session';
 import { readJSON, writeJSON, STORAGE_KEYS } from '../utils/storage';
 
@@ -11,6 +11,31 @@ function setLocalFavouriteIds(ids) {
   const next = Array.isArray(ids) ? ids.map(Number).filter(Boolean) : [];
   writeJSON(STORAGE_KEYS.WISHLIST, next);
   return next;
+}
+
+/** Normalize every media URL on a property so UI never sees your_server_ip. */
+function normalizePropertyMedia(property) {
+  if (!property || typeof property !== 'object') return property;
+
+  const images = Array.isArray(property.images)
+    ? property.images.map((img) =>
+        img && typeof img === 'object'
+          ? { ...img, url: resolveAssetUrl(img.url || img.path || img.imagePath || '') }
+          : img
+      )
+    : property.images;
+
+  return {
+    ...property,
+    images,
+    image: property.image != null ? resolveAssetUrl(property.image) : property.image,
+    thumbnail: property.thumbnail != null ? resolveAssetUrl(property.thumbnail) : property.thumbnail,
+    coverImage: property.coverImage != null ? resolveAssetUrl(property.coverImage) : property.coverImage,
+  };
+}
+
+function normalizePropertyList(items) {
+  return (Array.isArray(items) ? items : []).map(normalizePropertyMedia);
 }
 
 function buildQuery(params = {}) {
@@ -27,16 +52,17 @@ function buildQuery(params = {}) {
 
 function normalizeList(data, params = {}) {
   if (Array.isArray(data)) {
+    const items = normalizePropertyList(data);
     return {
-      items: data,
-      total: data.length,
+      items,
+      total: items.length,
       page: params.page || 1,
-      pageSize: params.pageSize || data.length || 20,
+      pageSize: params.pageSize || items.length || 20,
       totalPages: 1,
     };
   }
   return {
-    items: data?.items || [],
+    items: normalizePropertyList(data?.items || []),
     total: data?.total || 0,
     page: data?.page || params.page || 1,
     pageSize: data?.pageSize || params.pageSize || 20,
@@ -93,7 +119,8 @@ export const propertyService = {
 
   async getPropertyById(id) {
     try {
-      return await api(`/properties/${id}`);
+      const property = await api(`/properties/${id}`);
+      return normalizePropertyMedia(property);
     } catch {
       return null;
     }
@@ -101,22 +128,26 @@ export const propertyService = {
 
   async getFeatured(limit = 8, location) {
     const q = buildQuery({ limit, location });
-    return api(`/properties/featured${q}`, { silent: true });
+    const data = await api(`/properties/featured${q}`, { silent: true });
+    return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
 
   async getLatest(limit = 8, location) {
     const q = buildQuery({ limit, location });
-    return api(`/properties/latest${q}`, { silent: true });
+    const data = await api(`/properties/latest${q}`, { silent: true });
+    return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
 
   async getTrending(limit = 8, location) {
     const q = buildQuery({ limit, location });
-    return api(`/properties/trending${q}`, { silent: true });
+    const data = await api(`/properties/trending${q}`, { silent: true });
+    return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
 
   async getRelated(property, limit = 4) {
     if (!property?.id) return [];
-    return api(`/properties/${property.id}/related${buildQuery({ limit })}`, { silent: true });
+    const data = await api(`/properties/${property.id}/related${buildQuery({ limit })}`, { silent: true });
+    return Array.isArray(data) ? normalizePropertyList(data) : [];
   },
 
   async recordView(id) {
@@ -163,20 +194,22 @@ export const propertyService = {
 
   async createProperty(payload, imageFiles = []) {
     const formData = buildPropertyFormData(payload, imageFiles);
-    return api('/properties', {
+    const created = await api('/properties', {
       method: 'POST',
       token: getAccessToken(),
       formData,
     });
+    return normalizePropertyMedia(created);
   },
 
   async updateProperty(id, payload, imageFiles = []) {
     const formData = buildPropertyFormData(payload, imageFiles);
-    return api(`/properties/${id}`, {
+    const updated = await api(`/properties/${id}`, {
       method: 'PATCH',
       token: getAccessToken(),
       formData,
     });
+    return normalizePropertyMedia(updated);
   },
 
   async createDraft() {

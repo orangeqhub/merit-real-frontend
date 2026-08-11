@@ -1,11 +1,53 @@
 import { loaderService } from '../store/loaderStore';
 
-/** Production API origin — used as default and to rewrite bad hosts like your_server_ip */
+/** Canonical production API origin for uploads & media. */
 export const SERVER_ORIGIN = 'http://187.127.163.100:3500';
 
-const API_BASE_URL = (
+const BAD_HOST_RE =
+  /^(your_server_ip|localhost|127\.0\.0\.1)$/i;
+
+function stripTrailingSlash(value) {
+  return String(value || '').replace(/\/$/, '');
+}
+
+/**
+ * Normalize any host/origin string; placeholder hosts always become SERVER_ORIGIN.
+ */
+export function sanitizeOrigin(value) {
+  const raw = stripTrailingSlash(value);
+  if (!raw) return SERVER_ORIGIN;
+  try {
+    const withProtocol = /^https?:\/\//i.test(raw) ? raw : `http://${raw}`;
+    const parsed = new URL(withProtocol);
+    if (BAD_HOST_RE.test(parsed.hostname)) return SERVER_ORIGIN;
+    return `${parsed.protocol}//${parsed.host}`;
+  } catch {
+    if (/your_server_ip/i.test(raw) || /localhost/i.test(raw) || /127\.0\.0\.1/.test(raw)) {
+      return SERVER_ORIGIN;
+    }
+    return SERVER_ORIGIN;
+  }
+}
+
+const configuredBase = stripTrailingSlash(
   import.meta.env.VITE_API_BASE_URL || `${SERVER_ORIGIN}/api`
-).replace(/\/$/, '');
+);
+
+// If env was baked with your_server_ip, fall back to the real origin.
+const API_BASE_URL = (() => {
+  try {
+    const probe = configuredBase.startsWith('http')
+      ? configuredBase
+      : `${SERVER_ORIGIN}${configuredBase.startsWith('/') ? '' : '/'}${configuredBase}`;
+    const parsed = new URL(probe);
+    if (BAD_HOST_RE.test(parsed.hostname)) return `${SERVER_ORIGIN}/api`;
+    return stripTrailingSlash(configuredBase.includes('/api')
+      ? configuredBase
+      : `${sanitizeOrigin(configuredBase)}/api`);
+  } catch {
+    return `${SERVER_ORIGIN}/api`;
+  }
+})();
 
 export class ApiError extends Error {
   constructor(message, { status, code, errors } = {}) {
@@ -20,10 +62,6 @@ export class ApiError extends Error {
 /**
  * Thin fetch wrapper for merit-api.
  * Expects response shape: { success, message, data, errors, code }
- *
- * @param {string} path
- * @param {{ method?: string, body?: unknown, token?: string, headers?: Record<string, string>, formData?: FormData, silent?: boolean }} [options]
- *   silent — skip global loader (background polls / non-blocking fetches)
  */
 export async function api(path, { method = 'GET', body, token, headers, formData, silent = false } = {}) {
   const url = path.startsWith('http') ? path : `${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
@@ -77,44 +115,59 @@ export async function api(path, { method = 'GET', body, token, headers, formData
   }
 }
 
-/** Origin without /api — used for uploaded asset URLs */
+/** Origin without /api — always a real reachable host (never your_server_ip). */
 export function getApiOrigin() {
-  return API_BASE_URL.replace(/\/api\/?$/, '') || SERVER_ORIGIN;
+  const fromBase = API_BASE_URL.replace(/\/api\/?$/, '');
+  return sanitizeOrigin(fromBase || SERVER_ORIGIN);
 }
 
 /**
  * Resolve upload / media URLs to the live server.
- * Rewrites placeholders like your_server_ip, localhost, and relative /uploads paths.
+ * Rewrites placeholders (your_server_ip, localhost) and relative /uploads paths.
+ * Leaves already-correct absolute URLs unchanged.
  */
 export function resolveAssetUrl(pathOrUrl) {
-  if (!pathOrUrl) return '';
+  if (pathOrUrl == null || pathOrUrl === '') return '';
   let raw = String(pathOrUrl).trim();
   if (!raw) return '';
 
-  // Replace placeholder host anywhere in the string (API often embeds this).
+  // Keep blob:/data: URLs (local previews) untouched.
+  if (/^(blob:|data:)/i.test(raw)) return raw;
+
+  // Protocol-relative //host/...
+  if (raw.startsWith('//')) raw = `http:${raw}`;
+
+  // Host without scheme: your_server_ip:3500/uploads/...
+  if (/^your_server_ip(?::\d+)?(\/|$)/i.test(raw) || /^localhost(?::\d+)?(\/|$)/i.test(raw) || /^127\.0\.0\.1(?::\d+)?(\/|$)/i.test(raw)) {
+    raw = `http://${raw}`;
+  }
+
+  // String-level placeholder rewrite (covers http/https + optional port).
   raw = raw
     .replace(/https?:\/\/your_server_ip(?::\d+)?/gi, SERVER_ORIGIN)
     .replace(/https?:\/\/localhost(?::\d+)?/gi, SERVER_ORIGIN)
     .replace(/https?:\/\/127\.0\.0\.1(?::\d+)?/gi, SERVER_ORIGIN);
 
-  const origin = getApiOrigin() || SERVER_ORIGIN;
+  const origin = getApiOrigin();
 
-  if (raw.startsWith('http://') || raw.startsWith('https://')) {
+  if (/^https?:\/\//i.test(raw)) {
     try {
       const parsed = new URL(raw);
-      const host = parsed.hostname.toLowerCase();
-      if (
-        host === 'your_server_ip' ||
-        host === 'localhost' ||
-        host === '127.0.0.1' ||
-        (parsed.pathname.startsWith('/uploads/') && parsed.origin !== origin)
-      ) {
-        return `${origin}${parsed.pathname}${parsed.search}${parsed.hash}`;
+      if (BAD_HOST_RE.test(parsed.hostname)) {
+        return `${SERVER_ORIGIN}${parsed.pathname}${parsed.search}${parsed.hash}`;
       }
+      // Already on the real production origin — keep as-is.
+      if (sanitizeOrigin(parsed.origin) === SERVER_ORIGIN) {
+        return `${SERVER_ORIGIN}${parsed.pathname}${parsed.search}${parsed.hash}`;
+      }
+      // Other absolute URLs (CDN, etc.) — keep unless it's an /uploads path we own.
+      if (parsed.pathname.startsWith('/uploads/')) {
+        return `${SERVER_ORIGIN}${parsed.pathname}${parsed.search}${parsed.hash}`;
+      }
+      return raw;
     } catch {
-      // fall through
+      return raw.replace(/your_server_ip/gi, '187.127.163.100');
     }
-    return raw;
   }
 
   const path = raw.startsWith('/') ? raw : `/${raw}`;
