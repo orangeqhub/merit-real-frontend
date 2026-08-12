@@ -10,6 +10,7 @@ import Home from '../pages/public/Home';
 import PropertyListing from '../pages/public/PropertyListing';
 import PropertyDetail from '../pages/public/PropertyDetail';
 import ExpressInterestForm from '../pages/public/ExpressInterestForm';
+import BookMapPlot from '../pages/public/BookMapPlot';
 import ScheduleSiteVisitForm from '../pages/public/ScheduleSiteVisitForm';
 import MapLayoutPage from '../pages/public/MapLayoutPage';
 import Ventures from '../pages/public/Ventures';
@@ -151,6 +152,7 @@ export default function AppRoutes() {
           <Route path="/properties/category/:categorySlug" element={<PropertyListing />} />
           <Route path="/properties/:propertyId" element={<PropertyDetail />} />
           <Route path="/express-interest/:propertyId" element={<ExpressInterestForm />} />
+          <Route path="/book-plot/:externalId" element={<BookMapPlot />} />
           <Route path="/schedule-visit/:propertyId" element={<ScheduleSiteVisitForm />} />
           <Route path="/ventures" element={<Ventures />} />
           <Route path="/about" element={<About />} />
@@ -296,6 +298,7 @@ export default function AppRoutes() {
           <Route path="documents" element={<AdminDocuments />} />
           <Route path="bookings" element={<AdminBookings />} />
           <Route path="map-plots" element={<AdminMapPlots />} />
+          <Route path="map-layout" element={<Navigate to="/admin/map-plots" replace />} />
           <Route path="visits" element={<AdminVisits />} />
           <Route path="follow-ups" element={<AdminFollowUps />} />
           <Route path="reports" element={<AdminReports />} />

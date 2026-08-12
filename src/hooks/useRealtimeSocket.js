@@ -1,57 +1,48 @@
 import { useEffect, useRef } from 'react';
-import { io } from 'socket.io-client';
-import { getAccessToken, isLocalEmployeeToken } from '../api/session';
-import { getApiOrigin } from '../api/client';
-import { playWalletSound, unlockWalletAudio } from '../utils/walletSounds';
+import { connectRealtime, disconnectRealtime, subscribeRealtime } from '../lib/realtimeSocket';
 
 /**
  * Connects to merit-api Socket.IO and forwards wallet/notification events.
+ * Uses a shared singleton socket to avoid duplicate connections.
  */
 export function useRealtimeSocket({ enabled, onWalletUpdate, onNotification } = {}) {
-  const socketRef = useRef(null);
   const handlersRef = useRef({ onWalletUpdate, onNotification });
   handlersRef.current = { onWalletUpdate, onNotification };
 
   useEffect(() => {
     if (!enabled) return undefined;
 
-    const unlock = () => unlockWalletAudio();
-    window.addEventListener('pointerdown', unlock, { once: true });
-    window.addEventListener('keydown', unlock, { once: true });
+    connectRealtime();
 
-    const token = getAccessToken();
-    // Local demo employee tokens are not valid for Socket.IO auth.
-    if (!token || isLocalEmployeeToken(token)) {
-      return () => {
-        window.removeEventListener('pointerdown', unlock);
-        window.removeEventListener('keydown', unlock);
-      };
-    }
-
-    const socket = io(getApiOrigin(), {
-      path: '/socket.io',
-      auth: { token },
-      transports: ['websocket', 'polling'],
-      reconnection: true,
-    });
-    socketRef.current = socket;
-
-    socket.on('wallet:updated', (payload) => {
-      if (payload?.sound) playWalletSound(payload.sound);
+    const unsubWallet = subscribeRealtime('wallet:updated', (payload) => {
       handlersRef.current.onWalletUpdate?.(payload);
     });
 
-    socket.on('notification:new', (payload) => {
+    const unsubNotification = subscribeRealtime('notification:new', (payload) => {
       handlersRef.current.onNotification?.(payload);
     });
 
+    const unsubRead = subscribeRealtime('notification:read', (payload) => {
+      handlersRef.current.onNotificationRead?.(payload);
+    });
+
+    const unsubCount = subscribeRealtime('notification:count-updated', (payload) => {
+      handlersRef.current.onNotificationCount?.(payload);
+    });
+
+    const unsubReconnect = subscribeRealtime('socket:reconnected', () => {
+      handlersRef.current.onReconnect?.();
+    });
+
     return () => {
-      window.removeEventListener('pointerdown', unlock);
-      window.removeEventListener('keydown', unlock);
-      socket.disconnect();
-      socketRef.current = null;
+      unsubWallet();
+      unsubNotification();
+      unsubRead();
+      unsubCount();
+      unsubReconnect();
+      disconnectRealtime();
     };
   }, [enabled]);
 
-  return socketRef;
+  return null;
 }

@@ -1,10 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Eye, Check, X, MessageSquare, UserPlus, RefreshCw } from 'lucide-react';
 import { expressInterestService } from '../../services/expressInterestService';
 import { agentService } from '../../services/managedUserService';
 import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
+import { useOpenRecordFromUrl } from '../../hooks/useOpenRecordFromUrl';
 import EmptyState from '../../components/common/EmptyState';
 import SearchBox from '../../components/common/SearchBox';
 import TablePagination from '../../components/common/TablePagination';
@@ -66,6 +68,34 @@ export default function ExpressInterests() {
       .then((data) => setAgents(data?.items || []))
       .catch(() => setAgents([]));
   }, [statusFilter]);
+
+  useDomainRealtime(true);
+
+  const mergeInterestUpdate = useCallback((payload) => {
+    const interest = payload?.interest;
+    if (!interest?.id) return;
+    setRows((prev) => {
+      const idx = prev.findIndex((row) => row.id === interest.id);
+      if (idx >= 0) {
+        const next = [...prev];
+        next[idx] = { ...next[idx], ...interest };
+        return next;
+      }
+      if (payload.action === 'created') return [interest, ...prev];
+      return prev;
+    });
+    setViewing((prev) => (prev?.id === interest.id ? { ...prev, ...interest } : prev));
+  }, []);
+
+  useRealtimeEvent('express-interest:updated', mergeInterestUpdate, true);
+  useRealtimeEvent('express-interest:created', mergeInterestUpdate, true);
+
+  useOpenRecordFromUrl({
+    records: rows,
+    fetchById: (id) => expressInterestService.getById(id),
+    onOpen: setViewing,
+    stateKey: 'openInterestId',
+  });
 
   const {
     page,

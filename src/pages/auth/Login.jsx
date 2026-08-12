@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { Eye, EyeOff, Mail, Lock } from 'lucide-react';
 import { authService } from '../../services/authService';
 import { useAuthStore } from '../../store/authStore';
-import { ROLE_HOME } from '../../config/navigation';
+import { getPostLoginDestination } from '../../config/navigation';
 import {
   consumePendingExpressInterest,
   peekPendingExpressInterest,
@@ -15,6 +15,11 @@ import {
   peekPendingSiteVisit,
   savePendingSiteVisit,
 } from '../../utils/pendingSiteVisit';
+import {
+  consumePendingBookPlot,
+  peekPendingBookPlot,
+  savePendingBookPlot,
+} from '../../utils/pendingBookPlot';
 
 export default function Login() {
   const { t } = useTranslation('forms');
@@ -33,10 +38,12 @@ export default function Login() {
   const fromPath =
     location.state?.from ||
     peekPendingSiteVisit() ||
-    peekPendingExpressInterest();
+    peekPendingExpressInterest() ||
+    peekPendingBookPlot();
   const isExpressInterestIntent = intent === 'express-interest' || String(fromPath || '').startsWith('/express-interest/');
   const isScheduleVisitIntent = intent === 'schedule-visit' || String(fromPath || '').startsWith('/schedule-visit/');
-  const isPropertyIntent = isExpressInterestIntent || isScheduleVisitIntent;
+  const isBookPlotIntent = intent === 'book-plot' || String(fromPath || '').startsWith('/book-plot/');
+  const isPropertyIntent = isExpressInterestIntent || isScheduleVisitIntent || isBookPlotIntent;
 
   useEffect(() => {
     if (fromPath?.startsWith('/express-interest/')) {
@@ -45,19 +52,16 @@ export default function Login() {
     if (fromPath?.startsWith('/schedule-visit/')) {
       savePendingSiteVisit(fromPath);
     }
+    if (fromPath?.startsWith('/book-plot/')) {
+      savePendingBookPlot(fromPath);
+    }
   }, [fromPath]);
 
-  // Already signed-in users land on their home (customers → dashboard, employees → public home).
+  // Already signed-in users: resume pending/return URL, otherwise land on public home.
   useEffect(() => {
-    if (!user || user.status !== 'approved') return;
-    if (user.role === 'customer' || user.role === 'buyer') {
-      const pending = peekPendingSiteVisit() || peekPendingExpressInterest();
-      navigate(pending || location.state?.from || ROLE_HOME[user.role] || '/buyer/dashboard', { replace: true });
-      return;
-    }
-    if (user.role === 'employee') {
-      navigate(location.state?.from || ROLE_HOME.employee || '/', { replace: true });
-    }
+    if (!user || user.status !== 'approved' || user.role === 'admin') return;
+    const pending = peekPendingSiteVisit() || peekPendingExpressInterest() || peekPendingBookPlot();
+    navigate(pending || location.state?.from || getPostLoginDestination(user.role), { replace: true });
   }, [user, navigate, location.state?.from]);
 
   async function handlePasswordLogin(e) {
@@ -77,8 +81,8 @@ export default function Login() {
       const user = await authService.loginPublicWithPassword(emailOrMobile, password);
       if (user.status === 'approved') {
         setUser(user);
-        const pending = consumePendingSiteVisit() || consumePendingExpressInterest();
-        const destination = pending || location.state?.from || ROLE_HOME[user.role] || '/';
+        const pending = consumePendingSiteVisit() || consumePendingExpressInterest() || consumePendingBookPlot();
+        const destination = pending || location.state?.from || getPostLoginDestination(user.role);
         navigate(destination);
       } else {
         setUser(null);
@@ -89,7 +93,14 @@ export default function Login() {
             email: user.email,
             pendingExpressInterest: peekPendingExpressInterest(),
             pendingSiteVisit: peekPendingSiteVisit(),
-            intent: isScheduleVisitIntent ? 'schedule-visit' : isExpressInterestIntent ? 'express-interest' : undefined,
+            pendingBookPlot: peekPendingBookPlot(),
+            intent: isScheduleVisitIntent
+              ? 'schedule-visit'
+              : isExpressInterestIntent
+                ? 'express-interest'
+                : isBookPlotIntent
+                  ? 'book-plot'
+                  : undefined,
           },
         });
       }
@@ -102,7 +113,14 @@ export default function Login() {
             email: emailOrMobile.includes('@') ? emailOrMobile.trim() : undefined,
             pendingExpressInterest: peekPendingExpressInterest(),
             pendingSiteVisit: peekPendingSiteVisit(),
-            intent: isScheduleVisitIntent ? 'schedule-visit' : isExpressInterestIntent ? 'express-interest' : undefined,
+            pendingBookPlot: peekPendingBookPlot(),
+            intent: isScheduleVisitIntent
+              ? 'schedule-visit'
+              : isExpressInterestIntent
+                ? 'express-interest'
+                : isBookPlotIntent
+                  ? 'book-plot'
+                  : undefined,
           },
         });
         return;
@@ -135,15 +153,24 @@ export default function Login() {
 
   const registerState = {
     from: fromPath,
-    intent: isScheduleVisitIntent ? 'schedule-visit' : isExpressInterestIntent ? 'express-interest' : undefined,
+    intent: isScheduleVisitIntent
+      ? 'schedule-visit'
+      : isExpressInterestIntent
+        ? 'express-interest'
+        : isBookPlotIntent
+          ? 'book-plot'
+          : undefined,
     propertyId: location.state?.propertyId,
+    mapPlotExternalId: location.state?.mapPlotExternalId,
   };
 
   const intentMessage = isScheduleVisitIntent
     ? 'Login to schedule your site visit.'
     : isExpressInterestIntent
       ? 'Login to continue Express Interest.'
-      : 'Sign in to continue.';
+      : isBookPlotIntent
+        ? 'Login to continue booking your plot.'
+        : 'Sign in to continue.';
 
   return (
     <div className="mx-auto max-w-md px-4 py-12 sm:py-16">

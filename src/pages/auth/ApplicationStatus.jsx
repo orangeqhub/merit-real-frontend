@@ -5,6 +5,7 @@ import { Clock, CheckCircle2, XCircle } from 'lucide-react';
 import { registrationService } from '../../services/registrationService';
 import { peekPendingExpressInterest, savePendingExpressInterest } from '../../utils/pendingExpressInterest';
 import { peekPendingSiteVisit, savePendingSiteVisit } from '../../utils/pendingSiteVisit';
+import { peekPendingBookPlot, savePendingBookPlot } from '../../utils/pendingBookPlot';
 
 const STATUS_STYLE = {
   pending: { icon: Clock, className: 'text-amber-600 bg-amber-50' },
@@ -24,15 +25,20 @@ export default function ApplicationStatus() {
   const pendingPath =
     location.state?.pendingSiteVisit ||
     location.state?.pendingExpressInterest ||
+    location.state?.pendingBookPlot ||
     peekPendingSiteVisit() ||
-    peekPendingExpressInterest();
+    peekPendingExpressInterest() ||
+    peekPendingBookPlot();
   const isScheduleVisitIntent =
     intent === 'schedule-visit' || String(pendingPath || '').startsWith('/schedule-visit/');
   const isExpressInterestIntent =
     intent === 'express-interest' || String(pendingPath || '').startsWith('/express-interest/');
+  const isBookPlotIntent =
+    intent === 'book-plot' || String(pendingPath || '').startsWith('/book-plot/');
   const isCustomerIntent =
     isScheduleVisitIntent ||
     isExpressInterestIntent ||
+    isBookPlotIntent ||
     Boolean(location.state?.message);
 
   useEffect(() => {
@@ -41,6 +47,9 @@ export default function ApplicationStatus() {
     }
     if (pendingPath?.startsWith('/schedule-visit/')) {
       savePendingSiteVisit(pendingPath);
+    }
+    if (pendingPath?.startsWith('/book-plot/')) {
+      savePendingBookPlot(pendingPath);
     }
   }, [pendingPath]);
 
@@ -69,7 +78,9 @@ export default function ApplicationStatus() {
       ? 'schedule-visit'
       : pendingPath?.startsWith('/express-interest/')
         ? 'express-interest'
-        : undefined,
+        : pendingPath?.startsWith('/book-plot/')
+          ? 'book-plot'
+          : undefined,
   };
 
   return (

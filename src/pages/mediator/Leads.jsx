@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Eye } from 'lucide-react';
 import { expressInterestService } from '../../services/expressInterestService';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
+import { useOpenRecordFromUrl } from '../../hooks/useOpenRecordFromUrl';
 import DataTable, { StatusPill, formatTableDate } from '../../components/common/DataTable';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
 
@@ -45,6 +47,38 @@ export default function Leads() {
   }
 
   useEffect(load, [user]);
+
+  useDomainRealtime(Boolean(user));
+
+  const mergeLeadUpdate = useCallback((payload) => {
+    const interest = payload?.interest;
+    if (!interest?.id) return;
+    setLeads((prev) => {
+      const idx = prev.findIndex((row) => row.id === interest.id);
+      if (idx >= 0) {
+        const next = [...prev];
+        next[idx] = { ...next[idx], ...interest };
+        return next;
+      }
+      if (payload.action === 'created') return [interest, ...prev];
+      return prev;
+    });
+    setSelected((prev) => (prev?.id === interest.id ? { ...prev, ...interest } : prev));
+  }, []);
+
+  useRealtimeEvent('express-interest:updated', mergeLeadUpdate, Boolean(user));
+  useRealtimeEvent('express-interest:created', mergeLeadUpdate, Boolean(user));
+
+  useOpenRecordFromUrl({
+    records: leads,
+    fetchById: (id) => expressInterestService.getById(id),
+    onOpen: (record) => {
+      setSelected(record);
+      setFollowUpStatus(record.followUpStatus || 'IN_PROGRESS');
+      setRemark('');
+    },
+    stateKey: 'openInterestId',
+  });
 
   async function openLead(id) {
     try {

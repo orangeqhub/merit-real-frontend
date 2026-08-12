@@ -8,6 +8,7 @@ import LocationPickerModal from './LocationPickerModal';
 import { useWishlistStore } from '../../store/wishlistStore';
 import { useAuthStore } from '../../store/authStore';
 import { useLocationStore } from '../../store/locationStore';
+import { useUserLocationStore } from '../../store/userLocationStore';
 import { toast } from '../../store/toastStore';
 import { resolvePostPropertyAction } from '../../utils/postPropertyAccess';
 const logoImage = '/logo.svg';
@@ -25,12 +26,16 @@ export default function Navbar() {
   const wishlistCount = useWishlistStore((s) => s.ids.length);
   const user = useAuthStore((s) => s.user);
   const selectedLocation = useLocationStore((s) => s.selectedLocation);
+  const geoLabel = useUserLocationStore((s) => s.label);
+  const headerLocation = selectedLocation || geoLabel;
   const [mobileOpen, setMobileOpen] = useState(false);
   const [logoError, setLogoError] = useState(false);
   const [locationOpen, setLocationOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const searchInputRef = useRef(null);
+  const desktopLocationRef = useRef(null);
+  const mobileLocationRef = useRef(null);
 
   const linkClass = ({ isActive }) =>
     `whitespace-nowrap text-sm font-medium transition-colors hover:text-brand-700 ${isActive ? 'text-brand-800' : 'text-gray-700'}`;
@@ -90,14 +95,19 @@ export default function Navbar() {
         <div className="hidden items-center gap-2 lg:flex">
           <div className="relative">
             <button
+              ref={desktopLocationRef}
               type="button"
               onClick={() => setLocationOpen((o) => !o)}
               className="flex max-w-[9rem] items-center gap-1.5 rounded-full px-3 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-brand-50 hover:text-brand-700"
             >
               <MapPin size={16} className="shrink-0" />
-              <span className="truncate">{selectedLocation || t('nav.selectLocation')}</span>
+              <span className="truncate">{headerLocation || t('nav.selectLocation')}</span>
             </button>
-            <LocationPickerModal open={locationOpen} onClose={() => setLocationOpen(false)} />
+            <LocationPickerModal
+              open={locationOpen}
+              onClose={() => setLocationOpen(false)}
+              triggerRef={desktopLocationRef}
+            />
           </div>
 
           <button
@@ -233,14 +243,19 @@ export default function Navbar() {
             ))}
             <div className="relative">
               <button
+                ref={mobileLocationRef}
                 type="button"
                 onClick={() => setLocationOpen((o) => !o)}
                 className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-brand-700"
               >
                 <MapPin size={16} className="shrink-0" />
-                <span className="truncate">{selectedLocation || t('nav.selectLocation')}</span>
+                <span className="truncate">{headerLocation || t('nav.selectLocation')}</span>
               </button>
-              <LocationPickerModal open={locationOpen} onClose={() => setLocationOpen(false)} />
+              <LocationPickerModal
+                open={locationOpen}
+                onClose={() => setLocationOpen(false)}
+                triggerRef={mobileLocationRef}
+              />
             </div>
             {!user && (
               <Link

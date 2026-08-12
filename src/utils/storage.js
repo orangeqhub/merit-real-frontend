@@ -76,4 +76,8 @@ export const STORAGE_KEYS = {
   PENDING_EXPRESS_INTEREST: 'pending_express_interest',
   /** Resume Schedule Site Visit after login / registration approval */
   PENDING_SITE_VISIT: 'pending_site_visit',
+  /** Resume map plot booking after login / registration approval */
+  PENDING_BOOK_PLOT: 'pending_book_plot',
+  /** Session-only GPS-derived location preference (city label + coords) */
+  USER_LOCATION: 'user_location',
 };

@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Eye, ArrowRight, ShoppingBag, CalendarCheck } from 'lucide-react';
 import { expressInterestService } from '../../services/expressInterestService';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
+import { useOpenRecordFromUrl } from '../../hooks/useOpenRecordFromUrl';
 import DataTable, { StatusPill, formatTableDate } from '../../components/common/DataTable';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
 
@@ -43,6 +45,34 @@ export default function Interests() {
 
   useEffect(load, [user]);
 
+  useDomainRealtime(Boolean(user));
+
+  const mergeInterestUpdate = useCallback((payload) => {
+    const interest = payload?.interest;
+    if (!interest?.id) return;
+    setInterests((prev) => {
+      const idx = prev.findIndex((row) => row.id === interest.id);
+      if (idx >= 0) {
+        const next = [...prev];
+        next[idx] = { ...next[idx], ...interest };
+        return next;
+      }
+      if (payload.action === 'created') return [interest, ...prev];
+      return prev;
+    });
+    setSelected((prev) => (prev?.id === interest.id ? { ...prev, ...interest } : prev));
+  }, []);
+
+  useRealtimeEvent('express-interest:updated', mergeInterestUpdate, Boolean(user));
+  useRealtimeEvent('express-interest:approved', mergeInterestUpdate, Boolean(user));
+
+  useOpenRecordFromUrl({
+    records: interests,
+    fetchById: (id) => expressInterestService.getById(id),
+    onOpen: setSelected,
+    stateKey: 'openInterestId',
+  });
+
   async function handleBooking() {
     if (!proceedId) return;
     setSubmitting(true);
@@ -71,10 +101,24 @@ export default function Interests() {
       header: 'Property',
       render: (row) => (
         <div>
-          <Link to={`/properties/${row.propertyId}`} className="font-medium text-brand-800 hover:underline">
-            {row.propertyName || `Property #${row.propertyId}`}
-          </Link>
-          <div className="text-xs text-gray-400">#{row.propertyId}</div>
+          {row.mapPlotNo ? (
+            <>
+              <Link to="/map-layout" className="font-medium text-brand-800 hover:underline">
+                {row.propertyName || `Plot ${row.mapPlotNo}`}
+              </Link>
+              <div className="text-xs text-gray-400">
+                Plot {row.mapPlotNo}
+                {row.mapPhase ? ` · Phase ${row.mapPhase}` : ''}
+              </div>
+            </>
+          ) : (
+            <>
+              <Link to={`/properties/${row.propertyId}`} className="font-medium text-brand-800 hover:underline">
+                {row.propertyName || `Property #${row.propertyId}`}
+              </Link>
+              <div className="text-xs text-gray-400">#{row.propertyId}</div>
+            </>
+          )}
         </div>
       ),
     },

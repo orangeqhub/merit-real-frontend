@@ -5,6 +5,7 @@ import { notificationService } from '../../services/notificationService';
 import { useAuthStore } from '../../store/authStore';
 import { useLanguageStore } from '../../store/languageStore';
 import { getLocalizedField } from '../../utils/localize';
+import { navigateFromNotification } from '../../utils/notificationNavigation';
 import EmptyState from '../../components/common/EmptyState';
 
 const RELATED_ROUTE = {
@@ -31,8 +32,10 @@ export default function Notifications() {
 
   async function handleOpen(n) {
     if (!n.read) await notificationService.markRead(n.id);
-    if (n.relatedType && RELATED_ROUTE[n.relatedType]) {
-      navigate(RELATED_ROUTE[n.relatedType](n.relatedId));
+    if (!navigateFromNotification(n, user?.role, navigate)) {
+      if (n.relatedType && RELATED_ROUTE[n.relatedType]) {
+        navigate(RELATED_ROUTE[n.relatedType](n.relatedId));
+      }
     }
     load();
   }

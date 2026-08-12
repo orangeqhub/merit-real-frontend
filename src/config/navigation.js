@@ -3,14 +3,10 @@ export const DASHBOARD_NAV = {
     { key: 'dashboard', path: '/buyer/dashboard', labelKey: 'nav.dashboard', icon: 'LayoutDashboard' },
     { key: 'properties', path: '/buyer/properties', labelKey: 'nav.browseProperties', icon: 'Search' },
     { key: 'my-properties', path: '/buyer/my-properties', labelKey: 'nav.myProperties', icon: 'Building2' },
-    { key: 'favourites', path: '/buyer/favourites', labelKey: 'nav.favourites', icon: 'Heart' },
-    { key: 'saved-searches', path: '/buyer/saved-searches', labelKey: 'profileMenu.savedSearches', icon: 'BookmarkCheck' },
     { key: 'interests', path: '/buyer/interests', labelKey: 'nav.interests', icon: 'MessageSquareHeart' },
     { key: 'documents', path: '/buyer/documents', labelKey: 'nav.myDocuments', icon: 'FolderOpen' },
     { key: 'bookings', path: '/buyer/bookings', labelKey: 'nav.bookings', icon: 'ClipboardList' },
     { key: 'visits', path: '/buyer/visits', labelKey: 'nav.myScheduledVisits', icon: 'CalendarCheck' },
-    { key: 'promotions', path: '/buyer/promotions', labelKey: 'nav.myPromotions', icon: 'Megaphone' },
-    { key: 'compare', path: '/buyer/compare', labelKey: 'nav.compare', icon: 'Scale' },
     { key: 'notifications', path: '/buyer/notifications', labelKey: 'nav.notifications', icon: 'Bell' },
     { key: 'settings', path: '/buyer/settings', labelKey: 'nav.settings', icon: 'Settings' },
     { key: 'profile', path: '/buyer/profile', labelKey: 'nav.profile', icon: 'UserCircle' },
@@ -123,3 +119,9 @@ export const ROLE_HOME = {
   admin: '/admin/dashboard',
   sales_member: '/sales/dashboard',
 };
+
+/** Default post-login route when no return URL or pending action exists. */
+export function getPostLoginDestination(role) {
+  if (role === 'admin') return ROLE_HOME.admin;
+  return '/';
+}

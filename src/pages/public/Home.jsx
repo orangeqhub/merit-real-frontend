@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import HeroCarousel from '../../components/home/HeroCarousel';
 import CategoryStrip from '../../components/home/CategoryStrip';
 import MapLayoutSection from '../../components/home/MapLayoutSection';
@@ -13,12 +13,42 @@ import HowItWorks from '../../components/home/HowItWorks';
 import ContactSection from '../../components/home/ContactSection';
 import { propertyService } from '../../services/propertyService';
 import { useLocationStore } from '../../store/locationStore';
+import { useUserLocationStore } from '../../store/userLocationStore';
+import { NEARBY_RADIUS_KM } from '../../config/location';
+import { enrichAndSortNearbyProperties } from '../../utils/nearbyProperties';
 
 export default function Home() {
   const selectedLocation = useLocationStore((s) => s.selectedLocation);
-  const fetchFeatured = useCallback(() => propertyService.getFeatured(8, selectedLocation || undefined), [selectedLocation]);
-  const fetchLatest = useCallback(() => propertyService.getLatest(8, selectedLocation || undefined), [selectedLocation]);
-  const fetchTrending = useCallback(() => propertyService.getTrending(8, selectedLocation || undefined), [selectedLocation]);
+  const userCoords = useUserLocationStore((s) => s.coords);
+
+  const geoQuery = useMemo(
+    () => (userCoords
+      ? { latitude: userCoords.lat, longitude: userCoords.lng, radiusKm: NEARBY_RADIUS_KM }
+      : {}),
+    [userCoords]
+  );
+
+  const wrapNearby = useCallback(
+    async (loader) => {
+      const list = await loader();
+      if (!userCoords || !Array.isArray(list)) return list;
+      return enrichAndSortNearbyProperties(list, userCoords, selectedLocation, NEARBY_RADIUS_KM);
+    },
+    [userCoords, selectedLocation]
+  );
+
+  const fetchFeatured = useCallback(
+    () => wrapNearby(() => propertyService.getFeatured(8, selectedLocation || undefined, geoQuery)),
+    [selectedLocation, geoQuery, wrapNearby]
+  );
+  const fetchLatest = useCallback(
+    () => wrapNearby(() => propertyService.getLatest(8, selectedLocation || undefined, geoQuery)),
+    [selectedLocation, geoQuery, wrapNearby]
+  );
+  const fetchTrending = useCallback(
+    () => wrapNearby(() => propertyService.getTrending(8, selectedLocation || undefined, geoQuery)),
+    [selectedLocation, geoQuery, wrapNearby]
+  );
 
   return (
     <>

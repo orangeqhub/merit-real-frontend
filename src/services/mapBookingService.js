@@ -1,8 +1,8 @@
 import { api } from '../api/client';
-import { useAuthStore } from '../store/authStore';
+import { getAccessToken } from '../api/session';
 
 function token() {
-  return useAuthStore.getState().token;
+  return getAccessToken();
 }
 
 export const mapBookingService = {
@@ -12,6 +12,9 @@ export const mapBookingService = {
     if (params.propertyId) qs.set('propertyId', String(params.propertyId));
     if (params.search) qs.set('search', params.search);
     if (params.unique) qs.set('unique', '1');
+    if (params.phase === 1 || params.phase === 2 || params.phase === '1' || params.phase === '2') {
+      qs.set('phase', String(params.phase));
+    }
     qs.set('page', String(params.page || 1));
     qs.set('pageSize', String(Math.min(Number(params.pageSize) || 200, 500)));
     const data = await api(`/map/plots?${qs.toString()}`, { silent: true });
@@ -59,10 +62,18 @@ export const mapBookingService = {
       body,
     });
   },
+
+  async importSheet({ phase, rows }) {
+    return api('/map/plots/import', {
+      method: 'POST',
+      token: token(),
+      body: { phase, rows },
+    });
+  },
 };
 
 export const MAP_LAYOUT_URL = (
-  import.meta.env.VITE_MAP_LAYOUT_URL || 'http://187.127.163.100:3600'
+  import.meta.env.VITE_MAP_LAYOUT_URL || 'http://localhost:5174'
 ).replace(/\/$/, '');
 
 export const PLOT_STATUS_COLORS = {
@@ -77,4 +88,18 @@ export const PLOT_STATUS_LABELS = {
   booked: 'Booked',
   registered: 'Registered',
   sold: 'Sold',
+};
+
+export const PLOT_TYPE_COLORS = {
+  residential: null,
+  amenities: '#F48FB1',
+  commercial: '#FFB74D',
+  mortgage: '#CE93D8',
+};
+
+export const PLOT_TYPE_LABELS = {
+  residential: 'Residential',
+  amenities: 'Amenities',
+  commercial: 'Commercial',
+  mortgage: 'Mortgage',
 };

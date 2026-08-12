@@ -11,6 +11,7 @@ import DocumentUploader from '../../components/forms/DocumentUploader';
 import { validateDocumentFile } from '../../utils/documentValidation';
 import { savePendingExpressInterest, peekPendingExpressInterest } from '../../utils/pendingExpressInterest';
 import { savePendingSiteVisit, peekPendingSiteVisit } from '../../utils/pendingSiteVisit';
+import { savePendingBookPlot, peekPendingBookPlot } from '../../utils/pendingBookPlot';
 
 const ROLES = ['customer', 'agent', 'sales_member'];
 const DOC_ACCEPT = 'application/pdf,image/jpeg,image/jpg,image/png,.pdf,.jpg,.jpeg,.png';
@@ -33,10 +34,15 @@ export default function Register() {
   const [panProof, setPanProof] = useState(null);
 
   const intent = location.state?.intent;
-  const fromPath = location.state?.from || peekPendingSiteVisit() || peekPendingExpressInterest();
+  const fromPath =
+    location.state?.from ||
+    peekPendingSiteVisit() ||
+    peekPendingExpressInterest() ||
+    peekPendingBookPlot();
   const isExpressInterestIntent = intent === 'express-interest' || String(fromPath || '').startsWith('/express-interest/');
   const isScheduleVisitIntent = intent === 'schedule-visit' || String(fromPath || '').startsWith('/schedule-visit/');
-  const isCustomerIntent = isExpressInterestIntent || isScheduleVisitIntent;
+  const isBookPlotIntent = intent === 'book-plot' || String(fromPath || '').startsWith('/book-plot/');
+  const isCustomerIntent = isExpressInterestIntent || isScheduleVisitIntent || isBookPlotIntent;
 
   const {
     register,
@@ -57,6 +63,9 @@ export default function Register() {
     }
     if (fromPath?.startsWith('/schedule-visit/')) {
       savePendingSiteVisit(fromPath);
+    }
+    if (fromPath?.startsWith('/book-plot/')) {
+      savePendingBookPlot(fromPath);
     }
     if (isCustomerIntent) {
       setValue('role', 'customer');
@@ -128,7 +137,16 @@ export default function Register() {
       navigate('/application-status', {
         state: {
           mobile: data.mobile,
-          intent: isScheduleVisitIntent ? 'schedule-visit' : isExpressInterestIntent ? 'express-interest' : undefined,
+          intent: isScheduleVisitIntent
+            ? 'schedule-visit'
+            : isExpressInterestIntent
+              ? 'express-interest'
+              : isBookPlotIntent
+                ? 'book-plot'
+                : undefined,
+          pendingExpressInterest: peekPendingExpressInterest(),
+          pendingSiteVisit: peekPendingSiteVisit(),
+          pendingBookPlot: peekPendingBookPlot(),
           message: isCustomerIntent
             ? 'Your account is pending admin approval.'
             : undefined,
@@ -410,7 +428,11 @@ export default function Register() {
               state: {
                 from: fromPath,
                 intent: isCustomerIntent
-                  ? (isScheduleVisitIntent ? 'schedule-visit' : 'express-interest')
+                  ? (isScheduleVisitIntent
+                    ? 'schedule-visit'
+                    : isBookPlotIntent
+                      ? 'book-plot'
+                      : 'express-interest')
                   : undefined,
                 propertyId: location.state?.propertyId,
               },

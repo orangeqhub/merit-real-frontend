@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Eye, RefreshCw, MessageSquare, IndianRupee, UserPlus, ShoppingBag, Ban, CalendarPlus, RefreshCcw, BadgeCheck, FileText, History, Award } from 'lucide-react';
 import { expressInterestService } from '../../services/expressInterestService';
 import { toast } from '../../store/toastStore';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
 import { confirmDialog } from '../../store/confirmStore';
 import EmptyState from '../../components/common/EmptyState';
 import SearchBox from '../../components/common/SearchBox';
@@ -151,6 +152,27 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
   useEffect(() => {
     load();
   }, [statusFilter, type, scope]);
+
+  useDomainRealtime(true);
+
+  const mergeBookingUpdate = useCallback((payload) => {
+    if (isPurchase) return;
+    const booking = payload?.booking;
+    if (!booking?.id) return;
+    setRows((prev) => {
+      const idx = prev.findIndex((row) => row.id === booking.id);
+      if (idx >= 0) {
+        const next = [...prev];
+        next[idx] = { ...next[idx], ...booking };
+        return next;
+      }
+      if (payload.action === 'created') return [booking, ...prev];
+      return prev;
+    });
+    setViewing((prev) => (prev?.id === booking.id ? { ...prev, ...booking } : prev));
+  }, [isPurchase]);
+
+  useRealtimeEvent('booking:updated', mergeBookingUpdate, !isPurchase);
 
   const {
     page,

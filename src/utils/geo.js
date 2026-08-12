@@ -1,8 +1,5 @@
 // Approximate coordinates for every city in src/data/locations.js's CITIES
-// list. Properties don't carry their own lat/lng, so distance is
-// approximated from the property's `city` field via this lookup — good
-// enough for "nearby first" sorting/badges without touching the property
-// data model.
+// list. Properties may also carry precise coordinates in `mapLocation`.
 export const CITY_COORDINATES = {
   Guntur: { lat: 16.3067, lng: 80.4365 },
   Vijayawada: { lat: 16.5062, lng: 80.648 },
@@ -26,9 +23,24 @@ export function haversineDistanceKm(lat1, lng1, lat2, lng2) {
   return R * c;
 }
 
-/** Approximate coordinates for a property, derived from its `city` field. */
+/** Parse "lat,lng" or Google Maps-style coordinate strings. */
+export function parseMapLocation(value) {
+  if (!value) return null;
+  const text = String(value).trim();
+  const match = text.match(/(-?\d+\.?\d*)\s*,\s*(-?\d+\.?\d*)/);
+  if (!match) return null;
+  const lat = Number(match[1]);
+  const lng = Number(match[2]);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  return { lat, lng };
+}
+
+/** Coordinates for a property — mapLocation first, then city centroid lookup. */
 export function getPropertyCoordinates(property) {
-  return CITY_COORDINATES[property?.city] || null;
+  const fromMap = parseMapLocation(property?.mapLocation);
+  if (fromMap) return fromMap;
+  const city = property?.city ? String(property.city).trim() : '';
+  return city && CITY_COORDINATES[city] ? CITY_COORDINATES[city] : null;
 }
 
 /**

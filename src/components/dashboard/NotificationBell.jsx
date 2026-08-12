@@ -10,6 +10,7 @@ import { ROLE_HOME } from '../../config/navigation';
 import { resolveAssetUrl } from '../../api/client';
 import { useRealtimeSocket } from '../../hooks/useRealtimeSocket';
 import { isLocalEmployeeToken } from '../../api/session';
+import { navigateFromNotification } from '../../utils/notificationNavigation';
 
 export default function NotificationBell() {
   const { t } = useTranslation('common');
@@ -46,9 +47,20 @@ export default function NotificationBell() {
     enabled: Boolean(user) && !isLocalEmployeeToken(),
     onNotification: (n) => {
       if (!n) return;
-      setNotifications((list) => [n, ...list].slice(0, 50));
+      setNotifications((list) => {
+        if (list.some((item) => item.id === n.id)) return list;
+        return [n, ...list].slice(0, 50);
+      });
       setUnreadCount((c) => c + 1);
     },
+    onNotificationRead: (n) => {
+      if (!n?.id) return;
+      setNotifications((list) => list.map((item) => (item.id === n.id ? { ...item, read: true, isRead: true } : item)));
+    },
+    onNotificationCount: (payload) => {
+      if (typeof payload?.unreadCount === 'number') setUnreadCount(payload.unreadCount);
+    },
+    onReconnect: load,
   });
 
   useEffect(() => {
@@ -71,9 +83,7 @@ export default function NotificationBell() {
       setUnreadCount((c) => Math.max(0, c - 1));
     }
     setOpen(false);
-    if (n.linkPath) {
-      navigate(n.linkPath);
-    } else {
+    if (!navigateFromNotification(n, user?.role, navigate)) {
       const home = ROLE_HOME[user?.role] || '/';
       navigate(`${home.replace(/\/dashboard$/, '')}/notifications`.replace('//', '/'));
     }
@@ -89,6 +99,9 @@ export default function NotificationBell() {
     if (!user) return '/';
     if (user.role === 'admin') return '/admin/notifications';
     if (user.role === 'agent' || user.role === 'mediator') return '/mediator/notifications';
+    if (user.role === 'seller') return '/seller/notifications';
+    if (user.role === 'employee') return '/employee/notifications';
+    if (user.role === 'sales_member') return '/sales/notifications';
     return '/buyer/notifications';
   })();
 

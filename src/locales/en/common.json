@@ -124,6 +124,13 @@
     "useCurrentLocation": "📍 Use My Current Location",
     "detecting": "Detecting your location...",
     "detected": "📍 Detected: {{label}}",
+    "yourLocation": "Your Location",
+    "showingNearby": "✓ Showing nearby properties",
+    "orPickCity": "OR pick a city",
+    "permissionDenied": "Location permission was denied. Please allow location access to find nearby properties.",
+    "tryAgain": "Try Again",
+    "unavailable": "Unable to detect your location. Please try again or pick a city manually.",
+    "browserUnsupported": "Geolocation is not supported on this browser.",
     "deniedHint": "Showing all properties. Enable location to discover nearby properties.",
     "nearYou": "📍 Near You",
     "kmAway": "📍 {{distance}} km away"

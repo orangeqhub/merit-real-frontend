@@ -1,11 +1,13 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { RefreshCw, Save, IndianRupee } from 'lucide-react';
+import { Save, Upload, Eraser } from 'lucide-react';
 import {
   mapBookingService,
-  PLOT_STATUS_COLORS,
-  PLOT_STATUS_LABELS,
+  PLOT_TYPE_LABELS,
 } from '../../services/mapBookingService';
+import { parsePlotPricingSheet } from '../../utils/parsePlotPricingSheet';
+import { notifyMapDataUpdated } from '../../utils/mapDataSync';
 import { toast } from '../../store/toastStore';
 import EmptyState from '../../components/common/EmptyState';
 
@@ -14,90 +16,149 @@ function formatInr(value) {
   return `₹${Number(value).toLocaleString('en-IN')}`;
 }
 
+function rowFromSheet(row, phase) {
+  const plotCost =
+    row.plotCost != null && Number(row.plotCost) > 0
+      ? Number(row.plotCost)
+      : row.plotArea != null && row.ratePerSqYd != null
+        ? Math.round(Number(row.plotArea) * Number(row.ratePerSqYd) * 100) / 100
+        : null;
+
+  return {
+    plotNo: String(row.plotNo),
+    phase,
+    plotType: row.plotType || 'residential',
+    status: 'available',
+    plotArea: row.plotArea,
+    facing: row.facing || '',
+    ratePerSqYd: row.ratePerSqYd,
+    plotCost,
+    pending: true,
+  };
+}
+
+/**
+ * Admin workflow:
+ * 1) Page starts empty
+ * 2) Select phase → upload Excel → preview rows
+ * 3) Review → Save all → persist to API / map layout
+ */
 export default function MapPlots() {
   const { t } = useTranslation(['dashboard', 'common']);
-  const [plots, setPlots] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [savingId, setSavingId] = useState(null);
+  const fileInputRef = useRef(null);
+  const [phase, setPhase] = useState(1);
+  const [rows, setRows] = useState([]);
   const [draftCosts, setDraftCosts] = useState({});
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('');
-  const [ratePerSqYd, setRatePerSqYd] = useState('');
-  const [onlyEmpty, setOnlyEmpty] = useState(true);
-  const [bulkSaving, setBulkSaving] = useState(false);
-
-  async function load() {
-    setLoading(true);
-    try {
-      const data = await mapBookingService.listPlots({
-        pageSize: 500,
-        unique: true,
-        search: search.trim() || undefined,
-        status: statusFilter || undefined,
-      });
-      const items = data.items || [];
-      setPlots(items);
-      const nextDrafts = {};
-      items.forEach((plot) => {
-        nextDrafts[plot.plotNo] =
-          plot.plotCost != null && Number(plot.plotCost) > 0 ? String(plot.plotCost) : '';
-      });
-      setDraftCosts(nextDrafts);
-    } catch (err) {
-      toast.error(err.message || 'Failed to load map plots');
-      setPlots([]);
-    } finally {
-      setLoading(false);
-    }
-  }
-
-  useEffect(() => {
-    load();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [fileName, setFileName] = useState('');
+  const [dirty, setDirty] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [saving, setSaving] = useState(false);
 
   const pricedCount = useMemo(
-    () => plots.filter((p) => p.plotCost != null && Number(p.plotCost) > 0).length,
-    [plots]
+    () => rows.filter((r) => r.plotCost != null && Number(r.plotCost) > 0).length,
+    [rows]
   );
 
-  async function saveCost(plot) {
-    const raw = draftCosts[plot.plotNo];
-    const plotCost = raw === '' || raw == null ? null : Number(raw);
-    if (raw !== '' && raw != null && !Number.isFinite(plotCost)) {
-      toast.error('Enter a valid plot cost.');
-      return;
+  function clearBoard() {
+    setRows([]);
+    setDraftCosts({});
+    setFileName('');
+    setDirty(false);
+  }
+
+  function handlePhaseChange(next) {
+    const value = Number(next) === 2 ? 2 : 1;
+    if (dirty && rows.length) {
+      const ok = window.confirm(
+        `Switch to Phase ${value}? Unsaved uploaded rows for Phase ${phase} will be cleared.`
+      );
+      if (!ok) return;
     }
-    setSavingId(plot.id || plot.plotNo);
+    setPhase(value);
+    clearBoard();
+  }
+
+  async function handleSheetUpload(event) {
+    const file = event.target.files?.[0];
+    event.target.value = '';
+    if (!file) return;
+
+    setUploading(true);
     try {
-      await mapBookingService.updatePricing(plot.plotNo, { plotNo: plot.plotNo, plotCost });
-      toast.success(`Plot ${plot.plotNo} price updated.`);
-      await load();
+      const parsed = await parsePlotPricingSheet(file);
+      const nextRows = parsed.rows.map((row) => rowFromSheet(row, phase));
+      const drafts = {};
+      nextRows.forEach((row) => {
+        drafts[row.plotNo] =
+          row.plotCost != null && Number(row.plotCost) > 0 ? String(row.plotCost) : '';
+      });
+      setRows(nextRows);
+      setDraftCosts(drafts);
+      setFileName(file.name);
+      setDirty(true);
+      toast.success(
+        `Phase ${phase}: loaded ${nextRows.length} rows from sheet. Review, then click Save all.`
+      );
     } catch (err) {
-      toast.error(err.message || 'Unable to update price.');
+      toast.error(err.message || 'Unable to read sheet.');
+      clearBoard();
     } finally {
-      setSavingId(null);
+      setUploading(false);
     }
   }
 
-  async function applyRate() {
-    const rate = Number(ratePerSqYd);
-    if (!Number.isFinite(rate) || rate < 0) {
-      toast.error('Enter a valid rate per Sq.Yd.');
+  async function saveAll() {
+    if (!rows.length) {
+      toast.info('Upload a sheet first.');
       return;
     }
-    setBulkSaving(true);
+
+    setSaving(true);
     try {
-      const result = await mapBookingService.bulkPricing({
-        ratePerSqYd: rate,
-        onlyEmpty,
+      const payload = rows.map((row) => {
+        const raw = draftCosts[row.plotNo];
+        const editedCost =
+          raw === '' || raw == null ? row.plotCost : Number(raw);
+        return {
+          plotNo: row.plotNo,
+          plotArea: row.plotArea,
+          facing: row.facing,
+          ratePerSqYd: row.ratePerSqYd,
+          plotCost: Number.isFinite(editedCost) ? editedCost : row.plotCost,
+          plotType: row.plotType || 'residential',
+        };
       });
-      toast.success(`Updated ${result.updated || 0} plot row(s) from rate × area.`);
-      await load();
+
+      const result = await mapBookingService.importSheet({
+        phase,
+        rows: payload,
+      });
+
+      const updated = Number(result?.updated || 0);
+      const skipped = Number(result?.skipped || 0);
+      notifyMapDataUpdated();
+      try {
+        window.postMessage({ type: 'merit-map-data-updated' }, '*');
+      } catch {
+        // ignore
+      }
+
+      setDirty(false);
+      setRows((prev) => prev.map((r) => ({ ...r, pending: false })));
+      toast.success(
+        `Phase ${phase}: saved ${updated} plots` +
+          (skipped ? `, skipped ${skipped}` : '') +
+          '. Visible on Map Layout.'
+      );
+      if (result?.errors?.length) {
+        toast.info(
+          `First skip: plot ${result.errors[0].plotNo || '—'} — ${result.errors[0].reason}`
+        );
+      }
     } catch (err) {
-      toast.error(err.message || 'Bulk pricing failed.');
+      toast.error(err.message || 'Unable to save sheet data.');
     } finally {
-      setBulkSaving(false);
+      setSaving(false);
     }
   }
 
@@ -109,162 +170,144 @@ export default function MapPlots() {
             {t('admin.mapPlotsTitle', { defaultValue: 'Map Plots & Pricing' })}
           </h1>
           <p className="mt-1 text-sm text-gray-500">
-            {t('admin.mapPlotsHint', {
-              defaultValue: 'Set plot prices shown on the public map board and layout popup.',
-            })}
+            Select a phase, upload the Excel sheet, review the rows, then click Save all.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={load}
-          className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
-        >
-          <RefreshCw size={16} />
-          Refresh
-        </button>
+        <div className="flex flex-wrap gap-2">
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept=".xlsx,.xls,.csv"
+            className="hidden"
+            onChange={handleSheetUpload}
+          />
+          <Link
+            to="/map-layout"
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+          >
+            Open Map Layout
+          </Link>
+          <button
+            type="button"
+            disabled={!rows.length}
+            onClick={clearBoard}
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-60"
+          >
+            <Eraser size={16} />
+            Clear board
+          </button>
+          <button
+            type="button"
+            disabled={saving || !rows.length}
+            onClick={saveAll}
+            className="inline-flex items-center gap-2 rounded-lg bg-brand-700 px-3 py-2 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
+          >
+            <Save size={16} />
+            {saving ? 'Saving…' : 'Save all'}
+          </button>
+          <button
+            type="button"
+            disabled={uploading}
+            onClick={() => fileInputRef.current?.click()}
+            className="inline-flex items-center gap-2 rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-sm font-medium text-brand-800 hover:bg-brand-100 disabled:opacity-60"
+          >
+            <Upload size={16} />
+            {uploading ? 'Reading…' : `Upload Phase ${phase} sheet`}
+          </button>
+        </div>
       </div>
 
-      <div className="mb-4 grid gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:grid-cols-[1fr_1fr_auto]">
+      <div className="mb-4 grid gap-3 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:grid-cols-[200px_1fr]">
         <label className="text-sm">
-          <span className="mb-1 block text-xs font-medium text-gray-500">Search plot no</span>
-          <input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && load()}
-            placeholder="e.g. 42"
-            className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
-          />
-        </label>
-        <label className="text-sm">
-          <span className="mb-1 block text-xs font-medium text-gray-500">Status</span>
+          <span className="mb-1 block text-xs font-medium text-gray-500">Phase</span>
           <select
-            value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            value={phase}
+            onChange={(e) => handlePhaseChange(e.target.value)}
             className="w-full rounded-lg border border-gray-200 px-3 py-2 text-sm"
           >
-            <option value="">All</option>
-            {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (
-              <option key={key} value={key}>
-                {label}
-              </option>
-            ))}
+            <option value={1}>Phase 1</option>
+            <option value={2}>Phase 2</option>
           </select>
         </label>
         <div className="flex items-end">
-          <button
-            type="button"
-            onClick={load}
-            className="w-full rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-800"
-          >
-            Apply filters
-          </button>
-        </div>
-      </div>
-
-      <div className="mb-4 rounded-2xl border border-amber-100 bg-amber-50/60 p-4">
-        <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-amber-900">
-          <IndianRupee size={16} />
-          Bulk price from rate × area
-        </div>
-        <div className="flex flex-wrap items-end gap-3">
-          <label className="text-sm">
-            <span className="mb-1 block text-xs font-medium text-gray-600">Rate per Sq.Yd (₹)</span>
-            <input
-              type="number"
-              min="0"
-              step="1"
-              value={ratePerSqYd}
-              onChange={(e) => setRatePerSqYd(e.target.value)}
-              className="w-40 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm"
-              placeholder="e.g. 12000"
-            />
-          </label>
-          <label className="flex items-center gap-2 pb-2 text-sm text-gray-700">
-            <input
-              type="checkbox"
-              checked={onlyEmpty}
-              onChange={(e) => setOnlyEmpty(e.target.checked)}
-            />
-            Only plots without a price
-          </label>
-          <button
-            type="button"
-            disabled={bulkSaving}
-            onClick={applyRate}
-            className="rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
-          >
-            {bulkSaving ? 'Applying…' : 'Apply rate'}
-          </button>
+          <div className="rounded-xl border border-brand-100 bg-brand-50/60 px-3 py-2 text-xs text-gray-700">
+            <strong>Flow:</strong> Phase → Upload Excel → review table → <strong>Save all</strong>.
+            Nothing is written to the map until you save.
+            {fileName ? (
+              <span className="mt-1 block text-brand-800">
+                Loaded file: {fileName}
+                {dirty ? ' (not saved yet)' : ' (saved)'}
+              </span>
+            ) : null}
+          </div>
         </div>
       </div>
 
       <p className="mb-3 text-xs text-gray-500">
-        {loading
-          ? 'Loading plots…'
-          : `${plots.length} unique plots · ${pricedCount} priced`}
+        {rows.length
+          ? `Phase ${phase}: ${rows.length} rows from sheet · ${pricedCount} with cost${
+              dirty ? ' · pending save' : ''
+            }`
+          : `Phase ${phase}: board is empty. Upload an Excel/CSV to preview plots.`}
       </p>
 
-      {!loading && plots.length === 0 ? (
-        <EmptyState titleKey="empty.noData" />
+      {!rows.length ? (
+        <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-6 py-14 text-center">
+          <EmptyState titleKey="empty.noData" />
+          <p className="mx-auto mt-2 max-w-md text-sm text-gray-500">
+            Select Phase 1 or Phase 2, upload the Excel sheet, review the rows, then click Save all.
+          </p>
+        </div>
       ) : (
         <div className="overflow-auto rounded-2xl border border-gray-200 bg-white shadow-sm">
           <table className="min-w-full text-left text-sm">
             <thead className="bg-gray-50 text-xs uppercase tracking-wide text-gray-500">
               <tr>
                 <th className="px-3 py-3">Plot No</th>
-                <th className="px-3 py-3">Status</th>
+                <th className="px-3 py-3">Type</th>
                 <th className="px-3 py-3">Area</th>
-                <th className="px-3 py-3">Current cost</th>
-                <th className="px-3 py-3">Set cost (₹)</th>
-                <th className="px-3 py-3" />
+                <th className="px-3 py-3">Facing</th>
+                <th className="px-3 py-3">Rate</th>
+                <th className="px-3 py-3">Cost from sheet</th>
+                <th className="px-3 py-3">Edit cost (₹)</th>
               </tr>
             </thead>
             <tbody>
-              {plots.map((plot) => {
-                const status = String(plot.status || 'available').toLowerCase();
-                const busy = savingId === (plot.id || plot.plotNo);
-                return (
-                  <tr key={plot.id || plot.plotNo} className="border-t border-gray-100">
-                    <td className="px-3 py-2.5 font-semibold text-brand-900">{plot.plotNo}</td>
-                    <td className="px-3 py-2.5">
-                      <span
-                        className="inline-flex rounded-full px-2 py-0.5 text-xs font-medium text-gray-900"
-                        style={{ backgroundColor: PLOT_STATUS_COLORS[status] || '#e5e7eb' }}
-                      >
-                        {PLOT_STATUS_LABELS[status] || status}
-                      </span>
-                    </td>
-                    <td className="px-3 py-2.5 text-gray-600">
-                      {plot.plotArea ? `${plot.plotArea} Sq.Yds` : '—'}
-                    </td>
-                    <td className="px-3 py-2.5 text-gray-700">{formatInr(plot.plotCost)}</td>
-                    <td className="px-3 py-2.5">
-                      <input
-                        type="number"
-                        min="0"
-                        step="1"
-                        value={draftCosts[plot.plotNo] ?? ''}
-                        onChange={(e) =>
-                          setDraftCosts((prev) => ({ ...prev, [plot.plotNo]: e.target.value }))
-                        }
-                        className="w-36 rounded-lg border border-gray-200 px-2.5 py-1.5 text-sm"
-                        placeholder="0"
-                      />
-                    </td>
-                    <td className="px-3 py-2.5">
-                      <button
-                        type="button"
-                        disabled={busy}
-                        onClick={() => saveCost(plot)}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-1.5 text-xs font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
-                      >
-                        <Save size={14} />
-                        {busy ? 'Saving…' : 'Save'}
-                      </button>
-                    </td>
-                  </tr>
-                );
-              })}
+              {rows.map((plot) => (
+                <tr key={`${phase}-${plot.plotNo}`} className="border-t border-gray-100">
+                  <td className="px-3 py-2.5 font-semibold text-brand-900">{plot.plotNo}</td>
+                  <td className="px-3 py-2.5 text-gray-600">
+                    {PLOT_TYPE_LABELS[plot.plotType] || plot.plotType || 'Residential'}
+                  </td>
+                  <td className="px-3 py-2.5 text-gray-600">
+                    {plot.plotArea != null ? `${plot.plotArea} Sq.Yds` : '—'}
+                  </td>
+                  <td className="px-3 py-2.5 text-gray-600">{plot.facing || '—'}</td>
+                  <td className="px-3 py-2.5 text-gray-600">
+                    {plot.ratePerSqYd ? formatInr(plot.ratePerSqYd) : '—'}
+                  </td>
+                  <td className="px-3 py-2.5 text-gray-700">{formatInr(plot.plotCost)}</td>
+                  <td className="px-3 py-2.5">
+                    <input
+                      type="number"
+                      min="0"
+                      step="1"
+                      value={draftCosts[plot.plotNo] ?? ''}
+                      onChange={(e) => {
+                        setDirty(true);
+                        setDraftCosts((prev) => ({
+                          ...prev,
+                          [plot.plotNo]: e.target.value,
+                        }));
+                      }}
+                      className="w-36 rounded-lg border border-gray-200 px-2.5 py-1.5 text-sm"
+                      placeholder="0"
+                    />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>

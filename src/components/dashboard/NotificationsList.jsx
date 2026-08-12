@@ -4,9 +4,12 @@ import { useTranslation } from 'react-i18next';
 import { ExternalLink, Check } from 'lucide-react';
 import { notificationService } from '../../services/notificationService';
 import { useAuthStore } from '../../store/authStore';
+import { toast } from '../../store/toastStore';
 import { useLanguageStore } from '../../store/languageStore';
 import { getLocalizedField } from '../../utils/localize';
 import { resolveAssetUrl } from '../../api/client';
+import { navigateFromNotification } from '../../utils/notificationNavigation';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
 import DataTable, { StatusPill, formatTableDate } from '../common/DataTable';
 import TableActionsMenu from '../common/TableActionsMenu';
 
@@ -36,12 +39,29 @@ export default function NotificationsList() {
 
   useEffect(load, [user]);
 
+  useDomainRealtime(Boolean(user));
+
+  useRealtimeEvent('notification:new', (n) => {
+    if (!n?.id) return;
+    setNotifications((list) => {
+      if (list.some((item) => item.id === n.id)) return list;
+      return [n, ...list];
+    });
+  }, Boolean(user));
+
+  useRealtimeEvent('notification:read', (n) => {
+    if (!n?.id) return;
+    setNotifications((list) => list.map((item) => (item.id === n.id ? { ...item, read: true, isRead: true } : item)));
+  }, Boolean(user));
+
   async function handleOpen(n) {
     if (!n.read) {
       await notificationService.markRead(n.id);
-      load();
+      setNotifications((list) => list.map((item) => (item.id === n.id ? { ...item, read: true, isRead: true } : item)));
     }
-    if (n.linkPath) navigate(n.linkPath);
+    if (!navigateFromNotification(n, user?.role, navigate)) {
+      toast.error('This notification refers to a record that is no longer available or you no longer have access to it.');
+    }
   }
 
   async function handleMarkAllRead() {

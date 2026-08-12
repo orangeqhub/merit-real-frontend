@@ -8,7 +8,8 @@ import { propertyService } from '../../services/propertyService';
 import { categoryService } from '../../services/categoryService';
 import { useLocationStore } from '../../store/locationStore';
 import { useUserLocationStore } from '../../store/userLocationStore';
-import { haversineDistanceKm, getPropertyCoordinates } from '../../utils/geo';
+import { NEARBY_RADIUS_KM } from '../../config/location';
+import { enrichAndSortNearbyProperties } from '../../utils/nearbyProperties';
 import PropertyCard from '../../components/properties/PropertyCard';
 import FilterPanel from '../../components/properties/FilterPanel';
 import MobileFilterDrawer from '../../components/properties/MobileFilterDrawer';
@@ -27,6 +28,18 @@ export default function PropertyListing({ forcedCategorySlug }) {
   const selectedLocation = useLocationStore((s) => s.selectedLocation);
   const userCoords = useUserLocationStore((s) => s.coords);
   const geoStatus = useUserLocationStore((s) => s.status);
+
+  useEffect(() => {
+    if (selectedLocation) {
+      setFilters((prev) => ({ ...prev, city: selectedLocation }));
+    }
+  }, [selectedLocation]);
+
+  const geoQuery = useMemo(() => (
+    userCoords
+      ? { latitude: userCoords.lat, longitude: userCoords.lng, radiusKm: NEARBY_RADIUS_KM }
+      : {}
+  ), [userCoords]);
   const [category, setCategory] = useState(categorySlug ? getCategoryBySlug(categorySlug) : null);
 
   const [filters, setFilters] = useState(() => ({
@@ -68,8 +81,9 @@ export default function PropertyListing({ forcedCategorySlug }) {
       pageSize: PAGE_SIZE * page,
       featured: sort === 'featured' || undefined,
       trending: filters.trending || undefined,
+      ...geoQuery,
     }),
-    [filters, category, categorySlug, sort, page]
+    [filters, category, categorySlug, sort, page, geoQuery]
   );
 
   useEffect(() => {
@@ -100,15 +114,8 @@ export default function PropertyListing({ forcedCategorySlug }) {
   const displayItems = useMemo(() => {
     if (!result?.items) return [];
     if (!userCoords) return result.items;
-    const withDistance = result.items.map((p) => {
-      const coords = getPropertyCoordinates(p);
-      const distanceKm = coords ? haversineDistanceKm(userCoords.lat, userCoords.lng, coords.lat, coords.lng) : null;
-      return distanceKm != null ? { ...p, distanceKm } : p;
-    });
-    const nearby = withDistance.filter((p) => p.distanceKm != null).sort((a, b) => a.distanceKm - b.distanceKm);
-    const remaining = withDistance.filter((p) => p.distanceKm == null);
-    return [...nearby, ...remaining];
-  }, [result, userCoords]);
+    return enrichAndSortNearbyProperties(result.items, userCoords, selectedLocation, NEARBY_RADIUS_KM);
+  }, [result, userCoords, selectedLocation]);
 
   const title = category ? (language === 'te' ? category.nameTe : category.nameEn) : t('breadcrumb.properties');
 

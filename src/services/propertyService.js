@@ -38,6 +38,8 @@ function normalizePropertyList(items) {
   return (Array.isArray(items) ? items : []).map(normalizePropertyMedia);
 }
 
+import { NEARBY_RADIUS_KM } from '../config/location';
+
 function buildQuery(params = {}) {
   const query = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
@@ -99,9 +101,13 @@ export const propertyService = {
   async getProperties(params = {}) {
     // Admin-only endpoint — never call from customer/agent portals
     const useAdmin = params.admin === true;
+    const queryParams = { ...params };
+    if (queryParams.latitude != null && queryParams.longitude != null) {
+      queryParams.radiusKm = queryParams.radiusKm ?? NEARBY_RADIUS_KM;
+    }
     const path = useAdmin
-      ? `/properties/admin/all${buildQuery({ ...params, includeAllStatuses: params.includeAllStatuses ?? true })}`
-      : `/properties${buildQuery(params)}`;
+      ? `/properties/admin/all${buildQuery({ ...queryParams, includeAllStatuses: queryParams.includeAllStatuses ?? true })}`
+      : `/properties${buildQuery(queryParams)}`;
     const options = useAdmin || params.token
       ? { token: getAccessToken(), silent: params.silent ?? useAdmin }
       : { silent: params.silent };
@@ -126,20 +132,38 @@ export const propertyService = {
     }
   },
 
-  async getFeatured(limit = 8, location) {
-    const q = buildQuery({ limit, location });
+  async getFeatured(limit = 8, location, geo = {}) {
+    const q = buildQuery({
+      limit,
+      location,
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+      radiusKm: geo.radiusKm,
+    });
     const data = await api(`/properties/featured${q}`, { silent: true });
     return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
 
-  async getLatest(limit = 8, location) {
-    const q = buildQuery({ limit, location });
+  async getLatest(limit = 8, location, geo = {}) {
+    const q = buildQuery({
+      limit,
+      location,
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+      radiusKm: geo.radiusKm,
+    });
     const data = await api(`/properties/latest${q}`, { silent: true });
     return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
 
-  async getTrending(limit = 8, location) {
-    const q = buildQuery({ limit, location });
+  async getTrending(limit = 8, location, geo = {}) {
+    const q = buildQuery({
+      limit,
+      location,
+      latitude: geo.latitude,
+      longitude: geo.longitude,
+      radiusKm: geo.radiusKm,
+    });
     const data = await api(`/properties/trending${q}`, { silent: true });
     return Array.isArray(data) ? normalizePropertyList(data) : data;
   },
