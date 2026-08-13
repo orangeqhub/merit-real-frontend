@@ -289,7 +289,7 @@ export default function MapLayoutSection({ compact = true }) {
       <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight text-brand-800 sm:text-3xl lg:text-4xl">
+            <h2 className="text-2xl font-bold tracking-tight text-red-600 sm:text-3xl lg:text-4xl">
               Sky line Infra Anne Enclave
             </h2>
             <p className="mt-2 text-sm font-medium text-brand-600 sm:text-base">
