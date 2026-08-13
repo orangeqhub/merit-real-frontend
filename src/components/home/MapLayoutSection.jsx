@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Expand, Map as MapIcon, RefreshCw, Upload } from 'lucide-react';
+import { ChevronDown, Expand, Map as MapIcon, RefreshCw } from 'lucide-react';
 import {
   MAP_LAYOUT_URL,
   mapBookingService,
@@ -9,9 +9,9 @@ import {
   PLOT_TYPE_COLORS,
   PLOT_TYPE_LABELS,
 } from '../../services/mapBookingService';
-import { parsePlotPricingSheet } from '../../utils/parsePlotPricingSheet';
-import { notifyMapDataUpdated, onMapDataUpdated } from '../../utils/mapDataSync';
+import { onMapDataUpdated } from '../../utils/mapDataSync';
 import { toSeriesPlotNo } from '../../utils/plotSeries';
+import { getPlotLayoutMeta, LAYOUT_PHASE_COUNTS, LAYOUT_PLOT_TOTAL, matchesBoardPlotSearch, plotNumberInViewPhase } from '../../utils/plotLayoutIndex';
 import { savePendingBookPlot } from '../../utils/pendingBookPlot';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
@@ -35,14 +35,6 @@ function plotNoKey(plotNo) {
 function plotNoNumeric(plotNo) {
   const n = Number(String(plotNo ?? '').replace(/[^\d.]/g, ''));
   return Number.isFinite(n) ? n : Number.POSITIVE_INFINITY;
-}
-
-function statusRank(status) {
-  const key = String(status || '').toLowerCase();
-  if (key === 'sold') return 0;
-  if (key === 'registered') return 1;
-  if (key === 'booked') return 2;
-  return 3;
 }
 
 function chipColor(plot) {
@@ -70,42 +62,40 @@ function canBookAsCustomer(user) {
   return true;
 }
 
-/** Phase 2 board uses public series 135–272; API may still store legacy 1–138. */
-function normalizePlotForBoard(plot, boardPhase) {
-  const phase = boardPhase ?? plot.phase ?? 1;
+/** Normalize API row to public display plot number; never drops rows. */
+function normalizePlotForBoard(plot) {
+  const meta = getPlotLayoutMeta(plot.externalId || plot.id);
+  if (meta) {
+    return {
+      ...plot,
+      phase: meta.phase,
+      plotNo: meta.displayPlotNo,
+    };
+  }
+
+  let phaseNum = Number(plot.phase) === 2 ? 2 : 1;
+  if (Number(plot.phase) !== 1 && Number(plot.phase) !== 2) {
+    const n = Number(String(plot.plotNo ?? '').replace(/[^\d.]/g, ''));
+    if (Number.isFinite(n) && n >= 135) phaseNum = 2;
+  }
   return {
     ...plot,
-    phase: Number(phase) === 2 ? 2 : 1,
-    plotNo: toSeriesPlotNo(phase, plot.plotNo),
+    phase: phaseNum,
+    plotNo: toSeriesPlotNo(phaseNum, plot.plotNo),
   };
 }
 
-/** One chip per plot number — keeps board UI, drops mapping duplicates. */
-function dedupePlotsByNumber(items) {
-  const byNo = Object.create(null);
-  for (const item of items || []) {
-    const key = plotNoKey(item.plotNo);
-    if (!key) continue;
-    const existing = byNo[key];
-    if (!existing) {
-      byNo[key] = item;
-      continue;
-    }
-    const byStatus = statusRank(item.status) - statusRank(existing.status);
-    if (byStatus < 0) {
-      byNo[key] = item;
-      continue;
-    }
-    if (byStatus > 0) continue;
-    const aPriced = existing.plotCost != null && Number(existing.plotCost) > 0 ? 1 : 0;
-    const bPriced = item.plotCost != null && Number(item.plotCost) > 0 ? 1 : 0;
-    if (bPriced > aPriced) byNo[key] = item;
+/** Dedupe by external id — master dataset keeps all unique API rows. */
+function buildMasterPlotList(items) {
+  const normalized = (items || []).map(normalizePlotForBoard).filter(Boolean);
+  const byExternal = Object.create(null);
+  for (const item of normalized) {
+    const key = String(item.externalId || item.id || `${item.phase}-${item.plotNo}`);
+    byExternal[key] = item;
   }
-  return Object.values(byNo).sort((a, b) => {
-    const diff = plotNoNumeric(a.plotNo) - plotNoNumeric(b.plotNo);
-    if (diff !== 0) return diff;
-    return String(a.plotNo).localeCompare(String(b.plotNo));
-  });
+  return Object.values(byExternal).sort(
+    (a, b) => plotNoNumeric(a.plotNo) - plotNoNumeric(b.plotNo)
+  );
 }
 
 /**
@@ -114,35 +104,43 @@ function dedupePlotsByNumber(items) {
 export default function MapLayoutSection({ compact = true }) {
   const navigate = useNavigate();
   const user = useAuthStore((s) => s.user);
-  const fileInputRef = useRef(null);
-  const [plots, setPlots] = useState([]);
+  const [allPlots, setAllPlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
   const [selected, setSelected] = useState(null);
-  const [uploading, setUploading] = useState(false);
   const [iframeKey, setIframeKey] = useState(0);
   const [viewerWarning, setViewerWarning] = useState('');
-  const [phase, setPhase] = useState(1);
+  const [phase, setPhase] = useState('all');
   const [boardSearch, setBoardSearch] = useState('');
+  const [plotBoardOpen, setPlotBoardOpen] = useState(false);
 
-  const canUpload = user && ['admin', 'sales_member'].includes(String(user.role || '').toLowerCase());
+  function postPhaseToMap(nextPhase) {
+    try {
+      const frame = document.querySelector('iframe[title="Sky line Infra Anne Enclave"]');
+      frame?.contentWindow?.postMessage({ type: 'merit-map-set-phase', phase: nextPhase }, '*');
+    } catch {
+      // ignore cross-origin
+    }
+  }
 
-  async function loadPlots(nextPhase = phase) {
+  function syncMapPhase(nextPhase = phase) {
+    postPhaseToMap(nextPhase);
+    window.setTimeout(() => postPhaseToMap(nextPhase), 150);
+    window.setTimeout(() => postPhaseToMap(nextPhase), 600);
+  }
+
+  async function loadPlots() {
     setLoading(true);
     setLoadError('');
     try {
-      const data = await mapBookingService.listPlots({
-        pageSize: 500,
-        unique: true,
-        phase: nextPhase,
-      });
-      const items = dedupePlotsByNumber((data.items || []).map((p) => normalizePlotForBoard(p, nextPhase)));
-      setPlots(items);
+      const data = await mapBookingService.listPlots({ pageSize: 500 });
+      const items = buildMasterPlotList(data.items || []);
+      setAllPlots(items);
       if (!items.length) {
-        setLoadError(`No Phase ${nextPhase} plots in API. Seed map plots or check backend.`);
+        setLoadError('No plots in API. Seed map plots or check backend.');
       }
     } catch (err) {
-      setPlots([]);
+      setAllPlots([]);
       setLoadError(err.message || 'Unable to load plots from API.');
     } finally {
       setLoading(false);
@@ -162,24 +160,23 @@ export default function MapLayoutSection({ compact = true }) {
   }
 
   function handlePhaseChange(nextPhase) {
-    const value = nextPhase === 2 ? 2 : 1;
+    const value = nextPhase === 2 ? 2 : nextPhase === 1 ? 1 : 'all';
     setPhase(value);
     setSelected(null);
     setBoardSearch('');
-    loadPlots(value);
-    reloadViewer();
+    syncMapPhase(value);
   }
 
   useEffect(() => {
-    loadPlots(1);
+    loadPlots('all');
   }, []);
 
   useEffect(() => {
     return onMapDataUpdated(() => {
-      loadPlots(phase);
+      loadPlots();
       reloadViewer();
     });
-  }, [phase]);
+  }, []);
 
   useEffect(() => {
     function onMessage(event) {
@@ -187,12 +184,16 @@ export default function MapLayoutSection({ compact = true }) {
       if (!data || typeof data !== 'object') return;
 
       if (data.type === 'merit-map-phase') {
-        const next = Number(data.phase) === 2 ? 2 : 1;
+        const next =
+          data.phase === 2 || data.phase === '2'
+            ? 2
+            : data.phase === 1 || data.phase === '1'
+              ? 1
+              : 'all';
         setPhase((current) => {
           if (current === next) return current;
           setSelected(null);
           setBoardSearch('');
-          loadPlots(next);
           return next;
         });
         return;
@@ -202,7 +203,7 @@ export default function MapLayoutSection({ compact = true }) {
         const externalId = String(data.externalId || '').trim();
         const plotNo = String(data.plotNo || '').trim();
         const fromList =
-          plots.find(
+          allPlots.find(
             (p) =>
               (externalId && (p.externalId === externalId || String(p.id) === externalId)) ||
               (plotNo && plotNoKey(p.plotNo) === plotNoKey(plotNo))
@@ -227,16 +228,17 @@ export default function MapLayoutSection({ compact = true }) {
           return;
         }
         setBoardSearch(query);
+        const pool = allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase));
         const match =
-          plots.find((p) => plotNoKey(p.plotNo) === query) ||
-          plots.find((p) => String(p.plotNo || '').startsWith(query)) ||
+          pool.find((p) => plotNoKey(p.plotNo) === query) ||
+          pool.find((p) => matchesBoardPlotSearch(p.plotNo, query)) ||
           null;
         if (match) setSelected(match);
       }
     }
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [plots, user]);
+  }, [allPlots, phase, user]);
 
   useEffect(() => {
     let cancelled = false;
@@ -253,20 +255,18 @@ export default function MapLayoutSection({ compact = true }) {
     };
   }, [iframeKey]);
 
-  const counts = useMemo(() => statusCounts(plots), [plots]);
-  const filteredPlots = useMemo(() => {
-    const q = String(boardSearch || '').trim().toLowerCase();
-    if (!q) return plots;
-    return plots.filter((p) => {
-      const no = String(p.plotNo || '').toLowerCase();
-      const ext = String(p.externalId || '').toLowerCase();
-      return no.includes(q) || ext.includes(q) || no.replace(/\s+/g, '') === q;
-    });
-  }, [plots, boardSearch]);
-  const previewPlots = useMemo(
-    () => filteredPlots.slice(0, compact ? 200 : 500),
-    [filteredPlots, compact]
+  const visiblePlots = useMemo(
+    () => allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase)),
+    [allPlots, phase]
   );
+
+  const counts = useMemo(() => statusCounts(visiblePlots), [visiblePlots]);
+  const filteredPlots = useMemo(() => {
+    const q = String(boardSearch || '').trim();
+    if (!q) return visiblePlots;
+    return visiblePlots.filter((p) => matchesBoardPlotSearch(p.plotNo, q));
+  }, [visiblePlots, boardSearch]);
+  const previewPlots = useMemo(() => filteredPlots, [filteredPlots]);
 
   function handleBook(plot) {
     if (!plot) return;
@@ -287,43 +287,8 @@ export default function MapLayoutSection({ compact = true }) {
     navigate(resumePath);
   }
 
-  async function handleSheetUpload(event) {
-    const file = event.target.files?.[0];
-    event.target.value = '';
-    if (!file) return;
-    if (!canUpload) {
-      toast.info('Login as admin or sales to upload the pricing sheet.');
-      navigate('/admin/login');
-      return;
-    }
-
-    setUploading(true);
-    try {
-      const parsed = await parsePlotPricingSheet(file);
-      const result = await mapBookingService.importSheet({
-        phase,
-        rows: parsed.rows,
-      });
-      const updated = Number(result?.updated || 0);
-      const skipped = Number(result?.skipped || 0);
-      toast.success(
-        `Phase ${phase}: updated ${updated} plots` + (skipped ? `, skipped ${skipped}` : '')
-      );
-      if (result?.errors?.length) {
-        toast.info(`First skip: plot ${result.errors[0].plotNo || '—'} — ${result.errors[0].reason}`);
-      }
-      notifyMapDataUpdated();
-      await loadPlots(phase);
-      reloadViewer();
-    } catch (err) {
-      toast.error(err.message || 'Unable to import sheet.');
-    } finally {
-      setUploading(false);
-    }
-  }
-
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+    <section className="mx-auto w-full max-w-screen-2xl px-4 py-10 sm:px-6">
       <div className="flex flex-wrap items-end justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">Sky line Infra Anne Enclave</h2>
@@ -342,26 +307,6 @@ export default function MapLayoutSection({ compact = true }) {
           >
             <RefreshCw size={14} /> Refresh
           </button>
-          {canUpload && (
-            <>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept=".xlsx,.xls,.csv"
-                className="hidden"
-                onChange={handleSheetUpload}
-              />
-              <button
-                type="button"
-                disabled={uploading}
-                onClick={() => fileInputRef.current?.click()}
-                className="inline-flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50 px-3 py-2 text-xs font-semibold text-brand-800 hover:bg-brand-100 disabled:opacity-60"
-              >
-                <Upload size={14} />
-                {uploading ? 'Uploading…' : `Upload Phase ${phase} sheet`}
-              </button>
-            </>
-          )}
           <Link
             to="/map-layout"
             className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
@@ -375,12 +320,21 @@ export default function MapLayoutSection({ compact = true }) {
         <div className="inline-flex overflow-hidden rounded-full border border-gray-200 bg-white text-xs font-semibold">
           <button
             type="button"
+            onClick={() => handlePhaseChange('all')}
+            className={`px-3.5 py-1.5 transition ${
+              phase === 'all' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50'
+            }`}
+          >
+            All ({LAYOUT_PHASE_COUNTS.all})
+          </button>
+          <button
+            type="button"
             onClick={() => handlePhaseChange(1)}
             className={`px-3.5 py-1.5 transition ${
               phase === 1 ? 'bg-sky-500 text-white' : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
-            Phase 1
+            Phase 1 ({LAYOUT_PHASE_COUNTS.phase1})
           </button>
           <button
             type="button"
@@ -389,25 +343,12 @@ export default function MapLayoutSection({ compact = true }) {
               phase === 2 ? 'bg-lime-600 text-white' : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
-            Phase 2
+            Phase 2 ({LAYOUT_PHASE_COUNTS.phase2})
           </button>
         </div>
-        {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (
-          <div
-            key={key}
-            className="inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 py-1.5 text-xs font-medium text-gray-700"
-          >
-            <span
-              className="h-2.5 w-2.5 rounded-full"
-              style={{ backgroundColor: PLOT_STATUS_COLORS[key] }}
-            />
-            {label}
-            <span className="text-gray-400">({counts[key] || 0})</span>
-          </div>
-        ))}
       </div>
 
-      <div className={`mt-5 grid gap-4 ${compact ? 'lg:grid-cols-[1.6fr_1fr]' : 'lg:grid-cols-[2fr_1fr]'}`}>
+      <div className="mt-5 flex flex-col gap-4">
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-[#111] shadow-sm">
           <div className="flex items-center justify-between border-b border-white/10 px-3 py-2 text-xs text-white/80">
             <span className="inline-flex items-center gap-1.5 font-semibold">
@@ -430,101 +371,152 @@ export default function MapLayoutSection({ compact = true }) {
               </button>
             </div>
           )}
-          <iframe
-            key={`${iframeKey}-phase-${phase}`}
-            title="Sky line Infra Anne Enclave"
-            src={`${MAP_LAYOUT_URL}/?embed=1&phase=${phase}`}
-            className={`w-full border-0 ${compact ? 'h-[420px]' : 'h-[70vh] min-h-[560px]'}`}
-            loading="eager"
-            referrerPolicy="no-referrer"
-            onLoad={() => setViewerWarning('')}
-          />
+          <div className="relative">
+            <iframe
+              key={iframeKey}
+              title="Sky line Infra Anne Enclave"
+              src={`${MAP_LAYOUT_URL}/?embed=1`}
+              className={`w-full border-0 ${compact ? 'h-[56vh] min-h-[480px]' : 'h-[78vh] min-h-[640px]'}`}
+              loading="eager"
+              referrerPolicy="no-referrer"
+              onLoad={() => {
+                setViewerWarning('');
+                syncMapPhase(phase);
+              }}
+            />
+            <div className="pointer-events-none absolute left-5 top-[82px] z-10 w-[220px]">
+              <div className="flex flex-col gap-1.5 rounded-lg border border-white/15 bg-black/55 p-2 backdrop-blur-sm">
+                {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (
+                  <div
+                    key={key}
+                    className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-[11px] font-medium text-white/90"
+                  >
+                    <span
+                      className="h-2.5 w-2.5 shrink-0 rounded-full ring-1 ring-white/25"
+                      style={{ backgroundColor: PLOT_STATUS_COLORS[key] }}
+                    />
+                    <span className="flex-1">{label}</span>
+                    <span className="text-white/60">({counts[key] || 0})</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm">
-          <h3 className="text-sm font-semibold text-brand-900">
-            Sky line Infra Anne Enclave · Phase {phase}
-          </h3>
-          <p className="mt-1 text-xs text-gray-500">
-            {loading
-              ? 'Loading plots…'
-              : plots.length
-                ? `${plots.length} Phase ${phase} plots synced from booking system`
-                : loadError || `No Phase ${phase} plots synced yet.`}
-          </p>
-          {!canUpload && (
-            <p className="mt-1 text-[11px] text-gray-400">
-              Admin/sales can upload the pricing Excel to fill area, facing, and cost.
-            </p>
-          )}
-
-          {plots.length > 0 && (
-            <div className="mt-3">
-              <label htmlFor="board-plot-search" className="sr-only">
-                Search plot number
-              </label>
-              <input
-                id="board-plot-search"
-                type="search"
-                value={boardSearch}
-                onChange={(e) => {
-                  const value = e.target.value;
-                  setBoardSearch(value);
-                  const q = value.trim().replace(/\D/g, '');
-                  if (!q) {
-                    setSelected(null);
-                    return;
-                  }
-                  const exact = plots.find((p) => plotNoKey(p.plotNo) === q);
-                  const prefix = exact || plots.find((p) => String(p.plotNo || '').startsWith(q));
-                  if (prefix) setSelected(prefix);
-                }}
-                placeholder="Search plot no…"
-                className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-800 outline-none ring-brand-500 placeholder:text-gray-400 focus:ring-2"
+        <div
+          className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
+          onMouseEnter={() => setPlotBoardOpen(true)}
+          onMouseLeave={() => setPlotBoardOpen(false)}
+        >
+          <div className="flex flex-wrap items-end justify-between gap-3">
+            <div className="flex min-w-0 flex-1 items-start gap-2">
+              <ChevronDown
+                size={16}
+                className={`mt-0.5 shrink-0 text-gray-400 transition-transform duration-200 ${
+                  plotBoardOpen ? 'rotate-180' : ''
+                }`}
+                aria-hidden
               />
-              {boardSearch.trim() && (
-                <p className="mt-1 text-[11px] text-gray-400">
-                  Showing {filteredPlots.length} of {plots.length} plots
+              <div>
+                <h3 className="text-sm font-semibold text-brand-900">
+                  Sky line Infra Anne Enclave{phase === 'all' ? '' : ` · Phase ${phase}`}
+                </h3>
+                <p className="mt-1 text-xs text-gray-500">
+                  {loading
+                    ? 'Loading plots…'
+                    : visiblePlots.length
+                      ? phase === 'all'
+                        ? `${visiblePlots.length} of ${LAYOUT_PLOT_TOTAL} plots synced from booking system`
+                        : `${visiblePlots.length} Phase ${phase} plots synced from booking system`
+                      : loadError || (phase === 'all'
+                        ? 'No plots synced yet.'
+                        : `No Phase ${phase} plots synced yet.`)}
+                  {!plotBoardOpen && visiblePlots.length > 0 && (
+                    <span className="text-gray-400"> · Hover to browse plots</span>
+                  )}
                 </p>
+              </div>
+            </div>
+
+            {visiblePlots.length > 0 && (
+              <div className="w-full max-w-xs sm:ml-auto">
+                <label htmlFor="board-plot-search" className="sr-only">
+                  Search plot number
+                </label>
+                <input
+                  id="board-plot-search"
+                  type="search"
+                  value={boardSearch}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setBoardSearch(value);
+                    const q = value.trim().replace(/\D/g, '');
+                    if (!q) {
+                      setSelected(null);
+                      return;
+                    }
+                    const exact = visiblePlots.find((p) => plotNoKey(p.plotNo) === q);
+                    const prefix = exact || visiblePlots.find((p) => matchesBoardPlotSearch(p.plotNo, q));
+                    if (prefix) setSelected(prefix);
+                  }}
+                  placeholder="Search plot no…"
+                  onFocus={() => setPlotBoardOpen(true)}
+                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-800 outline-none ring-brand-500 placeholder:text-gray-400 focus:ring-2"
+                />
+                {boardSearch.trim() && (
+                  <p className="mt-1 text-[11px] text-gray-400">
+                    Showing {filteredPlots.length} of {visiblePlots.length} plots
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+
+          <div
+            className={`grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out ${
+              plotBoardOpen ? 'mt-3 opacity-100' : 'mt-0 opacity-0'
+            }`}
+            style={{ gridTemplateRows: plotBoardOpen ? '1fr' : '0fr' }}
+          >
+            <div className="min-h-0 overflow-hidden">
+              {previewPlots.length > 0 ? (
+                <div className="grid max-h-[520px] grid-cols-8 gap-1.5 overflow-auto sm:grid-cols-10 md:grid-cols-12 lg:grid-cols-[repeat(14,minmax(0,1fr))] xl:grid-cols-[repeat(16,minmax(0,1fr))]">
+                  {previewPlots.map((plot) => {
+                    const status = String(plot.status || 'available').toLowerCase();
+                    const color = chipColor(plot);
+                    const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId || selected.plotNo === plot.plotNo);
+                    const typeLabel = PLOT_TYPE_LABELS[plot.plotType] || plot.plotType;
+                    return (
+                      <button
+                        key={`plot-${plot.phase || phase}-${plot.plotNo}-${plot.externalId || plot.id}`}
+                        type="button"
+                        title={`${plot.plotNo} · ${typeLabel || PLOT_STATUS_LABELS[status] || status}${plot.plotCost ? ` · ${formatInr(plot.plotCost)}` : ''}`}
+                        onClick={() => setSelected(plot)}
+                        className={`rounded-md px-1 py-2 text-center text-[11px] font-semibold leading-none tracking-tight text-gray-900 shadow-sm ring-offset-1 transition ${
+                          active ? 'ring-2 ring-brand-600' : 'hover:brightness-95'
+                        }`}
+                        style={{
+                          backgroundColor: color,
+                          fontFamily: '"Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                        }}
+                      >
+                        {plot.plotNo}
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : (
+                visiblePlots.length > 0 && boardSearch.trim() && (
+                  <p className="text-xs text-gray-500">No plots match “{boardSearch.trim()}”.</p>
+                )
               )}
             </div>
-          )}
-
-          {previewPlots.length > 0 ? (
-            <div className="mt-3 grid max-h-[280px] grid-cols-5 gap-1.5 overflow-auto sm:grid-cols-6 md:grid-cols-8">
-              {previewPlots.map((plot) => {
-                const status = String(plot.status || 'available').toLowerCase();
-                const color = chipColor(plot);
-                const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId || selected.plotNo === plot.plotNo);
-                const typeLabel = PLOT_TYPE_LABELS[plot.plotType] || plot.plotType;
-                return (
-                  <button
-                    key={`plot-${plot.phase || phase}-${plot.plotNo}-${plot.externalId || plot.id}`}
-                    type="button"
-                    title={`${plot.plotNo} · ${typeLabel || PLOT_STATUS_LABELS[status] || status}${plot.plotCost ? ` · ${formatInr(plot.plotCost)}` : ''}`}
-                    onClick={() => setSelected(plot)}
-                    className={`rounded-md px-1 py-2 text-center text-[11px] font-semibold leading-none tracking-tight text-gray-900 shadow-sm ring-offset-1 transition ${
-                      active ? 'ring-2 ring-brand-600' : 'hover:brightness-95'
-                    }`}
-                    style={{
-                      backgroundColor: color,
-                      fontFamily: '"Segoe UI", "Helvetica Neue", Arial, sans-serif',
-                    }}
-                  >
-                    {plot.plotNo}
-                  </button>
-                );
-              })}
-            </div>
-          ) : (
-            plots.length > 0 && boardSearch.trim() && (
-              <p className="mt-3 text-xs text-gray-500">No plots match “{boardSearch.trim()}”.</p>
-            )
-          )}
+          </div>
 
           <div className="mt-4 rounded-xl border border-gray-100 bg-gray-50 p-3 text-xs text-gray-700">
             {selected ? (
-              <div className="space-y-1.5">
+              <div className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
                 <p><span className="text-gray-500">Plot No:</span> <strong>{selected.plotNo}</strong></p>
                 <p>
                   <span className="text-gray-500">Type:</span>{' '}
@@ -545,21 +537,23 @@ export default function MapLayoutSection({ compact = true }) {
                 </p>
                 <p><span className="text-gray-500">Total cost:</span> {formatInr(selected.plotCost)}</p>
                 {isSaleable(selected) ? (
-                  <button
-                    type="button"
-                    onClick={() => handleBook(selected)}
-                    className="mt-2 w-full rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
-                  >
-                    Book this plot
-                  </button>
+                  <div className="sm:col-span-2 lg:col-span-3">
+                    <button
+                      type="button"
+                      onClick={() => handleBook(selected)}
+                      className="mt-2 w-full max-w-xs rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
+                    >
+                      Book this plot
+                    </button>
+                  </div>
                 ) : (
-                  <p className="mt-2 text-[11px] text-amber-700">
+                  <p className="mt-2 text-[11px] text-amber-700 sm:col-span-2 lg:col-span-3">
                     This plot is not available for normal booking.
                   </p>
                 )}
               </div>
             ) : (
-              <p>Select a plot from the board{plots.length ? '' : ' once plots are synced'} to view details.</p>
+              <p>Select a plot from the board{allPlots.length ? '' : ' once plots are synced'} to view details.</p>
             )}
           </div>
         </div>
