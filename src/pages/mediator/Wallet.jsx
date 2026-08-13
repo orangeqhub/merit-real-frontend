@@ -9,10 +9,7 @@ import { toast } from '../../store/toastStore';
 import { useAuthStore } from '../../store/authStore';
 import { useRealtimeSocket } from '../../hooks/useRealtimeSocket';
 import { exportToXlsx } from '../../utils/xlsxExport';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function exportCsv(filename, rows) {
   if (!rows.length) return;
@@ -74,7 +71,7 @@ export default function MediatorWallet() {
       const approved = (redemptions?.items || []).find((r) => String(r.status).toUpperCase() === 'APPROVED');
       setApprovedNotice(
         approved
-          ? `Withdrawal of ${money(approved.requestedAmount || approved.amount)} approved. Your payment will be received in 30 days.`
+          ? `Withdrawal of ${formatInr(approved.requestedAmount || approved.amount)} approved. Your payment will be received in 30 days.`
           : null
       );
     } catch (err) {
@@ -107,12 +104,12 @@ export default function MediatorWallet() {
       return;
     }
     if (amount < Number(config.minRedemptionAmount || 0)) {
-      toast.error(`Minimum withdrawal is ${money(config.minRedemptionAmount)}`);
+      toast.error(`Minimum withdrawal is ${formatInr(config.minRedemptionAmount)}`);
       return;
     }
     const ok = await confirmDialog({
       title: 'Confirm Withdrawal',
-      message: `Submit withdrawal request for ${money(amount)}? Balance stays on hold until admin approval.`,
+      message: `Submit withdrawal request for ${formatInr(amount)}? Balance stays on hold until admin approval.`,
       confirmLabel: 'Submit Request',
     });
     if (!ok) return;
@@ -162,7 +159,7 @@ export default function MediatorWallet() {
     { key: 'closedDealReference', header: 'Closed Deal', render: (r) => r.closedDealReference || '—' },
     { key: 'property', header: 'Property', render: (r) => r.property || '—' },
     { key: 'customer', header: 'Customer', render: (r) => r.customer || '—' },
-    { key: 'amount', header: 'Amount', render: (r) => <span className="font-semibold text-brand-800">{money(r.amount)}</span> },
+    { key: 'amount', header: 'Amount', render: (r) => <span className="font-semibold text-brand-800">{formatInr(r.amount)}</span> },
     {
       key: 'status',
       header: 'Status',
@@ -177,10 +174,10 @@ export default function MediatorWallet() {
   const balanceAmount = Number(wallet?.balance ?? wallet?.availableBalance ?? 0);
 
   const bottomStats = [
-    { label: 'Total Amount', value: money(totalAmount) },
-    { label: 'Available Balance', value: money(wallet?.availableBalance) },
-    { label: 'Total Earned', value: money(wallet?.totalEarned) },
-    { label: 'Total Withdrawal', value: money(wallet?.totalRedeemed) },
+    { label: 'Total Amount', value: formatInr(totalAmount) },
+    { label: 'Available Balance', value: formatInr(wallet?.availableBalance) },
+    { label: 'Total Earned', value: formatInr(wallet?.totalEarned) },
+    { label: 'Total Withdrawal', value: formatInr(wallet?.totalRedeemed) },
     { label: 'Last Credit', value: wallet?.lastCreditAt ? formatTableDate(wallet.lastCreditAt) : '—' },
     { label: 'Last Withdrawal', value: wallet?.lastRedemptionAt ? formatTableDate(wallet.lastRedemptionAt) : '—' },
   ];
@@ -224,7 +221,7 @@ export default function MediatorWallet() {
       <div className="max-w-md space-y-3">
         <div className="rounded-xl border border-brand-200 bg-brand-50 p-4">
           <p className="text-xs font-medium uppercase tracking-wide text-gray-500">Balance Amount</p>
-          <p className="mt-1 text-2xl font-semibold text-brand-900">{money(balanceAmount)}</p>
+          <p className="mt-1 text-2xl font-semibold text-brand-900">{formatInr(balanceAmount)}</p>
         </div>
         <button
           type="button"
@@ -291,8 +288,8 @@ export default function MediatorWallet() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4">
           <div className="w-full max-w-md rounded-xl bg-warm-white p-5 shadow-xl">
             <h2 className="text-lg font-semibold text-gray-900">Withdrawal</h2>
-            <p className="mt-1 text-sm text-gray-500">Available: {money(wallet?.availableBalance)}</p>
-            <p className="text-xs text-gray-400">Min: {money(config.minRedemptionAmount)}</p>
+            <p className="mt-1 text-sm text-gray-500">Available: {formatInr(wallet?.availableBalance)}</p>
+            <p className="text-xs text-gray-400">Min: {formatInr(config.minRedemptionAmount)}</p>
             <label className="mt-4 block text-sm font-medium text-gray-700">
               Withdrawal Amount
               <input

@@ -15,6 +15,7 @@ import PurchaseReceiptView from '../../components/purchases/PurchaseReceiptView'
 import PaymentReceiptDocument from '../../components/purchases/PaymentReceiptDocument';
 import SaleCertificateDocument from '../../components/purchases/SaleCertificateDocument';
 import { useTableState } from '../../hooks/useTableState';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 const PURCHASE_STATUS_LABELS = {
   purchase_requested: 'Purchase Requested',
@@ -81,10 +82,6 @@ const BOOKING_STATUS_OPTIONS = [
   'REJECTED',
 ];
 
-function formatMoney(value) {
-  if (value == null || Number.isNaN(Number(value))) return '—';
-  return `₹${new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Number(value))}`;
-}
 /**
  * Shared list UI for Purchase / Booking requests.
  * @param {'purchase'|'booking'} type
@@ -546,7 +543,7 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
             {
               key: 'finalSaleAmount',
               header: 'Sale Amount',
-              render: (row) => formatMoney(row.finalSaleAmount || row.totalAmount),
+              render: (row) => formatIndianCurrency(row.finalSaleAmount || row.totalAmount),
             },
             {
               key: 'paymentStatus',
@@ -590,7 +587,7 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
               sortable: false,
               render: (row) => (
                 <span className="text-xs">
-                  {formatMoney(row.amountPaid)} / {formatMoney(row.balanceAmount)}
+                  {formatIndianCurrency(row.amountPaid)} / {formatIndianCurrency(row.balanceAmount)}
                 </span>
               ),
             },
@@ -779,7 +776,7 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
                     )}
                     {isPurchase && (
                       <td className="px-3 py-2.5 text-xs whitespace-nowrap">
-                        {formatMoney(row.finalSaleAmount || row.totalAmount)}
+                        {formatIndianCurrency(row.finalSaleAmount || row.totalAmount)}
                       </td>
                     )}
                     {isPurchase && (
@@ -804,7 +801,7 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
                     )}
                     {!isPurchase && (
                       <td className="px-3 py-2.5 text-xs whitespace-nowrap">
-                        {formatMoney(row.amountPaid)} / {formatMoney(row.balanceAmount)}
+                        {formatIndianCurrency(row.amountPaid)} / {formatIndianCurrency(row.balanceAmount)}
                       </td>
                     )}
                     <td className="px-3 py-2.5">
@@ -1197,9 +1194,9 @@ function DetailModal({
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Purchase ref</dt><dd className="font-mono text-xs">{viewing.purchaseReference || `PR-${viewing.id}`}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Booking ref</dt><dd className="font-mono text-xs">{viewing.bookingReference || '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Source</dt><dd>{viewing.source || 'DIRECT'}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Sale amount</dt><dd>{formatMoney(viewing.finalSaleAmount || viewing.totalAmount)}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Amount paid</dt><dd>{formatMoney(viewing.amountPaid)}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Balance</dt><dd>{formatMoney(viewing.balanceAmount)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Sale amount</dt><dd>{formatIndianCurrency(viewing.finalSaleAmount || viewing.totalAmount)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Amount paid</dt><dd>{formatIndianCurrency(viewing.amountPaid)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Balance</dt><dd>{formatIndianCurrency(viewing.balanceAmount)}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Payment status</dt><dd>{PAYMENT_STATUS_LABELS[viewing.paymentStatus] || viewing.paymentStatus}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Property status</dt><dd>{viewing.propertyStatus || viewing.property?.status || '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Deal status</dt><dd>{viewing.dealStatus || 'OPEN'}</dd></div>
@@ -1216,9 +1213,9 @@ function DetailModal({
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Decision date</dt><dd>{viewing.decisionDate ? new Date(viewing.decisionDate).toLocaleString() : '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Review date</dt><dd>{viewing.reviewDate ? new Date(viewing.reviewDate).toLocaleDateString() : '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Days overdue</dt><dd>{viewing.daysOverdue || 0}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Total amount</dt><dd>{formatMoney(viewing.totalAmount)}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Amount paid</dt><dd>{formatMoney(viewing.amountPaid)}</dd></div>
-              <div className="flex justify-between gap-4"><dt className="text-gray-500">Balance</dt><dd>{formatMoney(viewing.balanceAmount)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Total amount</dt><dd>{formatIndianCurrency(viewing.totalAmount)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Amount paid</dt><dd>{formatIndianCurrency(viewing.amountPaid)}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Balance</dt><dd>{formatIndianCurrency(viewing.balanceAmount)}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Payment status</dt><dd>{PAYMENT_STATUS_LABELS[viewing.paymentStatus] || viewing.paymentStatus}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Follow-up</dt><dd>{(viewing.followUpStatus || '—').replace(/_/g, ' ')}</dd></div>
               {viewing.decisionRemarks && (
@@ -1235,7 +1232,7 @@ function DetailModal({
             <ul className="mt-2 space-y-2 text-xs text-gray-600">
               {viewing.payments.map((p) => (
                 <li key={p.id} className="rounded border border-gray-100 px-2 py-1.5">
-                  {formatMoney(p.amount)} · {new Date(p.paymentDate).toLocaleString()}
+                  {formatIndianCurrency(p.amount)} · {new Date(p.paymentDate).toLocaleString()}
                   {p.paymentMethod ? ` · ${p.paymentMethod}` : ''}
                   {p.remarks ? ` — ${p.remarks}` : ''}
                 </li>
@@ -1411,9 +1408,9 @@ export function BookingDetailPage() {
         <div className="flex justify-between"><span className="text-gray-500">Extensions</span><span>{booking.extensionCount || 0}</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Admin decision</span><span>{booking.adminDecision || '—'}</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Payment status</span><span>{PAYMENT_STATUS_LABELS[booking.paymentStatus] || booking.paymentStatus}</span></div>
-        <div className="flex justify-between"><span className="text-gray-500">Total amount</span><span>{formatMoney(booking.totalAmount)}</span></div>
-        <div className="flex justify-between"><span className="text-gray-500">Amount paid</span><span>{formatMoney(booking.amountPaid)}</span></div>
-        <div className="flex justify-between"><span className="text-gray-500">Balance</span><span className="font-semibold">{formatMoney(booking.balanceAmount)}</span></div>
+        <div className="flex justify-between"><span className="text-gray-500">Total amount</span><span>{formatIndianCurrency(booking.totalAmount)}</span></div>
+        <div className="flex justify-between"><span className="text-gray-500">Amount paid</span><span>{formatIndianCurrency(booking.amountPaid)}</span></div>
+        <div className="flex justify-between"><span className="text-gray-500">Balance</span><span className="font-semibold">{formatIndianCurrency(booking.balanceAmount)}</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Assigned Agent</span><span>{booking.assignedAgent?.name || '—'}</span></div>
         <div className="flex justify-between"><span className="text-gray-500">Follow-up</span><span>{(booking.followUpStatus || '—').replace(/_/g, ' ')}</span></div>
         <div><span className="text-gray-500">Admin remarks</span><p className="mt-1 rounded bg-gray-50 p-2">{booking.decisionRemarks || booking.adminRemarks || '—'}</p></div>
@@ -1424,7 +1421,7 @@ export function BookingDetailPage() {
             <ul className="mt-2 space-y-2 text-xs">
               {booking.payments.map((p) => (
                 <li key={p.id} className="rounded border border-gray-100 px-2 py-1.5">
-                  {formatMoney(p.amount)} · {new Date(p.paymentDate).toLocaleString()}
+                  {formatIndianCurrency(p.amount)} · {new Date(p.paymentDate).toLocaleString()}
                   {p.remarks ? ` — ${p.remarks}` : ''}
                 </li>
               ))}

@@ -6,10 +6,7 @@ import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
 import { useRealtimeSocket } from '../../hooks/useRealtimeSocket';
 import { useAuthStore } from '../../store/authStore';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 export default function AdminWalletRedemptions() {
   const { user } = useAuthStore();
@@ -53,7 +50,7 @@ export default function AdminWalletRedemptions() {
       } else if (actionType === 'settle') {
         const ok = await confirmDialog({
           title: 'Settlement Completed',
-          message: `Confirm bank transfer of ${money(actionRow.requestedAmount)} is done outside the system?`,
+          message: `Confirm bank transfer of ${formatInr(actionRow.requestedAmount)} is done outside the system?`,
           confirmLabel: 'Mark Settled',
         });
         if (!ok) {
@@ -77,8 +74,8 @@ export default function AdminWalletRedemptions() {
   const columns = [
     { key: 'requestId', header: 'Request ID', render: (r) => <span className="font-mono text-xs">{r.requestId}</span> },
     { key: 'agent', header: 'Agent', render: (r) => r.agent?.name || `Agent #${r.agentId}` },
-    { key: 'walletBalance', header: 'Wallet Balance', render: (r) => money(r.walletBalance) },
-    { key: 'requestedAmount', header: 'Requested', render: (r) => <span className="font-semibold">{money(r.requestedAmount)}</span> },
+    { key: 'walletBalance', header: 'Wallet Balance', render: (r) => formatInr(r.walletBalance) },
+    { key: 'requestedAmount', header: 'Requested', render: (r) => <span className="font-semibold">{formatInr(r.requestedAmount)}</span> },
     { key: 'bankName', header: 'Bank', render: (r) => r.bankName || '—' },
     { key: 'accountNumber', header: 'Account', render: (r) => r.accountNumber || '—' },
     { key: 'requestDate', header: 'Request Date', render: (r) => formatTableDate(r.requestDate) },
@@ -161,7 +158,7 @@ export default function AdminWalletRedemptions() {
           <div className="w-full max-w-md rounded-xl bg-warm-white p-5 shadow-xl">
             <h2 className="text-lg font-semibold capitalize">{actionType} Redemption</h2>
             <p className="mt-1 text-sm text-gray-500">
-              {actionRow.requestId} · {money(actionRow.requestedAmount)} · {actionRow.agent?.name}
+              {actionRow.requestId} · {formatInr(actionRow.requestedAmount)} · {actionRow.agent?.name}
             </p>
             <label className="mt-4 block text-sm font-medium">
               Admin Remarks

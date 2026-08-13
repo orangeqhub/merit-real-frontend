@@ -9,13 +9,10 @@ import { CATEGORIES } from '../../config/categories';
 import { exportToXlsx } from '../../utils/xlsxExport';
 import { toast } from '../../store/toastStore';
 import StatCard from '../../components/dashboard/StatCard';
+import { formatInr } from '../../utils/formatIndianNumber';
 
 const COLORS = ['#556936', '#90a955', '#748a42', '#3f5b25', '#b3c885'];
 const ROLES = ['buyer', 'seller', 'mediator', 'employee'];
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
 
 export default function Reports() {
   const { t } = useTranslation('dashboard');
@@ -152,7 +149,7 @@ export default function Reports() {
       {sales && (
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
           <StatCard icon={ShoppingBag} label="Total Purchases" value={purchase?.totalPurchases || 0} accent="green" />
-          <StatCard icon={IndianRupee} label="Total Revenue" value={money(purchase?.totalRevenue)} accent="indigo" />
+          <StatCard icon={IndianRupee} label="Total Revenue" value={formatInr(purchase?.totalRevenue)} accent="indigo" />
           <StatCard icon={Building2} label="Properties Sold" value={purchase?.propertiesSold || 0} />
           <StatCard icon={TrendingUp} label="Open Inventory" value={admin?.openInventory || 0} accent="cyan" />
           <StatCard icon={FileText} label="Payment Receipts" value={sales.documentReports?.totalPaymentReceipts || admin?.totalPaymentReceipts || 0} accent="orange" />
@@ -176,7 +173,7 @@ export default function Reports() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} />
                 <XAxis dataKey="name" tick={{ fontSize: 11 }} />
                 <YAxis />
-                <Tooltip formatter={(v) => money(v)} />
+                <Tooltip formatter={(v) => formatInr(v)} />
                 <Bar dataKey="value" fill="#556936" radius={[6, 6, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
@@ -195,7 +192,7 @@ export default function Reports() {
                     <Cell key={entry.name} fill={COLORS[i % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(v) => money(v)} />
+                <Tooltip formatter={(v) => formatInr(v)} />
                 <Legend />
               </PieChart>
             </ResponsiveContainer>
@@ -223,7 +220,7 @@ export default function Reports() {
                   <td className="px-4 py-2 font-medium">{a.agentName}</td>
                   <td className="px-4 py-2">{a.closedDeals}</td>
                   <td className="px-4 py-2">{a.activeDeals ?? '—'}</td>
-                  <td className="px-4 py-2">{money(a.salesValue)}</td>
+                  <td className="px-4 py-2">{formatInr(a.salesValue)}</td>
                   <td className="px-4 py-2">{a.customerCount}</td>
                   <td className="px-4 py-2">{a.conversionRate ?? '—'}%</td>
                 </tr>

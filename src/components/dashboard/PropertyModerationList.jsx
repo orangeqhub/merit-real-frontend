@@ -7,6 +7,7 @@ import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
 import EmptyState from '../common/EmptyState';
 import StatusBadge from './StatusBadge';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 export default function PropertyModerationList({ statusFilter = 'draft', scoped = false }) {
   const { t } = useTranslation(['common', 'dashboard']);
@@ -55,7 +56,7 @@ export default function PropertyModerationList({ statusFilter = 'draft', scoped 
           <div key={p.id} className="flex flex-col gap-3 rounded-xl border border-gray-200 p-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <Link to={`/properties/${p.id}`} className="font-medium text-brand-800 hover:underline">{p.titleEn}</Link>
-              <p className="text-sm text-gray-500">{p.locationEn} &middot; ₹{Number(p.price || 0).toLocaleString('en-IN')}</p>
+              <p className="text-sm text-gray-500">{p.locationEn} &middot; {formatIndianCurrency(p.price || 0)}</p>
               <div className="mt-1"><StatusBadge status={p.status} /></div>
               <p className="mt-1 text-xs font-medium text-brand-700">
                 {p.assignedEmployeeId

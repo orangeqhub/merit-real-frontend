@@ -5,10 +5,7 @@ import { walletService } from '../../services/walletService';
 import { useAuthStore } from '../../store/authStore';
 import { useRealtimeSocket } from '../../hooks/useRealtimeSocket';
 import { notificationService } from '../../services/notificationService';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 export default function WalletHeaderIcon() {
   const { user } = useAuthStore();
@@ -62,7 +59,7 @@ export default function WalletHeaderIcon() {
         <Wallet size={16} strokeWidth={2.5} />
       </span>
       <span className="hidden text-sm font-bold tracking-tight sm:inline">
-        {money(wallet?.availableBalance ?? wallet?.balance ?? 0)}
+        {formatInr(wallet?.availableBalance ?? wallet?.balance ?? 0)}
       </span>
       {(wallet?.pendingRedemptionRequests > 0 || walletUnread > 0) && (
         <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-amber-500 px-0.5 text-[10px] font-bold text-brand-950 ring-2 ring-warm-white">

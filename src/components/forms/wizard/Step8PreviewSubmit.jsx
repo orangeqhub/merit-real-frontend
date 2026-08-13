@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { getCategoryBySlug } from '../../../config/categories';
 import { useLanguageStore } from '../../../store/languageStore';
 import { resolveAssetUrl } from '../../../api/client';
+import { formatIndianCurrency } from '../../../utils/formatIndianNumber';
 
 export default function Step8PreviewSubmit({ data }) {
   const { t } = useTranslation('properties');
@@ -26,7 +27,7 @@ export default function Step8PreviewSubmit({ data }) {
           {category ? (language === 'te' ? category.nameTe : category.nameEn) : ''}
         </p>
         <p className="text-lg font-bold text-brand-700">
-          ₹{Number(data.price || 0).toLocaleString('en-IN')}
+          {formatIndianCurrency(data.price || 0)}
         </p>
         <p className="text-sm text-gray-600">{data.address}</p>
         <p className="text-sm text-gray-600">{data.locality}, {data.cityVillage}, {data.district}</p>

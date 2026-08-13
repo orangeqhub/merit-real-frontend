@@ -1,6 +1,6 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Eye, Pencil, Plus, Search, Star, Trash2, X } from 'lucide-react';
+import { Eye, Pencil, Plus, Search, Star, Trash2, X, ListPlus } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import EmptyState from '../common/EmptyState';
 import TablePagination from '../common/TablePagination';
@@ -11,7 +11,15 @@ import { propertyService } from '../../services/propertyService';
 import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
 import MapLocationPicker from '../forms/MapLocationPicker';
+import CategorySpecificFields from '../forms/CategorySpecificFields';
+import PropertyImageGalleryUploader, { buildImageGalleryPayload } from '../forms/PropertyImageGalleryUploader';
 import { resolveAssetUrl } from '../../api/client';
+import { resolveCategorySlug, loadCategoryDetailsFromProperty, buildCategoryDetailsPayload } from '../../utils/categoryDetailsUtils';
+import { emptyCategoryDetails } from '../../utils/propertyCategoryFieldConfig';
+import { formatIndianCurrency, formatIndianNumericText } from '../../utils/formatIndianNumber';
+import { runQueuedTasks, summarizeBulkResults } from '../../utils/bulkPropertyQueue';
+import BulkPropertyProgress from './BulkPropertyProgress';
+import { useRealtimeEvent } from '../../hooks/useDomainRealtime';
 
 const EMPTY_FORM = {
   categoryId: '',
@@ -39,6 +47,8 @@ const EMPTY_FORM = {
   isVerified: true,
   status: 'ACTIVE',
   attributeIds: [],
+  categoryDetails: {},
+  categoryDetailsBySlug: {},
 };
 
 export default function AdminPropertyPanel() {
@@ -56,8 +66,11 @@ export default function AdminPropertyPanel() {
   const [modal, setModal] = useState(null);
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
-  const [imageFiles, setImageFiles] = useState([]);
+  const [imageGallery, setImageGallery] = useState({ items: [], deletedIds: [] });
   const [saving, setSaving] = useState(false);
+  const [postQueue, setPostQueue] = useState([]);
+  const [bulkProgress, setBulkProgress] = useState(null);
+  const submitLockRef = useRef(false);
   const [categoryDetail, setCategoryDetail] = useState(null);
 
   async function loadCategories() {
@@ -104,6 +117,9 @@ export default function AdminPropertyPanel() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [section, categoryFilter, pageSize]);
 
+  useRealtimeEvent('property:created', () => { load(1); }, true);
+  useRealtimeEvent('property:updated', () => { load(page); }, true);
+
   useEffect(() => {
     if (!form.categoryId) {
       setCategoryDetail(null);
@@ -120,41 +136,54 @@ export default function AdminPropertyPanel() {
 
   function openCreate() {
     setSelected(null);
-    setForm({ ...EMPTY_FORM });
-    setImageFiles([]);
+    setForm({ ...EMPTY_FORM, categoryDetails: {}, categoryDetailsBySlug: {} });
+    setImageGallery({ items: [], deletedIds: [] });
     setModal('create');
   }
 
-  function openEdit(row) {
-    setSelected(row);
+  async function openEdit(row) {
+    let full = row;
+    try {
+      full = await propertyService.getPropertyById(row.id) || row;
+    } catch {
+      full = row;
+    }
+    const categorySlug = full.categorySlug || resolveCategorySlug(categories, full.categoryId);
+    const detailsJson = full.detailsJson || {};
+    const categoryDetailsBySlug = detailsJson.categoryDetailsBySlug || {};
+    const categoryDetails = loadCategoryDetailsFromProperty(full, categorySlug);
+
+    setSelected(full);
     setForm({
-      categoryId: String(row.categoryId || ''),
-      titleEn: row.titleEn || '',
-      titleTe: row.titleTe || '',
-      descriptionEn: row.descriptionEn || '',
-      city: row.city || '',
-      district: row.district || '',
-      locality: row.locality || '',
-      state: row.state || 'Andhra Pradesh',
-      pincode: row.pincode || '',
-      address: row.address || '',
-      mapLocation: row.mapLocation || '',
-      price: row.price != null ? String(row.price) : '',
-      area: row.area != null ? String(row.area) : '',
-      facing: row.facing || '',
-      northMeasurement: row.northMeasurement || '',
-      eastMeasurement: row.eastMeasurement || '',
-      westMeasurement: row.westMeasurement || '',
-      southMeasurement: row.southMeasurement || '',
-      contactName: row.contactName || '',
-      contactPhone: row.contactPhone || '',
-      isFeatured: Boolean(row.isFeatured || row.featured),
-      isTrending: Boolean(row.isTrending || row.trending),
-      isVerified: row.isVerified !== false && row.verified !== false,
-      status: String(row.status || 'active').toUpperCase(),
-      attributeIds: row.attributeIds || [],
+      categoryId: String(full.categoryId || ''),
+      titleEn: full.titleEn || '',
+      titleTe: full.titleTe || '',
+      descriptionEn: full.descriptionEn || '',
+      city: full.city || '',
+      district: full.district || '',
+      locality: full.locality || '',
+      state: full.state || 'Andhra Pradesh',
+      pincode: full.pincode || '',
+      address: full.address || '',
+      mapLocation: full.mapLocation || '',
+      price: full.price != null ? String(full.price) : '',
+      area: full.area != null ? String(full.area) : '',
+      facing: full.facing || '',
+      northMeasurement: full.northMeasurement || '',
+      eastMeasurement: full.eastMeasurement || '',
+      westMeasurement: full.westMeasurement || '',
+      southMeasurement: full.southMeasurement || '',
+      contactName: full.contactName || '',
+      contactPhone: full.contactPhone || '',
+      isFeatured: Boolean(full.isFeatured || full.featured),
+      isTrending: Boolean(full.isTrending || full.trending),
+      isVerified: full.isVerified !== false && full.verified !== false,
+      status: String(full.status || 'active').toUpperCase(),
+      attributeIds: full.attributeIds || [],
+      categoryDetails,
+      categoryDetailsBySlug,
     });
-    setImageFiles([]);
+    setImageGallery({ items: [], deletedIds: [] });
     setModal('edit');
   }
 
@@ -168,11 +197,29 @@ export default function AdminPropertyPanel() {
     setModal(null);
     setSelected(null);
     setForm(EMPTY_FORM);
-    setImageFiles([]);
+    setImageGallery({ items: [], deletedIds: [] });
   }
 
   function updateField(key, value) {
     setForm((f) => ({ ...f, [key]: value }));
+  }
+
+  function updateCategoryId(newCategoryId) {
+    setForm((f) => {
+      const oldSlug = resolveCategorySlug(categories, f.categoryId);
+      const newSlug = resolveCategorySlug(categories, newCategoryId);
+      const bySlug = { ...(f.categoryDetailsBySlug || {}) };
+      if (oldSlug) bySlug[oldSlug] = f.categoryDetails || {};
+      const nextDetails = bySlug[newSlug]
+        ? { ...emptyCategoryDetails(newSlug), ...bySlug[newSlug] }
+        : emptyCategoryDetails(newSlug);
+      return {
+        ...f,
+        categoryId: newCategoryId,
+        categoryDetailsBySlug: bySlug,
+        categoryDetails: nextDetails,
+      };
+    });
   }
 
   function toggleAttribute(id) {
@@ -185,15 +232,28 @@ export default function AdminPropertyPanel() {
     });
   }
 
-  async function handleSave(e) {
-    e.preventDefault();
-    if (!form.categoryId || !form.titleEn.trim()) {
-      toast.error('Category and title are required.');
-      return;
-    }
-    setSaving(true);
-    try {
-      const payload = {
+  const selectedCategorySlug = useMemo(
+    () => resolveCategorySlug(categories, form.categoryId),
+    [categories, form.categoryId]
+  );
+
+  function resetCreateForm() {
+    setForm({ ...EMPTY_FORM, categoryDetails: {}, categoryDetailsBySlug: {} });
+    setImageGallery({ items: [], deletedIds: [] });
+    setSelected(null);
+  }
+
+  function buildSubmissionPayload() {
+    const categoryPayload = buildCategoryDetailsPayload(
+      selectedCategorySlug,
+      form.categoryDetails,
+      { categoryDetailsBySlug: form.categoryDetailsBySlug }
+    );
+    const { newFiles, imageGalleryMeta } = buildImageGalleryPayload(imageGallery);
+    const clientRequestId = crypto.randomUUID?.() || `${Date.now()}-${Math.random()}`;
+
+    return {
+      payload: {
         categoryId: Number(form.categoryId),
         titleEn: form.titleEn.trim(),
         titleTe: form.titleTe.trim(),
@@ -219,23 +279,148 @@ export default function AdminPropertyPanel() {
         isVerified: form.isVerified,
         status: form.status || 'ACTIVE',
         attributeIds: form.attributeIds,
-        replaceImages: imageFiles.length > 0,
-      };
+        categoryDetails: categoryPayload.categoryDetails,
+        categoryDetailsBySlug: categoryPayload.categoryDetailsBySlug,
+        imageGalleryMeta,
+        replaceImages: false,
+        clientRequestId,
+      },
+      newFiles,
+      label: form.titleEn.trim(),
+    };
+  }
+
+  async function submitSingleProperty({ keepOpen = false } = {}) {
+    if (submitLockRef.current) return null;
+    if (!form.categoryId || !form.titleEn.trim()) {
+      toast.error('Category and title are required.');
+      return null;
+    }
+
+    submitLockRef.current = true;
+    setSaving(true);
+    try {
+      const { payload, newFiles } = buildSubmissionPayload();
 
       if (modal === 'create') {
-        await propertyService.createProperty(payload, imageFiles);
+        const created = await propertyService.createProperty(payload, newFiles);
         toast.success(t('toast.propertyCreated', { defaultValue: 'Property published successfully.' }));
-      } else {
-        await propertyService.updateProperty(selected.id, payload, imageFiles);
-        toast.success(t('toast.propertyUpdated', { defaultValue: 'Property updated successfully.' }));
+        if (keepOpen) {
+          resetCreateForm();
+          load(1);
+        } else {
+          closeModal();
+          load(1);
+        }
+        return created;
       }
+
+      await propertyService.updateProperty(selected.id, payload, newFiles);
+      toast.success(t('toast.propertyUpdated', { defaultValue: 'Property updated successfully.' }));
       closeModal();
-      load(modal === 'create' ? 1 : page);
+      load(page);
+      return true;
     } catch (err) {
       toast.error(err.message);
+      return null;
     } finally {
       setSaving(false);
+      submitLockRef.current = false;
     }
+  }
+
+  function snapshotCurrentForQueue() {
+    if (!form.categoryId || !form.titleEn.trim()) {
+      toast.error('Category and title are required to add to queue.');
+      return null;
+    }
+    const submission = buildSubmissionPayload();
+    return {
+      id: crypto.randomUUID?.() || `${Date.now()}-${Math.random()}`,
+      ...submission,
+    };
+  }
+
+  function handleAddToQueue() {
+    const snap = snapshotCurrentForQueue();
+    if (!snap) return;
+    setPostQueue((q) => {
+      toast.success(`Added to queue (${q.length + 1} total).`);
+      return [...q, snap];
+    });
+    resetCreateForm();
+  }
+
+  async function runBulkQueue(queueItems, { startIndex = 0 } = {}) {
+    const slice = queueItems.slice(startIndex);
+    if (!slice.length) return [];
+
+    setBulkProgress({
+      open: true,
+      completed: 0,
+      total: slice.length,
+      succeeded: 0,
+      failed: 0,
+      results: [],
+    });
+
+    const results = await runQueuedTasks(
+      slice,
+      async (item) => propertyService.createProperty(item.payload, item.newFiles),
+      {
+        concurrency: 3,
+        onProgress: (progress) => {
+          setBulkProgress((prev) => ({
+            ...prev,
+            open: true,
+            completed: progress.completed,
+            total: progress.total,
+            succeeded: progress.succeeded,
+            failed: progress.failed,
+            results: progress.results,
+          }));
+        },
+      }
+    );
+
+    const summary = summarizeBulkResults(results);
+    if (summary.failed === 0) {
+      toast.success(`${summary.succeeded} / ${summary.total} properties posted successfully.`);
+      setPostQueue([]);
+    } else {
+      toast.error(`${summary.succeeded} succeeded, ${summary.failed} failed. Retry failed items.`);
+      const failedItems = results
+        .map((r, i) => (r?.ok ? null : queueItems[startIndex + i]))
+        .filter(Boolean);
+      setPostQueue(failedItems);
+    }
+
+    load(1);
+    return results;
+  }
+
+  async function handlePostQueue() {
+    if (!postQueue.length) {
+      toast.info('Queue is empty. Add properties using "Add to queue".');
+      return;
+    }
+    if (submitLockRef.current) return;
+    submitLockRef.current = true;
+    try {
+      await runBulkQueue(postQueue);
+    } finally {
+      submitLockRef.current = false;
+    }
+  }
+
+  async function handleSave(e) {
+    e.preventDefault();
+    await submitSingleProperty({ keepOpen: false });
+  }
+
+  async function handlePostAndAddAnother(e) {
+    e.preventDefault();
+    await submitSingleProperty({ keepOpen: true });
   }
 
   async function handleDelete(row) {
@@ -276,13 +461,25 @@ export default function AdminPropertyPanel() {
             Post properties to the website. Mark Featured as needed. Latest is automatic.
           </p>
         </div>
-        <button
-          type="button"
-          onClick={openCreate}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-warm-white hover:bg-brand-700"
-        >
-          <Plus size={16} /> Post Property
-        </button>
+        <div className="flex flex-wrap items-center gap-2">
+          {postQueue.length > 0 && (
+            <button
+              type="button"
+              onClick={handlePostQueue}
+              disabled={Boolean(bulkProgress?.open && bulkProgress.completed < bulkProgress.total)}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-brand-400 bg-brand-50 px-4 py-2 text-sm font-semibold text-brand-800 hover:bg-brand-100 disabled:opacity-60"
+            >
+              <ListPlus size={16} /> Post queue ({postQueue.length})
+            </button>
+          )}
+          <button
+            type="button"
+            onClick={openCreate}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-warm-white hover:bg-brand-700"
+          >
+            <Plus size={16} /> Post Property
+          </button>
+        </div>
       </div>
 
       <div className="mb-4 flex flex-wrap items-center gap-3">
@@ -371,10 +568,10 @@ export default function AdminPropertyPanel() {
                         {row.locationEn || row.city || '—'}
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 font-medium text-gray-800">
-                        ₹{Number(row.price || 0).toLocaleString('en-IN')}
+                        {formatIndianCurrency(row.price || 0)}
                       </td>
                       <td className="whitespace-nowrap px-4 py-3 text-gray-600">
-                        {row.area || '—'}
+                        {row.area ? formatIndianNumericText(row.area) : '—'}
                         {row.facing ? ` · ${row.facing}` : ''}
                       </td>
                       <td className="px-4 py-3">
@@ -457,7 +654,7 @@ export default function AdminPropertyPanel() {
                 <select
                   required
                   value={form.categoryId}
-                  onChange={(e) => updateField('categoryId', e.target.value)}
+                  onChange={(e) => updateCategoryId(e.target.value)}
                   className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
                 >
                   <option value="">Select category</option>
@@ -560,9 +757,24 @@ export default function AdminPropertyPanel() {
                 <label className="mb-1 block text-xs font-medium text-gray-600">Pincode</label>
                 <input value={form.pincode} onChange={(e) => updateField('pincode', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
               </div>
+              <div>
+                <label className="mb-1 block text-xs font-medium text-gray-600">State</label>
+                <input value={form.state} onChange={(e) => updateField('state', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+              </div>
+              <div className="sm:col-span-2">
+                <label className="mb-1 block text-xs font-medium text-gray-600">Address</label>
+                <input value={form.address} onChange={(e) => updateField('address', e.target.value)} placeholder="Full property address" className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+              </div>
+
+              <CategorySpecificFields
+                categorySlug={selectedCategorySlug}
+                values={form.categoryDetails}
+                onChange={(categoryDetails) => updateField('categoryDetails', categoryDetails)}
+              />
+
               <div className="sm:col-span-2">
                 <label className="mb-1 block text-xs font-medium text-gray-600">
-                  Map location <span className="font-normal text-gray-400">(optional)</span>
+                  Map location <span className="font-normal text-gray-400">(optional — latitude, longitude)</span>
                 </label>
                 <MapLocationPicker
                   value={form.mapLocation}
@@ -594,20 +806,20 @@ export default function AdminPropertyPanel() {
                 <label className="mb-1 block text-xs font-medium text-gray-600">Contact phone</label>
                 <input value={form.contactPhone} onChange={(e) => updateField('contactPhone', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
               </div>
-              <div className="sm:col-span-2">
-                <label className="mb-1 block text-xs font-medium text-gray-600">
-                  Images {modal === 'edit' ? '(upload to replace)' : ''}
-                </label>
-                <input
-                  type="file"
-                  accept="image/jpeg,image/png,image/webp"
-                  multiple
-                  onChange={(e) => setImageFiles(Array.from(e.target.files || []))}
-                  className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
-                />
-                {selected?.images?.length > 0 && imageFiles.length === 0 && (
-                  <p className="mt-1 text-xs text-gray-500">{selected.images.length} existing image(s)</p>
-                )}
+              <PropertyImageGalleryUploader
+                existingImages={modal === 'edit' ? selected?.images : []}
+                value={imageGallery}
+                onChange={setImageGallery}
+              />
+              <div>
+                <label className="mb-1 block text-xs font-medium text-gray-600">Property Status</label>
+                <select value={form.status} onChange={(e) => updateField('status', e.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm">
+                  <option value="ACTIVE">Active</option>
+                  <option value="DRAFT">Draft</option>
+                  <option value="INACTIVE">Inactive</option>
+                  <option value="BOOKED">Booked</option>
+                  <option value="SOLD">Sold</option>
+                </select>
               </div>
             </div>
 
@@ -663,8 +875,28 @@ export default function AdminPropertyPanel() {
               </label>
             </div>
 
-            <div className="mt-6 flex justify-end gap-3">
-              <button type="button" onClick={closeModal} className="rounded-lg border border-gray-300 px-4 py-2 text-sm">Cancel</button>
+            <div className="mt-6 flex flex-wrap justify-end gap-3">
+              <button type="button" onClick={closeModal} disabled={saving} className="rounded-lg border border-gray-300 px-4 py-2 text-sm">Cancel</button>
+              {modal === 'create' && (
+                <>
+                  <button
+                    type="button"
+                    onClick={handleAddToQueue}
+                    disabled={saving}
+                    className="rounded-lg border border-brand-300 px-4 py-2 text-sm font-semibold text-brand-700 disabled:opacity-60"
+                  >
+                    Add to queue
+                  </button>
+                  <button
+                    type="button"
+                    onClick={handlePostAndAddAnother}
+                    disabled={saving}
+                    className="rounded-lg border border-brand-500 px-4 py-2 text-sm font-semibold text-brand-700 disabled:opacity-60"
+                  >
+                    {saving ? 'Posting…' : 'Post & add another'}
+                  </button>
+                </>
+              )}
               <button type="submit" disabled={saving} className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-warm-white disabled:opacity-60">
                 {saving ? 'Saving…' : modal === 'create' ? 'Publish' : 'Save changes'}
               </button>
@@ -672,6 +904,19 @@ export default function AdminPropertyPanel() {
           </form>
         </div>
       )}
+
+      <BulkPropertyProgress
+        open={Boolean(bulkProgress?.open)}
+        completed={bulkProgress?.completed || 0}
+        total={bulkProgress?.total || 0}
+        succeeded={bulkProgress?.succeeded || 0}
+        failed={bulkProgress?.failed || 0}
+        results={bulkProgress?.results || []}
+        onClose={() => setBulkProgress(null)}
+        onRetryFailed={() => {
+          if (postQueue.length) runBulkQueue(postQueue);
+        }}
+      />
 
       {modal === 'view' && selected && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/50 px-4 py-8">
@@ -698,8 +943,8 @@ export default function AdminPropertyPanel() {
                   ) : '—'}
                 </dd>
               </div>
-              <div><dt className="text-xs uppercase text-gray-400">Price</dt><dd>₹{Number(selected.price || 0).toLocaleString('en-IN')}</dd></div>
-              <div><dt className="text-xs uppercase text-gray-400">Area</dt><dd>{selected.area || '—'}</dd></div>
+              <div><dt className="text-xs uppercase text-gray-400">Price</dt><dd>{formatIndianCurrency(selected.price || 0)}</dd></div>
+              <div><dt className="text-xs uppercase text-gray-400">Area</dt><dd>{selected.area ? formatIndianNumericText(selected.area) : '—'}</dd></div>
               <div><dt className="text-xs uppercase text-gray-400">Facing</dt><dd>{selected.facing || '—'}</dd></div>
               <div>
                 <dt className="text-xs uppercase text-gray-400">Measurements</dt>

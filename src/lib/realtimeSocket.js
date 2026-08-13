@@ -78,6 +78,17 @@ function attachSocketHandlers(activeSocket) {
     if (!rememberEventId(payload)) return;
     dispatch('booking:updated', payload);
   });
+
+  activeSocket.on('property:updated', (payload) => {
+    if (!rememberEventId(payload)) return;
+    dispatch('property:updated', payload);
+  });
+
+  activeSocket.on('property:created', (payload) => {
+    if (!rememberEventId(payload)) return;
+    dispatch('property:created', payload);
+    dispatch('property:updated', payload);
+  });
 }
 
 export function subscribeRealtime(event, callback) {

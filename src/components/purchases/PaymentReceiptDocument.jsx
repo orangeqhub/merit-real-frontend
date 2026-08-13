@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import { Download, Printer, X } from 'lucide-react';
 import { downloadElementAsPdf, printElement } from '../../utils/printDocument';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function fmtDate(value) {
   if (!value) return '—';
@@ -117,10 +114,10 @@ export default function PaymentReceiptDocument({ receipt, onClose, onAction }) {
           <section className="rounded-lg border border-gray-200 p-4">
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Payment Information</h3>
             <dl className="space-y-1.5">
-              <div className="flex justify-between text-base font-semibold"><dt>Payment Amount</dt><dd>{money(payment.amount)}</dd></div>
-              <div className="flex justify-between"><dt>Total Property Amount</dt><dd>{money(payment.totalPropertyAmount)}</dd></div>
-              <div className="flex justify-between"><dt>Total Amount Paid</dt><dd>{money(payment.totalAmountPaid)}</dd></div>
-              <div className="flex justify-between"><dt>Remaining Balance</dt><dd>{money(payment.remainingBalance)}</dd></div>
+              <div className="flex justify-between text-base font-semibold"><dt>Payment Amount</dt><dd>{formatInr(payment.amount)}</dd></div>
+              <div className="flex justify-between"><dt>Total Property Amount</dt><dd>{formatInr(payment.totalPropertyAmount)}</dd></div>
+              <div className="flex justify-between"><dt>Total Amount Paid</dt><dd>{formatInr(payment.totalAmountPaid)}</dd></div>
+              <div className="flex justify-between"><dt>Remaining Balance</dt><dd>{formatInr(payment.remainingBalance)}</dd></div>
               <div className="flex justify-between"><dt>Payment Method</dt><dd>{payment.paymentMethod || '—'}</dd></div>
               <div className="flex justify-between"><dt>Payment Reference</dt><dd className="font-mono text-xs">{payment.paymentReference || '—'}</dd></div>
               <div className="flex justify-between"><dt>Payment Date</dt><dd>{fmtDate(payment.paymentDate)}</dd></div>

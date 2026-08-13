@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import { Download, Printer, X } from 'lucide-react';
 import { downloadElementAsPdf, printElement } from '../../utils/printDocument';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function fmtDate(value) {
   if (!value) return '—';
@@ -136,10 +133,10 @@ export default function SaleCertificateDocument({ certificate, onClose, onAction
           <section className="rounded-lg border border-emerald-200 bg-emerald-50/40 p-4">
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-emerald-800">Payment Summary</h3>
             <dl className="space-y-1.5">
-              <div className="flex justify-between"><dt>Total Property Amount</dt><dd>{money(pay.totalPropertyAmount)}</dd></div>
-              <div className="flex justify-between"><dt>Total Amount Paid</dt><dd className="font-semibold">{money(pay.totalAmountPaid)}</dd></div>
+              <div className="flex justify-between"><dt>Total Property Amount</dt><dd>{formatInr(pay.totalPropertyAmount)}</dd></div>
+              <div className="flex justify-between"><dt>Total Amount Paid</dt><dd className="font-semibold">{formatInr(pay.totalAmountPaid)}</dd></div>
               <div className="flex justify-between"><dt>Payment Completion Date</dt><dd>{fmtDate(pay.paymentCompletionDate)}</dd></div>
-              <div className="flex justify-between"><dt>Outstanding Balance</dt><dd className="font-semibold text-emerald-700">{money(pay.outstandingBalance ?? 0)}</dd></div>
+              <div className="flex justify-between"><dt>Outstanding Balance</dt><dd className="font-semibold text-emerald-700">{formatInr(pay.outstandingBalance ?? 0)}</dd></div>
             </dl>
           </section>
 

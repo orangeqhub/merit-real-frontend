@@ -32,10 +32,14 @@ import PromotionsCarousel from '../../components/promotions/PromotionsCarousel';
 import PropertyCard from '../../components/properties/PropertyCard';
 import { savePendingExpressInterest } from '../../utils/pendingExpressInterest';
 import { savePendingSiteVisit } from '../../utils/pendingSiteVisit';
+import {
+  formatCategoryDetailsForDisplay,
+  getCategoryDetailsSectionTitle,
+} from '../../utils/propertyCategoryFieldConfig';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 function formatPrice(property) {
-  const formatted = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(property.price);
-  return `₹${formatted}`;
+  return formatIndianCurrency(property.price);
 }
 
 export default function PropertyDetail() {
@@ -192,7 +196,18 @@ export default function PropertyDetail() {
   const location = getLocalizedField(property, 'location', language);
   const description = getLocalizedField(property, 'description', language);
 
-  const facts = [
+  const fullAddress = [property.address, property.locality, property.city, property.district, property.state, property.pincode]
+    .map((v) => (v ? String(v).trim() : ''))
+    .filter(Boolean)
+    .join(', ')
+    .replace(/,\s*(\d{6})$/, ' – $1');
+
+  const categoryDetailRows = formatCategoryDetailsForDisplay(
+    property.categorySlug,
+    property.categoryDetails || property.detailsJson?.categoryDetails || {}
+  );
+
+  const legacyFacts = [
     ...(property.structure
       ? [
           [t('detail.bedroomsLabel'), property.structure.bedrooms],
@@ -210,6 +225,8 @@ export default function PropertyDetail() {
       ? Object.entries(property.plotDetails).map(([k, v]) => [k, Array.isArray(v) ? v.join(', ') : v])
       : []),
   ].filter(([, v]) => v !== undefined && v !== null && v !== '');
+
+  const facts = categoryDetailRows.length ? [] : legacyFacts;
 
   const hasDimensions = Boolean(
     property.area
@@ -266,7 +283,12 @@ export default function PropertyDetail() {
               </div>
               <h1 className="mt-2 text-2xl font-bold text-brand-800">{title}</h1>
               <p className="mt-1 flex items-center gap-1 text-sm text-gray-500">
-                <MapPin size={15} /> <span className="lang-te">{location}</span>
+                <MapPin size={15} />
+                {fullAddress ? (
+                  <span className="font-bold text-gray-800">{fullAddress}</span>
+                ) : (
+                  <span className="lang-te">{location}</span>
+                )}
               </p>
             </div>
             <div className="flex items-center gap-2">
@@ -343,6 +365,22 @@ export default function PropertyDetail() {
                   </dl>
                 </div>
               )}
+            </section>
+          )}
+
+          {categoryDetailRows.length > 0 && (
+            <section className="mt-8">
+              <h2 className="text-lg font-semibold text-brand-800">
+                {getCategoryDetailsSectionTitle(property.categorySlug)}
+              </h2>
+              <dl className="mt-3 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2">
+                {categoryDetailRows.map(({ label, value }) => (
+                  <div key={label}>
+                    <dt className="text-xs uppercase tracking-wide text-gray-400">{label}</dt>
+                    <dd className="text-sm font-medium text-gray-800">{value}</dd>
+                  </div>
+                ))}
+              </dl>
             </section>
           )}
 

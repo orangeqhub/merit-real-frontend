@@ -8,6 +8,7 @@ import { useLanguageStore } from '../../store/languageStore';
 import { useAuthStore } from '../../store/authStore';
 import { useSavedSearchesStore } from '../../store/savedSearchesStore';
 import EmptyState from '../../components/common/EmptyState';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 function emptyForm() {
   return { name: '', city: '', categorySlug: '', minPrice: '', maxPrice: '' };
@@ -96,7 +97,7 @@ export default function SavedSearches() {
               <div className="min-w-0">
                 <p className="font-medium text-gray-800">{s.name}</p>
                 <p className="mt-0.5 text-xs text-gray-500">
-                  {[s.city, s.categorySlug, s.minPrice && `≥ ₹${Number(s.minPrice).toLocaleString('en-IN')}`, s.maxPrice && `≤ ₹${Number(s.maxPrice).toLocaleString('en-IN')}`]
+                  {[s.city, s.categorySlug, s.minPrice && `≥ ${formatIndianCurrency(s.minPrice)}`, s.maxPrice && `≤ ${formatIndianCurrency(s.maxPrice)}`]
                     .filter(Boolean)
                     .join(' · ') || '-'}
                 </p>

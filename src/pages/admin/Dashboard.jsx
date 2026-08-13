@@ -14,12 +14,7 @@ import { useAuthStore } from '../../store/authStore';
 import { CATEGORIES } from '../../config/categories';
 import StatCard from '../../components/dashboard/StatCard';
 import DashboardGreeting from '../../components/dashboard/DashboardGreeting';
-
-function formatCompactInr(value) {
-  if (value >= 10000000) return `₹${(value / 10000000).toFixed(1)}Cr`;
-  if (value >= 100000) return `₹${(value / 100000).toFixed(1)}L`;
-  return `₹${new Intl.NumberFormat('en-IN').format(value || 0)}`;
-}
+import { formatIndianCurrencyCompact } from '../../utils/formatIndianNumber';
 
 export default function Dashboard() {
   const { t } = useTranslation(['dashboard', 'common']);
@@ -125,7 +120,7 @@ export default function Dashboard() {
         <StatCard icon={ClipboardList} label="Bookings Needing Decision" value={counts.bookingsNeedingDecision} accent="orange" />
         <StatCard icon={Users} label={t('admin.totalUsers')} value={counts.totalUsers} accent="blue" />
         <StatCard icon={Building2} label={t('admin.totalProperties')} value={counts.totalProperties} accent="green" />
-        <StatCard icon={IndianRupee} label={t('admin.totalRevenue')} value={formatCompactInr(counts.totalRevenue)} accent="orange" />
+        <StatCard icon={IndianRupee} label={t('admin.totalRevenue')} value={formatIndianCurrencyCompact(counts.totalRevenue)} accent="orange" />
         <StatCard icon={FileBarChart} label={t('admin.reportCategories')} value={counts.reportCategories} accent="purple" />
         <StatCard icon={CalendarCheck} label={t('admin.totalVisits')} value={counts.totalVisits} accent="cyan" />
         <StatCard icon={Inbox} label={t('admin.totalEnquiries')} value={counts.totalEnquiries} accent="indigo" />

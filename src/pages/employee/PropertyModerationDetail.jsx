@@ -15,6 +15,7 @@ import { toast } from '../../store/toastStore';
 import DocumentPreview from '../../components/employee/DocumentPreview';
 import InternalNotesPanel from '../../components/employee/InternalNotesPanel';
 import { resolveAssetUrl } from '../../api/client';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 const FIELD_OPTIONS = ['titleEn', 'descriptionEn', 'price', 'area', 'locationEn', 'amenities', 'approvals'];
 
@@ -127,7 +128,7 @@ export default function PropertyModerationDetail() {
             <p className="text-xs text-gray-400">{property.propertyCode}</p>
             <dl className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-3">
               <div><dt className="text-xs uppercase text-gray-400">{t('table.category')}</dt><dd className="text-sm text-gray-800">{property.categorySlug}</dd></div>
-              <div><dt className="text-xs uppercase text-gray-400">{t('table.price')}</dt><dd className="text-sm text-gray-800">₹{Number(property.price || 0).toLocaleString('en-IN')}</dd></div>
+              <div><dt className="text-xs uppercase text-gray-400">{t('table.price')}</dt><dd className="text-sm text-gray-800">{formatIndianCurrency(property.price || 0)}</dd></div>
               <div><dt className="text-xs uppercase text-gray-400">{t('wizard.area', { ns: 'forms' })}</dt><dd className="text-sm text-gray-800">{property.area} {property.areaUnit}</dd></div>
               <div><dt className="text-xs uppercase text-gray-400">{t('table.location')}</dt><dd className="text-sm text-gray-800 lang-te">{getLocalizedField(property, 'location', language)}</dd></div>
               <div><dt className="text-xs uppercase text-gray-400">{t('verification.assignedDate')}</dt><dd className="text-sm text-gray-800">{property.assignedAt ? new Date(property.assignedAt).toLocaleDateString() : '-'}</dd></div>

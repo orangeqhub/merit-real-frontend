@@ -7,11 +7,7 @@ import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
 import EmptyState from '../../components/common/EmptyState';
 import { clearPendingBookPlot, savePendingBookPlot } from '../../utils/pendingBookPlot';
-
-function formatMoney(value) {
-  if (value == null || Number.isNaN(Number(value))) return null;
-  return `₹${Number(value).toLocaleString('en-IN')}`;
-}
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 /**
  * Map plot booking — same referral → admin approval → 15-day booking pattern as property Express Interest.
@@ -225,8 +221,8 @@ export default function BookMapPlot() {
           <div className="mt-2 grid grid-cols-2 gap-2 text-sm text-gray-600">
             {plot.plotArea != null && <p>Area: {plot.plotArea} sq.yds</p>}
             {plot.facing && <p>Facing: {plot.facing}</p>}
-            {formatMoney(plot.ratePerSqYd) && <p>Rate: {formatMoney(plot.ratePerSqYd)} / sq.yd</p>}
-            {formatMoney(plot.plotCost) && <p>Total: {formatMoney(plot.plotCost)}</p>}
+            {formatIndianCurrency(plot.ratePerSqYd, { fallback: null }) && <p>Rate: {formatIndianCurrency(plot.ratePerSqYd)} / sq.yd</p>}
+            {formatIndianCurrency(plot.plotCost, { fallback: null }) && <p>Total: {formatIndianCurrency(plot.plotCost)}</p>}
           </div>
           <p className="mt-2 text-xs text-gray-500">
             Submitted as <span className="font-medium text-gray-700">{user.name}</span>

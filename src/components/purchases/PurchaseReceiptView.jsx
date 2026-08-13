@@ -1,10 +1,7 @@
 import { useRef, useState } from 'react';
 import { Printer, Download, X } from 'lucide-react';
 import { downloadElementAsPdf, printElement } from '../../utils/printDocument';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function fmtDate(value) {
   if (!value) return '—';
@@ -135,16 +132,16 @@ export default function PurchaseReceiptView({ receipt, onClose }) {
           <section className="rounded-lg border border-gray-200 p-4">
             <h3 className="mb-3 text-xs font-semibold uppercase tracking-wide text-gray-500">Payment Summary</h3>
             <dl className="space-y-1.5">
-              <div className="flex justify-between"><dt>Property Amount</dt><dd className="font-medium">{money(pay.propertyAmount)}</dd></div>
-              <div className="flex justify-between"><dt>Taxes</dt><dd>{money(pay.taxes)}</dd></div>
-              <div className="flex justify-between"><dt>Discount</dt><dd>{money(pay.discount)}</dd></div>
+              <div className="flex justify-between"><dt>Property Amount</dt><dd className="font-medium">{formatInr(pay.propertyAmount)}</dd></div>
+              <div className="flex justify-between"><dt>Taxes</dt><dd>{formatInr(pay.taxes)}</dd></div>
+              <div className="flex justify-between"><dt>Discount</dt><dd>{formatInr(pay.discount)}</dd></div>
               <div className="flex justify-between border-t border-gray-100 pt-2 text-base font-semibold">
                 <dt>Total Amount Paid</dt>
-                <dd>{money(pay.totalAmountPaid)}</dd>
+                <dd>{formatInr(pay.totalAmountPaid)}</dd>
               </div>
               <div className="flex justify-between"><dt>Payment Method</dt><dd>{pay.paymentMethod || '—'}</dd></div>
               <div className="flex justify-between"><dt>Payment Date</dt><dd>{fmtDate(pay.paymentDate)}</dd></div>
-              <div className="flex justify-between"><dt>Balance Amount</dt><dd className="font-medium text-emerald-700">{money(pay.balanceAmount ?? 0)}</dd></div>
+              <div className="flex justify-between"><dt>Balance Amount</dt><dd className="font-medium text-emerald-700">{formatInr(pay.balanceAmount ?? 0)}</dd></div>
             </dl>
           </section>
 

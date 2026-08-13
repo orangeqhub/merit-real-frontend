@@ -5,10 +5,7 @@ import { expressInterestService } from '../../services/expressInterestService';
 import { useAuthStore } from '../../store/authStore';
 import StatCard from '../../components/dashboard/StatCard';
 import DashboardGreeting from '../../components/dashboard/DashboardGreeting';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 export default function MediatorDashboard() {
   const { user } = useAuthStore();
@@ -48,7 +45,7 @@ export default function MediatorDashboard() {
         <StatCard icon={Users} label="Active Leads" value={counts.activeLeads} accent="blue" />
         <StatCard icon={Building2} label="Reserved Properties" value={counts.reservedProperties} />
         <StatCard icon={Handshake} label="Closed Deals" value={counts.closedDeals} accent="green" />
-        <StatCard icon={IndianRupee} label="Total Sales Value" value={money(counts.totalSalesValue)} accent="indigo" />
+        <StatCard icon={IndianRupee} label="Total Sales Value" value={formatInr(counts.totalSalesValue)} accent="indigo" />
       </div>
       <p className="mt-4 text-sm text-gray-500">
         Closed deals remain permanently associated with your agent profile.

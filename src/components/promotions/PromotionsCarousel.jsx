@@ -21,6 +21,7 @@ import {
   clearLegacyDismissals,
   savePromotionForLaterLocally,
 } from '../../utils/dismissedPromotions';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 const AUTOPLAY_MS = 6000;
 
@@ -78,11 +79,6 @@ const TYPE_STYLES = {
 
 function typeStyle(type) {
   return TYPE_STYLES[type] || TYPE_STYLES.FEATURED_PROPERTY;
-}
-
-function formatOfferPrice(value) {
-  if (value == null || Number.isNaN(Number(value))) return null;
-  return `₹${new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(Number(value))}`;
 }
 
 function useCountdown(endDate) {
@@ -151,7 +147,7 @@ function HeroBanner({ item, onClose, onSaveForLater, onPrev, onNext, showNav, in
   const Icon = style.Icon;
   const banner = resolveAssetUrl(item.bannerImage) || resolveAssetUrl(item.property?.image);
   const ctaTo = `/properties/${item.primaryPropertyId}`;
-  const offerPrice = formatOfferPrice(item.offerPrice);
+  const offerPrice = formatIndianCurrency(item.offerPrice, { maximumFractionDigits: 0, fallback: null });
   const location = [item.property?.locality, item.property?.city].filter(Boolean).join(', ');
   const highlights = (item.description || '')
     .split(/[|•\n]/)
@@ -336,7 +332,8 @@ function ExploreCards({ items }) {
             const style = typeStyle(item.promotionType);
             const Icon = style.Icon;
             const image = resolveAssetUrl(item.bannerImage) || resolveAssetUrl(item.property?.image);
-            const price = formatOfferPrice(item.offerPrice) || formatOfferPrice(item.property?.price);
+            const price = formatIndianCurrency(item.offerPrice, { maximumFractionDigits: 0, fallback: null })
+              || formatIndianCurrency(item.property?.price, { maximumFractionDigits: 0, fallback: null });
             return (
               <Link
                 key={item.id}

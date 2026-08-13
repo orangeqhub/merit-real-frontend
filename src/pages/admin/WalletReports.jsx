@@ -5,10 +5,7 @@ import DataTable from '../../components/common/DataTable';
 import StatCard from '../../components/dashboard/StatCard';
 import { exportToXlsx } from '../../utils/xlsxExport';
 import { toast } from '../../store/toastStore';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function exportCsv(filename, rows) {
   if (!rows.length) {
@@ -91,21 +88,21 @@ export default function AdminWalletReports() {
       ) : (
         <>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
-            <StatCard icon={HandCoins} label="Total Commission Paid" value={money(summary.totalCommissionPaid)} />
-            <StatCard icon={Hourglass} label="Pending Commission" value={money(summary.pendingCommission)} accent="amber" />
-            <StatCard icon={Wallet} label="Total Wallet Balance" value={money(summary.totalWalletBalance)} accent="amber" />
-            <StatCard icon={IndianRupee} label="Pending Redemption" value={money(summary.pendingRedemption)} accent="orange" />
-            <StatCard icon={BadgeCheck} label="Total Redeemed" value={money(summary.totalRedeemed)} accent="green" />
+            <StatCard icon={HandCoins} label="Total Commission Paid" value={formatInr(summary.totalCommissionPaid)} />
+            <StatCard icon={Hourglass} label="Pending Commission" value={formatInr(summary.pendingCommission)} accent="amber" />
+            <StatCard icon={Wallet} label="Total Wallet Balance" value={formatInr(summary.totalWalletBalance)} accent="amber" />
+            <StatCard icon={IndianRupee} label="Pending Redemption" value={formatInr(summary.pendingRedemption)} accent="orange" />
+            <StatCard icon={BadgeCheck} label="Total Redeemed" value={formatInr(summary.totalRedeemed)} accent="green" />
           </div>
 
           <DataTable
             title="Agent-wise Commission"
             columns={[
               { key: 'agentName', header: 'Agent', render: (r) => r.agentName },
-              { key: 'totalEarned', header: 'Earned', render: (r) => money(r.totalEarned) },
-              { key: 'balance', header: 'Balance', render: (r) => money(r.balance) },
-              { key: 'pendingRedemption', header: 'Pending', render: (r) => money(r.pendingRedemption) },
-              { key: 'totalRedeemed', header: 'Redeemed', render: (r) => money(r.totalRedeemed) },
+              { key: 'totalEarned', header: 'Earned', render: (r) => formatInr(r.totalEarned) },
+              { key: 'balance', header: 'Balance', render: (r) => formatInr(r.balance) },
+              { key: 'pendingRedemption', header: 'Pending', render: (r) => formatInr(r.pendingRedemption) },
+              { key: 'totalRedeemed', header: 'Redeemed', render: (r) => formatInr(r.totalRedeemed) },
             ]}
             rows={data?.agentWiseCommission || []}
             emptyTitleKey="empty.noData"
@@ -115,7 +112,7 @@ export default function AdminWalletReports() {
             title="Monthly Commission"
             columns={[
               { key: 'month', header: 'Month' },
-              { key: 'amount', header: 'Amount', render: (r) => money(r.amount) },
+              { key: 'amount', header: 'Amount', render: (r) => formatInr(r.amount) },
             ]}
             rows={data?.monthlyCommission || []}
             emptyTitleKey="empty.noData"
@@ -127,8 +124,8 @@ export default function AdminWalletReports() {
               { key: 'dealCode', header: 'Deal' },
               { key: 'agent', header: 'Agent', render: (r) => r.agent?.name || '—' },
               { key: 'property', header: 'Property' },
-              { key: 'saleAmount', header: 'Sale', render: (r) => money(r.saleAmount) },
-              { key: 'suggestedCommission', header: 'Suggested', render: (r) => money(r.suggestedCommission) },
+              { key: 'saleAmount', header: 'Sale', render: (r) => formatInr(r.saleAmount) },
+              { key: 'suggestedCommission', header: 'Suggested', render: (r) => formatInr(r.suggestedCommission) },
               { key: 'commissionStatus', header: 'Status' },
             ]}
             rows={data?.pendingCommissionDeals || []}

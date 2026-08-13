@@ -8,6 +8,7 @@ import { useLanguageStore } from '../../store/languageStore';
 import { getLocalizedField } from '../../utils/localize';
 import EmptyState from '../../components/common/EmptyState';
 import { resolveAssetUrl } from '../../api/client';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 function naOr(value, na) {
   return value === undefined || value === null || value === '' ? na : value;
@@ -36,7 +37,7 @@ export default function Compare() {
   const na = t('compare.notAvailable');
 
   const rows = [
-    { label: t('table.price'), value: (p) => `₹${Number(p.price || 0).toLocaleString('en-IN')}` },
+    { label: t('table.price'), value: (p) => formatIndianCurrency(p.price || 0) },
     { label: t('table.category'), value: (p) => p.categorySlug },
     { label: t('table.location'), value: (p) => naOr(getLocalizedField(p, 'location', language), na) },
     { label: t('wizard.area', { ns: 'forms' }), value: (p) => `${naOr(p.area, na)} ${p.areaUnit || ''}` },

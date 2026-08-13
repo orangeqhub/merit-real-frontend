@@ -15,6 +15,7 @@ import { getPlotLayoutMeta, LAYOUT_PHASE_COUNTS, LAYOUT_PLOT_TOTAL, matchesBoard
 import { savePendingBookPlot } from '../../utils/pendingBookPlot';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
+import { formatInr, formatIndianNumber } from '../../utils/formatIndianNumber';
 
 function statusCounts(plots) {
   return plots.reduce(
@@ -49,10 +50,6 @@ function isSaleable(plot) {
     && String(plot.status || 'available').toLowerCase() === 'available';
 }
 
-function formatInr(value) {
-  if (value == null || value === '' || Number(value) <= 0) return '—';
-  return `₹${Number(value).toLocaleString('en-IN')}`;
-}
 
 function canBookAsCustomer(user) {
   if (!user) return false;
@@ -289,30 +286,34 @@ export default function MapLayoutSection({ compact = true }) {
 
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-4 py-10 sm:px-6">
-      <div className="flex flex-wrap items-end justify-between gap-3">
-        <div>
-          <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">Sky line Infra Anne Enclave</h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Explore the interactive layout, check plot availability, and book your preferred plot.
-          </p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button
-            type="button"
-            onClick={() => {
-              loadPlots();
-              reloadViewer();
-            }}
-            className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50"
-          >
-            <RefreshCw size={14} /> Refresh
-          </button>
-          <Link
-            to="/map-layout"
-            className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
-          >
-            <Expand size={14} /> Open full map
-          </Link>
+      <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <h2 className="text-2xl font-bold tracking-tight text-brand-800 sm:text-3xl lg:text-4xl">
+              Sky line Infra Anne Enclave
+            </h2>
+            <p className="mt-2 text-sm font-medium text-brand-600 sm:text-base">
+              Bookings are open
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => {
+                loadPlots();
+                reloadViewer();
+              }}
+              className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50"
+            >
+              <RefreshCw size={14} /> Refresh
+            </button>
+            <Link
+              to="/map-layout"
+              className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
+            >
+              <Expand size={14} /> Open full map
+            </Link>
+          </div>
         </div>
       </div>
 
@@ -528,7 +529,7 @@ export default function MapLayoutSection({ compact = true }) {
                 </p>
                 <p>
                   <span className="text-gray-500">Area:</span>{' '}
-                  {selected.plotArea ? `${Number(selected.plotArea).toLocaleString('en-IN')} Sq.Yds` : '—'}
+                  {selected.plotArea ? `${formatIndianNumber(selected.plotArea)} Sq.Yds` : '—'}
                 </p>
                 <p><span className="text-gray-500">Facing:</span> {selected.facing || '—'}</p>
                 <p>

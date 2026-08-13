@@ -9,6 +9,7 @@ import { matchesSearch } from '../../utils/search';
 import { getLocalizedField } from '../../utils/localize';
 import SearchBox from '../../components/common/SearchBox';
 import EmptyState from '../../components/common/EmptyState';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 const STATUSES = ['submitted', 'in_review', 'changes_requested', 'recommended_approval', 'recommended_rejection', 'completed'];
 
@@ -78,7 +79,7 @@ export default function Properties() {
                 <div>
                   <p className="font-medium text-gray-800 lang-te">{getLocalizedField(p, 'title', language)}</p>
                   <p className="text-xs text-gray-400">{p.propertyCode}</p>
-                  <p className="mt-1 text-sm text-gray-500 lang-te">{getLocalizedField(p, 'location', language)} &middot; ₹{Number(p.price || 0).toLocaleString('en-IN')}</p>
+                  <p className="mt-1 text-sm text-gray-500 lang-te">{getLocalizedField(p, 'location', language)} &middot; {formatIndianCurrency(p.price || 0)}</p>
                 </div>
                 <div className="flex flex-col items-end gap-1">
                   <span className="rounded-full bg-brand-50 px-2.5 py-1 text-xs font-semibold text-brand-700">{t(`moderationStatus.${p.moderationStatus}`)}</span>

@@ -4,6 +4,7 @@ import { categoryService } from '../../services/categoryService';
 import { CITIES } from '../../data/locations';
 import { useLanguageStore } from '../../store/languageStore';
 import DualRangeSlider from '../common/DualRangeSlider';
+import { formatIndianCurrency, formatIndianNumber } from '../../utils/formatIndianNumber';
 
 const FACINGS = ['North', 'South', 'East', 'West', 'North-East', 'North-West', 'South-East', 'South-West'];
 const MAX_PRICE = 20000000;
@@ -74,8 +75,8 @@ export default function FilterPanel({ filters, onChange, onReset, hideCategory }
           onChange={(lo, hi) => set({ minPrice: lo, maxPrice: hi })}
         />
         <div className="mt-1 flex justify-between text-xs text-gray-500">
-          <span>₹{(filters.minPrice ?? 0).toLocaleString('en-IN')}</span>
-          <span>₹{(filters.maxPrice ?? MAX_PRICE).toLocaleString('en-IN')}</span>
+          <span>{formatIndianCurrency(filters.minPrice ?? 0, { fallback: '₹0' })}</span>
+          <span>{formatIndianCurrency(filters.maxPrice ?? MAX_PRICE)}</span>
         </div>
       </div>
 
@@ -90,8 +91,8 @@ export default function FilterPanel({ filters, onChange, onReset, hideCategory }
           onChange={(lo, hi) => set({ minArea: lo, maxArea: hi })}
         />
         <div className="mt-1 flex justify-between text-xs text-gray-500">
-          <span>{filters.minArea ?? 0}</span>
-          <span>{filters.maxArea ?? MAX_AREA}</span>
+          <span>{formatIndianNumber(filters.minArea ?? 0)}</span>
+          <span>{formatIndianNumber(filters.maxArea ?? MAX_AREA)}</span>
         </div>
       </div>
 

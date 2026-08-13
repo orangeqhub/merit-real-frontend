@@ -4,10 +4,7 @@ import { expressInterestService } from '../../services/expressInterestService';
 import PaymentReceiptDocument from '../../components/purchases/PaymentReceiptDocument';
 import SaleCertificateDocument from '../../components/purchases/SaleCertificateDocument';
 import { toast } from '../../store/toastStore';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 function fmtDate(value) {
   if (!value) return '—';
@@ -107,7 +104,7 @@ export default function DocumentsPanel({ scope = 'customer' }) {
                       <tr key={r.id} className="hover:bg-gray-50/80">
                         <td className="px-4 py-2 font-mono text-xs">{r.number}</td>
                         <td className="px-4 py-2 text-xs">{fmtDate(r.date)}</td>
-                        <td className="px-4 py-2 font-medium">{money(r.amount)}</td>
+                        <td className="px-4 py-2 font-medium">{formatInr(r.amount)}</td>
                         <td className="px-4 py-2">
                           <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${r.status === 'FULL' ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
                             {r.status === 'FULL' ? 'Full Payment' : 'Partial Payment'}

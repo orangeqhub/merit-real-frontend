@@ -226,6 +226,23 @@ export const propertyService = {
     return normalizePropertyMedia(created);
   },
 
+  async createPropertiesBulk(items, { onProgress, concurrency = 3 } = {}) {
+    const { runQueuedTasks } = await import('../utils/bulkPropertyQueue');
+    return runQueuedTasks(
+      items,
+      (item) => propertyService.createProperty(item.payload, item.newFiles || []),
+      { concurrency, onProgress }
+    );
+  },
+
+  async createPropertiesBulkJson(items) {
+    return api('/properties/bulk', {
+      method: 'POST',
+      token: getAccessToken(),
+      body: { items },
+    });
+  },
+
   async updateProperty(id, payload, imageFiles = []) {
     const formData = buildPropertyFormData(payload, imageFiles);
     const updated = await api(`/properties/${id}`, {

@@ -8,11 +8,10 @@ import { getLocalizedField } from '../../utils/localize';
 import { buildTelLink, buildWhatsAppLink } from '../../utils/contactLinks';
 import { toast } from '../../store/toastStore';
 import { resolveAssetUrl } from '../../api/client';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 function formatPrice(property) {
-  const value = property.price;
-  const formatted = new Intl.NumberFormat('en-IN', { maximumFractionDigits: 0 }).format(value);
-  return `₹${formatted}`;
+  return formatIndianCurrency(property.price);
 }
 
 export default function PropertyCard({ property }) {

@@ -6,10 +6,7 @@ import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
-
-function money(n) {
-  return `₹${Number(n || 0).toLocaleString('en-IN')}`;
-}
+import { formatInr } from '../../utils/formatIndianNumber';
 
 export default function ClosedDeals({ scope = 'agent' }) {
   const { user } = useAuthStore();
@@ -70,7 +67,7 @@ export default function ClosedDeals({ scope = 'agent' }) {
     if (!creditDeal) return;
     const ok = await confirmDialog({
       title: 'Credit Commission',
-      message: `Credit ${money(amount)} to agent wallet for deal ${creditDeal.dealId || creditDeal.dealCode}?`,
+      message: `Credit ${formatInr(amount)} to agent wallet for deal ${creditDeal.dealId || creditDeal.dealCode}?`,
       confirmLabel: 'Credit Commission',
     });
     if (!ok) return;
@@ -94,7 +91,7 @@ export default function ClosedDeals({ scope = 'agent' }) {
   async function submitManualCredit() {
     const ok = await confirmDialog({
       title: 'Manual Incentive Credit',
-      message: `Credit ${money(manualForm.amount)} incentive to agent #${manualForm.agentId}?`,
+      message: `Credit ${formatInr(manualForm.amount)} incentive to agent #${manualForm.agentId}?`,
       confirmLabel: 'Credit',
     });
     if (!ok) return;
@@ -136,7 +133,7 @@ export default function ClosedDeals({ scope = 'agent' }) {
       {
         key: 'saleAmount',
         header: 'Sale Amount',
-        render: (row) => money(row.saleAmount),
+        render: (row) => formatInr(row.saleAmount),
       },
       {
         key: 'commissionPercent',
@@ -146,7 +143,7 @@ export default function ClosedDeals({ scope = 'agent' }) {
       {
         key: 'commissionAmount',
         header: 'Commission Amt',
-        render: (row) => money(
+        render: (row) => formatInr(
           row.commissionAmount
             ?? row.suggestedCommission
             ?? Math.round((Number(row.saleAmount || 0) * (row.commissionPercent != null ? Number(row.commissionPercent) : 2)) / 100)
@@ -256,7 +253,7 @@ export default function ClosedDeals({ scope = 'agent' }) {
           <div className="w-full max-w-md rounded-xl bg-warm-white p-5 shadow-xl">
             <h2 className="text-lg font-semibold">Credit Commission</h2>
             <p className="mt-1 text-sm text-gray-500">
-              {creditDeal.dealId || creditDeal.dealCode} · {creditDeal.agent?.name || 'Agent'} · Sale {money(creditDeal.saleAmount)}
+              {creditDeal.dealId || creditDeal.dealCode} · {creditDeal.agent?.name || 'Agent'} · Sale {formatInr(creditDeal.saleAmount)}
             </p>
             <label className="mt-4 block text-sm font-medium">
               Commission %

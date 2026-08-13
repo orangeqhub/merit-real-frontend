@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { propertyService } from '../../services/propertyService';
 import { useAuthStore } from '../../store/authStore';
 import DataTable, { formatTableDate } from '../../components/common/DataTable';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 const COMMISSION_RATE = 2;
 
@@ -45,7 +46,7 @@ export default function CommissionHistory() {
     {
       key: 'price',
       header: t('commission.salePrice'),
-      render: (row) => `₹${Number(row.price || 0).toLocaleString('en-IN')}`,
+      render: (row) => formatIndianCurrency(row.price || 0),
     },
     {
       key: 'rate',
@@ -57,7 +58,7 @@ export default function CommissionHistory() {
       key: 'commission',
       header: t('commission.amount'),
       render: (row) => (
-        <span className="font-semibold text-brand-700">₹{row.commission.toLocaleString('en-IN')}</span>
+        <span className="font-semibold text-brand-700">{formatIndianCurrency(row.commission)}</span>
       ),
     },
     {
@@ -83,7 +84,7 @@ export default function CommissionHistory() {
       />
       {!loading && rows.length > 0 && (
         <div className="mt-3 rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm font-semibold text-brand-800">
-          {t('commission.amount')}: ₹{totalCommission.toLocaleString('en-IN')}
+          {t('commission.amount')}: {formatIndianCurrency(totalCommission)}
         </div>
       )}
     </div>

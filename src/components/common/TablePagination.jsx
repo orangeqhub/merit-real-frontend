@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ChevronFirst, ChevronLast, ChevronLeft, ChevronRight } from 'lucide-react';
+import { formatIndianNumber } from '../../utils/formatIndianNumber';
 
 /** Standard page-size choices for all list screens */
 export const TABLE_PAGE_SIZE_OPTIONS = [10, 25, 50, 100];
@@ -38,16 +39,16 @@ export default function TablePagination({
         {t('pagination.showingRecords', {
           ns: 'dashboard',
           defaultValue: 'Showing {{from}}–{{to}} of {{total}} records',
-          from,
-          to,
-          total: safeTotal,
+          from: formatIndianNumber(from),
+          to: formatIndianNumber(to),
+          total: formatIndianNumber(safeTotal),
         })}
         <span className="mx-2 text-gray-300">|</span>
         {t('pagination.pageOf', {
           ns: 'dashboard',
           defaultValue: 'Page {{page}} of {{totalPages}}',
-          page: safePage,
-          totalPages: safeTotalPages,
+          page: formatIndianNumber(safePage),
+          totalPages: formatIndianNumber(safeTotalPages),
         })}
       </p>
 

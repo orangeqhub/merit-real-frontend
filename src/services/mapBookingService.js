@@ -63,7 +63,14 @@ export const mapBookingService = {
     });
   },
 
-  async importSheet({ phase, rows }) {
+  async importSheet({ phase, rows, phase1, phase2 } = {}) {
+    if (Array.isArray(phase1) && Array.isArray(phase2)) {
+      return api('/map/plots/import', {
+        method: 'POST',
+        token: token(),
+        body: { phase1, phase2 },
+      });
+    }
     return api('/map/plots/import', {
       method: 'POST',
       token: token(),

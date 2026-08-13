@@ -5,6 +5,7 @@ import TablePagination from '../../components/common/TablePagination';
 import StatusBadge from '../../components/dashboard/StatusBadge';
 import { useClientPagination } from '../../hooks/useClientPagination';
 import { toast } from '../../store/toastStore';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 export default function SalesProperties() {
   const [rows, setRows] = useState([]);
@@ -50,7 +51,7 @@ export default function SalesProperties() {
                     <td className="px-4 py-3 font-medium">{p.titleEn || p.title || p.id}</td>
                     <td className="px-4 py-3">{[p.locality, p.city, p.district].filter(Boolean).join(', ') || '—'}</td>
                     <td className="px-4 py-3">
-                      {p.price != null ? `₹${Number(p.price).toLocaleString('en-IN')}` : '—'}
+                      {p.price != null ? formatIndianCurrency(p.price) : '—'}
                     </td>
                     <td className="px-4 py-3"><StatusBadge status={String(p.status || '').toLowerCase()} /></td>
                   </tr>

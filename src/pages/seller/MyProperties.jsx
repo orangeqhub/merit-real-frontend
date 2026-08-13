@@ -11,6 +11,7 @@ import DataTable, { formatTableDate } from '../../components/common/DataTable';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
 import { toast } from '../../store/toastStore';
 import { confirmDialog } from '../../store/confirmStore';
+import { formatIndianCurrency } from '../../utils/formatIndianNumber';
 
 export default function MyProperties({ basePath = '/seller/properties' }) {
   const { t } = useTranslation('common');
@@ -70,7 +71,7 @@ export default function MyProperties({ basePath = '/seller/properties' }) {
     {
       key: 'price',
       header: 'Price',
-      render: (row) => `₹${Number(row.price || 0).toLocaleString('en-IN')}`,
+      render: (row) => formatIndianCurrency(row.price || 0),
     },
     {
       key: 'views',
