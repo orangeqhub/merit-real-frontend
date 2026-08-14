@@ -22,6 +22,7 @@ async function register(role, data) {
     if (data.aadhaarProof instanceof File) formData.append('aadhaarProof', data.aadhaarProof);
     if (data.panProof instanceof File) formData.append('panProof', data.panProof);
     if (data.referralAgentCode) formData.append('referralAgentCode', String(data.referralAgentCode).trim());
+    if (data.referralAgentId) formData.append('referralAgentId', String(data.referralAgentId));
 
     const user = await api('/auth/register', {
       method: 'POST',

@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../../store/authStore';
 import { userService } from '../../services/userService';
-import { expressInterestService } from '../../services/expressInterestService';
 import { toast } from '../../store/toastStore';
 import { getInitials } from '../../utils/avatar';
+import AgentReferralSearch from '../forms/AgentReferralSearch';
 
 export default function ProfileForm() {
   const { t } = useTranslation(['dashboard', 'forms', 'common']);
@@ -12,18 +12,25 @@ export default function ProfileForm() {
   const isCustomer = user?.role === 'customer' || user?.role === 'buyer';
   const isAgent = user?.role === 'agent' || user?.role === 'mediator';
 
+  const initialReferralAgent = useMemo(
+    () => (user?.referralAgent
+      ? {
+          id: user.referralAgent.id,
+          name: user.referralAgent.name,
+          memberId: user.referralAgent.memberId,
+        }
+      : null),
+    [user?.referralAgent]
+  );
+
   const [form, setForm] = useState({
     name: user?.name || '',
     email: user?.email || '',
     altMobile: user?.altMobile || '',
     address: user?.address || '',
     occupation: user?.occupation || '',
-    referralAgentCode: user?.referralAgent?.memberId || '',
-    agentName: user?.referralAgent?.name || '',
   });
-  const [agentPreview, setAgentPreview] = useState(user?.referralAgent || null);
-  const [agentError, setAgentError] = useState('');
-  const [agentSuggestions, setAgentSuggestions] = useState([]);
+  const [selectedReferralAgent, setSelectedReferralAgent] = useState(initialReferralAgent);
   const [errors, setErrors] = useState({});
   const [saving, setSaving] = useState(false);
 
@@ -34,11 +41,9 @@ export default function ProfileForm() {
       altMobile: user?.altMobile || '',
       address: user?.address || '',
       occupation: user?.occupation || '',
-      referralAgentCode: user?.referralAgent?.memberId || '',
-      agentName: user?.referralAgent?.name || '',
     });
-    setAgentPreview(user?.referralAgent || null);
-  }, [user]);
+    setSelectedReferralAgent(initialReferralAgent);
+  }, [user, initialReferralAgent]);
 
   function validate() {
     const next = {};
@@ -49,72 +54,9 @@ export default function ProfileForm() {
     return Object.keys(next).length === 0;
   }
 
-  function selectAgent(agent) {
-    if (!agent) return;
-    setAgentPreview(agent);
-    setAgentError('');
-    setAgentSuggestions([]);
-    setForm((f) => ({
-      ...f,
-      referralAgentCode: agent.memberId || '',
-      agentName: agent.name || '',
-    }));
-  }
-
-  async function validateReferral(code) {
-    const trimmed = String(code || '').trim();
-    if (!trimmed) {
-      setAgentPreview(null);
-      setAgentError('');
-      setForm((f) => ({ ...f, agentName: '', referralAgentCode: '' }));
-      return null;
-    }
-    try {
-      const agent = await expressInterestService.validateAgent(trimmed);
-      selectAgent(agent);
-      return agent;
-    } catch (err) {
-      setAgentPreview(null);
-      setAgentError(err.message || 'Invalid agent code');
-      return null;
-    }
-  }
-
-  async function searchAgentByName(query) {
-    const q = String(query || '').trim();
-    setForm((f) => ({ ...f, agentName: query, referralAgentCode: '' }));
-    setAgentPreview(null);
-    setAgentError('');
-    if (q.length < 2) {
-      setAgentSuggestions([]);
-      return;
-    }
-    try {
-      const rows = await expressInterestService.searchAgentsByName(q, { limit: 8 });
-      setAgentSuggestions(rows);
-    } catch {
-      setAgentSuggestions([]);
-    }
-  }
-
   async function handleSubmit(e) {
     e.preventDefault();
     if (!validate()) return;
-
-    let preview = agentPreview;
-    if (isCustomer && form.referralAgentCode.trim()) {
-      if (!preview || preview.memberId !== form.referralAgentCode.trim()) {
-        preview = await validateReferral(form.referralAgentCode);
-      }
-      if (!preview) {
-        toast.error(agentError || 'Select a valid agent before saving.');
-        return;
-      }
-    }
-    if (isCustomer && form.agentName.trim() && !form.referralAgentCode.trim()) {
-      toast.error('Select an agent from the list, or enter a valid Agent Code.');
-      return;
-    }
 
     setSaving(true);
     try {
@@ -126,10 +68,14 @@ export default function ProfileForm() {
         altMobile: form.altMobile,
       };
       if (isCustomer) {
-        if (!form.referralAgentCode.trim()) {
-          payload.clearReferralAgent = true;
-        } else {
-          payload.referralAgentCode = form.referralAgentCode.trim();
+        const initialId = initialReferralAgent?.id || null;
+        const nextId = selectedReferralAgent?.id || null;
+        if (nextId !== initialId) {
+          if (!nextId) {
+            payload.clearReferralAgent = true;
+          } else {
+            payload.referralAgentId = nextId;
+          }
         }
       }
       const updated = await userService.updateUser(user.id, payload);
@@ -206,63 +152,11 @@ export default function ProfileForm() {
       </div>
 
       {isCustomer && (
-        <div className="space-y-3 rounded-lg border border-dashed border-gray-300 p-4">
-          <div className="relative">
-            <label htmlFor="profile-agent-name" className="mb-1.5 block text-sm font-medium text-gray-700">
-              Agent Name <span className="font-normal text-gray-400">(editable)</span>
-            </label>
-            <input
-              id="profile-agent-name"
-              value={form.agentName}
-              onChange={(e) => searchAgentByName(e.target.value)}
-              placeholder="Type agent name to search"
-              autoComplete="off"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
-            />
-            {agentSuggestions.length > 0 && (
-              <ul className="absolute z-20 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg">
-                {agentSuggestions.map((agent) => (
-                  <li key={agent.id || agent.memberId}>
-                    <button
-                      type="button"
-                      onClick={() => selectAgent(agent)}
-                      className="flex w-full items-center justify-between px-3 py-2 text-left text-sm hover:bg-brand-50"
-                    >
-                      <span className="font-medium text-gray-800">{agent.name}</span>
-                      <span className="font-mono text-xs text-gray-500">{agent.memberId}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-          <div>
-            <label htmlFor="profile-agent-code" className="mb-1.5 block text-sm font-medium text-gray-700">
-              Agent Referral Code
-            </label>
-            <input
-              id="profile-agent-code"
-              value={form.referralAgentCode}
-              onChange={(e) => {
-                setForm((f) => ({ ...f, referralAgentCode: e.target.value }));
-                setAgentPreview(null);
-                setAgentError('');
-                setAgentSuggestions([]);
-              }}
-              onBlur={() => validateReferral(form.referralAgentCode)}
-              placeholder="Or enter Agent Code (e.g. Venkat26001)"
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
-            />
-            {agentError && <p className="mt-1 text-xs text-red-600">{agentError}</p>}
-            {agentPreview && (
-              <p className="mt-2 text-xs text-green-700">
-                Selected: <strong>{agentPreview.name}</strong>
-                {agentPreview.memberId ? ` (${agentPreview.memberId})` : ''}
-              </p>
-            )}
-            <p className="mt-1 text-xs text-gray-500">Search by name or enter code. Leave blank for no agent.</p>
-          </div>
-        </div>
+        <AgentReferralSearch
+          value={selectedReferralAgent}
+          onChange={setSelectedReferralAgent}
+          label="Referral Agent"
+        />
       )}
 
       <button

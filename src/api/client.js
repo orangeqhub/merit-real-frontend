@@ -63,7 +63,7 @@ export class ApiError extends Error {
  * Thin fetch wrapper for merit-api.
  * Expects response shape: { success, message, data, errors, code }
  */
-export async function api(path, { method = 'GET', body, token, headers, formData, silent = false } = {}) {
+export async function api(path, { method = 'GET', body, token, headers, formData, silent = false, signal } = {}) {
   const url = path.startsWith('http') ? path : `${API_BASE_URL}${path.startsWith('/') ? path : `/${path}`}`;
 
   const requestHeaders = {
@@ -81,9 +81,11 @@ export async function api(path, { method = 'GET', body, token, headers, formData
       method,
       headers: requestHeaders,
       body: formData || (body != null ? JSON.stringify(body) : undefined),
+      signal,
     });
-  } catch {
+  } catch (err) {
     if (!silent) loaderService.hide();
+    if (err?.name === 'AbortError') throw err;
     throw new ApiError('Unable to reach the server. Is merit-api running?', {
       status: 0,
       code: 'NETWORK_ERROR',

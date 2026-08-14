@@ -100,6 +100,7 @@ export const userService = {
           address: payload.address,
           occupation: payload.occupation,
           referralAgentCode: payload.referralAgentCode,
+          referralAgentId: payload.referralAgentId,
           clearReferralAgent: payload.clearReferralAgent,
         },
       });

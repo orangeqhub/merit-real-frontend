@@ -12,6 +12,7 @@ import { validateDocumentFile } from '../../utils/documentValidation';
 import { savePendingExpressInterest, peekPendingExpressInterest } from '../../utils/pendingExpressInterest';
 import { savePendingSiteVisit, peekPendingSiteVisit } from '../../utils/pendingSiteVisit';
 import { savePendingBookPlot, peekPendingBookPlot } from '../../utils/pendingBookPlot';
+import AgentReferralSearch from '../../components/forms/AgentReferralSearch';
 
 const ROLES = ['customer', 'agent', 'sales_member'];
 const DOC_ACCEPT = 'application/pdf,image/jpeg,image/jpg,image/png,.pdf,.jpg,.jpeg,.png';
@@ -32,6 +33,7 @@ export default function Register() {
   const [profilePhoto, setProfilePhoto] = useState(null);
   const [aadhaarProof, setAadhaarProof] = useState(null);
   const [panProof, setPanProof] = useState(null);
+  const [selectedReferralAgent, setSelectedReferralAgent] = useState(null);
 
   const intent = location.state?.intent;
   const fromPath =
@@ -132,6 +134,8 @@ export default function Register() {
         profilePhoto: profilePhoto?.file || undefined,
         aadhaarProof: aadhaarProof.file,
         panProof: panProof.file,
+        referralAgentCode: selectedReferralAgent?.memberId || undefined,
+        referralAgentId: selectedReferralAgent?.id || undefined,
       });
       toast.success(t('registration.success'));
       navigate('/application-status', {
@@ -331,20 +335,11 @@ export default function Register() {
         )}
 
         {selectedRole === 'customer' && (
-          <div className="rounded-lg border border-dashed border-gray-300 p-4">
-            <label htmlFor="referralAgentCode" className="mb-1.5 block text-sm font-medium text-gray-700">
-              Agent Referral Code <span className="font-normal text-gray-400">(optional)</span>
-            </label>
-            <input
-              id="referralAgentCode"
-              {...register('referralAgentCode')}
-              className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
-              placeholder="e.g. Venkat26001 or Karthik26001"
-            />
-            <p className="mt-1 text-xs text-gray-500">
-              Enter the agent’s code during registration to assign that agent to your account.
-            </p>
-          </div>
+          <AgentReferralSearch
+            value={selectedReferralAgent}
+            onChange={setSelectedReferralAgent}
+            label="Referral Agent"
+          />
         )}
 
         {selectedRole === 'agent' && (

@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 
-export function useDebouncedValue(value, delayMs = 300) {
+/** Returns a debounced copy of `value` after `delay` ms of stability. */
+export function useDebouncedValue(value, delay = 300) {
   const [debounced, setDebounced] = useState(value);
 
   useEffect(() => {
-    const timer = setTimeout(() => setDebounced(value), delayMs);
+    const timer = setTimeout(() => setDebounced(value), delay);
     return () => clearTimeout(timer);
-  }, [value, delayMs]);
+  }, [value, delay]);
 
   return debounced;
 }
