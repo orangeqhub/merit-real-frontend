@@ -1,5 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useMemo, useState } from 'react';
+import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { propertyService } from '../../services/propertyService';
 import { siteVisitService } from '../../services/siteVisitService';
@@ -8,7 +8,9 @@ import { toast } from '../../store/toastStore';
 import { getLocalizedField } from '../../utils/localize';
 import { useLanguageStore } from '../../store/languageStore';
 import EmptyState from '../../components/common/EmptyState';
+import AgentReferralSearch from '../../components/forms/AgentReferralSearch';
 import { clearPendingSiteVisit, savePendingSiteVisit } from '../../utils/pendingSiteVisit';
+import { expressInterestService } from '../../services/expressInterestService';
 
 /**
  * Schedule Site Visit for registered (approved) customers only.
@@ -18,10 +20,12 @@ export default function ScheduleSiteVisitForm() {
   const { propertyId } = useParams();
   const { t } = useTranslation(['properties', 'common', 'forms']);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { user, loading, initialised } = useAuthStore();
   const language = useLanguageStore((s) => s.language);
+  const interestId = searchParams.get('interestId');
 
-  const resumePath = `/schedule-visit/${propertyId}`;
+  const resumePath = `/schedule-visit/${propertyId}${interestId ? `?interestId=${encodeURIComponent(interestId)}` : ''}`;
   const loginState = useMemo(
     () => ({
       from: resumePath,
@@ -32,16 +36,19 @@ export default function ScheduleSiteVisitForm() {
   );
 
   const [property, setProperty] = useState(null);
+  const [interest, setInterest] = useState(null);
+  const [interestError, setInterestError] = useState('');
   const [notFound, setNotFound] = useState(false);
   const [visitDate, setVisitDate] = useState('');
   const [visitTime, setVisitTime] = useState('');
+  const [visitMode, setVisitMode] = useState('own_vehicle');
+  const [pickupAddress, setPickupAddress] = useState('');
+  const [pickupLocation, setPickupLocation] = useState('');
+  const [preferredPickupTime, setPreferredPickupTime] = useState('');
+  const [visitorCount, setVisitorCount] = useState(1);
   const [remarks, setRemarks] = useState('');
-  const [agentCode, setAgentCode] = useState('');
-  const [agentName, setAgentName] = useState('');
-  const [agentError, setAgentError] = useState('');
-  const [agentValid, setAgentValid] = useState(null);
+  const [selectedReferralAgent, setSelectedReferralAgent] = useState(null);
   const [submitting, setSubmitting] = useState(false);
-  const [validating, setValidating] = useState(false);
 
   useEffect(() => {
     savePendingSiteVisit(resumePath);
@@ -77,28 +84,39 @@ export default function ScheduleSiteVisitForm() {
     };
   }, [propertyId]);
 
-  const validateAgent = useCallback(async (code) => {
-    const trimmed = String(code || '').trim();
-    setAgentError('');
-    setAgentValid(null);
-    if (!trimmed) {
-      setAgentName('');
-      return;
-    }
-    setValidating(true);
-    try {
-      const agent = await siteVisitService.validateAgent(trimmed);
-      setAgentValid(agent);
-      setAgentName(agent.name || '');
-      setAgentError('');
-    } catch (err) {
-      setAgentValid(null);
-      setAgentName('');
-      setAgentError(err.message || 'Invalid Agent ID. No active agent found with this ID.');
-    } finally {
-      setValidating(false);
-    }
-  }, []);
+  useEffect(() => {
+    if (!interestId || !user) return undefined;
+    let active = true;
+    setInterest(null);
+    setInterestError('');
+    expressInterestService
+      .getById(interestId)
+      .then((record) => {
+        if (!active) return;
+        const status = String(record?.status || '').toLowerCase();
+        if (!record || !['approved', 'assigned'].includes(status) || String(record.propertyId) !== String(propertyId)) {
+          setInterestError('This express interest is not approved for the selected property.');
+          return;
+        }
+        setInterest(record);
+        setInterestError('');
+      })
+      .catch((err) => {
+        if (active) setInterestError(err.message || 'Unable to verify the approved express interest.');
+      });
+    return () => {
+      active = false;
+    };
+  }, [interestId, propertyId, user]);
+
+  useEffect(() => {
+    if (!user?.referralAgent) return;
+    setSelectedReferralAgent({
+      id: user.referralAgent.id,
+      name: user.referralAgent.name,
+      memberId: user.referralAgent.memberId,
+    });
+  }, [user?.id, user?.referralAgent?.id, user?.referralAgent?.memberId, user?.referralAgent?.name]);
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -111,20 +129,34 @@ export default function ScheduleSiteVisitForm() {
       toast.error('Preferred visit time is required.');
       return;
     }
-    if (agentCode.trim() && !agentValid) {
-      setAgentError('Please enter a valid Agent ID or clear the field.');
+    if (interestId && visitMode === 'company_vehicle' && (!pickupAddress.trim() || !pickupLocation.trim() || !preferredPickupTime)) {
+      toast.error('Pickup address, pickup location, and preferred pickup time are required for a company vehicle.');
       return;
     }
-
     setSubmitting(true);
     try {
-      await siteVisitService.submit({
+      const payload = {
         propertyId: property.id,
         visitDate,
         visitTime,
+        visitMode: interestId ? visitMode : undefined,
+        visitorCount: interestId ? Number(visitorCount) : undefined,
+        pickupAddress: interestId && visitMode === 'company_vehicle' ? pickupAddress.trim() : undefined,
+        pickupLocation: interestId && visitMode === 'company_vehicle' ? pickupLocation.trim() : undefined,
+        preferredPickupTime: interestId && visitMode === 'company_vehicle' ? preferredPickupTime : undefined,
         remarks: remarks.trim() || undefined,
-        referralAgentCode: agentCode.trim() || undefined,
-      });
+        referralAgentCode: selectedReferralAgent?.memberId || undefined,
+        referralAgentId: selectedReferralAgent?.id || undefined,
+      };
+      if (interestId) {
+        if (!interest) {
+          toast.error(interestError || 'Please wait while the approved interest is verified.');
+          return;
+        }
+        await siteVisitService.submitFromInterest(interestId, payload);
+      } else {
+        await siteVisitService.submit(payload);
+      }
       clearPendingSiteVisit();
       toast.success('Your site visit request has been submitted and is pending approval.');
       navigate('/buyer/visits');
@@ -180,7 +212,7 @@ export default function ScheduleSiteVisitForm() {
         <Link to={`/properties/${property.id}`} className="text-sm text-brand-700 hover:underline">
           ← Back to property
         </Link>
-        <h1 className="mt-2 text-2xl font-bold text-brand-900">{t('buttons.scheduleVisit', { ns: 'common' })}</h1>
+        <h1 className="mt-2 text-2xl font-bold text-brand-900">{t('siteVisits.schedule', { ns: 'common' })}</h1>
         <p className="mt-1 text-sm text-gray-500">
           Your registered profile will be used automatically. Referral agent is optional.
         </p>
@@ -196,12 +228,23 @@ export default function ScheduleSiteVisitForm() {
             Submitted as <span className="font-medium text-gray-700">{user.name}</span>
             {user.memberId ? ` (${user.memberId})` : ''}
           </p>
+          {interest && (
+            <p className="mt-1 text-xs font-medium text-green-700">
+              Approved interest #{interest.id} linked to this visit
+            </p>
+          )}
         </div>
+
+        {interestError && (
+          <div role="alert" className="rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+            {interestError}
+          </div>
+        )}
 
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
           <div>
             <label htmlFor="visitDate" className="mb-1 block text-xs font-medium text-gray-600">
-              Preferred Visit Date
+              {t('siteVisits.preferredDate', { ns: 'common' })}
             </label>
             <input
               id="visitDate"
@@ -215,7 +258,7 @@ export default function ScheduleSiteVisitForm() {
           </div>
           <div>
             <label htmlFor="visitTime" className="mb-1 block text-xs font-medium text-gray-600">
-              Preferred Visit Time
+              {t('siteVisits.preferredTime', { ns: 'common' })}
             </label>
             <input
               id="visitTime"
@@ -227,6 +270,62 @@ export default function ScheduleSiteVisitForm() {
             />
           </div>
         </div>
+
+        {interestId && (
+          <>
+            <fieldset>
+              <legend className="mb-2 text-sm font-semibold text-gray-800">Travel mode</legend>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                {[
+                  ['own_vehicle', 'Own Vehicle', 'I will travel to the property myself.'],
+                  ['company_vehicle', 'Company Vehicle', 'Request pickup arranged by Merit.'],
+                ].map(([value, label, hint]) => (
+                  <label key={value} className={`cursor-pointer rounded-xl border p-3 ${visitMode === value ? 'border-brand-600 bg-brand-50' : 'border-gray-200'}`}>
+                    <span className="flex items-center gap-2 text-sm font-semibold text-gray-800">
+                      <input type="radio" name="visitMode" value={value} checked={visitMode === value} onChange={(event) => setVisitMode(event.target.value)} />
+                      {label}
+                    </span>
+                    <span className="mt-1 block pl-6 text-xs text-gray-500">{hint}</span>
+                  </label>
+                ))}
+              </div>
+            </fieldset>
+
+            <div>
+              <label htmlFor="visitorCount" className="mb-1 block text-xs font-medium text-gray-600">Number of visitors</label>
+              <input
+                id="visitorCount"
+                type="number"
+                min="1"
+                max="20"
+                value={visitorCount}
+                onChange={(event) => setVisitorCount(event.target.value)}
+                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm sm:w-40"
+                required
+              />
+            </div>
+
+            {visitMode === 'company_vehicle' && (
+              <section className="space-y-4 rounded-xl border border-brand-200 bg-brand-50/30 p-4">
+                <h2 className="text-sm font-semibold text-brand-900">Company vehicle pickup</h2>
+                <div>
+                  <label htmlFor="pickupAddress" className="mb-1 block text-xs font-medium text-gray-600">Pickup address</label>
+                  <textarea id="pickupAddress" rows={2} value={pickupAddress} onChange={(event) => setPickupAddress(event.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm" required />
+                </div>
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div>
+                <label htmlFor="pickupLocation" className="mb-1 block text-xs font-medium text-gray-600">Pickup location / landmark</label>
+                <input id="pickupLocation" value={pickupLocation} onChange={(event) => setPickupLocation(event.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm" required />
+              </div>
+              <div>
+                <label htmlFor="preferredPickupTime" className="mb-1 block text-xs font-medium text-gray-600">Preferred pickup time</label>
+                <input id="preferredPickupTime" type="time" value={preferredPickupTime} onChange={(event) => setPreferredPickupTime(event.target.value)} className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm" required />
+              </div>
+                </div>
+              </section>
+            )}
+          </>
+        )}
 
         <div>
           <label htmlFor="remarks" className="mb-1 block text-xs font-medium text-gray-600">
@@ -242,57 +341,16 @@ export default function ScheduleSiteVisitForm() {
           />
         </div>
 
-        <section className="rounded-xl border border-dashed border-gray-300 p-4">
-          <h2 className="mb-1 text-sm font-semibold text-gray-800">
-            Referral Agent ID <span className="font-normal text-gray-400">(optional)</span>
-          </h2>
-          <p className="mb-3 text-xs text-gray-500">
-            If an agent referred you, enter their Agent ID. Leave blank if you do not have one.
-          </p>
-          <div className="space-y-3">
-            <div>
-              <label htmlFor="agentCode" className="mb-1 block text-xs font-medium text-gray-600">
-                Agent ID / Referral Code
-              </label>
-              <input
-                id="agentCode"
-                value={agentCode}
-                onChange={(e) => {
-                  setAgentCode(e.target.value);
-                  setAgentValid(null);
-                  setAgentName('');
-                  setAgentError('');
-                }}
-                onBlur={() => validateAgent(agentCode)}
-                placeholder="e.g. AGT-2026-000001"
-                className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm focus:border-brand-500 focus:outline-none focus:ring-1 focus:ring-brand-500"
-              />
-              {validating && <p className="mt-1 text-xs text-gray-500">Validating agent…</p>}
-              {agentError && <p className="mt-1 text-xs text-red-600">{agentError}</p>}
-              {agentValid && !agentError && (
-                <p className="mt-1 text-xs text-green-700">Valid agent found</p>
-              )}
-            </div>
-            {(agentName || agentValid) && (
-              <div>
-                <label htmlFor="agentName" className="mb-1 block text-xs font-medium text-gray-600">
-                  Agent Name
-                </label>
-                <input
-                  id="agentName"
-                  value={agentName}
-                  readOnly
-                  className="w-full rounded-lg border border-gray-200 bg-gray-50 px-3 py-2.5 text-sm text-gray-800"
-                />
-              </div>
-            )}
-          </div>
-        </section>
+        <AgentReferralSearch
+          value={selectedReferralAgent}
+          onChange={setSelectedReferralAgent}
+          label="Referral Agent"
+        />
 
         <div className="flex flex-wrap gap-3 pt-1">
           <button
             type="submit"
-            disabled={submitting || Boolean(agentCode.trim() && !agentValid)}
+            disabled={submitting || Boolean(interestId && !interest)}
             className="rounded-lg bg-brand-700 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 disabled:opacity-60"
           >
             {submitting ? 'Submitting…' : 'Submit Visit Request'}

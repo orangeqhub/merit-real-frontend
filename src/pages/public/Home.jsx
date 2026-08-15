@@ -2,6 +2,7 @@ import { useCallback, useMemo } from 'react';
 import HeroCarousel from '../../components/home/HeroCarousel';
 import CategoryStrip from '../../components/home/CategoryStrip';
 import MapLayoutSection from '../../components/home/MapLayoutSection';
+import ProjectImageScroller from '../../components/home/ProjectImageScroller';
 import TrustStrip from '../../components/home/TrustStrip';
 import PromotionsCarousel from '../../components/promotions/PromotionsCarousel';
 import PropertySectionGrid from '../../components/home/PropertySectionGrid';
@@ -55,6 +56,7 @@ export default function Home() {
       <HeroCarousel />
       <CategoryStrip />
       <MapLayoutSection />
+      <ProjectImageScroller />
       <TrustStrip />
       <div className="mx-auto max-w-7xl px-4 sm:px-6">
         <PromotionsCarousel

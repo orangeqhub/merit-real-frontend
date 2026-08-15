@@ -9,6 +9,7 @@ import { categoryService } from '../../services/categoryService';
 import { resolveAssetUrl } from '../../api/client';
 import { useLanguageStore } from '../../store/languageStore';
 import { useUserLocationStore } from '../../store/userLocationStore';
+import { HERO_IMAGES } from '../../data/projectImages';
 
 const AUTOPLAY_INTERVAL = 3000;
 const CURRENT_LOCATION_VALUE = '__current_location__';
@@ -18,7 +19,7 @@ export default function HeroCarousel() {
   const navigate = useNavigate();
   const language = useLanguageStore((s) => s.language);
   const userLocation = useUserLocationStore();
-  const [slides, setSlides] = useState([]);
+  const [slides, setSlides] = useState(() => HERO_IMAGES.map((slide) => ({ ...slide, local: true })));
   const [categories, setCategories] = useState(CATEGORIES);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
@@ -34,8 +35,10 @@ export default function HeroCarousel() {
 
   useEffect(() => {
     heroSlideService.listActive()
-      .then((list) => setSlides(Array.isArray(list) ? list : []))
-      .catch(() => setSlides([]));
+      .then((list) => {
+        if (Array.isArray(list) && list.length > 0) setSlides(list);
+      })
+      .catch(() => {});
     categoryService.getPublicCategories()
       .then((list) => setCategories(Array.isArray(list) ? list : []))
       .catch(() => setCategories([]));
@@ -136,8 +139,8 @@ export default function HeroCarousel() {
       {slides.map((s, i) => (
         <img
           key={s.id}
-          src={resolveAssetUrl(s.image)}
-          alt=""
+          src={s.local ? s.image : resolveAssetUrl(s.image)}
+          alt={s.alt || ''}
           aria-hidden={i !== index}
           loading={i === 0 ? 'eager' : 'lazy'}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity ${

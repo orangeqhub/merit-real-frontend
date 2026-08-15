@@ -9,6 +9,7 @@ import { buildTelLink, buildWhatsAppLink } from '../../utils/contactLinks';
 import { toast } from '../../store/toastStore';
 import { resolveAssetUrl } from '../../api/client';
 import { formatIndianCurrency } from '../../utils/formatIndianNumber';
+import SmartImage from '../common/SmartImage';
 
 function formatPrice(property) {
   return formatIndianCurrency(property.price);
@@ -46,10 +47,9 @@ export default function PropertyCard({ property }) {
     <div className="group relative flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-warm-white shadow-sm transition-shadow hover:shadow-md">
       <Link to={`/properties/${property.id}`} className="relative block h-44 w-full overflow-hidden bg-gray-100">
         {primaryImage && (
-          <img
+          <SmartImage
             src={resolveAssetUrl(primaryImage.url)}
             alt={primaryImage.caption || title}
-            loading="lazy"
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
         )}

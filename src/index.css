@@ -99,9 +99,67 @@ textarea:focus-visible,
   will-change: transform, opacity;
 }
 
+/* "BOOK YOUR PLOT NOW" promo CTA — premium pulse/glow */
+@keyframes book-cta-glow {
+  0%, 100% {
+    box-shadow: 0 10px 22px -8px rgba(8, 24, 46, 0.4), 0 0 0 0 rgba(212, 155, 40, 0.25);
+  }
+  50% {
+    box-shadow: 0 10px 26px -8px rgba(8, 24, 46, 0.45), 0 0 26px 6px rgba(212, 155, 40, 0.3);
+  }
+}
+
+/* "BOOK YOUR PLOT NOW" promo CTA — gentle shimmer sweep */
+@keyframes book-cta-shimmer {
+  0% {
+    transform: translateX(0);
+  }
+  55%, 100% {
+    transform: translateX(420%);
+  }
+}
+
+.book-cta-btn {
+  animation: book-cta-glow 2.6s ease-in-out infinite;
+  will-change: box-shadow, transform;
+}
+
+.book-cta-shimmer {
+  top: 0;
+  bottom: 0;
+  left: -45%;
+  width: 40%;
+  background: linear-gradient(105deg, transparent 0%, rgba(255, 255, 255, 0.18) 50%, transparent 100%);
+  animation: book-cta-shimmer 3.6s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Homepage project image scroller — seamless auto-scroll marquee */
+@keyframes scroll-x {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 36s linear infinite;
+  will-change: transform;
+}
+
+.scroll-x-mask {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .loader-mark-img,
-  .loader-mark-glow {
+  .loader-mark-glow,
+  .book-cta-btn,
+  .book-cta-shimmer,
+  .animate-scroll-x {
     animation: none;
   }
 }

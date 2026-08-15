@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { ChevronDown, Expand, Map as MapIcon, RefreshCw } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { ArrowRight, ChevronDown, Map as MapIcon } from 'lucide-react';
 import {
   MAP_LAYOUT_URL,
   mapBookingService,
@@ -16,6 +16,8 @@ import { savePendingBookPlot } from '../../utils/pendingBookPlot';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
 import { formatInr, formatIndianNumber } from '../../utils/formatIndianNumber';
+import SmartImage from '../common/SmartImage';
+import { PROJECT_IMAGES } from '../../data/projectImages';
 
 function statusCounts(plots) {
   return plots.reduce(
@@ -164,6 +166,16 @@ export default function MapLayoutSection({ compact = true }) {
     syncMapPhase(value);
   }
 
+  function scrollToPlotBoard() {
+    setPlotBoardOpen(true);
+    window.setTimeout(() => {
+      document.getElementById('anne-enclave-plot-board')?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }, 60);
+  }
+
   useEffect(() => {
     loadPlots('all');
   }, []);
@@ -286,33 +298,74 @@ export default function MapLayoutSection({ compact = true }) {
 
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-4 py-10 sm:px-6">
-      <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm sm:p-6">
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-red-600 sm:text-3xl lg:text-4xl">
-              Sky line Infra Anne Enclave
-            </h2>
-            <p className="mt-2 text-sm font-medium text-brand-600 sm:text-base">
-              Bookings are open
-            </p>
+      <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+        <div className="grid md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
+          <div className="relative min-h-[200px] sm:min-h-[240px] md:min-h-full">
+            <SmartImage
+              src={PROJECT_IMAGES.anneEnclaveAerial}
+              alt="Aerial view of the Sky Line Infra Anne Enclave plotted layout"
+              className="absolute inset-0 h-full w-full object-cover object-center saturate-[1.08]"
+              loading="eager"
+            />
           </div>
-          <div className="flex flex-wrap gap-2">
+
+          <div className="flex flex-col gap-4 p-4 sm:gap-5 sm:p-6">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-400/60 bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700 sm:text-[11px]">
+                <span className="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true" />
+                Phase 1 &amp; Phase 2
+              </span>
+              <h2 className="mt-2 text-balance text-[clamp(1.75rem,3vw,3.5rem)] font-extrabold leading-tight tracking-tight text-brand-900">
+                Sky line Infra Anne Enclave
+              </h2>
+            </div>
+
             <button
               type="button"
-              onClick={() => {
-                loadPlots();
-                reloadViewer();
-              }}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-700 hover:bg-gray-50"
+              onClick={scrollToPlotBoard}
+              className="book-cta-btn group relative flex w-full items-center justify-between gap-4 overflow-hidden rounded-2xl border border-gold-400/60 bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 px-5 py-4 text-left shadow-lg shadow-brand-900/25 transition duration-300 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand-900/35 sm:px-6 sm:py-5"
             >
-              <RefreshCw size={14} /> Refresh
+              <span className="book-cta-shimmer pointer-events-none absolute inset-0" aria-hidden="true" />
+              <span className="relative flex items-center gap-3 sm:gap-4">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gold-400/15 ring-1 ring-gold-400/40 sm:h-12 sm:w-12">
+                  <MapIcon size={20} className="text-gold-400" aria-hidden="true" />
+                </span>
+                <span>
+                  <span className="block text-[10px] font-bold uppercase tracking-[0.24em] text-gold-400 sm:text-xs">
+                    Now booking &middot; Plots available
+                  </span>
+                  <span className="mt-1 block text-lg font-extrabold uppercase tracking-wide text-warm-white sm:text-2xl">
+                    Book your plot now
+                  </span>
+                </span>
+              </span>
+              <ArrowRight
+                size={22}
+                className="relative shrink-0 text-gold-400 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
             </button>
-            <Link
-              to="/map-layout"
-              className="inline-flex items-center gap-1.5 rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
-            >
-              <Expand size={14} /> Open full map
-            </Link>
+
+            <div className="mt-auto grid grid-cols-2 gap-3">
+              <div className="rounded-xl border border-gray-100 bg-brand-50/50 p-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600">Project type</p>
+                <p className="mt-0.5 truncate text-sm font-bold text-brand-900">Plotted layout</p>
+              </div>
+              <div className="rounded-xl border border-gray-100 bg-brand-50/50 p-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600">Phases</p>
+                <p className="mt-0.5 truncate text-sm font-bold text-brand-900">Phase 1 &amp; 2</p>
+              </div>
+              <div className="rounded-xl border border-gray-100 bg-brand-50/50 p-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600">Plot type</p>
+                <p className="mt-0.5 truncate text-sm font-bold text-brand-900">Residential</p>
+              </div>
+              <div className="rounded-xl border border-gray-100 bg-brand-50/50 p-3">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600">Available now</p>
+                <p className="mt-0.5 truncate text-sm font-bold text-brand-900">
+                  {counts.available > 0 ? `${formatIndianNumber(counts.available)} plots` : 'Check board'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -406,7 +459,8 @@ export default function MapLayoutSection({ compact = true }) {
         </div>
 
         <div
-          className="rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
+          id="anne-enclave-plot-board"
+          className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
           onMouseEnter={() => setPlotBoardOpen(true)}
           onMouseLeave={() => setPlotBoardOpen(false)}
         >

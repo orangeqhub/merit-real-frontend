@@ -1,6 +1,6 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Eye, Check, X, MessageSquare, UserPlus, RefreshCw, CheckCircle2 } from 'lucide-react';
+import { Eye, Check, X, MessageSquare, UserPlus, RefreshCw, CheckCircle2, CalendarClock, Car, Play, Ban } from 'lucide-react';
 import { siteVisitService } from '../../services/siteVisitService';
 import { agentService } from '../../services/managedUserService';
 import { toast } from '../../store/toastStore';
@@ -10,16 +10,30 @@ import SearchBox from '../../components/common/SearchBox';
 import TablePagination from '../../components/common/TablePagination';
 import TableActionsMenu from '../../components/common/TableActionsMenu';
 import { useTableState } from '../../hooks/useTableState';
+import { useDomainRealtime, useRealtimeEvent } from '../../hooks/useDomainRealtime';
+import { useOpenRecordFromUrl } from '../../hooks/useOpenRecordFromUrl';
 
 const STATUS_LABELS = {
   pending_approval: 'Pending Approval',
   approved: 'Approved',
   assigned: 'Assigned',
+  scheduled: 'Scheduled',
+  in_progress: 'In Progress',
   rejected: 'Rejected',
   completed: 'Completed',
   purchase_interest: 'Purchase Interest',
   dropped: 'Dropped',
   closed: 'Closed',
+  confirmed: 'Confirmed',
+  vehicle_pending_approval: 'Vehicle Pending Approval',
+  vehicle_required: 'Vehicle Required – Pending Admin Action',
+  vehicle_approved: 'Vehicle Approved',
+  vehicle_assigned: 'Vehicle Assigned',
+  vehicle_change_requested: 'Vehicle Change Requested',
+  reschedule_requested: 'Reschedule Requested',
+  started: 'Started',
+  cancelled: 'Cancelled',
+  no_show: 'No Show',
 };
 
 function statusClass(status) {
@@ -39,13 +53,25 @@ export default function Visits() {
   const [viewing, setViewing] = useState(null);
   const [rejectId, setRejectId] = useState(null);
   const [rejectReason, setRejectReason] = useState('');
+  const [rejectMode, setRejectMode] = useState('visit');
   const [assignId, setAssignId] = useState(null);
   const [assignAgentId, setAssignAgentId] = useState('');
   const [remarkId, setRemarkId] = useState(null);
   const [internalRemark, setInternalRemark] = useState('');
+  const [rescheduleId, setRescheduleId] = useState(null);
+  const [rescheduleDate, setRescheduleDate] = useState('');
+  const [rescheduleTime, setRescheduleTime] = useState('');
+  const [rescheduleReason, setRescheduleReason] = useState('');
+  const [vehicleVisit, setVehicleVisit] = useState(null);
+  const [vehicleForm, setVehicleForm] = useState({
+    vehicleType: '', vehicleModel: '', vehicleCapacity: '', vehicleReference: '',
+    vehicleNumber: '', vehicleColor: '', driverName: '', driverPhone: '',
+    driverReference: '', driverLicenseNumber: '', pickupDate: '', pickupTime: '',
+    pickupAddress: '', pickupLocation: '', dropLocation: '', driverRemarks: '', vehicleRemarks: '',
+  });
   const [loading, setLoading] = useState(true);
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const data = await siteVisitService.getAdminList({
@@ -59,14 +85,48 @@ export default function Visits() {
     } finally {
       setLoading(false);
     }
-  }
+  }, [statusFilter]);
 
   useEffect(() => {
     load();
     agentService.list({ status: 'ACTIVE', pageSize: 100 })
       .then((data) => setAgents(data?.items || []))
       .catch(() => setAgents([]));
-  }, [statusFilter]);
+  }, [load]);
+
+  useDomainRealtime(true);
+
+  const mergeVisitUpdate = useCallback((payload) => {
+    const visit = payload?.visit;
+    if (!visit?.id) return;
+    setRows((prev) => {
+      const index = prev.findIndex((row) => String(row.id) === String(visit.id));
+      if (index < 0) return payload.action === 'created' ? [visit, ...prev] : prev;
+      const next = [...prev];
+      next[index] = { ...next[index], ...visit };
+      return next;
+    });
+    setViewing((prev) => (prev?.id === visit.id ? { ...prev, ...visit } : prev));
+  }, []);
+
+  useRealtimeEvent('site-visit:updated', mergeVisitUpdate, true);
+  useRealtimeEvent('site-visit:created', mergeVisitUpdate, true);
+  useRealtimeEvent('socket:reconnected', load, true);
+
+  useOpenRecordFromUrl({
+    records: rows,
+    fetchById: (id) => siteVisitService.getById(id),
+    onOpen: setViewing,
+    stateKey: 'openVisitId',
+  });
+
+  async function openVisit(id) {
+    try {
+      setViewing(await siteVisitService.getById(id));
+    } catch (err) {
+      toast.error(err.message || 'Failed to load site visit details.');
+    }
+  }
 
   const {
     page,
@@ -122,14 +182,72 @@ export default function Visits() {
       return;
     }
     try {
-      await siteVisitService.reject(rejectId, { reason: rejectReason });
-      toast.success('Site visit rejected');
+      const action = rejectMode === 'vehicle' ? siteVisitService.rejectVehicle : siteVisitService.reject;
+      await action(rejectId, { reason: rejectReason });
+      toast.success(rejectMode === 'vehicle' ? 'Company vehicle request rejected.' : 'Site visit rejected');
       setRejectId(null);
       setRejectReason('');
       load();
       setViewing(null);
     } catch (err) {
       toast.error(err.message);
+    }
+  }
+
+  async function handleLifecycle(method, id, successMessage, body = {}) {
+    try {
+      await method(id, body);
+      toast.success(successMessage);
+      load();
+      setViewing(null);
+    } catch (err) {
+      toast.error(err.message || 'Failed to update site visit.');
+    }
+  }
+
+  async function handleReasonedLifecycle(method, id, successMessage, promptText) {
+    const reason = window.prompt(promptText);
+    if (reason === null) return;
+    if (!reason.trim()) {
+      toast.error('A reason is required.');
+      return;
+    }
+    await handleLifecycle(method, id, successMessage, { reason: reason.trim() });
+  }
+
+  function openVehicleAssignment(row) {
+    setVehicleVisit(row);
+    setVehicleForm({
+      vehicleType: row.vehicleType || '',
+      vehicleModel: row.vehicleModel || '',
+      vehicleCapacity: row.vehicleCapacity || '',
+      vehicleReference: row.vehicleReference || '',
+      vehicleNumber: row.vehicleNumber || '',
+      vehicleColor: row.vehicleColor || '',
+      driverName: row.driverName || '',
+      driverPhone: row.driverPhone || '',
+      driverReference: row.driverReference || '',
+      driverLicenseNumber: row.driverLicenseNumber || '',
+      pickupDate: row.pickupDate || row.visitDate || '',
+      pickupTime: row.pickupTime || row.preferredPickupTime || '',
+      pickupAddress: row.pickupAddress || '',
+      pickupLocation: row.pickupLocation || '',
+      dropLocation: row.dropLocation || row.propertyAddress || row.propertyName || '',
+      driverRemarks: row.driverRemarks || '',
+      vehicleRemarks: row.vehicleRemarks || '',
+    });
+  }
+
+  async function handleVehicleAssignment(event) {
+    event.preventDefault();
+    try {
+      await siteVisitService.assignVehicle(vehicleVisit.id, vehicleForm);
+      toast.success('Company vehicle assigned.');
+      setVehicleVisit(null);
+      load();
+      setViewing(null);
+    } catch (err) {
+      toast.error(err.message || 'Failed to assign company vehicle.');
     }
   }
 
@@ -185,6 +303,30 @@ export default function Visits() {
     }
   }
 
+  async function handleReschedule(event) {
+    event.preventDefault();
+    if (!rescheduleDate || !rescheduleTime) {
+      toast.error('Visit date and time are required.');
+      return;
+    }
+    try {
+      await siteVisitService.reschedule(rescheduleId, {
+        visitDate: rescheduleDate,
+        visitTime: rescheduleTime,
+        reason: rescheduleReason,
+      });
+      toast.success('Site visit rescheduled successfully.');
+      setRescheduleId(null);
+      setRescheduleDate('');
+      setRescheduleTime('');
+      setRescheduleReason('');
+      load();
+      setViewing(null);
+    } catch (err) {
+      toast.error(err.message || 'Failed to reschedule site visit.');
+    }
+  }
+
   return (
     <div>
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
@@ -207,11 +349,21 @@ export default function Visits() {
             <option value="PENDING_APPROVAL">Pending Approval</option>
             <option value="APPROVED">Approved</option>
             <option value="ASSIGNED">Assigned</option>
+            <option value="SCHEDULED">Scheduled</option>
+            <option value="VEHICLE_REQUIRED">Vehicle Required</option>
+            <option value="VEHICLE_APPROVED">Vehicle Approved</option>
+            <option value="VEHICLE_ASSIGNED">Vehicle Assigned</option>
+            <option value="VEHICLE_CHANGE_REQUESTED">Vehicle Change Requested</option>
+            <option value="CONFIRMED">Confirmed</option>
+            <option value="STARTED">Started</option>
+            <option value="RESCHEDULE_REQUESTED">Reschedule Requested</option>
             <option value="COMPLETED">Completed</option>
             <option value="PURCHASE_INTEREST">Purchase Interest</option>
             <option value="DROPPED">Dropped</option>
             <option value="REJECTED">Rejected</option>
             <option value="CLOSED">Closed</option>
+            <option value="CANCELLED">Cancelled</option>
+            <option value="NO_SHOW">No Show</option>
           </select>
           {(search || statusFilter) && (
             <button
@@ -246,10 +398,12 @@ export default function Visits() {
                   <th className="px-3 py-2.5">Customer Name</th>
                   <th className="px-3 py-2.5">Mobile Number</th>
                   <th className="px-3 py-2.5">Property</th>
+                  <th className="px-3 py-2.5">Property Type</th>
                   <th className="px-3 py-2.5">Visit Date</th>
                   <th className="px-3 py-2.5">Visit Time</th>
                   <th className="px-3 py-2.5">Referral Agent</th>
                   <th className="px-3 py-2.5">Assigned Agent</th>
+                  <th className="px-3 py-2.5">Travel / Vehicle</th>
                   <th className="px-3 py-2.5">Status</th>
                   <th className="px-3 py-2.5">Created Date</th>
                   <th className="px-3 py-2.5">Actions</th>
@@ -268,10 +422,15 @@ export default function Visits() {
                       <div className="max-w-[140px] truncate font-medium">{row.propertyName}</div>
                       <div className="text-xs text-gray-400">#{row.propertyId}</div>
                     </td>
+                    <td className="px-3 py-2.5">{row.property?.categoryName || row.property?.categorySlug || '—'}</td>
                     <td className="px-3 py-2.5 whitespace-nowrap">{row.visitDate || '—'}</td>
                     <td className="px-3 py-2.5 whitespace-nowrap">{row.visitTime || '—'}</td>
                     <td className="px-3 py-2.5">{row.referralAgent?.name || row.referralAgentName || '—'}</td>
                     <td className="px-3 py-2.5">{row.assignedAgent?.name || '—'}</td>
+                    <td className="px-3 py-2.5 text-xs">
+                      <div className="font-medium">{row.visitMode === 'company_vehicle' ? 'Company Vehicle' : 'Own Vehicle'}</div>
+                      {row.visitMode === 'company_vehicle' && <div className="text-gray-400">{row.vehicleNumber || row.vehicleStatus || 'Awaiting assignment'}</div>}
+                    </td>
                     <td className="px-3 py-2.5">
                       <span className={`rounded-full px-2 py-0.5 text-xs font-semibold ${statusClass(row.status)}`}>
                         {STATUS_LABELS[row.status] || row.status}
@@ -285,7 +444,7 @@ export default function Visits() {
                             key: 'view',
                             label: 'View details',
                             icon: Eye,
-                            onClick: () => setViewing(row),
+                            onClick: () => openVisit(row.id),
                           },
                           {
                             key: 'approve',
@@ -301,15 +460,101 @@ export default function Visits() {
                             icon: X,
                             tone: 'danger',
                             hidden: row.status !== 'pending_approval',
-                            onClick: () => { setRejectId(row.id); setRejectReason(''); },
+                            onClick: () => { setRejectMode('visit'); setRejectId(row.id); setRejectReason(''); },
+                          },
+                          {
+                            key: 'approve-vehicle',
+                            label: 'Approve company vehicle',
+                            icon: Check,
+                            tone: 'success',
+                            hidden: row.visitMode !== 'company_vehicle' || (
+                              !['pending_approval', 'vehicle_required', 'vehicle_change_requested'].includes(row.status)
+                              && !['pending', 'pending_approval', 'requested', 'change_requested'].includes(String(row.vehicleStatus || '').toLowerCase())
+                            ),
+                            onClick: () => handleLifecycle(siteVisitService.approveVehicle, row.id, 'Company vehicle request approved.'),
+                          },
+                          {
+                            key: 'reject-vehicle',
+                            label: 'Reject company vehicle',
+                            icon: X,
+                            tone: 'danger',
+                            hidden: row.visitMode !== 'company_vehicle' || (
+                              !['vehicle_approved', 'vehicle_change_requested'].includes(row.status)
+                              && !['approved', 'change_requested', 'rejected'].includes(String(row.vehicleStatus || '').toLowerCase())
+                            ),
+                            onClick: () => { setRejectMode('vehicle'); setRejectId(row.id); setRejectReason(''); },
+                          },
+                          {
+                            key: 'assign-vehicle',
+                            label: 'Assign company vehicle',
+                            icon: Car,
+                            tone: 'brand',
+                            hidden: row.visitMode !== 'company_vehicle' || ['confirmed', 'started', 'completed', 'cancelled', 'no_show'].includes(row.status),
+                            onClick: () => openVehicleAssignment(row),
+                          },
+                          {
+                            key: 'confirm',
+                            label: 'Confirm visit',
+                            icon: Check,
+                            tone: 'success',
+                            hidden: row.visitMode === 'company_vehicle' || !['approved', 'assigned', 'scheduled'].includes(row.status),
+                            onClick: () => handleLifecycle(siteVisitService.confirm, row.id, 'Site visit confirmed.'),
+                          },
+                          {
+                            key: 'start',
+                            label: 'Start visit',
+                            icon: Play,
+                            tone: 'brand',
+                            hidden: row.status !== 'confirmed',
+                            onClick: () => handleLifecycle(siteVisitService.start, row.id, 'Site visit started.'),
                           },
                           {
                             key: 'complete',
                             label: 'Mark completed',
                             icon: CheckCircle2,
                             tone: 'brand',
-                            hidden: !['approved', 'assigned'].includes(row.status),
+                            hidden: row.expressInterestId
+                              ? row.status !== 'started'
+                              : !['approved', 'assigned', 'confirmed', 'started'].includes(row.status),
                             onClick: () => handleMarkCompleted(row.id),
+                          },
+                          {
+                            key: 'no-show',
+                            label: 'Mark no-show',
+                            icon: Ban,
+                            tone: 'danger',
+                            hidden: !['confirmed', 'assigned', 'vehicle_assigned', 'started'].includes(row.status),
+                            onClick: () => handleReasonedLifecycle(
+                              siteVisitService.markNoShow,
+                              row.id,
+                              'Visit marked as no-show.',
+                              'Enter the no-show reason or remarks:'
+                            ),
+                          },
+                          {
+                            key: 'cancel',
+                            label: 'Cancel visit',
+                            icon: X,
+                            tone: 'danger',
+                            hidden: ['rejected', 'completed', 'cancelled', 'no_show', 'closed', 'dropped'].includes(row.status),
+                            onClick: () => handleReasonedLifecycle(
+                              siteVisitService.cancel,
+                              row.id,
+                              'Site visit cancelled.',
+                              'Enter the cancellation reason:'
+                            ),
+                          },
+                          {
+                            key: 'reschedule',
+                            label: 'Reschedule',
+                            icon: CalendarClock,
+                            hidden: ['rejected', 'completed', 'purchase_interest', 'dropped', 'closed'].includes(row.status),
+                            onClick: () => {
+                              setRescheduleId(row.id);
+                              setRescheduleDate(row.visitDate || '');
+                              setRescheduleTime(String(row.visitTime || '').slice(0, 5));
+                              setRescheduleReason(row.rescheduleRequest?.reason || '');
+                            },
                           },
                           {
                             key: 'assign',
@@ -355,6 +600,18 @@ export default function Visits() {
               <div><dt className="text-gray-500">Registered address</dt><dd className="mt-1 rounded-lg bg-gray-50 p-2">{viewing.customer?.address || '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Property</dt><dd>{viewing.propertyName} #{viewing.propertyId}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Visit date / time</dt><dd>{viewing.visitDate} {viewing.visitTime}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Travel mode</dt><dd>{viewing.visitMode === 'company_vehicle' ? 'Company Vehicle' : 'Own Vehicle'}</dd></div>
+              <div className="flex justify-between gap-4"><dt className="text-gray-500">Visitor count</dt><dd>{viewing.visitorCount || 1}</dd></div>
+              {viewing.visitMode === 'company_vehicle' && (
+                <>
+                  <div><dt className="text-gray-500">Pickup address</dt><dd className="mt-1 rounded-lg bg-gray-50 p-2">{viewing.pickupAddress || '—'}</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-gray-500">Pickup location / time</dt><dd>{viewing.pickupLocation || '—'} · {viewing.pickupTime || viewing.preferredPickupTime || '—'}</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-gray-500">Vehicle status</dt><dd>{viewing.vehicleStatus || '—'}</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-gray-500">Vehicle</dt><dd>{[viewing.vehicleType, viewing.vehicleColor, viewing.vehicleNumber].filter(Boolean).join(' · ') || '—'}</dd></div>
+                  <div className="flex justify-between gap-4"><dt className="text-gray-500">Driver</dt><dd>{[viewing.driverName, viewing.driverPhone, viewing.driverLicenseNumber].filter(Boolean).join(' · ') || '—'}</dd></div>
+                  <div><dt className="text-gray-500">Vehicle remarks</dt><dd className="mt-1 rounded-lg bg-gray-50 p-2">{viewing.vehicleRemarks || '—'}</dd></div>
+                </>
+              )}
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Referral Agent</dt><dd>{viewing.referralAgent?.name || viewing.referralAgentName || '—'}{viewing.referralAgentCode ? ` (${viewing.referralAgentCode})` : ''}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Assigned Agent</dt><dd>{viewing.assignedAgent?.name || '—'}</dd></div>
               <div className="flex justify-between gap-4"><dt className="text-gray-500">Status</dt><dd>{STATUS_LABELS[viewing.status] || viewing.status}</dd></div>
@@ -369,9 +626,9 @@ export default function Visits() {
                 <h3 className="text-sm font-semibold text-gray-700">Timeline</h3>
                 <ul className="mt-2 space-y-2 text-xs text-gray-600">
                   {viewing.history.map((h) => (
-                    <li key={h.id} className="rounded border border-gray-100 px-2 py-1.5">
-                      {h.toStatus}{h.note ? ` — ${h.note}` : ''}
-                      <div className="text-gray-400">{new Date(h.createdAt).toLocaleString()}</div>
+                    <li key={h.id || `${h.toStatus}-${h.createdAt}`} className="rounded border border-gray-100 px-2 py-1.5">
+                      <span className="font-medium">{STATUS_LABELS[h.toStatus] || h.toStatus}</span>{h.note ? ` — ${h.note}` : ''}
+                      <div className="text-gray-400">{h.actorName || h.actorRole || 'System'} · {new Date(h.createdAt).toLocaleString()}</div>
                     </li>
                   ))}
                 </ul>
@@ -387,7 +644,7 @@ export default function Visits() {
       {rejectId && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/50 px-4">
           <div className="w-full max-w-sm rounded-xl bg-white p-5 shadow-xl">
-            <h3 className="font-semibold text-brand-800">Reject Site Visit</h3>
+            <h3 className="font-semibold text-brand-800">{rejectMode === 'vehicle' ? 'Reject Company Vehicle Request' : 'Reject Site Visit'}</h3>
             <textarea
               value={rejectReason}
               onChange={(e) => setRejectReason(e.target.value)}
@@ -425,6 +682,65 @@ export default function Visits() {
         </div>
       )}
 
+      {vehicleVisit && (
+        <div className="fixed inset-0 z-[120] flex items-center justify-center overflow-y-auto bg-black/50 px-4 py-6">
+          <form onSubmit={handleVehicleAssignment} className="max-h-[92vh] w-full max-w-2xl space-y-4 overflow-y-auto rounded-xl bg-white p-5 shadow-xl">
+            <h3 className="font-semibold text-brand-800">Assign Company Vehicle · Visit #{vehicleVisit.id}</h3>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {[
+                ['vehicleType', 'Vehicle type'],
+                ['vehicleModel', 'Vehicle model'],
+                ['vehicleCapacity', 'Vehicle capacity'],
+                ['vehicleReference', 'Vehicle ID / reference'],
+                ['vehicleNumber', 'Vehicle number'],
+                ['vehicleColor', 'Vehicle color'],
+                ['driverName', 'Driver name'],
+                ['driverPhone', 'Driver phone'],
+                ['driverReference', 'Driver ID / reference'],
+                ['driverLicenseNumber', 'Driver licence number'],
+                ['pickupAddress', 'Pickup address'],
+                ['pickupLocation', 'Pickup location / landmark'],
+                ['dropLocation', 'Drop location'],
+              ].map(([key, label]) => (
+                <label key={key} className={['pickupAddress', 'dropLocation'].includes(key) ? 'sm:col-span-2' : ''}>
+                  <span className="mb-1 block text-xs font-medium text-gray-600">{label}</span>
+                  <input
+                    type={key === 'vehicleCapacity' ? 'number' : 'text'}
+                    min={key === 'vehicleCapacity' ? '1' : undefined}
+                    value={vehicleForm[key]}
+                    onChange={(event) => setVehicleForm((form) => ({ ...form, [key]: event.target.value }))}
+                    className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                    required={['vehicleType', 'vehicleNumber', 'driverName', 'driverPhone', 'driverLicenseNumber', 'pickupAddress', 'pickupLocation', 'dropLocation'].includes(key)}
+                  />
+                </label>
+              ))}
+              <label>
+                <span className="mb-1 block text-xs font-medium text-gray-600">Pickup date</span>
+                <input type="date" value={vehicleForm.pickupDate} onChange={(event) => setVehicleForm((form) => ({ ...form, pickupDate: event.target.value }))} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" required />
+              </label>
+              <label>
+                <span className="mb-1 block text-xs font-medium text-gray-600">Pickup time</span>
+                <input type="time" value={vehicleForm.pickupTime} onChange={(event) => setVehicleForm((form) => ({ ...form, pickupTime: event.target.value }))} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" required />
+              </label>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <label>
+                <span className="mb-1 block text-xs font-medium text-gray-600">Driver remarks</span>
+                <textarea rows={3} value={vehicleForm.driverRemarks} onChange={(event) => setVehicleForm((form) => ({ ...form, driverRemarks: event.target.value }))} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+              </label>
+              <label>
+                <span className="mb-1 block text-xs font-medium text-gray-600">Vehicle remarks</span>
+                <textarea rows={3} value={vehicleForm.vehicleRemarks} onChange={(event) => setVehicleForm((form) => ({ ...form, vehicleRemarks: event.target.value }))} className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm" />
+              </label>
+            </div>
+            <div className="flex justify-end gap-2">
+              <button type="button" onClick={() => setVehicleVisit(null)} className="rounded-lg border border-gray-300 px-3 py-2 text-sm">Cancel</button>
+              <button type="submit" className="rounded-lg bg-brand-700 px-3 py-2 text-sm font-semibold text-white">Assign Vehicle</button>
+            </div>
+          </form>
+        </div>
+      )}
+
       {remarkId && (
         <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/50 px-4">
           <div className="w-full max-w-sm rounded-xl bg-white p-5 shadow-xl">
@@ -440,6 +756,43 @@ export default function Visits() {
               <button type="button" onClick={handleInternalRemark} className="rounded-lg bg-brand-700 px-3 py-2 text-sm font-semibold text-white">Save</button>
             </div>
           </div>
+        </div>
+      )}
+
+      {rescheduleId && (
+        <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/50 px-4">
+          <form onSubmit={handleReschedule} className="w-full max-w-sm rounded-xl bg-white p-5 shadow-xl">
+            <h3 className="font-semibold text-brand-800">Reschedule Site Visit</h3>
+            <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+              <input
+                type="date"
+                min={new Date().toISOString().slice(0, 10)}
+                value={rescheduleDate}
+                onChange={(event) => setRescheduleDate(event.target.value)}
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                required
+              />
+              <input
+                type="time"
+                value={rescheduleTime}
+                onChange={(event) => setRescheduleTime(event.target.value)}
+                className="rounded-lg border border-gray-300 px-3 py-2 text-sm"
+                required
+              />
+            </div>
+            <textarea
+              value={rescheduleReason}
+              onChange={(event) => setRescheduleReason(event.target.value)}
+              rows={3}
+              placeholder="Reschedule reason"
+              className="mt-3 w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+              required
+            />
+            <div className="mt-4 flex justify-end gap-2">
+              <button type="button" onClick={() => setRescheduleId(null)} className="rounded-lg border border-gray-300 px-3 py-2 text-sm">Cancel</button>
+              <button type="submit" className="rounded-lg bg-brand-700 px-3 py-2 text-sm font-semibold text-white">Reschedule</button>
+            </div>
+          </form>
         </div>
       )}
     </div>

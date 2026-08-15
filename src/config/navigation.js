@@ -94,6 +94,7 @@ export const DASHBOARD_NAV = {
     { key: 'customers', path: '/sales/customers', labelKey: 'nav.customers', icon: 'Users' },
     { key: 'agents', path: '/sales/agents', labelKey: 'nav.agents', icon: 'IdCard' },
     { key: 'leads', path: '/sales/leads', labelKey: 'nav.leads', icon: 'MessageSquareHeart' },
+    { key: 'visits', path: '/sales/visits', labelKey: 'nav.siteVisitManagement', icon: 'CalendarCheck' },
     { key: 'contact-messages', path: '/sales/contact-messages', labelKey: 'nav.contactMessages', icon: 'Mail' },
     { key: 'follow-ups', path: '/sales/follow-ups', labelKey: 'nav.followUps', icon: 'PhoneCall' },
     { key: 'bookings', path: '/sales/bookings', labelKey: 'nav.bookings', icon: 'ClipboardList' },

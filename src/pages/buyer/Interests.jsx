@@ -1,6 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Eye, ArrowRight, ShoppingBag, CalendarCheck } from 'lucide-react';
+import { Eye, ArrowRight, ShoppingBag, CalendarCheck, CalendarPlus } from 'lucide-react';
 import { expressInterestService } from '../../services/expressInterestService';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
@@ -90,6 +90,15 @@ export default function Interests() {
     }
   }
 
+  function scheduleVisit(row) {
+    if (!row?.propertyId) {
+      toast.error('A site visit cannot be scheduled for this interest.');
+      return;
+    }
+    setSelected(null);
+    navigate(`/schedule-visit/${row.propertyId}?interestId=${encodeURIComponent(row.id)}`);
+  }
+
   const columns = [
     {
       key: 'id',
@@ -169,6 +178,14 @@ export default function Interests() {
               onClick: () => setSelected(row),
             },
             {
+              key: 'schedule-visit',
+              label: 'Schedule Site Visit',
+              icon: CalendarPlus,
+              tone: 'brand',
+              hidden: !['approved', 'assigned'].includes(String(row.status).toLowerCase()) || Boolean(row.siteVisitId),
+              onClick: () => scheduleVisit(row),
+            },
+            {
               key: 'proceed',
               label: 'Proceed',
               icon: ArrowRight,
@@ -202,7 +219,7 @@ export default function Interests() {
     <>
       <DataTable
         title="My Express Interests"
-        subtitle="Track interests and proceed to Booking after approval."
+        subtitle="Track interests and schedule a site visit or proceed to booking after approval."
         columns={columns}
         rows={interests}
         loading={loading}
@@ -226,14 +243,27 @@ export default function Interests() {
             <p className="mt-1 text-sm">Decision: {selected.customerDecision || '—'}</p>
             {selected.purchaseStatus && <p className="mt-1 text-sm">Purchase status: {selected.purchaseStatus}</p>}
             {selected.bookingStatus && <p className="mt-1 text-sm">Booking status: {selected.bookingStatus}</p>}
-            {selected.canProceed && (
-              <button
-                type="button"
-                onClick={() => { setProceedId(selected.id); }}
-                className="mt-4 w-full rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white"
-              >
-                Proceed to Booking
-              </button>
+            {(selected.canProceed || (['approved', 'assigned'].includes(String(selected.status).toLowerCase()) && !selected.siteVisitId)) && (
+              <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                {['approved', 'assigned'].includes(String(selected.status).toLowerCase()) && !selected.siteVisitId && (
+                  <button
+                    type="button"
+                    onClick={() => scheduleVisit(selected)}
+                    className="rounded-lg border border-brand-600 px-4 py-2.5 text-sm font-semibold text-brand-700 hover:bg-brand-50"
+                  >
+                    Schedule Site Visit
+                  </button>
+                )}
+                {selected.canProceed && (
+                  <button
+                    type="button"
+                    onClick={() => { setProceedId(selected.id); }}
+                    className="rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white"
+                  >
+                    Proceed to Booking
+                  </button>
+                )}
+              </div>
             )}
             {selected.history?.length > 0 && (
               <ul className="mt-4 space-y-2 text-xs text-gray-600">

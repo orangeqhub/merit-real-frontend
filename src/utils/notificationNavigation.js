@@ -24,6 +24,15 @@ const REFERENCE_OPEN_ROUTES = {
     mediator: '/mediator/purchases',
     sales_member: '/sales/purchases',
   },
+  site_visit: {
+    buyer: '/buyer/visits',
+    customer: '/buyer/visits',
+    admin: '/admin/visits',
+    agent: '/mediator/visits',
+    mediator: '/mediator/visits',
+    employee: '/employee/visits',
+    sales_member: '/sales/visits',
+  },
 };
 
 function withOpenParam(path, entityId) {
@@ -73,6 +82,14 @@ export function resolveNotificationTarget(notification, role = 'buyer') {
     state.openPurchaseId = refId;
     if (!route || !String(route).includes('open=')) {
       const base = REFERENCE_OPEN_ROUTES.purchase_request[role] || '/buyer/purchases';
+      route = route ? withOpenParam(route, refId) : withOpenParam(base, refId);
+    }
+  }
+
+  if (refType === 'site_visit' && refId) {
+    state.openVisitId = refId;
+    if (!route || !String(route).includes('open=')) {
+      const base = REFERENCE_OPEN_ROUTES.site_visit[role] || '/buyer/visits';
       route = route ? withOpenParam(route, refId) : withOpenParam(base, refId);
     }
   }

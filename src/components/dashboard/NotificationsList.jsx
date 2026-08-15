@@ -137,8 +137,8 @@ export default function NotificationsList() {
           items={[
             {
               key: 'open',
-              label: row.linkPath ? 'Open' : 'Mark read',
-              icon: row.linkPath ? ExternalLink : Check,
+              label: row.linkPath || row.referenceType || row.relatedType ? 'Open' : 'Mark read',
+              icon: row.linkPath || row.referenceType || row.relatedType ? ExternalLink : Check,
               onClick: () => handleOpen(row),
             },
           ]}

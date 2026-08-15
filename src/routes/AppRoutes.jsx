@@ -122,6 +122,7 @@ const SalesDashboard = lazy(() => import('../pages/sales/Dashboard'));
 const SalesCustomers = lazy(() => import('../pages/sales/Customers'));
 const SalesAgents = lazy(() => import('../pages/sales/Agents'));
 const SalesLeads = lazy(() => import('../pages/sales/Leads'));
+const SalesVisits = lazy(() => import('../pages/sales/Visits'));
 const SalesContactMessages = lazy(() => import('../pages/sales/ContactMessages'));
 const SalesFollowUps = lazy(() => import('../pages/sales/FollowUps'));
 const SalesBookings = lazy(() => import('../pages/sales/Bookings'));
@@ -317,6 +318,7 @@ export default function AppRoutes() {
           <Route path="customers" element={<SalesCustomers />} />
           <Route path="agents" element={<SalesAgents />} />
           <Route path="leads" element={<SalesLeads />} />
+          <Route path="visits" element={<SalesVisits />} />
           <Route path="contact-messages" element={<SalesContactMessages />} />
           <Route path="follow-ups" element={<SalesFollowUps />} />
           <Route path="bookings" element={<SalesBookings />} />

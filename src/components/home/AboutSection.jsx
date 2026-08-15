@@ -3,6 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { cmsService } from '../../services/cmsService';
 import { useLanguageStore } from '../../store/languageStore';
 import { getLocalizedField } from '../../utils/localize';
+import SmartImage from '../common/SmartImage';
+import { CITY_IMAGES } from '../../data/projectImages';
 
 export default function AboutSection() {
   const { t } = useTranslation('common');
@@ -16,10 +18,9 @@ export default function AboutSection() {
   return (
     <section className="bg-brand-50">
       <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:items-center">
-        <img
-          src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=70"
-          alt=""
-          loading="lazy"
+        <SmartImage
+          src={CITY_IMAGES.Guntur}
+          alt="Residential neighbourhood developed by Merit Real Solutions"
           className="h-64 w-full rounded-2xl object-cover shadow-md md:h-80"
         />
         <div>

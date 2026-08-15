@@ -79,6 +79,17 @@ function attachSocketHandlers(activeSocket) {
     dispatch('booking:updated', payload);
   });
 
+  activeSocket.on('site-visit:updated', (payload) => {
+    if (!rememberEventId(payload)) return;
+    dispatch('site-visit:updated', payload);
+  });
+
+  activeSocket.on('site-visit:created', (payload) => {
+    if (!rememberEventId(payload)) return;
+    dispatch('site-visit:created', payload);
+    dispatch('site-visit:updated', payload);
+  });
+
   activeSocket.on('property:updated', (payload) => {
     if (!rememberEventId(payload)) return;
     dispatch('property:updated', payload);

@@ -14,6 +14,26 @@ export const siteVisitService = {
     return api('/site-visits', { method: 'POST', token: token(), body: payload });
   },
 
+  async submitFromInterest(interestId, payload) {
+    try {
+      return await api(`/site-visits/from-interest/${interestId}`, {
+        method: 'POST',
+        token: token(),
+        body: payload,
+        silent: true,
+      });
+    } catch (err) {
+      // Keep compatibility with deployments that accept the relationship on
+      // the standard create endpoint instead of exposing a transition route.
+      if (err?.status !== 404 && err?.status !== 405) throw err;
+      return api('/site-visits', {
+        method: 'POST',
+        token: token(),
+        body: { ...payload, expressInterestId: interestId },
+      });
+    }
+  },
+
   async getMine(params = {}) {
     const q = new URLSearchParams();
     Object.entries(params).forEach(([k, v]) => {
@@ -99,8 +119,84 @@ export const siteVisitService = {
     });
   },
 
+  async addRemarks(id, remarks) {
+    return api(`/site-visits/${id}/remarks`, {
+      method: 'POST',
+      token: token(),
+      body: { remarks },
+    });
+  },
+
+  async remarks(id, body) {
+    return api(`/site-visits/${id}/remarks`, { method: 'POST', token: token(), body });
+  },
+
+  async addFollowUp(id, body) {
+    return api(`/site-visits/${id}/follow-ups`, {
+      method: 'POST',
+      token: token(),
+      body,
+    });
+  },
+
+  async followUps(id, body) {
+    return api(`/site-visits/${id}/follow-ups`, { method: 'POST', token: token(), body });
+  },
+
   async markCompleted(id, body = {}) {
+    return siteVisitService.complete(id, body);
+  },
+
+  async confirm(id, body = {}) {
+    return api(`/site-visits/${id}/confirm`, { method: 'POST', token: token(), body });
+  },
+
+  async approveVehicle(id, body = {}) {
+    return api(`/site-visits/${id}/approve-vehicle`, { method: 'POST', token: token(), body });
+  },
+
+  async assignVehicle(id, body) {
+    return api(`/site-visits/${id}/assign-vehicle`, { method: 'POST', token: token(), body });
+  },
+
+  async rejectVehicle(id, body) {
+    return api(`/site-visits/${id}/reject-vehicle`, { method: 'POST', token: token(), body });
+  },
+
+  async acceptVehicle(id, body = {}) {
+    return api(`/site-visits/${id}/accept-vehicle`, { method: 'POST', token: token(), body });
+  },
+
+  async requestVehicleChange(id, body) {
+    return api(`/site-visits/${id}/request-vehicle-change`, { method: 'POST', token: token(), body });
+  },
+
+  async requestReschedule(id, body) {
+    return api(`/site-visits/${id}/request-reschedule`, { method: 'POST', token: token(), body });
+  },
+
+  async reschedule(id, body) {
+    return api(`/site-visits/${id}/reschedule`, { method: 'POST', token: token(), body });
+  },
+
+  async cancel(id, body = {}) {
+    return api(`/site-visits/${id}/cancel`, { method: 'POST', token: token(), body });
+  },
+
+  async start(id, body = {}) {
+    return api(`/site-visits/${id}/start`, { method: 'POST', token: token(), body });
+  },
+
+  async complete(id, body = {}) {
     return api(`/site-visits/${id}/complete`, { method: 'POST', token: token(), body });
+  },
+
+  async markNoShow(id, body = {}) {
+    return api(`/site-visits/${id}/no-show`, { method: 'POST', token: token(), body });
+  },
+
+  async noShow(id, body = {}) {
+    return siteVisitService.markNoShow(id, body);
   },
 
   async submitPurchaseInterest(id, body = {}) {
@@ -144,10 +240,10 @@ export const visitService = {
     }),
   createVisit: async (payload) => visitService.schedule(payload),
   updateVisit: async () => null,
-  confirmVisit: async (_user, id) => siteVisitService.updateEmployeeVisit(id, { employeeVisitStatus: 'confirmed' }),
-  markCompleted: (_user, id) => siteVisitService.markCompleted(id, { note: 'Marked completed' }),
-  markCancelled: async (_user, id) => siteVisitService.updateEmployeeVisit(id, { employeeVisitStatus: 'cancelled' }),
-  markNoShow: async (_user, id) => siteVisitService.updateEmployeeVisit(id, { employeeVisitStatus: 'no_show' }),
+  confirmVisit: async (_user, id) => siteVisitService.confirm(id),
+  markCompleted: (_user, id) => siteVisitService.complete(id, { note: 'Marked completed' }),
+  markCancelled: async (_user, id) => siteVisitService.cancel(id),
+  markNoShow: async (_user, id) => siteVisitService.markNoShow(id),
   recordOutcome: async (_user, id, outcome) => siteVisitService.updateEmployeeVisit(id, { outcome }),
   addVisitNote: async (_user, id, note) => siteVisitService.updateEmployeeVisit(id, { note, appendNote: true }),
   assignRecord: async (id, meta) => {

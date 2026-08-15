@@ -35,6 +35,8 @@ import { CITIES } from '../../data/locations';
 import { CATEGORIES } from '../../config/categories';
 import { ABOUT_SERVICES } from '../../config/aboutServices';
 import { POPULAR_LOCATIONS } from '../../data/locations';
+import SmartImage from '../../components/common/SmartImage';
+import { PROJECT_IMAGES, CITY_IMAGES } from '../../data/projectImages';
 
 const WHY_ITEMS = [
   { icon: BadgeCheck, titleKey: 'aboutPage.why.verifiedTitle', descKey: 'aboutPage.why.verifiedDesc' },
@@ -155,10 +157,9 @@ export default function About() {
                 </a>
               </div>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=900&q=70"
-              alt=""
-              loading="eager"
+            <SmartImage
+              src={PROJECT_IMAGES.anneEnclaveAerial}
+              alt="Aerial view of a Merit Real plotted development"
               className="h-64 w-full rounded-2xl object-cover shadow-md sm:h-80"
             />
           </div>
@@ -168,10 +169,9 @@ export default function About() {
       {/* 2. Company Story */}
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <div className="grid gap-8 md:grid-cols-2 md:items-center">
-          <img
-            src="https://images.unsplash.com/photo-1449844908441-8829872d2607?auto=format&fit=crop&w=900&q=70"
-            alt=""
-            loading="lazy"
+          <SmartImage
+            src={CITY_IMAGES.Guntur}
+            alt="Residential neighbourhood built by Merit Real Solutions"
             className="h-72 w-full rounded-2xl object-cover shadow-md md:order-2"
           />
           <div>
@@ -215,10 +215,9 @@ export default function About() {
                 ))}
               </div>
             </div>
-            <img
-              src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=900&q=70"
-              alt=""
-              loading="lazy"
+            <SmartImage
+              src={PROJECT_IMAGES.villaExterior}
+              alt="Modern villa exterior in a Merit Real project"
               className="h-72 w-full rounded-2xl object-cover shadow-md"
             />
           </div>
@@ -290,7 +289,7 @@ export default function About() {
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
           {POPULAR_LOCATIONS.map((loc) => (
             <Link key={loc.city} to={`/properties?city=${encodeURIComponent(loc.city)}`} className="group text-center">
-              <img src={loc.image} alt="" loading="lazy" className="h-20 w-full rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105" />
+              <SmartImage src={loc.image} alt={`${loc.city} properties`} className="h-20 w-full rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105" />
               <p className="mt-2 text-sm font-semibold text-gray-800">{loc.city}</p>
             </Link>
           ))}

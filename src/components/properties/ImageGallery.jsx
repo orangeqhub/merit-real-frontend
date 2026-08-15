@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import { resolveAssetUrl } from '../../api/client';
+import SmartImage from '../common/SmartImage';
 
 export default function ImageGallery({ images = [], title }) {
   const ordered = [...images].sort((a, b) => {
@@ -69,10 +70,11 @@ export default function ImageGallery({ images = [], title }) {
           className="block h-full w-full"
           aria-label="Open full-size image preview"
         >
-          <img
+          <SmartImage
             src={resolveAssetUrl(current.url)}
             alt={current.caption || title}
             className="h-full w-full object-cover"
+            loading="eager"
           />
         </button>
 
@@ -114,7 +116,7 @@ export default function ImageGallery({ images = [], title }) {
                 i === active ? 'border-brand-600' : 'border-transparent'
               }`}
             >
-              <img src={resolveAssetUrl(img.url)} alt={img.caption || ''} className="h-full w-full object-cover" />
+              <SmartImage src={resolveAssetUrl(img.url)} alt={img.caption || ''} className="h-full w-full object-cover" />
               {img.isPrimary && (
                 <span className="absolute bottom-0 left-0 right-0 bg-black/55 py-0.5 text-center text-[9px] text-white">
                   Cover
@@ -160,7 +162,7 @@ export default function ImageGallery({ images = [], title }) {
               </button>
             </>
           )}
-          <img
+          <SmartImage
             src={resolveAssetUrl(current.url)}
             alt={current.caption || title}
             className="max-h-[90vh] max-w-full object-contain"
