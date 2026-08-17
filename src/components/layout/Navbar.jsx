@@ -63,14 +63,17 @@ export default function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-100 bg-warm-white/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
-        <Link to="/" className="flex shrink-0 items-center gap-2">
+      {/* ── Main row ── */}
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-3 py-2 sm:px-4 sm:py-2.5 md:py-3 lg:px-6">
+
+        {/* Logo */}
+        <Link to="/" className="flex shrink-0 items-center gap-2" style={{ minWidth: 0 }}>
           {logoError ? (
             <div className="flex items-center gap-2">
-              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-brand-600 font-bold text-warm-white sm:h-10 sm:w-10">
+              <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-brand-600 font-bold text-warm-white sm:h-10 sm:w-10 md:h-11 md:w-11">
                 M
               </span>
-              <span className="text-base font-bold text-brand-800 sm:text-lg">
+              <span className="text-sm font-bold text-brand-800 sm:text-lg md:text-xl">
                 {t('brand.name')}
               </span>
             </div>
@@ -79,12 +82,14 @@ export default function Navbar() {
               src={logoImage}
               alt={t('brand.logoAlt')}
               onError={() => setLogoError(true)}
-              className="h-9 sm:h-11 w-auto max-w-[260px] object-contain rounded-md"
+              className="h-8 w-auto object-contain sm:h-11 md:h-12"
+              style={{ maxWidth: 'clamp(130px, 28vw, 260px)' }}
             />
           )}
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex" aria-label="Primary">
+        {/* Desktop nav links */}
+        <nav className="ml-6 hidden items-center gap-5 lg:flex" aria-label="Primary">
           {NAV_LINKS.map((link) => (
             <NavLink key={link.to} to={link.to} end={link.to === '/'} className={linkClass}>
               {t(link.labelKey)}
@@ -92,6 +97,7 @@ export default function Navbar() {
           ))}
         </nav>
 
+        {/* Desktop actions */}
         <div className="hidden items-center gap-2 lg:flex">
           <div className="relative">
             <button
@@ -154,40 +160,20 @@ export default function Navbar() {
           <LanguageToggle className="shrink-0" />
         </div>
 
-        <div className="flex items-center gap-1.5 lg:hidden">
-          <button
-            type="button"
-            onClick={handleSell}
-            className="flex items-center gap-1 whitespace-nowrap rounded-full bg-brand-600 px-3 py-1.5 text-xs font-bold text-warm-white hover:bg-brand-700"
-          >
-            <Tag size={13} /> {t('nav.sell')}
-          </button>
-          <Link
-            to="/wishlist"
-            aria-label={t('nav.wishlist')}
-            className="relative flex h-9 w-9 items-center justify-center rounded-full text-gray-700 hover:bg-brand-50 hover:text-red-500"
-          >
-            <Heart size={19} />
-            {wishlistCount > 0 && (
-              <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-warm-white">
-                {wishlistCount}
-              </span>
-            )}
-          </Link>
-          <LanguageToggle />
-          {user && <ProfileDropdown />}
-          <button
-            type="button"
-            onClick={() => setMobileOpen((o) => !o)}
-            aria-label="Toggle menu"
-            aria-expanded={mobileOpen}
-            className="rounded-lg p-2 text-gray-700 hover:bg-gray-100"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
-        </div>
+        {/* Mobile hamburger button */}
+        <button
+          type="button"
+          onClick={() => setMobileOpen((o) => !o)}
+          aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
+          aria-expanded={mobileOpen}
+          className="flex shrink-0 items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 lg:hidden"
+          style={{ minWidth: 42, minHeight: 42 }}
+        >
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
       </div>
 
+      {/* ── Desktop search overlay ── */}
       {searchOpen && (
         <div className="border-t border-gray-100 bg-warm-white px-4 py-3 sm:px-6">
           <form onSubmit={handleSearchSubmit} className="mx-auto flex max-w-7xl items-center gap-2">
@@ -217,36 +203,47 @@ export default function Navbar() {
         </div>
       )}
 
+      {/* ── Mobile menu drawer ── */}
       {mobileOpen && (
-        <div className="border-t border-gray-100 bg-warm-white px-4 py-4 lg:hidden">
-          <form onSubmit={handleSearchSubmit} className="relative mb-3">
+        <div className="border-t border-gray-100 bg-warm-white px-4 py-4 shadow-lg lg:hidden">
+          <form onSubmit={handleSearchSubmit} className="relative mb-4">
             <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="search"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               placeholder={t('placeholders.searchProperties')}
-              className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-3 text-sm"
+              className="w-full rounded-lg border border-gray-300 py-2.5 pl-9 pr-3 text-sm"
             />
           </form>
-          <nav className="flex flex-col gap-3" aria-label="Mobile">
+          <nav className="flex flex-col" aria-label="Mobile">
             {NAV_LINKS.map((link) => (
               <NavLink
                 key={link.to}
                 to={link.to}
                 end={link.to === '/'}
                 onClick={() => setMobileOpen(false)}
-                className={linkClass}
+                className="rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+                style={{ minHeight: 44 }}
               >
                 {t(link.labelKey)}
               </NavLink>
             ))}
+            <button
+              type="button"
+              onClick={() => { handleSell(); setMobileOpen(false); }}
+              className="rounded-lg px-3 py-3 text-left text-sm font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+              style={{ minHeight: 44 }}
+            >
+              {t('nav.sell')}
+            </button>
             <div className="relative">
               <button
                 ref={mobileLocationRef}
                 type="button"
                 onClick={() => setLocationOpen((o) => !o)}
-                className="flex items-center gap-1.5 text-sm font-medium text-gray-700 hover:text-brand-700"
+                className="flex w-full items-center gap-1.5 rounded-lg px-3 py-3 text-sm font-medium text-gray-700 hover:bg-brand-50 hover:text-brand-700"
+                style={{ minHeight: 44 }}
               >
                 <MapPin size={16} className="shrink-0" />
                 <span className="truncate">{headerLocation || t('nav.selectLocation')}</span>
@@ -257,11 +254,30 @@ export default function Navbar() {
                 triggerRef={mobileLocationRef}
               />
             </div>
+            <div className="my-2 border-t border-gray-100" />
+            <div className="flex items-center gap-3 px-3 py-2">
+              <LanguageToggle />
+              <Link
+                to="/wishlist"
+                aria-label={t('nav.wishlist')}
+                onClick={() => setMobileOpen(false)}
+                className="relative flex h-10 w-10 items-center justify-center rounded-full text-gray-700 hover:bg-brand-50 hover:text-red-500"
+              >
+                <Heart size={20} />
+                {wishlistCount > 0 && (
+                  <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-warm-white">
+                    {wishlistCount}
+                  </span>
+                )}
+              </Link>
+              {user && <ProfileDropdown />}
+            </div>
             {!user && (
               <Link
                 to="/login"
                 onClick={() => setMobileOpen(false)}
-                className="rounded-lg border border-brand-500 px-4 py-2 text-center text-sm font-semibold text-brand-700"
+                className="mx-3 mt-2 rounded-lg border border-brand-500 px-4 py-3 text-center text-sm font-semibold text-brand-700"
+                style={{ minHeight: 44 }}
               >
                 {t('nav.login')}
               </Link>

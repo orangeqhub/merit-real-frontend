@@ -19,9 +19,9 @@ export default function CategoryStrip() {
   if (!categories.length) return null;
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
-      <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t('sections.categories')}</h2>
-      <div className="mt-5 flex gap-4 overflow-x-auto scrollbar-none sm:grid sm:grid-cols-4 sm:gap-4 sm:overflow-visible lg:grid-cols-5">
+    <section className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-6 lg:py-10">
+      <h2 className="text-lg font-bold text-brand-800 sm:text-xl md:text-2xl lg:text-2xl">{t('sections.categories')}</h2>
+      <div className="mt-4 grid grid-cols-2 gap-3 sm:mt-5 sm:grid-cols-4 sm:gap-4 md:gap-5 lg:grid-cols-5">
         {categories.map((cat) => {
           const Icon = Icons[cat.icon] || Icons.Home;
           const count = Number(cat.propertyCount) || 0;
@@ -29,19 +29,25 @@ export default function CategoryStrip() {
             <Link
               key={cat.slug}
               to={`/properties/category/${cat.slug}`}
-              className="flex w-32 shrink-0 flex-col items-center gap-2 rounded-xl border border-gray-200 bg-warm-white p-3 text-center shadow-sm transition-shadow hover:shadow-md sm:w-auto"
+              className="flex flex-col items-center gap-2 rounded-xl border border-gray-200 bg-warm-white p-3 text-center shadow-sm transition-shadow hover:shadow-md sm:p-4 md:p-5"
             >
-              <div className="relative flex h-16 w-16 items-center justify-center overflow-hidden rounded-full bg-brand-50 ring-2 ring-brand-100">
+              <div className="relative flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-brand-50 ring-2 ring-brand-100 sm:h-14 sm:w-14 md:h-16 md:w-16 lg:h-16 lg:w-16">
                 {cat.image ? (
                   <img src={cat.image} alt="" className="h-full w-full object-cover" loading="lazy" />
                 ) : (
-                  <Icon size={24} className="text-brand-700" />
+                  <Icon size={28} className="text-brand-700 md:hidden" />
+                )}
+                {cat.image ? null : (
+                  <Icon size={32} className="hidden text-brand-700 md:block lg:hidden" />
+                )}
+                {cat.image ? null : (
+                  <Icon size={32} className="hidden text-brand-700 lg:block" />
                 )}
               </div>
-              <span className="lang-te text-sm font-semibold text-gray-800">
+              <span className="lang-te text-[11px] font-semibold leading-tight text-gray-800 sm:text-xs md:text-sm lg:text-sm">
                 {language === 'te' ? (cat.nameTe || cat.nameEn) : cat.nameEn}
               </span>
-              <span className="text-xs text-gray-500">{count}</span>
+              <span className="text-[10px] text-gray-500 sm:text-[11px] md:text-xs">{count}</span>
             </Link>
           );
         })}

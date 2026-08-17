@@ -20,16 +20,16 @@ export default function PropertySectionGrid({ titleKey, fetcher, viewAllTo }) {
   }, [fetcher]);
 
   return (
-    <section className="mx-auto max-w-7xl px-4 py-10 sm:px-6">
+    <section className="mx-auto max-w-7xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-6 lg:py-10">
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t(titleKey)}</h2>
+        <h2 className="text-xl font-bold text-brand-800 sm:text-2xl md:text-2xl">{t(titleKey)}</h2>
         {viewAllTo && (
           <Link to={viewAllTo} className="text-sm font-medium text-brand-700 hover:underline">
             {t('buttons.viewAll')}
           </Link>
         )}
       </div>
-      <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-4 grid grid-cols-1 gap-4 sm:mt-5 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4">
         {properties === null &&
           Array.from({ length: 4 }).map((_, i) => <PropertyCardSkeleton key={i} />)}
         {properties?.length === 0 && (

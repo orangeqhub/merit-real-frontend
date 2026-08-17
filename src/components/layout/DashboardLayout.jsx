@@ -93,7 +93,7 @@ export default function DashboardLayout({ role }) {
   const closeDrawer = () => setDrawerOpen(false);
 
   const SidebarContent = (
-    <nav className="flex flex-col gap-1 px-3 py-4" aria-label="Dashboard navigation">
+    <nav className="flex flex-col gap-1 px-3 py-4 pb-safe-bottom" aria-label="Dashboard navigation">
       {items.map((item) =>
         item.children?.length ? (
           <NavGroup key={item.key} item={item} t={t} onNavigate={closeDrawer} />
@@ -108,7 +108,7 @@ export default function DashboardLayout({ role }) {
   );
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen-ios bg-gray-50">
       <aside className="hidden w-64 shrink-0 border-r border-gray-100 bg-warm-white lg:block">
         <Link to="/" className="flex items-center gap-2 border-b border-gray-100 px-4 py-3.5">
           <img src="/logo.svg" alt={t('brand.logoAlt', { ns: 'common' })} className="h-10 w-auto max-w-[190px] object-contain rounded" />
@@ -119,7 +119,7 @@ export default function DashboardLayout({ role }) {
       {drawerOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setDrawerOpen(false)} />
-          <div className="absolute left-0 top-0 h-full w-64 bg-warm-white shadow-xl">
+          <div className="absolute left-0 top-0 h-full w-64 bg-warm-white shadow-xl pt-safe-top">
             <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
               <span className="text-sm font-bold text-brand-800">{t('brand.name', { ns: 'common' })}</span>
               <button type="button" onClick={() => setDrawerOpen(false)} aria-label="Close menu">
@@ -132,63 +132,65 @@ export default function DashboardLayout({ role }) {
       )}
 
       <div className="flex min-w-0 flex-1 flex-col">
-        <header className="flex items-center justify-between gap-3 border-b border-gray-100 bg-warm-white px-4 py-3 sm:px-6">
-          <div className="flex items-center gap-3">
-            <button
-              type="button"
-              onClick={() => setDrawerOpen(true)}
-              aria-label="Open menu"
-              className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 lg:hidden"
-            >
-              <Menu size={20} />
-            </button>
-            <div className="hidden sm:block">
-              <p className="text-sm font-medium text-brand-800">
-                {t('common.breadcrumbHome', { ns: 'dashboard' })}
-              </p>
+        <header className="sticky top-0 z-30 border-b border-gray-100 bg-warm-white/95 backdrop-blur-md will-change-[transform]">
+          <div className="flex items-center justify-between gap-2 px-4 py-3 sm:gap-3 sm:px-6">
+            <div className="flex items-center gap-2 sm:gap-3">
+              <button
+                type="button"
+                onClick={() => setDrawerOpen(true)}
+                aria-label="Open menu"
+                className="rounded-lg p-2 text-gray-700 hover:bg-gray-100 lg:hidden"
+              >
+                <Menu size={20} />
+              </button>
+              <div className="hidden sm:block">
+                <p className="text-sm font-medium text-brand-800">
+                  {t('common.breadcrumbHome', { ns: 'dashboard' })}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LanguageToggle />
-            <NotificationBell />
-            <div className="hidden max-w-[14rem] items-center gap-2 sm:flex">
-              {user?.profilePhoto ? (
-                <img
-                  src={user.profilePhoto}
-                  alt={user.name || 'Profile'}
-                  className="h-8 w-8 rounded-full object-cover ring-2 ring-brand-200"
-                />
-              ) : (
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">
-                  {getInitials(user?.name)}
+            <div className="flex items-center gap-1 sm:gap-3">
+              <LanguageToggle />
+              <NotificationBell />
+              <div className="hidden max-w-[14rem] items-center gap-2 sm:flex">
+                {user?.profilePhoto ? (
+                  <img
+                    src={user.profilePhoto}
+                    alt={user.name || 'Profile'}
+                    className="h-8 w-8 rounded-full object-cover ring-2 ring-brand-200"
+                  />
+                ) : (
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-700 text-xs font-bold text-white">
+                    {getInitials(user?.name)}
+                  </span>
+                )}
+                <span className="truncate text-sm font-medium text-gray-700">
+                  {(role === 'buyer' || role === 'customer') && user?.name
+                    ? t('greetingShort', { ns: 'dashboard', name: user.name })
+                    : user?.name}
                 </span>
-              )}
-              <span className="truncate text-sm font-medium text-gray-700">
-                {(role === 'buyer' || role === 'customer') && user?.name
-                  ? t('greetingShort', { ns: 'dashboard', name: user.name })
-                  : user?.name}
-              </span>
+              </div>
+              <div className="sm:hidden">
+                <ProfileDropdown />
+              </div>
+              <button
+                type="button"
+                onClick={async () => {
+                  const redirectTo = getLogoutRedirectPath(user?.role);
+                  await logout();
+                  navigate(redirectTo);
+                }}
+                aria-label={t('nav.logout', { ns: 'common' })}
+                className="rounded-full p-2 text-gray-600 hover:bg-gray-100"
+              >
+                <LogOut size={18} />
+              </button>
             </div>
-            <div className="sm:hidden">
-              <ProfileDropdown />
-            </div>
-            <button
-              type="button"
-              onClick={async () => {
-                const redirectTo = getLogoutRedirectPath(user?.role);
-                await logout();
-                navigate(redirectTo);
-              }}
-              aria-label={t('nav.logout', { ns: 'common' })}
-              className="rounded-full p-2 text-gray-600 hover:bg-gray-100"
-            >
-              <LogOut size={18} />
-            </button>
           </div>
         </header>
 
-        <main className="flex-1 px-4 py-6 sm:px-6">
+        <main className="flex-1 px-4 py-6 pb-safe-bottom sm:px-6">
           <Suspense fallback={<RouteLoadingFallback />}>
             <Outlet />
           </Suspense>

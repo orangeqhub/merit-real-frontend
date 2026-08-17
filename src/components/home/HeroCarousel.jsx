@@ -128,7 +128,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[560px] w-full overflow-hidden sm:h-[620px]"
+      className="relative flex min-h-[460px] w-full flex-col items-center justify-center overflow-hidden sm:min-h-[520px] md:min-h-[540px] lg:min-h-[620px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onTouchStart={handleTouchStart}
@@ -156,17 +156,19 @@ export default function HeroCarousel() {
             type="button"
             onClick={() => goTo(index - 1)}
             aria-label={t('hero.previousSlide', { ns: 'properties', defaultValue: 'Previous slide' })}
-            className="absolute left-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-warm-white/20 p-2 text-warm-white hover:bg-warm-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-warm-white sm:flex"
+            className="absolute left-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-warm-white/20 p-1.5 text-warm-white hover:bg-warm-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-warm-white sm:p-2"
           >
-            <ChevronLeft size={22} />
+            <ChevronLeft size={18} className="sm:hidden" />
+            <ChevronLeft size={22} className="hidden sm:block" />
           </button>
           <button
             type="button"
             onClick={() => goTo(index + 1)}
             aria-label={t('hero.nextSlide', { ns: 'properties', defaultValue: 'Next slide' })}
-            className="absolute right-2 top-1/2 z-10 hidden -translate-y-1/2 rounded-full bg-warm-white/20 p-2 text-warm-white hover:bg-warm-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-warm-white sm:flex"
+            className="absolute right-2 top-1/2 z-10 -translate-y-1/2 rounded-full bg-warm-white/20 p-1.5 text-warm-white hover:bg-warm-white/30 focus-visible:outline focus-visible:outline-2 focus-visible:outline-warm-white sm:p-2"
           >
-            <ChevronRight size={22} />
+            <ChevronRight size={18} className="sm:hidden" />
+            <ChevronRight size={22} className="hidden sm:block" />
           </button>
         </>
       )}
@@ -188,19 +190,19 @@ export default function HeroCarousel() {
         </div>
       )}
 
-      <div className="relative z-10 mx-auto flex h-full max-w-5xl flex-col items-center justify-center px-4 text-center">
-        <h1 className="max-w-3xl text-3xl font-bold text-warm-white drop-shadow sm:text-5xl">{heading}</h1>
-        {subtitle && <p className="lang-te mt-3 max-w-2xl text-sm text-warm-white/90 drop-shadow sm:text-base">{subtitle}</p>}
+      <div className="relative z-10 mx-auto flex max-w-5xl flex-col items-center justify-center px-4 py-8 text-center sm:px-5 sm:py-12 md:px-8 md:py-14">
+        <h1 className="max-w-3xl text-[clamp(26px,7vw,52px)] font-bold leading-tight text-warm-white drop-shadow sm:text-5xl md:text-[clamp(2rem,5vw,3.5rem)]">{heading}</h1>
+        {subtitle && <p className="lang-te mt-2 max-w-2xl text-sm text-warm-white/90 drop-shadow sm:mt-3 sm:text-base md:mt-4 md:text-lg">{subtitle}</p>}
 
         <form
           onSubmit={handleSearch}
-          className="mt-8 grid w-full max-w-4xl grid-cols-1 gap-2 rounded-2xl bg-warm-white/95 p-3 shadow-xl sm:grid-cols-2 lg:grid-cols-5"
+          className="mt-6 grid w-[calc(100%-2rem)] max-w-[500px] grid-cols-1 gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:w-full sm:max-w-4xl sm:grid-cols-2 sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:grid-cols-3 md:gap-3 md:p-4 lg:grid-cols-5"
         >
           <select
             value={form.location}
             onChange={handleLocationChange}
             aria-label={t('hero.locationPlaceholder')}
-            className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700"
+            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           >
             <option value="">{t('hero.locationPlaceholder')}</option>
             <option value={CURRENT_LOCATION_VALUE}>
@@ -220,7 +222,7 @@ export default function HeroCarousel() {
             value={form.categorySlug}
             onChange={(e) => setForm((f) => ({ ...f, categorySlug: e.target.value }))}
             aria-label={t('hero.categoryPlaceholder')}
-            className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700"
+            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           >
             <option value="">{t('hero.allCategories')}</option>
             {categories.map((c) => (
@@ -235,7 +237,7 @@ export default function HeroCarousel() {
             onChange={(e) => setForm((f) => ({ ...f, minPrice: e.target.value }))}
             placeholder={t('hero.minPricePlaceholder')}
             aria-label={t('hero.minPricePlaceholder')}
-            className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700"
+            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           />
           <input
             type="number"
@@ -244,12 +246,12 @@ export default function HeroCarousel() {
             onChange={(e) => setForm((f) => ({ ...f, maxPrice: e.target.value }))}
             placeholder={t('hero.maxPricePlaceholder')}
             aria-label={t('hero.maxPricePlaceholder')}
-            className="rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700"
+            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           />
 
           <button
             type="submit"
-            className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-warm-white hover:bg-brand-700"
+            className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-warm-white hover:bg-brand-700 md:min-h-[48px] md:px-6 md:text-base"
           >
             <Search size={16} /> {t('buttons.search', { ns: 'common' })}
           </button>

@@ -156,7 +156,7 @@ function HeroBanner({ item, onClose, onSaveForLater, onPrev, onNext, showNav, in
     .slice(0, 6);
 
   return (
-    <div className="relative overflow-hidden rounded-2xl shadow-lg min-h-[280px] sm:min-h-[340px] lg:min-h-[400px]">
+    <div className="relative overflow-hidden rounded-2xl shadow-lg min-h-[240px] sm:min-h-[340px] lg:min-h-[400px]">
       {banner ? (
         <img src={banner} alt="" className="absolute inset-0 h-full w-full object-cover" />
       ) : (
@@ -180,13 +180,13 @@ function HeroBanner({ item, onClose, onSaveForLater, onPrev, onNext, showNav, in
         <X size={16} />
       </button>
 
-      <div className="relative z-10 flex h-full flex-col justify-between gap-6 p-5 sm:p-7 lg:p-8">
+      <div className="relative z-10 flex h-full flex-col justify-between gap-4 p-4 sm:gap-6 sm:p-7 lg:p-8">
         <div className="max-w-2xl">
           <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[11px] font-bold uppercase tracking-wide ${style.badge}`}>
             <Icon size={13} />
             {item.promotionTypeLabel || style.label}
           </span>
-          <h3 className="mt-3 text-2xl font-bold leading-tight text-white sm:text-3xl lg:text-4xl">
+          <h3 className="mt-2 text-xl font-bold leading-tight text-white sm:mt-3 sm:text-3xl lg:text-4xl">
             {item.title}
           </h3>
           {item.property?.titleEn && item.property.titleEn !== item.title && (
@@ -207,7 +207,7 @@ function HeroBanner({ item, onClose, onSaveForLater, onPrev, onNext, showNav, in
         </div>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="rounded-xl bg-black/45 p-3 backdrop-blur-md sm:min-w-[260px]">
+          <div className="rounded-xl bg-black/45 p-2.5 backdrop-blur-md sm:min-w-[260px] sm:p-3">
             <CountdownBlock endDate={item.endDate} />
             <div className="mt-3 flex flex-wrap gap-2">
               <Link
@@ -309,8 +309,8 @@ function ExploreCards({ items }) {
 
   return (
     <div className="mt-8">
-      <div className="mb-4 flex items-center justify-between gap-3">
-        <h3 className="text-lg font-bold text-brand-900 sm:text-xl">Explore Top Promotions</h3>
+      <div className="mb-3 flex items-center justify-between gap-3 sm:mb-4">
+        <h3 className="text-base font-bold text-brand-900 sm:text-xl">Explore Top Promotions</h3>
         <Link to="/properties?sort=featured" className="text-sm font-semibold text-brand-700 hover:underline">
           View All →
         </Link>
@@ -338,7 +338,7 @@ function ExploreCards({ items }) {
               <Link
                 key={item.id}
                 to={`/properties/${item.primaryPropertyId}`}
-                className="group relative h-56 w-[240px] shrink-0 snap-start overflow-hidden rounded-2xl shadow-md sm:w-[260px]"
+                className="group relative h-48 w-[200px] shrink-0 snap-start overflow-hidden rounded-2xl shadow-md sm:h-56 sm:w-[260px]"
               >
                 {image ? (
                   <img src={image} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -500,7 +500,7 @@ export default function PromotionsCarousel({
     >
       {!compact && (title || subtitle) && (
         <div className="mb-4">
-          {title ? <h2 className="text-lg font-bold text-brand-800 sm:text-xl">{title}</h2> : null}
+          {title ? <h2 className="text-lg font-bold text-brand-800 sm:text-xl md:text-xl">{title}</h2> : null}
           {subtitle ? <p className="text-sm text-gray-500">{subtitle}</p> : null}
         </div>
       )}

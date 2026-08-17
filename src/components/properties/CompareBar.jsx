@@ -14,7 +14,7 @@ export default function CompareBar() {
   if (ids.length === 0 || hasOwnFixedBar) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-warm-white px-4 py-3 shadow-[0_-4px_12px_rgba(0,0,0,0.08)]">
+    <div className="fixed inset-x-0 bottom-0 z-50 border-t border-gray-200 bg-warm-white px-4 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-3 shadow-[0_-4px_12px_rgba(0,0,0,0.08)]">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2 text-sm text-gray-700">
           <Scale size={18} className="text-brand-600" />

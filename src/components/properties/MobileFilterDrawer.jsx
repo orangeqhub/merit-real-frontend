@@ -19,7 +19,7 @@ export default function MobileFilterDrawer({ open, onClose, filters, onChange, o
         <div className="flex-1 overflow-y-auto px-4 py-4">
           <FilterPanel filters={filters} onChange={onChange} onReset={onReset} hideCategory={hideCategory} />
         </div>
-        <div className="border-t border-gray-100 p-4">
+        <div className="border-t border-gray-100 p-4 pb-[max(1rem,calc(1rem+env(safe-area-inset-bottom)))]">
           <button
             type="button"
             onClick={onClose}

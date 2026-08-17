@@ -12,9 +12,9 @@ export default function HowItWorks() {
   const { t } = useTranslation('common');
   return (
     <section className="bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t('sections.howItWorks')}</h2>
-        <div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:px-6 lg:py-12">
+        <h2 className="text-xl font-bold text-brand-800 sm:text-2xl md:text-2xl">{t('sections.howItWorks')}</h2>
+        <div className="mt-4 grid grid-cols-1 gap-5 sm:mt-6 sm:grid-cols-2 sm:gap-6 md:gap-7 lg:grid-cols-4">
           {STEPS.map(({ icon: Icon, titleKey, descKey }, i) => (
             <div key={titleKey} className="relative rounded-xl bg-warm-white p-5 shadow-sm">
               <span className="absolute -top-3 -left-3 flex h-7 w-7 items-center justify-center rounded-full bg-brand-600 text-xs font-bold text-warm-white">

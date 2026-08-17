@@ -58,7 +58,7 @@ export default function Home() {
       <MapLayoutSection />
       <ProjectImageScroller />
       <TrustStrip />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 md:px-6 lg:px-6">
         <PromotionsCarousel
           title="Featured Offers & Promotions"
           subtitle="Hand-picked deals and featured listings from Merit Real Solutions."

@@ -34,7 +34,7 @@ import { toast } from '../../store/toastStore';
 import { CITIES } from '../../data/locations';
 import { CATEGORIES } from '../../config/categories';
 import { ABOUT_SERVICES } from '../../config/aboutServices';
-import { POPULAR_LOCATIONS } from '../../data/locations';
+import { useCityCounts } from '../../hooks/useCityCounts';
 import SmartImage from '../../components/common/SmartImage';
 import { PROJECT_IMAGES, CITY_IMAGES } from '../../data/projectImages';
 
@@ -86,6 +86,7 @@ const contactSchema = z.object({
 export default function About() {
   const { t } = useTranslation(['common', 'forms']);
   const language = useLanguageStore((s) => s.language);
+  const popularLocations = useCityCounts();
   const [cms, setCms] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const {
@@ -287,9 +288,9 @@ export default function About() {
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t('aboutPage.locationsTitle')}</h2>
         <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
-          {POPULAR_LOCATIONS.map((loc) => (
+          {popularLocations.map((loc) => (
             <Link key={loc.city} to={`/properties?city=${encodeURIComponent(loc.city)}`} className="group text-center">
-              <SmartImage src={loc.image} alt={`${loc.city} properties`} className="h-20 w-full rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105" />
+              <SmartImage src={(CITY_IMAGES[loc.city] || CITY_IMAGES.Guntur)} alt={`${loc.city} properties`} className="h-20 w-full rounded-xl object-cover shadow-sm transition-transform group-hover:scale-105" />
               <p className="mt-2 text-sm font-semibold text-gray-800">{loc.city}</p>
             </Link>
           ))}

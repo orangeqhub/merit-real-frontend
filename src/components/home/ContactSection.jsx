@@ -46,7 +46,7 @@ export default function ContactSection() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
+    <section id="contact" className="mx-auto max-w-7xl px-3 py-8 sm:px-4 sm:py-10 md:px-6 md:py-12 lg:px-6 lg:py-12">
       <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t('sections.contact')}</h2>
       <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-2">
         <ul className="space-y-4 text-sm text-gray-700">

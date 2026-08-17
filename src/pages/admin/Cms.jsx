@@ -34,9 +34,14 @@ export default function Cms() {
   async function handleSubmit(e) {
     e.preventDefault();
     setSaving(true);
-    await cmsService.updateCms(form);
-    setSaving(false);
-    toast.success(t('toast.cmsUpdated'));
+    try {
+      await cmsService.updateCms(form);
+      toast.success(t('toast.cmsUpdated'));
+    } catch (err) {
+      toast.error(err.message || 'Unable to save CMS content.');
+    } finally {
+      setSaving(false);
+    }
   }
 
   if (!form) return null;

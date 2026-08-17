@@ -20,7 +20,7 @@ export default function ProjectImageScroller() {
   const track = useMemo(() => [...DEVELOPMENT_IMAGES, ...DEVELOPMENT_IMAGES], []);
 
   return (
-    <section className="mx-auto w-full max-w-screen-2xl px-4 py-10 sm:px-6">
+    <section className="mx-auto w-full max-w-screen-2xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-6 lg:py-10">
       <div>
         <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">
           {t('sections.developments', { defaultValue: 'Our Developments' })}
@@ -35,8 +35,8 @@ export default function ProjectImageScroller() {
       <div className="scroll-x-mask group/scroller relative mt-5 overflow-x-auto scrollbar-none">
         <div className="animate-scroll-x flex w-max gap-4 group-hover/scroller:[animation-play-state:paused]">
           {track.map((img, i) => (
-            <div key={`${img.id}-${i}`} className="w-64 shrink-0 sm:w-80">
-              <div className="h-44 overflow-hidden rounded-2xl shadow-sm sm:h-52">
+            <div key={`${img.id}-${i}`} className="w-64 shrink-0 sm:w-80 md:w-80">
+              <div className="h-44 overflow-hidden rounded-2xl shadow-sm sm:h-52 md:h-56">
                 <SmartImage
                   src={img.src}
                   alt={img.alt}

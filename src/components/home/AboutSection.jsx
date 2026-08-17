@@ -17,11 +17,11 @@ export default function AboutSection() {
 
   return (
     <section className="bg-brand-50">
-      <div className="mx-auto grid max-w-7xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-2 md:items-center">
+      <div className="mx-auto grid max-w-7xl gap-6 px-3 py-8 sm:gap-8 sm:px-4 sm:py-10 md:grid-cols-2 md:items-center md:px-6 md:py-12 lg:px-6 lg:py-12">
         <SmartImage
           src={CITY_IMAGES.Guntur}
           alt="Residential neighbourhood developed by Merit Real Solutions"
-          className="h-64 w-full rounded-2xl object-cover shadow-md md:h-80"
+          className="h-52 w-full rounded-2xl object-cover shadow-md sm:h-64 md:h-80"
         />
         <div>
           <h2 className="text-xl font-bold text-brand-800 sm:text-2xl">{t('sections.about')}</h2>

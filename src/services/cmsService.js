@@ -1,6 +1,5 @@
 import { api } from '../api/client';
 import { getAccessToken } from '../api/session';
-import { siteSettingsService } from './settingsService';
 
 const EMPTY_CMS = {
   aboutEn: '',
@@ -24,21 +23,18 @@ const EMPTY_CMS = {
 export const cmsService = {
   async getCms() {
     try {
-      const contact = await siteSettingsService.getPublic();
-      return {
-        ...EMPTY_CMS,
-        contactPhone: contact?.phone || '',
-        contactWhatsapp: contact?.phone || '',
-        contactEmail: contact?.email || '',
-        contactAddressEn: contact?.address || '',
-        contactAddressTe: contact?.address || '',
-      };
+      const data = await api('/cms', { silent: true });
+      return { ...EMPTY_CMS, ...(data || {}) };
     } catch {
       return { ...EMPTY_CMS };
     }
   },
-  async updateCms() {
-    throw new Error('CMS API not implemented yet');
+  async updateCms(payload) {
+    return api('/cms', {
+      method: 'PUT',
+      token: getAccessToken(),
+      body: payload,
+    });
   },
 };
 

@@ -120,7 +120,7 @@ export default function PropertyListing({ forcedCategorySlug }) {
   const title = category ? (language === 'te' ? category.nameTe : category.nameEn) : t('breadcrumb.properties');
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+    <div className="mx-auto max-w-7xl px-3 py-5 sm:px-4 sm:py-6 md:px-6 md:py-8 lg:px-6 lg:py-8">
       <nav aria-label="Breadcrumb" className="mb-4 flex items-center gap-1.5 text-sm text-gray-500">
         <Link to="/" className="hover:underline">{t('breadcrumb.home')}</Link>
         <ChevronRight size={14} />

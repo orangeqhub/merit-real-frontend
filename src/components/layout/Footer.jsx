@@ -75,7 +75,7 @@ export default function Footer() {
 
   return (
     <footer className="border-t border-gray-100 bg-brand-900 text-brand-50">
-      <div className="mx-auto grid max-w-5xl gap-6 px-4 py-8 sm:px-6 md:grid-cols-2">
+      <div className="mx-auto grid max-w-5xl gap-5 px-3 py-6 sm:gap-6 sm:px-4 sm:py-8 md:grid-cols-2 md:px-6 md:py-8 lg:px-6">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
             <img src={logoImage} alt={t('brand.logoAlt')} className="h-10 sm:h-12 w-auto max-w-[260px] object-contain rounded-lg" />

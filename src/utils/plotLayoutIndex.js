@@ -1,4 +1,4 @@
-import plotNumberMapping from '../../../merit-map-layout/src/data/plotNumberMapping.json';
+import plotNumberMapping from '../data/plotNumberMapping.json';
 
 const PHASE1_MAX = 134;
 const PHASE2_MIN = 135;

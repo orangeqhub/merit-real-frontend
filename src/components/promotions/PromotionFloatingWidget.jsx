@@ -119,7 +119,7 @@ export default function PromotionFloatingWidget() {
 
   if (mode === 'minimized') {
     return (
-      <div className="fixed bottom-5 right-4 z-[60] sm:bottom-6 sm:right-6">
+      <div className="fixed bottom-5 right-4 z-[60] sm:bottom-6 sm:right-6" style={{ bottom: 'max(1.25rem, calc(1.25rem + env(safe-area-inset-bottom)))' }}>
         <button
           type="button"
           onClick={expand}
@@ -136,7 +136,7 @@ export default function PromotionFloatingWidget() {
   if (!item) return null;
 
   return (
-    <div className="fixed bottom-4 right-3 z-[60] w-[min(100vw-1.5rem,320px)] sm:bottom-6 sm:right-6">
+    <div className="fixed bottom-4 right-3 z-[60] w-[min(100vw-1.5rem,320px)] sm:bottom-6 sm:right-6" style={{ bottom: 'max(1rem, calc(1rem + env(safe-area-inset-bottom)))' }}>
       <div className="overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-black/5">
         <div className="flex items-center justify-between gap-2 px-4 pt-3.5 pb-2">
           <div className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-wide text-gray-900">

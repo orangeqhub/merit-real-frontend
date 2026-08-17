@@ -288,4 +288,13 @@ export const propertyService = {
     const data = await this.getProperties({ categorySlug, pageSize: 1, includeAllStatuses: true, admin: true });
     return (data.total || 0) > 0;
   },
+
+  async getCityCounts() {
+    try {
+      const data = await api('/properties/city-counts', { silent: true });
+      return Array.isArray(data) ? data : [];
+    } catch {
+      return [];
+    }
+  },
 };

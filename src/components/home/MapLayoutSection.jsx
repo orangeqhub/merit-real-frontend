@@ -297,7 +297,7 @@ export default function MapLayoutSection({ compact = true }) {
   }
 
   return (
-    <section className="mx-auto w-full max-w-screen-2xl px-4 py-10 sm:px-6">
+    <section className="mx-auto w-full max-w-screen-2xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-6">
       <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
         <div className="grid md:grid-cols-2 lg:grid-cols-[minmax(0,5fr)_minmax(0,6fr)]">
           <div className="relative min-h-[200px] sm:min-h-[240px] md:min-h-full">
@@ -309,7 +309,7 @@ export default function MapLayoutSection({ compact = true }) {
             />
           </div>
 
-          <div className="flex flex-col gap-4 p-4 sm:gap-5 sm:p-6">
+          <div className="flex flex-col gap-3 p-3 sm:gap-4 sm:p-4 md:gap-5 md:p-6">
             <div>
               <span className="inline-flex items-center gap-1.5 rounded-full border border-gold-400/60 bg-brand-50 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-brand-700 sm:text-[11px]">
                 <span className="h-1.5 w-1.5 rounded-full bg-gold-400" aria-hidden="true" />
@@ -346,7 +346,7 @@ export default function MapLayoutSection({ compact = true }) {
               />
             </button>
 
-            <div className="mt-auto grid grid-cols-2 gap-3">
+            <div className="mt-auto grid grid-cols-1 gap-3 sm:grid-cols-2">
               <div className="rounded-xl border border-gray-100 bg-brand-50/50 p-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-brand-600">Project type</p>
                 <p className="mt-0.5 truncate text-sm font-bold text-brand-900">Plotted layout</p>
@@ -370,12 +370,12 @@ export default function MapLayoutSection({ compact = true }) {
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        <div className="inline-flex overflow-hidden rounded-full border border-gray-200 bg-white text-xs font-semibold">
+      <div className="mt-4 flex flex-wrap items-center gap-2 sm:gap-3">
+        <div className="inline-flex overflow-hidden rounded-full border border-gray-200 bg-white text-[11px] font-semibold sm:text-xs">
           <button
             type="button"
             onClick={() => handlePhaseChange('all')}
-            className={`px-3.5 py-1.5 transition ${
+            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
               phase === 'all' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -384,7 +384,7 @@ export default function MapLayoutSection({ compact = true }) {
           <button
             type="button"
             onClick={() => handlePhaseChange(1)}
-            className={`px-3.5 py-1.5 transition ${
+            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
               phase === 1 ? 'bg-sky-500 text-white' : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -393,7 +393,7 @@ export default function MapLayoutSection({ compact = true }) {
           <button
             type="button"
             onClick={() => handlePhaseChange(2)}
-            className={`px-3.5 py-1.5 transition ${
+            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
               phase === 2 ? 'bg-lime-600 text-white' : 'text-gray-600 hover:bg-gray-50'
             }`}
           >
@@ -404,7 +404,7 @@ export default function MapLayoutSection({ compact = true }) {
 
       <div className="mt-5 flex flex-col gap-4">
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-[#111] shadow-sm">
-          <div className="flex items-center justify-between border-b border-white/10 px-3 py-2 text-xs text-white/80">
+          <div className="flex items-center justify-between border-b border-white/10 px-2.5 py-1.5 text-[11px] text-white/80 sm:px-3 sm:py-2 sm:text-xs">
             <span className="inline-flex items-center gap-1.5 font-semibold">
               <MapIcon size={14} /> Interactive layout
             </span>
@@ -430,7 +430,7 @@ export default function MapLayoutSection({ compact = true }) {
               key={iframeKey}
               title="Sky line Infra Anne Enclave"
               src={`${MAP_LAYOUT_URL}/?embed=1`}
-              className={`w-full border-0 ${compact ? 'h-[56vh] min-h-[480px]' : 'h-[78vh] min-h-[640px]'}`}
+              className={`w-full border-0 ${compact ? 'h-[40vh] min-h-[300px] sm:h-[50vh] sm:min-h-[400px] lg:h-[56vh] lg:min-h-[480px]' : 'h-[56vh] min-h-[400px] sm:h-[68vh] sm:min-h-[560px] lg:h-[78vh] lg:min-h-[640px]'}`}
               loading="eager"
               referrerPolicy="no-referrer"
               onLoad={() => {
@@ -438,12 +438,12 @@ export default function MapLayoutSection({ compact = true }) {
                 syncMapPhase(phase);
               }}
             />
-            <div className="pointer-events-none absolute left-5 top-[82px] z-10 w-[220px]">
+            <div className="pointer-events-none absolute left-3 top-14 z-10 w-[150px] sm:left-5 sm:top-[82px] sm:w-[180px] lg:w-[220px]">
               <div className="flex flex-col gap-1.5 rounded-lg border border-white/15 bg-black/55 p-2 backdrop-blur-sm">
                 {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (
                   <div
                     key={key}
-                    className="inline-flex items-center gap-2 rounded-md px-2 py-1 text-[11px] font-medium text-white/90"
+                    className="inline-flex items-center gap-1.5 rounded-md px-1.5 py-0.5 text-[10px] font-medium text-white/90 sm:gap-2 sm:px-2 sm:py-1 sm:text-[11px]"
                   >
                     <span
                       className="h-2.5 w-2.5 shrink-0 rounded-full ring-1 ring-white/25"
@@ -460,12 +460,21 @@ export default function MapLayoutSection({ compact = true }) {
 
         <div
           id="anne-enclave-plot-board"
-          className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-4 shadow-sm"
-          onMouseEnter={() => setPlotBoardOpen(true)}
-          onMouseLeave={() => setPlotBoardOpen(false)}
+          className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4"
         >
           <div className="flex flex-wrap items-end justify-between gap-3">
-            <div className="flex min-w-0 flex-1 items-start gap-2">
+            <div
+              className="flex min-w-0 flex-1 cursor-pointer items-start gap-2 select-none"
+              onClick={() => setPlotBoardOpen((v) => !v)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setPlotBoardOpen((v) => !v);
+                }
+              }}
+            >
               <ChevronDown
                 size={16}
                 className={`mt-0.5 shrink-0 text-gray-400 transition-transform duration-200 ${
@@ -488,7 +497,7 @@ export default function MapLayoutSection({ compact = true }) {
                         ? 'No plots synced yet.'
                         : `No Phase ${phase} plots synced yet.`)}
                   {!plotBoardOpen && visiblePlots.length > 0 && (
-                    <span className="text-gray-400"> · Hover to browse plots</span>
+                    <span className="text-gray-400"> · Tap to browse plots</span>
                   )}
                 </p>
               </div>
@@ -536,7 +545,7 @@ export default function MapLayoutSection({ compact = true }) {
           >
             <div className="min-h-0 overflow-hidden">
               {previewPlots.length > 0 ? (
-                <div className="grid max-h-[520px] grid-cols-8 gap-1.5 overflow-auto sm:grid-cols-10 md:grid-cols-12 lg:grid-cols-[repeat(14,minmax(0,1fr))] xl:grid-cols-[repeat(16,minmax(0,1fr))]">
+                <div className="grid max-h-[520px] grid-cols-5 gap-1 overflow-auto sm:grid-cols-8 sm:gap-1.5 md:grid-cols-10 lg:grid-cols-[repeat(14,minmax(0,1fr))] xl:grid-cols-[repeat(16,minmax(0,1fr))]">
                   {previewPlots.map((plot) => {
                     const status = String(plot.status || 'available').toLowerCase();
                     const color = chipColor(plot);
@@ -569,9 +578,9 @@ export default function MapLayoutSection({ compact = true }) {
             </div>
           </div>
 
-          <div className="mt-4 rounded-xl border border-gray-100 bg-gray-50 p-3 text-xs text-gray-700">
+          <div className="mt-3 rounded-xl border border-gray-100 bg-gray-50 p-2.5 text-xs text-gray-700 sm:mt-4 sm:p-3">
             {selected ? (
-              <div className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-x-4 gap-y-1 sm:gap-x-6 sm:gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
                 <p><span className="text-gray-500">Plot No:</span> <strong>{selected.plotNo}</strong></p>
                 <p>
                   <span className="text-gray-500">Type:</span>{' '}

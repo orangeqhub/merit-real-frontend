@@ -240,7 +240,7 @@ export default function PropertyDetail() {
   const facingDisplay = property.facing || property.structure?.facing || property.plotDetails?.facing || '';
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-8 pb-28 sm:px-6 lg:pb-8">
+    <div className="mx-auto max-w-7xl px-3 py-5 pb-28 sm:px-4 sm:py-6 md:px-6 md:py-8 lg:px-6 lg:py-8 lg:pb-8">
       <nav aria-label="Breadcrumb" className="mb-4 flex flex-wrap items-center gap-1.5 text-sm text-gray-500">
         <Link to="/" className="hover:underline">{t('breadcrumb.home')}</Link>
         <ChevronRight size={14} />
@@ -472,23 +472,23 @@ export default function PropertyDetail() {
         </section>
       )}
 
-      <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-gray-200 bg-warm-white p-3 shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sm:grid-cols-4 lg:hidden">
-        <a href={buildTelLink(property.contactPhone)} className="flex items-center justify-center gap-1.5 rounded-lg bg-brand-600 py-2.5 text-sm font-semibold text-warm-white">
-          <Phone size={16} /> {t('buttons.call', { ns: 'common' })}
+      <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-gray-200 bg-warm-white p-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] shadow-[0_-4px_12px_rgba(0,0,0,0.08)] sm:grid-cols-4 lg:hidden">
+        <a href={buildTelLink(property.contactPhone)} className="flex items-center justify-center gap-1 rounded-lg bg-brand-600 px-1 py-2.5 text-xs font-semibold text-warm-white sm:gap-1.5 sm:text-sm">
+          <Phone size={15} className="shrink-0 sm:size-4" /> {t('buttons.call', { ns: 'common' })}
         </a>
         <a
           href={buildWhatsAppLink(property, { lang: language })}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 rounded-lg bg-green-600 py-2.5 text-sm font-semibold text-warm-white"
+          className="flex items-center justify-center gap-1 rounded-lg bg-green-600 px-1 py-2.5 text-xs font-semibold text-warm-white sm:gap-1.5 sm:text-sm"
         >
-          <MessageCircle size={16} /> {t('buttons.whatsapp', { ns: 'common' })}
+          <MessageCircle size={15} className="shrink-0 sm:size-4" /> {t('buttons.whatsapp', { ns: 'common' })}
         </a>
-        <button type="button" onClick={handleExpressInterest} className="flex items-center justify-center gap-1.5 rounded-lg border border-brand-500 py-2.5 text-sm font-semibold text-brand-700">
-          <HandHeart size={16} /> {t('buttons.expressInterest', { ns: 'common' })}
+        <button type="button" onClick={handleExpressInterest} className="flex items-center justify-center gap-1 rounded-lg border border-brand-500 px-1 py-2.5 text-xs font-semibold text-brand-700 sm:gap-1.5 sm:text-sm">
+          <HandHeart size={15} className="shrink-0 sm:size-4" /> {t('buttons.expressInterest', { ns: 'common' })}
         </button>
-        <button type="button" onClick={handleScheduleVisit} className="flex items-center justify-center gap-1.5 rounded-lg border border-gray-300 py-2.5 text-sm font-semibold text-gray-700">
-          <CalendarPlus size={16} /> {t('buttons.scheduleVisit', { ns: 'common' })}
+        <button type="button" onClick={handleScheduleVisit} className="flex items-center justify-center gap-1 rounded-lg border border-gray-300 px-1 py-2.5 text-xs font-semibold text-gray-700 sm:gap-1.5 sm:text-sm">
+          <CalendarPlus size={15} className="shrink-0 sm:size-4" /> {t('buttons.scheduleVisit', { ns: 'common' })}
         </button>
       </div>
     </div>
