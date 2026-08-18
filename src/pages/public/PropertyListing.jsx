@@ -26,6 +26,7 @@ export default function PropertyListing({ forcedCategorySlug }) {
   const [searchParams] = useSearchParams();
   const language = useLanguageStore((s) => s.language);
   const selectedLocation = useLocationStore((s) => s.selectedLocation);
+  const selectedPlace = useLocationStore((s) => s.selectedPlace);
   const userCoords = useUserLocationStore((s) => s.coords);
   const geoStatus = useUserLocationStore((s) => s.status);
 
@@ -35,11 +36,15 @@ export default function PropertyListing({ forcedCategorySlug }) {
     }
   }, [selectedLocation]);
 
-  const geoQuery = useMemo(() => (
-    userCoords
-      ? { latitude: userCoords.lat, longitude: userCoords.lng, radiusKm: NEARBY_RADIUS_KM }
-      : {}
-  ), [userCoords]);
+  const geoQuery = useMemo(() => {
+    if (selectedPlace?.latitude && selectedPlace?.longitude) {
+      return { latitude: selectedPlace.latitude, longitude: selectedPlace.longitude, radiusKm: NEARBY_RADIUS_KM };
+    }
+    if (userCoords) {
+      return { latitude: userCoords.lat, longitude: userCoords.lng, radiusKm: NEARBY_RADIUS_KM };
+    }
+    return {};
+  }, [userCoords, selectedPlace]);
   const [category, setCategory] = useState(categorySlug ? getCategoryBySlug(categorySlug) : null);
 
   const [filters, setFilters] = useState(() => ({

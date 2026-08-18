@@ -29,6 +29,20 @@ export default function FilterPanel({ filters, onChange, onReset, hideCategory }
   return (
     <div className="space-y-6">
       <div>
+        <label htmlFor="filter-search" className="mb-1.5 block text-sm font-medium text-gray-700">
+          Search
+        </label>
+        <input
+          id="filter-search"
+          type="text"
+          value={filters.search || ''}
+          onChange={(e) => set({ search: e.target.value || undefined })}
+          placeholder="Search by title, locality, city, venture..."
+          className="w-full rounded-lg border border-gray-300 px-3 py-2 text-sm"
+        />
+      </div>
+
+      <div>
         <label htmlFor="filter-location" className="mb-1.5 block text-sm font-medium text-gray-700">
           {t('filters.location')}
         </label>

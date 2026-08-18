@@ -35,10 +35,17 @@ export function parseMapLocation(value) {
   return { lat, lng };
 }
 
-/** Coordinates for a property — mapLocation first, then city centroid lookup. */
+/** Coordinates for a property — prefer dedicated latitude/longitude, then mapLocation, then city centroid lookup. */
 export function getPropertyCoordinates(property) {
+  if (!property) return null;
+  // Prefer dedicated latitude/longitude fields from API
+  const lat = property.latitude != null ? Number(property.latitude) : null;
+  const lng = property.longitude != null ? Number(property.longitude) : null;
+  if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
+  // Fall back to parsing mapLocation string
   const fromMap = parseMapLocation(property?.mapLocation);
   if (fromMap) return fromMap;
+  // Fall back to city centroid
   const city = property?.city ? String(property.city).trim() : '';
   return city && CITY_COORDINATES[city] ? CITY_COORDINATES[city] : null;
 }

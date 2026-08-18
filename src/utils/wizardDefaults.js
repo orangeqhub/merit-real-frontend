@@ -24,6 +24,8 @@ export function createEmptyWizardData() {
     pincode: '',
     address: '',
     mapLocation: '',
+    latitude: null,
+    longitude: null,
 
     // Step 3
     price: '',

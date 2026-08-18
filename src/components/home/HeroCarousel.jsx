@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Crosshair, Search } from 'lucide-react';
 import { CATEGORIES } from '../../config/categories';
-import { CITIES } from '../../data/locations';
 import { heroSlideService } from '../../services/heroSlideService';
 import { categoryService } from '../../services/categoryService';
 import { resolveAssetUrl } from '../../api/client';
@@ -12,7 +11,6 @@ import { useUserLocationStore } from '../../store/userLocationStore';
 import { HERO_IMAGES } from '../../data/projectImages';
 
 const AUTOPLAY_INTERVAL = 3000;
-const CURRENT_LOCATION_VALUE = '__current_location__';
 
 export default function HeroCarousel() {
   const { t } = useTranslation(['properties', 'common']);
@@ -26,7 +24,7 @@ export default function HeroCarousel() {
   const [focused, setFocused] = useState(false);
   const [tabHidden, setTabHidden] = useState(typeof document !== 'undefined' && document.hidden);
   const touchStartX = useRef(null);
-  const [form, setForm] = useState({ location: '', categorySlug: '', minPrice: '', maxPrice: '' });
+  const [form, setForm] = useState({ categorySlug: '', minPrice: '', maxPrice: '' });
 
   const prefersReducedMotion = useMemo(
     () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -94,19 +92,14 @@ export default function HeroCarousel() {
     }
   }, [userLocation.label]);
 
-  function handleLocationChange(e) {
-    const value = e.target.value;
-    if (value === CURRENT_LOCATION_VALUE) {
-      userLocation.requestLocation();
-      return;
-    }
-    setForm((f) => ({ ...f, location: value }));
-  }
-
   function handleSearch(e) {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (form.location) params.set('city', form.location);
+    const locationQuery = form.location || '';
+    if (locationQuery) {
+      params.set('city', locationQuery);
+      params.set('search', locationQuery);
+    }
     params.set('transactionType', 'sale');
     if (form.minPrice) params.set('minPrice', form.minPrice);
     if (form.maxPrice) params.set('maxPrice', form.maxPrice);
@@ -196,33 +189,26 @@ export default function HeroCarousel() {
 
         <form
           onSubmit={handleSearch}
-          className="mt-6 grid w-[calc(100%-2rem)] max-w-[500px] grid-cols-1 gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:w-full sm:max-w-4xl sm:grid-cols-2 sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:grid-cols-3 md:gap-3 md:p-4 lg:grid-cols-5"
+          className="mt-6 flex w-[calc(100%-2rem)] max-w-[500px] flex-col gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:w-full sm:max-w-4xl sm:flex-row sm:flex-wrap sm:items-center sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:flex-nowrap md:p-4 lg:max-w-[900px]"
         >
-          <select
-            value={form.location}
-            onChange={handleLocationChange}
-            aria-label={t('hero.locationPlaceholder')}
-            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
+          <button
+            type="button"
+            onClick={() => userLocation.requestLocation()}
+            className="flex min-h-[42px] min-w-0 flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 md:min-h-[48px] md:px-4 md:text-base"
           >
-            <option value="">{t('hero.locationPlaceholder')}</option>
-            <option value={CURRENT_LOCATION_VALUE}>
+            <Crosshair size={16} className="shrink-0 text-brand-600" />
+            <span className="truncate">
               {userLocation.status === 'loading'
                 ? t('location.detecting', { ns: 'common' })
-                : t('location.useCurrentLocation', { ns: 'common' })}
-            </option>
-            {userLocation.label && (
-              <option value={userLocation.label}>{t('location.detected', { ns: 'common', label: userLocation.label })}</option>
-            )}
-            {CITIES.map((c) => (
-              <option key={c} value={c}>{c}</option>
-            ))}
-          </select>
+                : userLocation.label || t('location.useCurrentLocation', { ns: 'common' })}
+            </span>
+          </button>
 
           <select
             value={form.categorySlug}
             onChange={(e) => setForm((f) => ({ ...f, categorySlug: e.target.value }))}
             aria-label={t('hero.categoryPlaceholder')}
-            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
+            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           >
             <option value="">{t('hero.allCategories')}</option>
             {categories.map((c) => (
@@ -237,7 +223,7 @@ export default function HeroCarousel() {
             onChange={(e) => setForm((f) => ({ ...f, minPrice: e.target.value }))}
             placeholder={t('hero.minPricePlaceholder')}
             aria-label={t('hero.minPricePlaceholder')}
-            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
+            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           />
           <input
             type="number"
@@ -246,12 +232,12 @@ export default function HeroCarousel() {
             onChange={(e) => setForm((f) => ({ ...f, maxPrice: e.target.value }))}
             placeholder={t('hero.maxPricePlaceholder')}
             aria-label={t('hero.maxPricePlaceholder')}
-            className="min-h-[42px] rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
+            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
           />
 
           <button
             type="submit"
-            className="flex min-h-[44px] items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-warm-white hover:bg-brand-700 md:min-h-[48px] md:px-6 md:text-base"
+            className="flex min-h-[44px] min-w-0 flex-1 items-center justify-center gap-1.5 rounded-lg bg-brand-600 px-4 py-2.5 text-sm font-semibold text-warm-white hover:bg-brand-700 md:min-h-[48px] md:px-6 md:text-base"
           >
             <Search size={16} /> {t('buttons.search', { ns: 'common' })}
           </button>

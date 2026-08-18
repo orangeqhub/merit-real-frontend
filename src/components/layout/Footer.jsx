@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
-import { siteSettingsService } from '../../services/settingsService';
+import { cmsService } from '../../services/cmsService';
+import { useLanguageStore } from '../../store/languageStore';
+import { getLocalizedField } from '../../utils/localize';
 
 const logoImage = '/logo.svg';
 
@@ -53,25 +55,26 @@ function telHref(phone) {
 
 export default function Footer() {
   const { t } = useTranslation('common');
+  const language = useLanguageStore((s) => s.language);
   const [contact, setContact] = useState({ address: '', phone: '', email: '' });
 
   useEffect(() => {
     let active = true;
-    siteSettingsService
-      .getPublic()
+    cmsService
+      .getCms()
       .then((data) => {
         if (!active || !data) return;
         setContact({
-          address: data.address || '',
-          phone: data.phone || '',
-          email: data.email || '',
+          address: getLocalizedField(data, 'contactAddress', language) || '',
+          phone: data.contactPhone || '',
+          email: data.contactEmail || '',
         });
       })
       .catch(() => {});
     return () => {
       active = false;
     };
-  }, []);
+  }, [language]);
 
   return (
     <footer className="border-t border-gray-100 bg-brand-900 text-brand-50">
