@@ -237,7 +237,7 @@ export default function MapLayoutSection({ compact = true }) {
           return;
         }
         setBoardSearch(query);
-        const pool = allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase));
+        const pool = allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase, p.phase));
         const match =
           pool.find((p) => plotNoKey(p.plotNo) === query) ||
           pool.find((p) => matchesBoardPlotSearch(p.plotNo, query)) ||
@@ -265,7 +265,7 @@ export default function MapLayoutSection({ compact = true }) {
   }, [iframeKey]);
 
   const visiblePlots = useMemo(
-    () => allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase)),
+    () => allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase, p.phase)),
     [allPlots, phase]
   );
 
@@ -429,7 +429,7 @@ export default function MapLayoutSection({ compact = true }) {
             <iframe
               key={iframeKey}
               title="Sky line Infra Anne Enclave"
-              src={`${MAP_LAYOUT_URL}/?embed=1`}
+              src={`${MAP_LAYOUT_URL}/?embed=1&v=phase2-remaining`}
               className={`w-full border-0 ${compact ? 'h-[40vh] min-h-[300px] sm:h-[50vh] sm:min-h-[400px] lg:h-[56vh] lg:min-h-[480px]' : 'h-[56vh] min-h-[400px] sm:h-[68vh] sm:min-h-[560px] lg:h-[78vh] lg:min-h-[640px]'}`}
               loading="eager"
               referrerPolicy="no-referrer"

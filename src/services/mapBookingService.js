@@ -80,8 +80,7 @@ export const mapBookingService = {
 };
 
 export const MAP_LAYOUT_URL = (
-  import.meta.env.VITE_MAP_LAYOUT_URL || 'http://187.127.163.100:3600'
-  // || 'http://localhost:5174'
+  import.meta.env.VITE_MAP_LAYOUT_URL || 'http://localhost:5174'
 ).replace(/\/$/, '');
 
 export const PLOT_STATUS_COLORS = {
