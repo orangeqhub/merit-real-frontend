@@ -297,13 +297,18 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
 
   /* ── New Places search: AutocompleteSuggestion.fetchAutocompleteSuggestions ── */
   const searchPlaces = useCallback(async (searchQuery, requestId) => {
-    if (!isPlacesAvailable()) return false;
+    if (!isPlacesAvailable()) {
+      console.debug('[LocationPicker] Places API not available, skipping autocomplete');
+      return false;
+    }
+    console.debug('[LocationPicker] autocomplete input:', searchQuery);
     try {
       const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: searchQuery,
-        componentRestrictions: { country: 'in' },
+        includedRegionCodes: ['in'],
         sessionToken: sessionTokenRef.current,
       });
+      console.debug('[LocationPicker] suggestions:', response?.suggestions);
       if (requestId !== abortRef.current) return true;
       setSearching(false);
       const raw = response?.suggestions || [];
@@ -611,7 +616,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
 
               {/* No Google results */}
               {showNoResults && (
-                <p className="py-4 text-center text-sm text-gray-400">{t('empty.noResults')}</p>
+                <p className="py-4 text-center text-sm text-gray-400">{t('location.noResults', 'No locations found')}</p>
               )}
 
               {/* Fallback to static CITIES when Google not available */}

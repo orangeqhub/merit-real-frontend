@@ -194,7 +194,7 @@ export default function MapLocationPicker({ value = '', onChange }) {
     try {
       const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: searchQuery,
-        componentRestrictions: { country: 'in' },
+        includedRegionCodes: ['in'],
         sessionToken: sessionTokenRef.current,
       });
       if (requestId !== abortRef.current) return true;

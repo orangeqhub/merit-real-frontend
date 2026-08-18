@@ -51,13 +51,40 @@ export function getPropertyCoordinates(property) {
 }
 
 /**
- * Reverse-geocodes a coordinate to a city/district/state via the free
- * OpenStreetMap Nominatim API — no API key required. Only ever called in
- * direct response to a user clicking "Use My Current Location", never
- * automatically.
+ * Reverse-geocodes a coordinate to a city/district/state.
+ * Tries Google Geocoder first (much more accurate in India), then
+ * falls back to OpenStreetMap Nominatim. Only called in direct response
+ * to a user clicking "Use My Current Location".
  */
 export async function reverseGeocode(lat, lng) {
-  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=10&addressdetails=1`;
+  // Try Google Geocoder first (available after loadGoogleMaps resolves)
+  if (typeof window !== 'undefined' && window.google?.maps?.Geocoder) {
+    try {
+      const geocoder = new window.google.maps.Geocoder();
+      const result = await new Promise((resolve, reject) => {
+        geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+          if (status === 'OK' && results?.[0]) resolve(results[0]);
+          else reject(new Error(status));
+        });
+      });
+      const comps = result.address_components || [];
+      const find = (type) => {
+        const c = comps.find((x) => x.types.includes(type));
+        return c ? c.long_name : c.short_name || '';
+      };
+      const city = find('locality') || find('sublocality') || find('sublocality_level_1')
+        || find('administrative_area_level_2') || '';
+      const district = find('administrative_area_level_2') || find('administrative_area_level_1') || '';
+      const state = find('administrative_area_level_1') || '';
+      const label = [city, state].filter(Boolean).join(', ') || result.formatted_address || '';
+      return { city, district, state, label };
+    } catch {
+      // Google failed — fall through to Nominatim
+    }
+  }
+
+  // Fallback: Nominatim (free, no key needed). zoom=14 for better precision.
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=14&addressdetails=1`;
   const res = await fetch(url, { headers: { Accept: 'application/json' } });
   if (!res.ok) throw new Error('Reverse geocoding failed');
   const data = await res.json();

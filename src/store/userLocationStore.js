@@ -1,16 +1,39 @@
 import { create } from 'zustand';
 import { CITIES } from '../data/locations';
-import { reverseGeocode } from '../utils/geo';
+import { reverseGeocode, CITY_COORDINATES, haversineDistanceKm } from '../utils/geo';
 import { readSessionValue, writeSessionValue, removeKey, STORAGE_KEYS } from '../utils/storage';
 import { useLocationStore } from './locationStore';
 
-function matchCity(place) {
+function matchCity(place, lat, lng) {
   if (!place?.city) return '';
   const rawCity = String(place.city).trim();
+
+  // 1. Direct match against canonical CITIES list
   const fromList = CITIES.find((c) => c.toLowerCase() === rawCity.toLowerCase());
   if (fromList) return fromList;
+
+  // 2. Substring match against the label
   const fromLabel = CITIES.find((c) => String(place.label || '').toLowerCase().includes(c.toLowerCase()));
-  return fromLabel || rawCity;
+  if (fromLabel) return fromLabel;
+
+  // 3. Proximity fallback: if we have GPS coords, find the nearest canonical city
+  if (lat != null && lng != null) {
+    let nearest = null;
+    let nearestDist = Infinity;
+    for (const city of CITIES) {
+      const cc = CITY_COORDINATES[city];
+      if (!cc) continue;
+      const dist = haversineDistanceKm(lat, lng, cc.lat, cc.lng);
+      if (dist < nearestDist) {
+        nearestDist = dist;
+        nearest = city;
+      }
+    }
+    // Only use proximity match if reasonably close (within 50 km)
+    if (nearest && nearestDist <= 50) return nearest;
+  }
+
+  return rawCity;
 }
 
 function persistLocation(payload) {
@@ -54,7 +77,7 @@ export const useUserLocationStore = create((set, get) => ({
 
         try {
           const place = await reverseGeocode(latitude, longitude);
-          const city = matchCity(place);
+          const city = matchCity(place, latitude, longitude);
           const label = city || place.label || '';
           const nextPlace = {
             city: city || place.city || '',
@@ -85,7 +108,7 @@ export const useUserLocationStore = create((set, get) => ({
         }
         set({ status: 'unavailable', error: 'unavailable' });
       },
-      { timeout: 10000, maximumAge: 60000, enableHighAccuracy: false }
+      { timeout: 10000, maximumAge: 60000, enableHighAccuracy: true }
     );
   },
 

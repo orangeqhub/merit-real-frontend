@@ -10,6 +10,7 @@ const LOAD_TIMEOUT_MS = 15000;
 
 let loadPromise = null;
 let mapsReady = false;
+let placesLoaded = false;
 
 function getApiKey() {
   try {
@@ -27,7 +28,8 @@ export function isGoogleMapsAvailable() {
  * Check if the new Places library is available.
  */
 export function isPlacesAvailable() {
-  return isGoogleMapsAvailable()
+  return placesLoaded
+    && isGoogleMapsAvailable()
     && typeof window.google.maps.places !== 'undefined'
     && typeof window.google.maps.places.AutocompleteSuggestion !== 'undefined';
 }
@@ -41,54 +43,83 @@ export function loadGoogleMaps() {
   if (mapsReady && window.google?.maps) {
     return Promise.resolve(window.google.maps);
   }
+
   if (loadPromise) return loadPromise;
 
   const apiKey = getApiKey();
+
   if (!apiKey) {
-    console.warn('[googleMapsLoader] VITE_GOOGLE_MAPS_API_KEY is not set. Google Maps disabled.');
+    console.warn(
+      '[googleMapsLoader] VITE_GOOGLE_MAPS_API_KEY is not set. Google Maps disabled.'
+    );
     return Promise.resolve(null);
   }
 
   loadPromise = new Promise((resolve) => {
-    const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=weekly&loading=async`;
-    script.async = true;
-    script.defer = true;
+    const callbackName = '__meritGoogleMapsReady';
 
-    const timer = setTimeout(() => {
-      console.warn('[googleMapsLoader] Google Maps script timed out.');
-      loadPromise = null;
-      resolve(null);
-    }, LOAD_TIMEOUT_MS);
-
-    script.onload = () => {
+    window[callbackName] = () => {
       clearTimeout(timer);
+
       if (!window.google?.maps) {
+        console.warn('[googleMapsLoader] Google Maps API unavailable.');
         loadPromise = null;
         resolve(null);
         return;
       }
-      // Import core maps library first, then places library
-      Promise.all([
-        window.google.maps.importLibrary('maps'),
-        window.google.maps.importLibrary('places'),
-      ]).then(() => {
+
+      // Now import the Places library via importLibrary (required for loading=async)
+      window.google.maps.importLibrary('places').then(() => {
+        placesLoaded = true;
         mapsReady = true;
+        delete window[callbackName];
         resolve(window.google.maps);
       }).catch((err) => {
         console.warn('[googleMapsLoader] Failed to import Places library:', err);
         // Maps core loaded — still useful for Geocoder, Map, Marker
         mapsReady = true;
+        delete window[callbackName];
         resolve(window.google.maps);
       });
     };
 
+    const script = document.createElement('script');
+
+    // Do NOT include &libraries=places here — it conflicts with loading=async.
+    // Places library is loaded via importLibrary above after the callback fires.
+    script.src =
+      `https://maps.googleapis.com/maps/api/js` +
+      `?key=${encodeURIComponent(apiKey)}` +
+      `&v=weekly` +
+      `&loading=async` +
+      `&callback=${callbackName}`;
+
+    script.async = true;
+    script.defer = true;
+
     script.onerror = () => {
       clearTimeout(timer);
-      console.warn('[googleMapsLoader] Failed to load Google Maps script.');
+
+      delete window[callbackName];
+
+      console.warn(
+        '[googleMapsLoader] Failed to load Google Maps script.'
+      );
+
       loadPromise = null;
       resolve(null);
     };
+
+    const timer = setTimeout(() => {
+      delete window[callbackName];
+
+      console.warn(
+        '[googleMapsLoader] Google Maps script timed out.'
+      );
+
+      loadPromise = null;
+      resolve(null);
+    }, LOAD_TIMEOUT_MS);
 
     document.head.appendChild(script);
   });
