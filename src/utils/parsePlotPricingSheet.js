@@ -1,10 +1,6 @@
 import * as XLSX from 'xlsx';
 
-const PHASE1_MIN = 1;
-const PHASE1_MAX = 134;
 const PHASE1_COUNT = 134;
-const PHASE2_MIN = 135;
-const PHASE2_MAX = 272;
 const PHASE2_COUNT = 138;
 const TOTAL_PLOTS = 272;
 
@@ -31,11 +27,6 @@ function parseLooseNumber(value) {
   if (!text || /[a-zA-Z]/.test(text)) return null;
   const n = Number(text);
   return Number.isFinite(n) ? n : null;
-}
-
-function plotNoNumeric(plotNo) {
-  const n = Number(String(plotNo ?? '').replace(/[^\d.]/g, ''));
-  return Number.isFinite(n) ? Math.round(n) : Number.NaN;
 }
 
 function detectPlotType(rateCell) {
@@ -77,7 +68,30 @@ function parseSheetMatrix(matrix, sheetLabel) {
   const totalCol = pickColumn(headerRow, ['total cost', 'totalcost', 'plot cost']);
 
   if (plotCol == null) {
-    throw new Error(`Could not find a "plot.no" column in the ${sheetLabel} sheet.`);
+    const rows = [];
+    for (let i = 1; i < matrix.length; i += 1) {
+      const line = matrix[i] || [];
+      const hasData = line.some((cell) => cell != null && String(cell).trim() !== '');
+      if (!hasData) continue;
+      const rateRaw = rateCol != null ? line[rateCol] : '';
+      const plotType = detectPlotType(rateRaw);
+      const plotArea = areaCol != null ? parseLooseNumber(line[areaCol]) : null;
+      const ratePerSqYd = plotType === 'residential' ? parseLooseNumber(rateRaw) : null;
+      let plotCost = totalCol != null ? parseLooseNumber(line[totalCol]) : null;
+      if (plotCost == null && plotArea != null && ratePerSqYd != null) {
+        plotCost = Math.round(plotArea * ratePerSqYd * 100) / 100;
+      }
+      rows.push({
+        plotNo: String(rows.length + 1),
+        plotArea,
+        facing: facingCol != null ? String(line[facingCol] || '').trim() : '',
+        ratePerSqYd,
+        plotCost,
+        plotType,
+        rateRaw: rateRaw != null ? String(rateRaw) : '',
+      });
+    }
+    return rows;
   }
 
   const rows = [];
@@ -114,45 +128,15 @@ function parseSheetMatrix(matrix, sheetLabel) {
 }
 
 function validatePhaseRows(rows, phaseNum) {
-  const min = phaseNum === 1 ? PHASE1_MIN : PHASE2_MIN;
-  const max = phaseNum === 1 ? PHASE1_MAX : PHASE2_MAX;
   const expected = phaseNum === 1 ? PHASE1_COUNT : PHASE2_COUNT;
   const label = `Phase ${phaseNum}`;
-
-  const seen = new Set();
-  const duplicates = [];
-  const invalid = [];
-
-  for (const row of rows) {
-    const n = plotNoNumeric(row.plotNo);
-    if (!Number.isFinite(n) || n < min || n > max) {
-      invalid.push(String(row.plotNo));
-      continue;
-    }
-    if (seen.has(n)) duplicates.push(n);
-    else seen.add(n);
-  }
-
-  const missing = [];
-  for (let i = min; i <= max; i += 1) {
-    if (!seen.has(i)) missing.push(i);
-  }
-
   const issues = [];
+
   if (rows.length !== expected) {
-    issues.push(`${label}: expected ${expected} rows, found ${rows.length}.`);
-  }
-  if (invalid.length) {
-    issues.push(`${label}: invalid plot numbers (must be ${min}–${max}): ${invalid.slice(0, 8).join(', ')}${invalid.length > 8 ? '…' : ''}.`);
-  }
-  if (duplicates.length) {
-    issues.push(`${label}: duplicate plot numbers: ${[...new Set(duplicates)].slice(0, 8).join(', ')}.`);
-  }
-  if (missing.length) {
-    issues.push(`${label}: missing plot numbers (${missing.length}): ${missing.slice(0, 12).join(', ')}${missing.length > 12 ? '…' : ''}.`);
+    issues.push(`${label}: expected exactly ${expected} plots, found ${rows.length}.`);
   }
 
-  return { issues, plotNumbers: seen };
+  return { issues, plotNumbers: new Set(rows.map((_, i) => i)) };
 }
 
 /**
@@ -168,16 +152,6 @@ export function validateMapPlotWorkbook({ phase1Rows, phase2Rows }) {
   const v1 = validatePhaseRows(phase1Rows, 1);
   const v2 = validatePhaseRows(phase2Rows, 2);
   issues.push(...v1.issues, ...v2.issues);
-
-  const overlap = [...v1.plotNumbers].filter((n) => v2.plotNumbers.has(n));
-  if (overlap.length) {
-    issues.push(`Duplicate plot numbers across sheets: ${overlap.slice(0, 8).join(', ')}.`);
-  }
-
-  const totalUnique = v1.plotNumbers.size + v2.plotNumbers.size;
-  if (!issues.length && totalUnique !== TOTAL_PLOTS) {
-    issues.push(`Expected ${TOTAL_PLOTS} unique plots total, found ${totalUnique}.`);
-  }
 
   return issues;
 }

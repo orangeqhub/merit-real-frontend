@@ -30,25 +30,20 @@ import EmptyState from '../../components/common/EmptyState';
 
 
 
-function rowFromSheet(row, phase) {
-
+function rowFromSheet(row, phase, index) {
+  const plotNo = String(index + 1);
   const plotCost =
-
     row.plotCost != null && Number(row.plotCost) > 0
-
       ? Number(row.plotCost)
-
       : row.plotArea != null && row.ratePerSqYd != null
-
         ? Math.round(Number(row.plotArea) * Number(row.ratePerSqYd) * 100) / 100
-
         : null;
 
 
 
   return {
 
-    plotNo: String(row.plotNo),
+    plotNo,
 
     phase,
 
@@ -116,7 +111,7 @@ export default function MapPlots() {
 
     const source = previewPhase === 2 ? workbook.phase2Rows : workbook.phase1Rows;
 
-    return source.map((row) => rowFromSheet(row, previewPhase));
+    return source.map((row, i) => rowFromSheet(row, previewPhase, i));
 
   }, [workbook, previewPhase]);
 
@@ -152,9 +147,9 @@ export default function MapPlots() {
 
       const source = phaseNum === 1 ? parsed.phase1Rows : parsed.phase2Rows;
 
-      source.forEach((row) => {
+      source.forEach((row, i) => {
 
-        const mapped = rowFromSheet(row, phaseNum);
+        const mapped = rowFromSheet(row, phaseNum, i);
 
         drafts[draftKey(phaseNum, mapped.plotNo)] =
 
@@ -218,9 +213,9 @@ export default function MapPlots() {
 
   function buildPhasePayload(phaseNum, sourceRows) {
 
-    return sourceRows.map((row) => {
+    return sourceRows.map((row, i) => {
 
-      const mapped = rowFromSheet(row, phaseNum);
+      const mapped = rowFromSheet(row, phaseNum, i);
 
       const raw = draftCosts[draftKey(phaseNum, mapped.plotNo)];
 

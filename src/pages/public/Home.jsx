@@ -7,7 +7,6 @@ import TrustStrip from '../../components/home/TrustStrip';
 import PromotionsCarousel from '../../components/promotions/PromotionsCarousel';
 import PropertySectionGrid from '../../components/home/PropertySectionGrid';
 import PopularLocations from '../../components/home/PopularLocations';
-import VenturesSection from '../../components/home/VenturesSection';
 import AboutSection from '../../components/home/AboutSection';
 import WhyChooseUs from '../../components/home/WhyChooseUs';
 import HowItWorks from '../../components/home/HowItWorks';
@@ -46,11 +45,6 @@ export default function Home() {
     () => wrapNearby(() => propertyService.getLatest(8, selectedLocation || undefined, geoQuery)),
     [selectedLocation, geoQuery, wrapNearby]
   );
-  const fetchTrending = useCallback(
-    () => wrapNearby(() => propertyService.getTrending(8, selectedLocation || undefined, geoQuery)),
-    [selectedLocation, geoQuery, wrapNearby]
-  );
-
   return (
     <>
       <HeroCarousel />
@@ -67,9 +61,7 @@ export default function Home() {
       </div>
       <PropertySectionGrid titleKey="sections.featured" fetcher={fetchFeatured} viewAllTo="/properties?sort=featured" />
       <PropertySectionGrid titleKey="sections.latest" fetcher={fetchLatest} viewAllTo="/properties" />
-      <PropertySectionGrid titleKey="sections.trending" fetcher={fetchTrending} viewAllTo="/properties?section=trending" />
       <PopularLocations />
-      <VenturesSection />
       <AboutSection />
       <WhyChooseUs />
       <HowItWorks />

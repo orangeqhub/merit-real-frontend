@@ -11,7 +11,7 @@ import {
 } from '../../services/mapBookingService';
 import { onMapDataUpdated } from '../../utils/mapDataSync';
 import { toSeriesPlotNo } from '../../utils/plotSeries';
-import { getPlotLayoutMeta, LAYOUT_PHASE_COUNTS, LAYOUT_PLOT_TOTAL, matchesBoardPlotSearch, plotNumberInViewPhase } from '../../utils/plotLayoutIndex';
+import { getPlotLayoutMeta, matchesBoardPlotSearch } from '../../utils/plotLayoutIndex';
 import { savePendingBookPlot } from '../../utils/pendingBookPlot';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
@@ -65,22 +65,26 @@ function canBookAsCustomer(user) {
 function normalizePlotForBoard(plot) {
   const meta = getPlotLayoutMeta(plot.externalId || plot.id);
   if (meta) {
+    const dNo = Number(meta.displayPlotNo);
+    const displayNo = meta.assignedPhase === 2 && dNo > 134
+      ? String(dNo - 134)
+      : meta.displayPlotNo;
     return {
       ...plot,
       phase: meta.phase,
-      plotNo: meta.displayPlotNo,
+      plotNo: displayNo,
     };
   }
 
-  let phaseNum = Number(plot.phase) === 2 ? 2 : 1;
-  if (Number(plot.phase) !== 1 && Number(plot.phase) !== 2) {
-    const n = Number(String(plot.plotNo ?? '').replace(/[^\d.]/g, ''));
-    if (Number.isFinite(n) && n >= 135) phaseNum = 2;
-  }
+  const n = Number(String(plot.plotNo ?? '').replace(/[^\d.]/g, ''));
+  const phaseNum = Number.isFinite(n) && n >= 135 ? 2 : 1;
+  const displayNo = phaseNum === 2 && Number.isFinite(n)
+    ? String(n - 134)
+    : String(n || (plot.plotNo ?? ''));
   return {
     ...plot,
     phase: phaseNum,
-    plotNo: toSeriesPlotNo(phaseNum, plot.plotNo),
+    plotNo: displayNo,
   };
 }
 
@@ -106,12 +110,14 @@ export default function MapLayoutSection({ compact = true }) {
   const [allPlots, setAllPlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
-  const [selected, setSelected] = useState(null);
   const [iframeKey, setIframeKey] = useState(0);
   const [viewerWarning, setViewerWarning] = useState('');
-  const [phase, setPhase] = useState('all');
-  const [boardSearch, setBoardSearch] = useState('');
-  const [plotBoardOpen, setPlotBoardOpen] = useState(false);
+  const [phase1Open, setPhase1Open] = useState(false);
+  const [phase2Open, setPhase2Open] = useState(false);
+  const [phase1Search, setPhase1Search] = useState('');
+  const [phase2Search, setPhase2Search] = useState('');
+  const [selected1, setSelected1] = useState(null);
+  const [selected2, setSelected2] = useState(null);
 
   function postPhaseToMap(nextPhase) {
     try {
@@ -158,18 +164,11 @@ export default function MapLayoutSection({ compact = true }) {
     }
   }
 
-  function handlePhaseChange(nextPhase) {
-    const value = nextPhase === 2 ? 2 : nextPhase === 1 ? 1 : 'all';
-    setPhase(value);
-    setSelected(null);
-    setBoardSearch('');
-    syncMapPhase(value);
-  }
-
   function scrollToPlotBoard() {
-    setPlotBoardOpen(true);
+    setPhase1Open(true);
+    setPhase2Open(true);
     window.setTimeout(() => {
-      document.getElementById('anne-enclave-plot-board')?.scrollIntoView({
+      document.getElementById('anne-enclave-phase1-board')?.scrollIntoView({
         behavior: 'smooth',
         block: 'start',
       });
@@ -199,12 +198,13 @@ export default function MapLayoutSection({ compact = true }) {
             : data.phase === 1 || data.phase === '1'
               ? 1
               : 'all';
-        setPhase((current) => {
-          if (current === next) return current;
-          setSelected(null);
-          setBoardSearch('');
-          return next;
-        });
+        if (next === 1 || next === '1') {
+          setPhase1Open(true);
+          syncMapPhase(1);
+        } else if (next === 2 || next === '2') {
+          setPhase2Open(true);
+          syncMapPhase(2);
+        }
         return;
       }
 
@@ -232,22 +232,25 @@ export default function MapLayoutSection({ compact = true }) {
       if (data.type === 'merit-map-search') {
         const query = String(data.query || '').replace(/\D/g, '');
         if (!query) {
-          setBoardSearch('');
-          setSelected(null);
+          setPhase1Search('');
+          setPhase2Search('');
+          setSelected1(null);
+          setSelected2(null);
           return;
         }
-        setBoardSearch(query);
-        const pool = allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase, p.phase));
-        const match =
-          pool.find((p) => plotNoKey(p.plotNo) === query) ||
-          pool.find((p) => matchesBoardPlotSearch(p.plotNo, query)) ||
-          null;
-        if (match) setSelected(match);
+        setPhase1Search(query);
+        setPhase2Search(query);
+        const p1 = allPlots.filter((p) => p.phase === 1);
+        const p2 = allPlots.filter((p) => p.phase === 2);
+        const match1 = p1.find((p) => plotNoKey(p.plotNo) === query) || p1.find((p) => matchesBoardPlotSearch(p.plotNo, query)) || null;
+        const match2 = p2.find((p) => plotNoKey(p.plotNo) === query) || p2.find((p) => matchesBoardPlotSearch(p.plotNo, query)) || null;
+        if (match1) setSelected1(match1);
+        if (match2) setSelected2(match2);
       }
     }
     window.addEventListener('message', onMessage);
     return () => window.removeEventListener('message', onMessage);
-  }, [allPlots, phase, user]);
+  }, [allPlots, user]);
 
   useEffect(() => {
     let cancelled = false;
@@ -264,18 +267,22 @@ export default function MapLayoutSection({ compact = true }) {
     };
   }, [iframeKey]);
 
-  const visiblePlots = useMemo(
-    () => allPlots.filter((p) => plotNumberInViewPhase(p.plotNo, phase, p.phase)),
-    [allPlots, phase]
-  );
+  const counts = useMemo(() => statusCounts(allPlots), [allPlots]);
 
-  const counts = useMemo(() => statusCounts(visiblePlots), [visiblePlots]);
-  const filteredPlots = useMemo(() => {
-    const q = String(boardSearch || '').trim();
-    if (!q) return visiblePlots;
-    return visiblePlots.filter((p) => matchesBoardPlotSearch(p.plotNo, q));
-  }, [visiblePlots, boardSearch]);
-  const previewPlots = useMemo(() => filteredPlots, [filteredPlots]);
+  const phase1Plots = useMemo(() => allPlots.filter((p) => p.phase === 1), [allPlots]);
+  const phase2Plots = useMemo(() => allPlots.filter((p) => p.phase === 2), [allPlots]);
+
+  const filteredPhase1 = useMemo(() => {
+    const q = String(phase1Search || '').trim();
+    if (!q) return phase1Plots;
+    return phase1Plots.filter((p) => matchesBoardPlotSearch(p.plotNo, q));
+  }, [phase1Plots, phase1Search]);
+
+  const filteredPhase2 = useMemo(() => {
+    const q = String(phase2Search || '').trim();
+    if (!q) return phase2Plots;
+    return phase2Plots.filter((p) => matchesBoardPlotSearch(p.plotNo, q));
+  }, [phase2Plots, phase2Search]);
 
   function handleBook(plot) {
     if (!plot) return;
@@ -370,38 +377,6 @@ export default function MapLayoutSection({ compact = true }) {
         </div>
       </div>
 
-      <div className="mt-4 flex flex-wrap items-center gap-2 sm:gap-3">
-        <div className="inline-flex overflow-hidden rounded-full border border-gray-200 bg-white text-[11px] font-semibold sm:text-xs">
-          <button
-            type="button"
-            onClick={() => handlePhaseChange('all')}
-            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
-              phase === 'all' ? 'bg-indigo-600 text-white' : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            All ({LAYOUT_PHASE_COUNTS.all})
-          </button>
-          <button
-            type="button"
-            onClick={() => handlePhaseChange(1)}
-            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
-              phase === 1 ? 'bg-sky-500 text-white' : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            Phase 1 ({LAYOUT_PHASE_COUNTS.phase1})
-          </button>
-          <button
-            type="button"
-            onClick={() => handlePhaseChange(2)}
-            className={`px-2.5 py-1 transition sm:px-3.5 sm:py-1.5 ${
-              phase === 2 ? 'bg-lime-600 text-white' : 'text-gray-600 hover:bg-gray-50'
-            }`}
-          >
-            Phase 2 ({LAYOUT_PHASE_COUNTS.phase2})
-          </button>
-        </div>
-      </div>
-
       <div className="mt-5 flex flex-col gap-4">
         <div className="overflow-hidden rounded-2xl border border-gray-200 bg-[#111] shadow-sm">
           <div className="flex items-center justify-between border-b border-white/10 px-2.5 py-1.5 text-[11px] text-white/80 sm:px-3 sm:py-2 sm:text-xs">
@@ -435,7 +410,7 @@ export default function MapLayoutSection({ compact = true }) {
               referrerPolicy="no-referrer"
               onLoad={() => {
                 setViewerWarning('');
-                syncMapPhase(phase);
+                syncMapPhase('all');
               }}
             />
             <div className="pointer-events-none absolute left-2 top-14 z-10 w-[120px] sm:left-5 sm:top-[82px] sm:w-[180px] lg:w-[220px]">
@@ -458,170 +433,206 @@ export default function MapLayoutSection({ compact = true }) {
           </div>
         </div>
 
-        <div
-          id="anne-enclave-plot-board"
-          className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4"
-        >
-          <div className="flex items-center gap-2 sm:flex-wrap sm:items-end sm:justify-between sm:gap-3">
-            <div
-              className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 select-none"
-              onClick={() => setPlotBoardOpen((v) => !v)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  setPlotBoardOpen((v) => !v);
-                }
-              }}
-            >
-              <ChevronDown
-                size={16}
-                className={`mt-0.5 shrink-0 text-gray-400 transition-transform duration-200 ${
-                  plotBoardOpen ? 'rotate-180' : ''
-                }`}
-                aria-hidden
-              />
-              <div className="min-w-0">
-                <h3 className="truncate text-sm font-semibold text-brand-900">
-                  Sky line Infra Anne Enclave{phase === 'all' ? '' : ` · Phase ${phase}`}
-                </h3>
-                <p className="mt-1 truncate text-xs text-gray-500">
-                  {loading
-                    ? 'Loading plots…'
-                    : visiblePlots.length
-                      ? phase === 'all'
-                        ? `${visiblePlots.length} of ${LAYOUT_PLOT_TOTAL} plots synced from booking system`
-                        : `${visiblePlots.length} Phase ${phase} plots synced from booking system`
-                      : loadError || (phase === 'all'
-                        ? 'No plots synced yet.'
-                        : `No Phase ${phase} plots synced yet.`)}
-                  {!plotBoardOpen && visiblePlots.length > 0 && (
-                    <span className="text-gray-400"> · Tap to browse plots</span>
-                  )}
-                </p>
-              </div>
-            </div>
+        <PlotBoard
+          id="anne-enclave-phase1-board"
+          title="Phase 1"
+          plots={phase1Plots}
+          filtered={filteredPhase1}
+          search={phase1Search}
+          onSearchChange={setPhase1Search}
+          selected={selected1}
+          onSelect={setSelected1}
+          open={phase1Open}
+          onToggle={() => setPhase1Open((v) => !v)}
+          loading={loading}
+          loadError={loadError}
+          allPlots={allPlots}
+          onBook={handleBook}
+          accentColor="bg-sky-500"
+        />
 
-            {visiblePlots.length > 0 && (
-              <div className="w-32 shrink-0 sm:ml-auto sm:w-full sm:max-w-xs">
-                <label htmlFor="board-plot-search" className="sr-only">
-                  Search plot number
-                </label>
-                <input
-                  id="board-plot-search"
-                  type="search"
-                  value={boardSearch}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    setBoardSearch(value);
-                    const q = value.trim().replace(/\D/g, '');
-                    if (!q) {
-                      setSelected(null);
-                      return;
-                    }
-                    const exact = visiblePlots.find((p) => plotNoKey(p.plotNo) === q);
-                    const prefix = exact || visiblePlots.find((p) => matchesBoardPlotSearch(p.plotNo, q));
-                    if (prefix) setSelected(prefix);
-                  }}
-                  placeholder="Search plot no…"
-                  onFocus={() => setPlotBoardOpen(true)}
-                  className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-800 outline-none ring-brand-500 placeholder:text-gray-400 focus:ring-2"
-                />
-                {boardSearch.trim() && (
-                  <p className="mt-1 text-[11px] text-gray-400">
-                    Showing {filteredPlots.length} of {visiblePlots.length} plots
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-
-          <div
-            className={`grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out ${
-              plotBoardOpen ? 'mt-3 opacity-100' : 'mt-0 opacity-0'
-            }`}
-            style={{ gridTemplateRows: plotBoardOpen ? '1fr' : '0fr' }}
-          >
-            <div className="min-h-0 overflow-hidden">
-              {previewPlots.length > 0 ? (
-                <div className="grid max-h-[520px] grid-cols-5 gap-1 overflow-auto sm:grid-cols-8 sm:gap-1.5 md:grid-cols-10 lg:grid-cols-[repeat(14,minmax(0,1fr))] xl:grid-cols-[repeat(16,minmax(0,1fr))]">
-                  {previewPlots.map((plot) => {
-                    const status = String(plot.status || 'available').toLowerCase();
-                    const color = chipColor(plot);
-                    const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId || selected.plotNo === plot.plotNo);
-                    const typeLabel = PLOT_TYPE_LABELS[plot.plotType] || plot.plotType;
-                    return (
-                      <button
-                        key={`plot-${plot.phase || phase}-${plot.plotNo}-${plot.externalId || plot.id}`}
-                        type="button"
-                        title={`${plot.plotNo} · ${typeLabel || PLOT_STATUS_LABELS[status] || status}${plot.plotCost ? ` · ${formatInr(plot.plotCost)}` : ''}`}
-                        onClick={() => setSelected(plot)}
-                        className={`rounded-md px-1 py-2 text-center text-[11px] font-semibold leading-none tracking-tight text-gray-900 shadow-sm ring-offset-1 transition ${
-                          active ? 'ring-2 ring-brand-600' : 'hover:brightness-95'
-                        }`}
-                        style={{
-                          backgroundColor: color,
-                          fontFamily: '"Segoe UI", "Helvetica Neue", Arial, sans-serif',
-                        }}
-                      >
-                        {plot.plotNo}
-                      </button>
-                    );
-                  })}
-                </div>
-              ) : (
-                visiblePlots.length > 0 && boardSearch.trim() && (
-                  <p className="text-xs text-gray-500">No plots match “{boardSearch.trim()}”.</p>
-                )
-              )}
-            </div>
-          </div>
-
-          <div className="mt-3 rounded-xl border border-gray-100 bg-gray-50 p-2.5 text-xs text-gray-700 sm:mt-4 sm:p-3">
-            {selected ? (
-              <div className="grid gap-x-4 gap-y-1 sm:gap-x-6 sm:gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
-                <p><span className="text-gray-500">Plot No:</span> <strong>{selected.plotNo}</strong></p>
-                <p>
-                  <span className="text-gray-500">Type:</span>{' '}
-                  <strong>{PLOT_TYPE_LABELS[selected.plotType] || selected.plotType || 'Residential'}</strong>
-                </p>
-                <p>
-                  <span className="text-gray-500">Status:</span>{' '}
-                  <strong>{PLOT_STATUS_LABELS[selected.status] || selected.status}</strong>
-                </p>
-                <p>
-                  <span className="text-gray-500">Area:</span>{' '}
-                  {selected.plotArea ? `${formatIndianNumber(selected.plotArea)} Sq.Yds` : '—'}
-                </p>
-                <p><span className="text-gray-500">Facing:</span> {selected.facing || '—'}</p>
-                <p>
-                  <span className="text-gray-500">Rate:</span>{' '}
-                  {selected.ratePerSqYd ? `${formatInr(selected.ratePerSqYd)} / Sq.Yd` : '—'}
-                </p>
-                <p><span className="text-gray-500">Total cost:</span> {formatInr(selected.plotCost)}</p>
-                {isSaleable(selected) ? (
-                  <div className="sm:col-span-2 lg:col-span-3">
-                    <button
-                      type="button"
-                      onClick={() => handleBook(selected)}
-                      className="mt-2 w-full max-w-xs rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
-                    >
-                      Book this plot
-                    </button>
-                  </div>
-                ) : (
-                  <p className="mt-2 text-[11px] text-amber-700 sm:col-span-2 lg:col-span-3">
-                    This plot is not available for normal booking.
-                  </p>
-                )}
-              </div>
-            ) : (
-              <p>Select a plot from the board{allPlots.length ? '' : ' once plots are synced'} to view details.</p>
-            )}
-          </div>
-        </div>
+        <PlotBoard
+          id="anne-enclave-phase2-board"
+          title="Phase 2"
+          plots={phase2Plots}
+          filtered={filteredPhase2}
+          search={phase2Search}
+          onSearchChange={setPhase2Search}
+          selected={selected2}
+          onSelect={setSelected2}
+          open={phase2Open}
+          onToggle={() => setPhase2Open((v) => !v)}
+          loading={loading}
+          loadError={loadError}
+          allPlots={allPlots}
+          onBook={handleBook}
+          accentColor="bg-lime-600"
+        />
       </div>
     </section>
+  );
+}
+
+function PlotBoard({ id, title, plots, filtered, search, onSearchChange, selected, onSelect, open, onToggle, loading, loadError, allPlots, onBook, accentColor }) {
+  return (
+    <div
+      id={id}
+      className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4"
+    >
+      <div className="flex items-center gap-2 sm:flex-wrap sm:items-end sm:justify-between sm:gap-3">
+        <div
+          className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 select-none"
+          onClick={onToggle}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              onToggle();
+            }
+          }}
+        >
+          <ChevronDown
+            size={16}
+            className={`mt-0.5 shrink-0 text-gray-400 transition-transform duration-200 ${
+              open ? 'rotate-180' : ''
+            }`}
+            aria-hidden
+          />
+          <div className="min-w-0">
+            <h3 className="truncate text-sm font-semibold text-brand-900">
+              {title} <span className={`ml-1 inline-block h-2 w-2 rounded-full ${accentColor}`} />
+            </h3>
+            <p className="mt-1 truncate text-xs text-gray-500">
+              {loading
+                ? 'Loading plots…'
+                : plots.length
+                  ? `${plots.length} of ${title === 'Phase 1' ? 134 : 138} plots synced from booking system`
+                  : loadError || `No ${title} plots synced yet.`}
+              {!open && plots.length > 0 && (
+                <span className="text-gray-400"> · Tap to browse plots</span>
+              )}
+            </p>
+          </div>
+        </div>
+
+        {plots.length > 0 && (
+          <div className="w-32 shrink-0 sm:ml-auto sm:w-full sm:max-w-xs">
+            <label htmlFor={`board-search-${id}`} className="sr-only">
+              Search plot number
+            </label>
+            <input
+              id={`board-search-${id}`}
+              type="search"
+              value={search}
+              onChange={(e) => {
+                const value = e.target.value;
+                onSearchChange(value);
+                const q = value.trim().replace(/\D/g, '');
+                if (!q) {
+                  onSelect(null);
+                  return;
+                }
+                const exact = plots.find((p) => plotNoKey(p.plotNo) === q);
+                const prefix = exact || plots.find((p) => matchesBoardPlotSearch(p.plotNo, q));
+                if (prefix) onSelect(prefix);
+              }}
+              placeholder="Search plot no…"
+              onFocus={onToggle}
+              className="w-full rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs text-gray-800 outline-none ring-brand-500 placeholder:text-gray-400 focus:ring-2"
+            />
+            {search.trim() && (
+              <p className="mt-1 text-[11px] text-gray-400">
+                Showing {filtered.length} of {plots.length} plots
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+
+      <div
+        className={`grid transition-[grid-template-rows,opacity,margin] duration-200 ease-out ${
+          open ? 'mt-3 opacity-100' : 'mt-0 opacity-0'
+        }`}
+        style={{ gridTemplateRows: open ? '1fr' : '0fr' }}
+      >
+        <div className="min-h-0 overflow-hidden">
+          {filtered.length > 0 ? (
+            <div className="grid max-h-[520px] grid-cols-5 gap-1 overflow-auto sm:grid-cols-8 sm:gap-1.5 md:grid-cols-10 lg:grid-cols-[repeat(14,minmax(0,1fr))] xl:grid-cols-[repeat(16,minmax(0,1fr))]">
+              {filtered.map((plot) => {
+                const status = String(plot.status || 'available').toLowerCase();
+                const color = chipColor(plot);
+                const active = selected && (selected.id === plot.id || selected.externalId === plot.externalId || selected.plotNo === plot.plotNo);
+                const typeLabel = PLOT_TYPE_LABELS[plot.plotType] || plot.plotType;
+                return (
+                  <button
+                    key={`plot-${plot.phase}-${plot.plotNo}-${plot.externalId || plot.id}`}
+                    type="button"
+                    title={`${plot.plotNo} · ${typeLabel || PLOT_STATUS_LABELS[status] || status}${plot.plotCost ? ` · ${formatInr(plot.plotCost)}` : ''}`}
+                    onClick={() => onSelect(plot)}
+                    className={`rounded-md px-1 py-2 text-center text-[11px] font-semibold leading-none tracking-tight text-gray-900 shadow-sm ring-offset-1 transition ${
+                      active ? 'ring-2 ring-brand-600' : 'hover:brightness-95'
+                    }`}
+                    style={{
+                      backgroundColor: color,
+                      fontFamily: '"Segoe UI", "Helvetica Neue", Arial, sans-serif',
+                    }}
+                  >
+                    {plot.plotNo}
+                  </button>
+                );
+              })}
+            </div>
+          ) : (
+            plots.length > 0 && search.trim() && (
+              <p className="text-xs text-gray-500">No plots match "{search.trim()}".</p>
+            )
+          )}
+        </div>
+      </div>
+
+      <div className="mt-3 rounded-xl border border-gray-100 bg-gray-50 p-2.5 text-xs text-gray-700 sm:mt-4 sm:p-3">
+        {selected ? (
+          <div className="grid gap-x-4 gap-y-1 sm:gap-x-6 sm:gap-y-1.5 sm:grid-cols-2 lg:grid-cols-3">
+            <p><span className="text-gray-500">Plot No:</span> <strong>{selected.plotNo}</strong></p>
+            <p>
+              <span className="text-gray-500">Type:</span>{' '}
+              <strong>{PLOT_TYPE_LABELS[selected.plotType] || selected.plotType || 'Residential'}</strong>
+            </p>
+            <p>
+              <span className="text-gray-500">Status:</span>{' '}
+              <strong>{PLOT_STATUS_LABELS[selected.status] || selected.status}</strong>
+            </p>
+            <p>
+              <span className="text-gray-500">Area:</span>{' '}
+              {selected.plotArea ? `${formatIndianNumber(selected.plotArea)} Sq.Yds` : '—'}
+            </p>
+            <p><span className="text-gray-500">Facing:</span> {selected.facing || '—'}</p>
+            <p>
+              <span className="text-gray-500">Rate:</span>{' '}
+              {selected.ratePerSqYd ? `${formatInr(selected.ratePerSqYd)} / Sq.Yd` : '—'}
+            </p>
+            <p><span className="text-gray-500">Total cost:</span> {formatInr(selected.plotCost)}</p>
+            {isSaleable(selected) ? (
+              <div className="sm:col-span-2 lg:col-span-3">
+                <button
+                  type="button"
+                  onClick={() => onBook(selected)}
+                  className="mt-2 w-full max-w-xs rounded-lg bg-brand-700 px-3 py-2 text-xs font-semibold text-white hover:bg-brand-800"
+                >
+                  Book this plot
+                </button>
+              </div>
+            ) : (
+              <p className="mt-2 text-[11px] text-amber-700 sm:col-span-2 lg:col-span-3">
+                This plot is not available for normal booking.
+              </p>
+            )}
+          </div>
+        ) : (
+          <p>Select a plot from the board{allPlots.length ? '' : ' once plots are synced'} to view details.</p>
+        )}
+      </div>
+    </div>
   );
 }

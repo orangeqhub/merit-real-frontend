@@ -98,6 +98,7 @@ const PHASE_LOOKUP = (() => {
   for (const plot of assignPlotPhases(plotNumberMapping)) {
     map.set(String(plot.id), {
       phase: plot.viewPhase,
+      assignedPhase: plot.phase,
       displayPlotNo: String(plot.displayPlotNumber),
     });
   }
