@@ -1,8 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { MapPin, Search, Crosshair } from 'lucide-react';
-import { loadGoogleMaps, isGoogleMapsAvailable } from '../../utils/googleMapsLoader';
+import { loadGoogleMaps, isGoogleMapsAvailable, isPlacesAvailable } from '../../utils/googleMapsLoader';
 
 const DEFAULT_CENTER = { lat: 16.3067, lng: 80.4365 }; // Guntur / AP area
+const DEBOUNCE_MS = 300;
 
 function parseLatLng(value) {
   if (!value) return null;
@@ -15,16 +16,33 @@ function parseLatLng(value) {
   return [lat, lng];
 }
 
+function normaliseSuggestion(suggestion) {
+  const pred = suggestion.placePrediction || suggestion;
+  return {
+    placeId: pred.placeId || null,
+    description: pred.text?.text || '',
+    mainText: pred.mainText?.text || pred.text?.text || '',
+    secondaryText: pred.secondaryText?.text || '',
+    types: pred.types || [],
+    _raw: suggestion,
+  };
+}
+
 /**
  * Property location picker using Google Maps + Places Autocomplete.
  * Falls back to Nominatim if Google Maps fails to load.
  */
 export default function MapLocationPicker({ value = '', onChange }) {
   const mapRef = useRef(null);
-  const autocompleteRef = useRef(null);
   const mapInstance = useRef(null);
   const markerInstance = useRef(null);
   const inputRef = useRef(null);
+  const dropdownRef = useRef(null);
+  const debounceRef = useRef(null);
+  const sessionTokenRef = useRef(null);
+  const abortRef = useRef(0);
+
+  const [query, setQuery] = useState('');
   const [selectedAddress, setSelectedAddress] = useState('');
   const [coords, setCoords] = useState(() => {
     const parsed = parseLatLng(value);
@@ -32,7 +50,9 @@ export default function MapLocationPicker({ value = '', onChange }) {
   });
   const [error, setError] = useState('');
   const [mapsLoaded, setMapsLoaded] = useState(false);
-  const [autocompleteReady, setAutocompleteReady] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [searching, setSearching] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
 
   // Load Google Maps
   useEffect(() => {
@@ -42,6 +62,28 @@ export default function MapLocationPicker({ value = '', onChange }) {
       setMapsLoaded(!!maps);
     });
     return () => { cancelled = true; };
+  }, []);
+
+  // Create session token when maps load
+  useEffect(() => {
+    if (mapsLoaded && isPlacesAvailable()) {
+      sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+    }
+  }, [mapsLoaded]);
+
+  // Cleanup debounce on unmount
+  useEffect(() => () => { if (debounceRef.current) clearTimeout(debounceRef.current); }, []);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)
+        && inputRef.current && !inputRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
   // Initialize map
@@ -97,34 +139,6 @@ export default function MapLocationPicker({ value = '', onChange }) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mapsLoaded]);
 
-  // Initialize Places Autocomplete — input must be UNCONTROLLED
-  useEffect(() => {
-    if (!inputRef.current || !mapsLoaded || !isGoogleMapsAvailable() || autocompleteReady) return undefined;
-
-    const autocomplete = new window.google.maps.places.Autocomplete(inputRef.current, {
-      types: ['geocode', 'establishment'],
-      componentRestrictions: { country: 'in' },
-      fields: ['formatted_address', 'geometry.location', 'name'],
-    });
-
-    autocomplete.addListener('place_changed', () => {
-      const place = autocomplete.getPlace();
-      if (!place.geometry?.location) return;
-      const loc = place.geometry.location;
-      const newCoords = { lat: loc.lat(), lng: loc.lng() };
-      setCoords(newCoords);
-      setSelectedAddress(place.formatted_address || place.name || '');
-      if (inputRef.current) inputRef.current.value = place.name || place.formatted_address || '';
-      if (markerInstance.current) markerInstance.current.setPosition(loc);
-      if (mapInstance.current) mapInstance.current.setCenter(loc);
-    });
-
-    autocompleteRef.current = autocomplete;
-    setAutocompleteReady(true);
-
-    return undefined;
-  }, [mapsLoaded, autocompleteReady]);
-
   // Sync external value changes
   useEffect(() => {
     const parsed = parseLatLng(value);
@@ -148,9 +162,12 @@ export default function MapLocationPicker({ value = '', onChange }) {
           });
         });
         setSelectedAddress(result.formatted_address || `${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+        setQuery(result.formatted_address || `${lat.toFixed(6)}, ${lng.toFixed(6)}`);
         setError('');
       } catch {
-        setSelectedAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+        const fallback = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        setSelectedAddress(fallback);
+        setQuery(fallback);
       }
       return;
     }
@@ -161,16 +178,96 @@ export default function MapLocationPicker({ value = '', onChange }) {
         { headers: { Accept: 'application/json' } }
       );
       const data = await res.json();
-      setSelectedAddress(data?.display_name || `${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+      const addr = data?.display_name || `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+      setSelectedAddress(addr);
+      setQuery(addr);
     } catch {
-      setSelectedAddress(`${lat.toFixed(6)}, ${lng.toFixed(6)}`);
+      const fallback = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+      setSelectedAddress(fallback);
+      setQuery(fallback);
     }
   }
 
+  /* ── New Places autocomplete search ─────────────────────────────── */
+  const searchPlacesAsync = useCallback(async (searchQuery, requestId) => {
+    if (!isPlacesAvailable()) return false;
+    try {
+      const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input: searchQuery,
+        componentRestrictions: { country: 'in' },
+        sessionToken: sessionTokenRef.current,
+      });
+      if (requestId !== abortRef.current) return true;
+      setSearching(false);
+      setSuggestions((response?.suggestions || []).map(normaliseSuggestion));
+      setShowDropdown(true);
+      return true;
+    } catch (err) {
+      console.warn('[MapLocationPicker] fetchAutocompleteSuggestions failed:', err);
+      if (requestId !== abortRef.current) return true;
+      setSearching(false);
+      setSuggestions([]);
+      return true;
+    }
+  }, []);
+
+  /* ── Handle input change — debounced search ──────────────────────── */
+  const handleInputChange = useCallback((e) => {
+    const value = e.target.value;
+    setQuery(value);
+    setError('');
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+    if (!value.trim() || !isPlacesAvailable()) {
+      setSuggestions([]);
+      setShowDropdown(false);
+      setSearching(false);
+      return;
+    }
+    setSearching(true);
+    const requestId = ++abortRef.current;
+    debounceRef.current = setTimeout(() => searchPlacesAsync(value.trim(), requestId), DEBOUNCE_MS);
+  }, [searchPlacesAsync]);
+
+  /* ── Handle suggestion selection ─────────────────────────────────── */
+  const handleSuggestionSelect = useCallback(async (norm) => {
+    setShowDropdown(false);
+    setSuggestions([]);
+    setQuery(norm.mainText || norm.description || '');
+
+    if (norm.placeId && isPlacesAvailable()) {
+      try {
+        const PlaceClass = window.google.maps.places.Place;
+        const place = new PlaceClass({ placeId: norm.placeId });
+        await place.fetchFields({
+          fields: ['displayName', 'formattedAddress', 'location'],
+        });
+        const loc = place.location;
+        if (loc) {
+          const newCoords = { lat: loc.lat ?? loc.lat(), lng: loc.lng ?? loc.lng() };
+          setCoords(newCoords);
+          setSelectedAddress(place.formattedAddress || norm.description || norm.mainText);
+          setQuery(place.displayName || norm.mainText || '');
+          if (markerInstance.current) markerInstance.current.setPosition(new window.google.maps.LatLng(newCoords.lat, newCoords.lng));
+          if (mapInstance.current) mapInstance.current.setCenter(new window.google.maps.LatLng(newCoords.lat, newCoords.lng));
+        }
+        // Rotate session token
+        sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+        return;
+      } catch (err) {
+        console.warn('[MapLocationPicker] Place.fetchFields failed:', err);
+      }
+    }
+    // Fallback: just use the text
+    setSelectedAddress(norm.description || norm.mainText);
+    sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+  }, []);
+
+  /* ── Manual search via Geocoder ─────────────────────────────────── */
   function searchAddress() {
-    const q = inputRef.current?.value?.trim() || '';
+    const q = inputRef.current?.value?.trim() || query.trim() || '';
     if (!q) return;
     setError('');
+    setShowDropdown(false);
 
     if (isGoogleMapsAvailable()) {
       const geocoder = new window.google.maps.Geocoder();
@@ -180,7 +277,7 @@ export default function MapLocationPicker({ value = '', onChange }) {
           const newCoords = { lat: loc.lat(), lng: loc.lng() };
           setCoords(newCoords);
           setSelectedAddress(results[0].formatted_address || q);
-          if (inputRef.current) inputRef.current.value = results[0].formatted_address || q;
+          setQuery(results[0].formatted_address || q);
           if (markerInstance.current) markerInstance.current.setPosition(loc);
           if (mapInstance.current) mapInstance.current.setCenter(loc);
         } else {
@@ -206,7 +303,7 @@ export default function MapLocationPicker({ value = '', onChange }) {
         const newCoords = { lat, lng };
         setCoords(newCoords);
         setSelectedAddress(data[0].display_name || q);
-        if (inputRef.current) inputRef.current.value = data[0].display_name || q;
+        setQuery(data[0].display_name || q);
         if (markerInstance.current) markerInstance.current.setPosition(newCoords);
         if (mapInstance.current) mapInstance.current.setCenter(newCoords);
       })
@@ -257,16 +354,54 @@ export default function MapLocationPicker({ value = '', onChange }) {
           <input
             ref={inputRef}
             type="text"
-            defaultValue=""
-            placeholder={mapsLoaded ? 'Search address or place (autocomplete)' : 'Search address or place'}
+            value={query}
+            onChange={handleInputChange}
+            onFocus={() => { if (suggestions.length > 0) setShowDropdown(true); }}
             onKeyDown={(e) => {
               if (e.key === 'Enter') {
                 e.preventDefault();
+                setShowDropdown(false);
                 searchAddress();
               }
+              if (e.key === 'Escape') {
+                setShowDropdown(false);
+              }
             }}
+            placeholder={mapsLoaded ? 'Search address or place (autocomplete)' : 'Search address or place'}
             className="w-full rounded-lg border border-gray-300 py-2 pl-8 pr-3 text-sm"
           />
+          {searching && (
+            <div className="absolute right-3 top-1/2 -translate-y-1/2">
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-gray-300 border-t-brand-600" />
+            </div>
+          )}
+          {/* Autocomplete dropdown */}
+          {showDropdown && suggestions.length > 0 && (
+            <ul
+              ref={dropdownRef}
+              role="listbox"
+              className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-lg border border-gray-200 bg-white shadow-lg"
+            >
+              {suggestions.map((norm, idx) => (
+                <li key={norm.placeId || idx}>
+                  <button
+                    type="button"
+                    role="option"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      handleSuggestionSelect(norm);
+                    }}
+                    className="block w-full px-3 py-2 text-left text-sm hover:bg-brand-50"
+                  >
+                    <span className="line-clamp-1 text-gray-800">{norm.mainText || norm.description}</span>
+                    {norm.secondaryText && norm.secondaryText !== norm.mainText && (
+                      <span className="block text-xs text-gray-400 line-clamp-1">{norm.secondaryText}</span>
+                    )}
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
         <button
           type="button"

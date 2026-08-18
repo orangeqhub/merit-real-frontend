@@ -1,6 +1,7 @@
 /**
  * Singleton Google Maps JavaScript API loader.
- * Loads the Maps JS API with the Places library via dynamic script injection.
+ * Uses the modern async loading approach (loading=async + importLibrary).
+ * Loads both the core Maps library and the Places library (new API).
  * Returns a promise that resolves when the API is ready.
  * Fails gracefully — never throws if the env var is missing or loading fails.
  */
@@ -23,7 +24,17 @@ export function isGoogleMapsAvailable() {
 }
 
 /**
+ * Check if the new Places library is available.
+ */
+export function isPlacesAvailable() {
+  return isGoogleMapsAvailable()
+    && typeof window.google.maps.places !== 'undefined'
+    && typeof window.google.maps.places.AutocompleteSuggestion !== 'undefined';
+}
+
+/**
  * Load the Google Maps JavaScript API with Places library.
+ * Uses the modern loading=async approach and importLibrary for the Places library.
  * Returns the google.maps namespace when ready, or null on failure.
  */
 export function loadGoogleMaps() {
@@ -40,28 +51,42 @@ export function loadGoogleMaps() {
 
   loadPromise = new Promise((resolve) => {
     const script = document.createElement('script');
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&libraries=places&v=weekly`;
+    script.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}&v=weekly&loading=async`;
     script.async = true;
     script.defer = true;
 
     const timer = setTimeout(() => {
       console.warn('[googleMapsLoader] Google Maps script timed out.');
+      loadPromise = null;
       resolve(null);
     }, LOAD_TIMEOUT_MS);
 
     script.onload = () => {
       clearTimeout(timer);
-      if (window.google?.maps) {
+      if (!window.google?.maps) {
+        loadPromise = null;
+        resolve(null);
+        return;
+      }
+      // Import core maps library first, then places library
+      Promise.all([
+        window.google.maps.importLibrary('maps'),
+        window.google.maps.importLibrary('places'),
+      ]).then(() => {
         mapsReady = true;
         resolve(window.google.maps);
-      } else {
-        resolve(null);
-      }
+      }).catch((err) => {
+        console.warn('[googleMapsLoader] Failed to import Places library:', err);
+        // Maps core loaded — still useful for Geocoder, Map, Marker
+        mapsReady = true;
+        resolve(window.google.maps);
+      });
     };
 
     script.onerror = () => {
       clearTimeout(timer);
       console.warn('[googleMapsLoader] Failed to load Google Maps script.');
+      loadPromise = null;
       resolve(null);
     };
 

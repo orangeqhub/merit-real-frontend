@@ -4,40 +4,47 @@ import { MapPin, Search, X, Clock, TrendingUp, Loader2, Navigation } from 'lucid
 import { CITIES } from '../../data/locations';
 import { useLocationStore } from '../../store/locationStore';
 import { useUserLocationStore } from '../../store/userLocationStore';
-import { loadGoogleMaps } from '../../utils/googleMapsLoader';
+import { loadGoogleMaps, isPlacesAvailable } from '../../utils/googleMapsLoader';
 
 const DEBOUNCE_MS = 350;
 
+/* ── Address-component helpers ───────────────────────────────────────────── */
+
+function findComponent(components, type) {
+  const c = components.find((x) => {
+    const types = x.types || x.type || [];
+    return types.includes(type);
+  });
+  if (!c) return '';
+  // New API: longName  |  Legacy Geocoder: long_name
+  return c.longName || c.long_name || '';
+}
+
 function getCityFromComponents(components) {
-  const find = (type) => {
-    const c = components.find((x) => x.types.includes(type));
-    return c ? c.long_name : '';
-  };
-  return find('locality') || find('sublocality') || find('sublocality_level_1')
-    || find('administrative_area_level_2') || find('administrative_area_level_1') || '';
+  return findComponent(components, 'locality')
+    || findComponent(components, 'sublocality')
+    || findComponent(components, 'sublocality_level_1')
+    || findComponent(components, 'administrative_area_level_2')
+    || findComponent(components, 'administrative_area_level_1')
+    || '';
 }
 
 function getStateFromComponents(components) {
-  const c = components.find((x) => x.types.includes('administrative_area_level_1'));
-  return c ? c.long_name : '';
+  return findComponent(components, 'administrative_area_level_1');
 }
 
 function getAreaFromComponents(components) {
-  const find = (type) => {
-    const c = components.find((x) => x.types.includes(type));
-    return c ? c.long_name : '';
-  };
-  return find('sublocality') || find('sublocality_level_1') || find('neighborhood') || '';
+  return findComponent(components, 'sublocality')
+    || findComponent(components, 'sublocality_level_1')
+    || findComponent(components, 'neighborhood')
+    || '';
 }
 
 function getLabelFromComponents(components) {
-  const find = (type) => {
-    const c = components.find((x) => x.types.includes(type));
-    return c ? c.long_name : '';
-  };
-  const locality = find('locality');
-  const sublocality = find('sublocality') || find('sublocality_level_1');
-  const state = find('administrative_area_level_1');
+  const locality = findComponent(components, 'locality');
+  const sublocality = findComponent(components, 'sublocality')
+    || findComponent(components, 'sublocality_level_1');
+  const state = findComponent(components, 'administrative_area_level_1');
   if (sublocality && locality && sublocality !== locality) {
     return `${sublocality}, ${locality}`;
   }
@@ -46,8 +53,8 @@ function getLabelFromComponents(components) {
 }
 
 /**
- * Build a normalised place object from a Geocoder result
- * (same shape as a Places prediction result so handlePlaceSelection works).
+ * Build a normalised place object from a Geocoder result so
+ * handlePlaceSelection can consume it uniformly.
  */
 function geocoderResultToPlace(result) {
   const components = result.address_components || [];
@@ -66,8 +73,26 @@ function geocoderResultToPlace(result) {
 }
 
 /**
+ * Normalise a new-API suggestion into the same internal shape
+ * so rendering / selection code stays uniform.
+ */
+function normaliseSuggestion(suggestion) {
+  const pred = suggestion.placePrediction || suggestion;
+  return {
+    placeId: pred.placeId || pred.place_id || null,
+    description: pred.text?.text || pred.description || '',
+    mainText: pred.mainText?.text || pred.structured_formatting?.main_text || '',
+    secondaryText: pred.secondaryText?.text || pred.structured_formatting?.secondary_text || '',
+    types: pred.types || [],
+    _raw: suggestion,
+  };
+}
+
+/* ── Component ───────────────────────────────────────────────────────────── */
+
+/**
  * Shared "Select Location" panel used by the Navbar.
- * 1. Tries Google Places AutocompleteService for real-time predictions.
+ * 1. Uses new AutocompleteSuggestion.fetchAutocompleteSuggestions for predictions.
  * 2. Falls back to Google Geocoder if Places API is not enabled.
  * 3. Falls back to static CITIES list if Google Maps is unavailable.
  */
@@ -91,59 +116,49 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
   const panelRef = useRef(null);
   const autoRequestedRef = useRef(false);
   const debounceRef = useRef(null);
-  const predictionsServiceRef = useRef(null);
-  const placesServiceRef = useRef(null);
   const geocoderRef = useRef(null);
+  const sessionTokenRef = useRef(null);
   const abortRef = useRef(0);
 
-  // Load Google Maps on mount — try Places, fall back to Geocoder
+  /* ── Load Google Maps + detect Places availability ─────────────────────── */
   useEffect(() => {
     if (!open) return undefined;
     let cancelled = false;
     loadGoogleMaps().then((maps) => {
       if (cancelled || !maps) return;
-      // Try creating AutocompleteService — this requires Places API
-      try {
-        const svc = new maps.places.AutocompleteService();
-        // Test with a tiny request to verify the API is actually authorized
-        svc.getQueryPredictions({ input: 'test', componentRestrictions: { country: 'in' } }, (results, status) => {
-          if (cancelled) return;
-          if (status === maps.places.PlacesServiceStatus.OK || status === 'ZERO_RESULTS') {
-            // Places API is working
-            predictionsServiceRef.current = svc;
-            placesServiceRef.current = new maps.places.PlacesService(document.createElement('div'));
-            setGoogleMode('places');
-          } else {
-            // Places API is blocked / not enabled — fall back to Geocoder
-            console.warn('[LocationPicker] Places API unavailable (' + status + '), falling back to Geocoder.');
-            geocoderRef.current = new maps.Geocoder();
-            setGoogleMode('geocoder');
-          }
-        });
-      } catch {
-        // AutocompleteService constructor itself threw — fall back to Geocoder
-        console.warn('[LocationPicker] Places API not available, falling back to Geocoder.');
+      if (isPlacesAvailable()) {
+        setGoogleMode('places');
+      } else {
+        console.warn('[LocationPicker] Places library unavailable, falling back to Geocoder.');
         geocoderRef.current = new maps.Geocoder();
-        if (!cancelled) setGoogleMode('geocoder');
+        setGoogleMode('geocoder');
       }
     });
     return () => { cancelled = true; };
   }, [open]);
 
-  // Focus input when opened
+  // Create a fresh session token when the modal opens or after a selection
+  const refreshSessionToken = useCallback(() => {
+    if (isPlacesAvailable()) {
+      sessionTokenRef.current = new window.google.maps.places.AutocompleteSessionToken();
+    }
+  }, []);
+
+  /* ── Focus input when opened ───────────────────────────────────────────── */
   useEffect(() => {
     if (open) {
       setQuery('');
       setSuggestions([]);
       setSuggestionsActive(false);
       setHighlightedIndex(-1);
+      refreshSessionToken();
       const id = setTimeout(() => inputRef.current?.focus(), 0);
       return () => clearTimeout(id);
     }
     return undefined;
-  }, [open]);
+  }, [open, refreshSessionToken]);
 
-  // Auto-request browser geolocation once per session
+  /* ── Auto-request browser geolocation once per session ─────────────────── */
   useEffect(() => {
     if (!open) {
       autoRequestedRef.current = false;
@@ -156,7 +171,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     return undefined;
   }, [open, geoStatus, requestLocation]);
 
-  // Escape key
+  /* ── Escape key ────────────────────────────────────────────────────────── */
   useEffect(() => {
     if (!open) return undefined;
     function handleKeyDown(e) {
@@ -166,7 +181,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [open, onClose]);
 
-  // Click outside
+  /* ── Click outside ─────────────────────────────────────────────────────── */
   useEffect(() => {
     if (!open) return undefined;
     function handleClickOutside(e) {
@@ -189,6 +204,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
 
   const headerLabel = selectedLocation || geoLabel;
 
+  /* ── Handle a resolved place (from any source) ─────────────────────────── */
   const handlePlaceSelection = useCallback((result) => {
     const components = result.address_components || [];
     const city = getCityFromComponents(components);
@@ -210,58 +226,68 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
       latitude: lat,
       longitude: lng,
     });
+    refreshSessionToken();
     onClose();
-  }, [selectLocation, onClose]);
+  }, [selectLocation, onClose, refreshSessionToken]);
 
-  const handleSuggestionSelect = useCallback((suggestion) => {
-    if (!suggestion) return;
-    // Already-resolved place (geocoder result with address_components)
-    if (suggestion.address_components) {
-      handlePlaceSelection(suggestion);
+  /* ── Resolve a selected suggestion → fetch full Place details ──────────── */
+  const handleSuggestionSelect = useCallback(async (norm) => {
+    if (!norm) return;
+
+    // Geocoder results already have address_components
+    if (norm._raw?.address_components) {
+      handlePlaceSelection(norm._raw);
       return;
     }
-    // Places prediction — resolve via getDetails
-    const svc = placesServiceRef.current;
-    if (suggestion.place_id && svc) {
-      svc.getDetails({ placeId: suggestion.place_id, fields: ['address_components', 'geometry', 'formatted_address', 'name'] }, (details, status) => {
-        if (status !== window.google?.maps?.places?.PlacesServiceStatus.OK || !details) {
-          // Fallback: construct minimal place from prediction text
-          const city = suggestion.structured_formatting?.main_text || suggestion.description || '';
-          if (city) {
-            selectLocation(city, {
-              city,
-              state: '',
-              area: '',
-              label: city,
-              placeId: suggestion.place_id || null,
-              formattedAddress: suggestion.description || '',
-              latitude: null,
-              longitude: null,
-            });
-            onClose();
-          }
-          return;
-        }
-        handlePlaceSelection({ ...details, place_id: suggestion.place_id });
-      });
-      return;
+
+    // New API: use Place.fetchFields
+    const placeId = norm.placeId;
+    if (placeId && isPlacesAvailable()) {
+      try {
+        const PlaceClass = window.google.maps.places.Place;
+        const place = new PlaceClass({ placeId });
+        await place.fetchFields({
+          fields: ['displayName', 'formattedAddress', 'location', 'addressComponents'],
+        });
+        // Normalize to the shape handlePlaceSelection expects
+        const components = (place.addressComponents || []).map((ac) => ({
+          types: ac.types,
+          long_name: ac.longName || '',
+          short_name: ac.shortName || '',
+        }));
+        const loc = place.location;
+        handlePlaceSelection({
+          place_id: placeId,
+          description: place.formattedAddress || norm.description,
+          formatted_address: place.formattedAddress || norm.description,
+          address_components: components,
+          geometry: loc ? { location: loc } : null,
+          name: place.displayName || norm.mainText,
+        });
+        return;
+      } catch (err) {
+        console.warn('[LocationPicker] Place.fetchFields failed:', err);
+        // Fall through to text-based fallback
+      }
     }
-    // Last resort: use description text
-    const city = suggestion.structured_formatting?.main_text || suggestion.description || '';
+
+    // Last resort: use text only
+    const city = norm.mainText || norm.description || '';
     if (city) {
       selectLocation(city, {
         city,
         state: '',
         area: '',
         label: city,
-        placeId: suggestion.place_id || null,
-        formattedAddress: suggestion.description || '',
+        placeId: norm.placeId || null,
+        formattedAddress: norm.description || '',
         latitude: null,
         longitude: null,
       });
+      refreshSessionToken();
       onClose();
     }
-  }, [handlePlaceSelection, selectLocation, onClose]);
+  }, [handlePlaceSelection, selectLocation, onClose, refreshSessionToken]);
 
   const fallbackCities = useMemo(() => {
     if (!query.trim()) return CITIES;
@@ -269,26 +295,30 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     return CITIES.filter((c) => c.toLowerCase().includes(term));
   }, [query]);
 
-  // --- Places Autocomplete search ---
-  const searchPlaces = useCallback((searchQuery, requestId) => {
-    const service = predictionsServiceRef.current;
-    if (!service) return false;
-    service.getQueryPredictions(
-      { input: searchQuery, componentRestrictions: { country: 'in' }, types: ['geocode', 'establishment'] },
-      (results, status) => {
-        if (requestId !== abortRef.current) return;
-        setSearching(false);
-        if (status === window.google?.maps?.places?.PlacesServiceStatus.OK && results) {
-          setSuggestions(results);
-        } else {
-          setSuggestions([]);
-        }
-      },
-    );
-    return true;
+  /* ── New Places search: AutocompleteSuggestion.fetchAutocompleteSuggestions ── */
+  const searchPlaces = useCallback(async (searchQuery, requestId) => {
+    if (!isPlacesAvailable()) return false;
+    try {
+      const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
+        input: searchQuery,
+        componentRestrictions: { country: 'in' },
+        sessionToken: sessionTokenRef.current,
+      });
+      if (requestId !== abortRef.current) return true;
+      setSearching(false);
+      const raw = response?.suggestions || [];
+      setSuggestions(raw.map(normaliseSuggestion));
+      return true;
+    } catch (err) {
+      console.warn('[LocationPicker] fetchAutocompleteSuggestions failed:', err);
+      if (requestId !== abortRef.current) return true;
+      setSearching(false);
+      setSuggestions([]);
+      return true;
+    }
   }, []);
 
-  // --- Geocoder fallback search ---
+  /* ── Geocoder fallback search ──────────────────────────────────────────── */
   const searchGeocoder = useCallback((searchQuery, requestId) => {
     const geocoder = geocoderRef.current;
     if (!geocoder) return false;
@@ -298,7 +328,10 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
         if (requestId !== abortRef.current) return;
         setSearching(false);
         if (status === 'OK' && results?.length) {
-          setSuggestions(results.map(geocoderResultToPlace));
+          setSuggestions(results.map((r) => {
+            const place = geocoderResultToPlace(r);
+            return normaliseSuggestion({ placePrediction: { ...place, placeId: place.place_id, mainText: { text: place.structured_formatting.main_text }, secondaryText: { text: place.structured_formatting.secondary_text }, text: { text: place.description } } });
+          }));
         } else {
           setSuggestions([]);
         }
@@ -307,7 +340,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     return true;
   }, []);
 
-  // Unified search dispatcher
+  /* ── Unified search dispatcher ──────────────────────────────────────────── */
   const searchGoogle = useCallback((searchQuery) => {
     const trimmed = searchQuery.trim();
     if (trimmed.length < 1) {
@@ -323,7 +356,6 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     setSuggestionsActive(true);
     setHighlightedIndex(-1);
 
-    // Try Places first, then Geocoder
     if (!searchPlaces(trimmed, requestId)) {
       if (!searchGeocoder(trimmed, requestId)) {
         setSearching(false);
@@ -331,7 +363,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     }
   }, [searchPlaces, searchGeocoder]);
 
-  // Debounced search on input change
+  /* ── Debounced search on input change ──────────────────────────────────── */
   const handleInputChange = useCallback((e) => {
     const value = e.target.value;
     setQuery(value);
@@ -344,7 +376,6 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
       return;
     }
     if (googleMode === 'none') {
-      // No Google at all — just filter static CITIES
       setSuggestionsActive(true);
       setSearching(false);
       return;
@@ -352,7 +383,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     debounceRef.current = setTimeout(() => searchGoogle(value), DEBOUNCE_MS);
   }, [searchGoogle, googleMode]);
 
-  // Keyboard navigation in suggestions
+  /* ── Keyboard navigation in suggestions ─────────────────────────────────── */
   const handleInputKeyDown = useCallback((e) => {
     if (!suggestionsActive) return;
     const hasResults = googleMode !== 'none'
@@ -379,7 +410,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     }
   }, [suggestionsActive, googleMode, suggestions, fallbackCities, highlightedIndex, searching, handleSuggestionSelect, selectLocation, onClose]);
 
-  // Clear selected location
+  /* ── Clear selected location ───────────────────────────────────────────── */
   const handleClear = useCallback(() => {
     clearLocation();
     useUserLocationStore.getState().clear();
@@ -542,23 +573,23 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
                 <TrendingUp size={12} /> {t('location.results')}
               </p>
 
-              {/* Google suggestions (Places or Geocoder) */}
+              {/* Google suggestions (new Places API or Geocoder) */}
               {showGoogleSuggestions && (
                 <ul role="listbox" aria-label={t('nav.selectLocation')} className="max-h-48 space-y-0.5 overflow-auto">
-                  {suggestions.map((prediction, idx) => (
-                    <li key={prediction.place_id || prediction.description || idx}>
+                  {suggestions.map((norm, idx) => (
+                    <li key={norm.placeId || norm.description || idx}>
                       <button
                         type="button"
                         role="option"
                         aria-selected={idx === highlightedIndex}
                         onMouseDown={(e) => {
                           e.preventDefault();
-                          handleSuggestionSelect(prediction);
+                          handleSuggestionSelect(norm);
                         }}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             e.preventDefault();
-                            handleSuggestionSelect(prediction);
+                            handleSuggestionSelect(norm);
                           }
                         }}
                         onMouseEnter={() => setHighlightedIndex(idx)}
@@ -566,10 +597,10 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
                           idx === highlightedIndex ? 'bg-brand-50 font-semibold text-brand-800' : 'text-gray-700'
                         }`}
                       >
-                        <span className="line-clamp-1">{prediction.structured_formatting?.main_text || prediction.description}</span>
-                        {prediction.structured_formatting?.secondary_text && prediction.structured_formatting.secondary_text !== prediction.structured_formatting?.main_text && (
+                        <span className="line-clamp-1">{norm.mainText || norm.description}</span>
+                        {norm.secondaryText && norm.secondaryText !== norm.mainText && (
                           <span className="block text-xs text-gray-400 line-clamp-1">
-                            {prediction.structured_formatting.secondary_text}
+                            {norm.secondaryText}
                           </span>
                         )}
                       </button>
