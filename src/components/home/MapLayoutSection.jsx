@@ -438,7 +438,7 @@ export default function MapLayoutSection({ compact = true }) {
                 syncMapPhase(phase);
               }}
             />
-            <div className="pointer-events-none absolute left-3 top-14 z-10 w-[150px] sm:left-5 sm:top-[82px] sm:w-[180px] lg:w-[220px]">
+            <div className="pointer-events-none absolute left-2 top-14 z-10 w-[120px] sm:left-5 sm:top-[82px] sm:w-[180px] lg:w-[220px]">
               <div className="flex flex-col gap-1.5 rounded-lg border border-white/15 bg-black/55 p-2 backdrop-blur-sm">
                 {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (
                   <div
@@ -504,7 +504,7 @@ export default function MapLayoutSection({ compact = true }) {
             </div>
 
             {visiblePlots.length > 0 && (
-              <div className="w-40 shrink-0 sm:ml-auto sm:w-full sm:max-w-xs">
+              <div className="w-32 shrink-0 sm:ml-auto sm:w-full sm:max-w-xs">
                 <label htmlFor="board-plot-search" className="sr-only">
                   Search plot number
                 </label>

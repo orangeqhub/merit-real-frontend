@@ -167,7 +167,7 @@ export default function Navbar() {
           aria-label={mobileOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={mobileOpen}
           className="flex shrink-0 items-center justify-center rounded-lg p-2 text-gray-700 hover:bg-gray-100 lg:hidden"
-          style={{ minWidth: 42, minHeight: 42 }}
+          style={{ minWidth: 44, minHeight: 44 }}
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

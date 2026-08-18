@@ -189,7 +189,7 @@ export default function HeroCarousel() {
 
         <form
           onSubmit={handleSearch}
-          className="mt-6 flex w-[calc(100%-2rem)] max-w-[500px] flex-col gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:w-full sm:max-w-4xl sm:flex-row sm:flex-wrap sm:items-center sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:flex-nowrap md:p-4 lg:max-w-[900px]"
+          className="mt-6 flex w-full max-w-[500px] flex-col gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:max-w-4xl sm:flex-row sm:flex-wrap sm:items-center sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:flex-nowrap md:p-4 lg:max-w-[900px]"
         >
           <button
             type="button"

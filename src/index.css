@@ -352,7 +352,10 @@ body.modal-open {
 
 /* Small touch target fix — WCAG 2.5.5 (min 44x44px) */
 @media (pointer: coarse) {
-  button, a, [role="button"], input[type="checkbox"], input[type="radio"] {
+  button, [role="button"], input[type="checkbox"], input[type="radio"] {
+    min-height: 44px;
+  }
+  a:not(.social-link) {
     min-height: 44px;
   }
 }

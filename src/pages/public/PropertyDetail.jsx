@@ -285,7 +285,7 @@ export default function PropertyDetail() {
               <p className="mt-1 flex items-center gap-1 text-sm text-gray-500">
                 <MapPin size={15} />
                 {fullAddress ? (
-                  <span className="font-bold text-gray-800">{fullAddress}</span>
+                  <span className="min-w-0 flex-1 truncate font-bold text-gray-800">{fullAddress}</span>
                 ) : (
                   <span className="lang-te">{location}</span>
                 )}
