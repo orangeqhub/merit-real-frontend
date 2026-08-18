@@ -462,9 +462,9 @@ export default function MapLayoutSection({ compact = true }) {
           id="anne-enclave-plot-board"
           className="scroll-mt-24 rounded-2xl border border-gray-200 bg-white p-3 shadow-sm sm:p-4"
         >
-          <div className="flex flex-wrap items-end justify-between gap-3">
+          <div className="flex items-center gap-2 sm:flex-wrap sm:items-end sm:justify-between sm:gap-3">
             <div
-              className="flex min-w-0 flex-1 cursor-pointer items-start gap-2 select-none"
+              className="flex min-w-0 flex-1 cursor-pointer items-center gap-2 select-none"
               onClick={() => setPlotBoardOpen((v) => !v)}
               role="button"
               tabIndex={0}
@@ -482,11 +482,11 @@ export default function MapLayoutSection({ compact = true }) {
                 }`}
                 aria-hidden
               />
-              <div>
-                <h3 className="text-sm font-semibold text-brand-900">
+              <div className="min-w-0">
+                <h3 className="truncate text-sm font-semibold text-brand-900">
                   Sky line Infra Anne Enclave{phase === 'all' ? '' : ` · Phase ${phase}`}
                 </h3>
-                <p className="mt-1 text-xs text-gray-500">
+                <p className="mt-1 truncate text-xs text-gray-500">
                   {loading
                     ? 'Loading plots…'
                     : visiblePlots.length
@@ -504,7 +504,7 @@ export default function MapLayoutSection({ compact = true }) {
             </div>
 
             {visiblePlots.length > 0 && (
-              <div className="w-full max-w-xs sm:ml-auto">
+              <div className="w-40 shrink-0 sm:ml-auto sm:w-full sm:max-w-xs">
                 <label htmlFor="board-plot-search" className="sr-only">
                   Search plot number
                 </label>
