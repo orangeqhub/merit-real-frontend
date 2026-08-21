@@ -17,6 +17,7 @@ import Ventures from '../pages/public/Ventures';
 import About from '../pages/public/About';
 import Wishlist from '../pages/public/Wishlist';
 import PostPropertyType from '../pages/public/PostPropertyType';
+import PrivacyPolicy from '../pages/public/PrivacyPolicy';
 import Unauthorized from '../pages/public/Unauthorized';
 import NotFound from '../pages/public/NotFound';
 
@@ -171,6 +172,7 @@ export default function AppRoutes() {
           <Route path="/register/:role" element={<Navigate to="/register" replace />} />
           <Route path="/login" element={<Login />} />
           <Route path="/application-status" element={<ApplicationStatus />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
         </Route>
 
         <Route path="/buyer" element={<DashboardRoute role="buyer" roles={['buyer', 'customer']} />}>
