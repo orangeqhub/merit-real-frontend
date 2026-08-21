@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAuthStore } from '../../store/authStore';
 import { userService } from '../../services/userService';
@@ -162,10 +163,25 @@ export default function ProfileForm() {
       <button
         type="submit"
         disabled={saving}
-        className="rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60"
+        className="rounded-lg bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-60 cursor-pointer"
       >
         {saving ? t('buttons.saving', { ns: 'common', defaultValue: 'Saving…' }) : t('buttons.save', { ns: 'common', defaultValue: 'Save' })}
       </button>
+
+      <div className="pt-6 border-t border-gray-200 mt-6">
+        <h3 className="text-sm font-semibold text-red-700">Danger Zone</h3>
+        <p className="mt-1 text-xs text-gray-500">
+          Request to permanently delete your account and associated data.
+        </p>
+        <div className="mt-3">
+          <Link
+            to="/delete-account"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-red-200 bg-red-50 px-3.5 py-2 text-xs font-semibold text-red-700 hover:bg-red-100 transition-colors"
+          >
+            Delete Account Request
+          </Link>
+        </div>
+      </div>
     </form>
   );
 }
