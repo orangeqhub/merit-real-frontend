@@ -1,12 +1,16 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, Search, X, Clock, TrendingUp, Loader2, Navigation } from 'lucide-react';
-import { CITIES } from '../../data/locations';
 import { useLocationStore } from '../../store/locationStore';
 import { useUserLocationStore } from '../../store/userLocationStore';
 import { loadGoogleMaps, isPlacesAvailable } from '../../utils/googleMapsLoader';
 
 const DEBOUNCE_MS = 350;
+// Suggestions start firing automatically once the user has typed this many letters
+const MIN_QUERY_LENGTH = 2;
+// Set once Places autocomplete fails with a permission error so we stop
+// retrying a doomed RPC on every keystroke and fall through instantly.
+let placesApiBroken = false;
 
 /* ── Address-component helpers ───────────────────────────────────────────── */
 
@@ -22,8 +26,11 @@ function findComponent(components, type) {
 
 function getCityFromComponents(components) {
   return findComponent(components, 'locality')
+    || findComponent(components, 'postal_town')
+    || findComponent(components, 'colloquial_area')
     || findComponent(components, 'sublocality')
     || findComponent(components, 'sublocality_level_1')
+    || findComponent(components, 'administrative_area_level_3')
     || findComponent(components, 'administrative_area_level_2')
     || findComponent(components, 'administrative_area_level_1')
     || '';
@@ -88,13 +95,58 @@ function normaliseSuggestion(suggestion) {
   };
 }
 
+/**
+ * Convert a Photon (OpenStreetMap) GeoJSON feature into the same internal
+ * shape as Geocoder results so selection code stays uniform.
+ */
+function photonToSuggestion(feature) {
+  const p = feature?.properties || {};
+  const coords = feature?.geometry?.coordinates || [];
+  const lng = Number(coords[0]);
+  const lat = Number(coords[1]);
+  // Drop "(Urban)"-style qualifiers so the stored city matches property data
+  const clean = (value) => (value ? String(value).replace(/\s*\([^)]*\)\s*$/, '').trim() : '');
+
+  const comps = [];
+  const push = (value, type) => {
+    const v = clean(value);
+    if (v) comps.push({ long_name: v, short_name: v, types: [type] });
+  };
+  push(p.city || p.town || p.village || p.municipality || p.county, 'locality');
+  push(p.district || p.suburb || p.neighbourhood, 'sublocality');
+  push(p.state, 'administrative_area_level_1');
+
+  const mainText = clean(p.name);
+  const secondaryParts = [p.city || p.county, p.state, p.country]
+    .map(clean)
+    .filter((part, i, arr) => part && part !== mainText && arr.indexOf(part) === i);
+  const secondaryText = secondaryParts.join(', ');
+  const description = [mainText, secondaryText].filter(Boolean).join(', ');
+
+  return normaliseSuggestion({
+    placePrediction: {
+      placeId: p.osm_id != null ? `photon-${p.osm_type || 'n'}-${p.osm_id}` : null,
+      text: { text: description },
+      mainText: { text: mainText },
+      secondaryText: { text: secondaryText },
+      types: p.osm_value ? [p.osm_value] : [],
+      formatted_address: description,
+      address_components: comps,
+      geometry: Number.isFinite(lat) && Number.isFinite(lng) ? { location: { lat, lng } } : null,
+    },
+  });
+}
+
 /* ── Component ───────────────────────────────────────────────────────────── */
 
 /**
  * Shared "Select Location" panel used by the Navbar.
- * 1. Uses new AutocompleteSuggestion.fetchAutocompleteSuggestions for predictions.
- * 2. Falls back to Google Geocoder if Places API is not enabled.
- * 3. Falls back to static CITIES list if Google Maps is unavailable.
+ * Search cascade (first source that returns results wins):
+ * 1. Places API autocomplete (new) — skipped once it fails with a permission error.
+ * 2. Google Geocoder (JS API) — good for full addresses, weak on short prefixes.
+ * 3. Photon (OpenStreetMap) — excellent 2-4 letter prefix matching, no key needed.
+ * No static city list — every result comes from a live search that
+ * fires automatically once at least MIN_QUERY_LENGTH letters are typed.
  */
 export default function LocationPickerModal({ open, onClose, triggerRef }) {
   const { t } = useTranslation('common');
@@ -107,7 +159,6 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
 
   const [query, setQuery] = useState('');
   const [suggestions, setSuggestions] = useState([]);
-  const [googleMode, setGoogleMode] = useState('idle'); // 'idle' | 'places' | 'geocoder' | 'none'
   const [searching, setSearching] = useState(false);
   const [suggestionsActive, setSuggestionsActive] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
@@ -120,18 +171,15 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
   const sessionTokenRef = useRef(null);
   const abortRef = useRef(0);
 
-  /* ── Load Google Maps + detect Places availability ─────────────────────── */
+  /* ── Load Google Maps + prepare Geocoder fallback ───────────────────────── */
   useEffect(() => {
     if (!open) return undefined;
     let cancelled = false;
     loadGoogleMaps().then((maps) => {
       if (cancelled || !maps) return;
-      if (isPlacesAvailable()) {
-        setGoogleMode('places');
-      } else {
+      if (!isPlacesAvailable()) {
         console.warn('[LocationPicker] Places library unavailable, falling back to Geocoder.');
         geocoderRef.current = new maps.Geocoder();
-        setGoogleMode('geocoder');
       }
     });
     return () => { cancelled = true; };
@@ -207,7 +255,9 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
   /* ── Handle a resolved place (from any source) ─────────────────────────── */
   const handlePlaceSelection = useCallback((result) => {
     const components = result.address_components || [];
-    const city = getCityFromComponents(components);
+    const city = getCityFromComponents(components)
+      || (result.formatted_address || result.description || '').split(',')[0]?.trim()
+      || '';
     if (!city) return;
     const state = getStateFromComponents(components);
     const area = getAreaFromComponents(components);
@@ -234,9 +284,11 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
   const handleSuggestionSelect = useCallback(async (norm) => {
     if (!norm) return;
 
-    // Geocoder results already have address_components
-    if (norm._raw?.address_components) {
-      handlePlaceSelection(norm._raw);
+    // Geocoder / Nominatim results already have address_components
+    // (either directly on _raw or nested under placePrediction)
+    const raw = norm._raw?.address_components ? norm._raw : norm._raw?.placePrediction;
+    if (raw?.address_components) {
+      handlePlaceSelection(raw);
       return;
     }
 
@@ -289,66 +341,97 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     }
   }, [handlePlaceSelection, selectLocation, onClose, refreshSessionToken]);
 
-  const fallbackCities = useMemo(() => {
-    if (!query.trim()) return CITIES;
-    const term = query.trim().toLowerCase();
-    return CITIES.filter((c) => c.toLowerCase().includes(term));
-  }, [query]);
-
   /* ── New Places search: AutocompleteSuggestion.fetchAutocompleteSuggestions ── */
   const searchPlaces = useCallback(async (searchQuery, requestId) => {
-    if (!isPlacesAvailable()) {
-      console.debug('[LocationPicker] Places API not available, skipping autocomplete');
-      return false;
-    }
-    console.debug('[LocationPicker] autocomplete input:', searchQuery);
+    if (!isPlacesAvailable() || placesApiBroken) return 'unavailable';
     try {
       const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: searchQuery,
         includedRegionCodes: ['in'],
         sessionToken: sessionTokenRef.current,
       });
-      console.debug('[LocationPicker] suggestions:', response?.suggestions);
-      if (requestId !== abortRef.current) return true;
+      if (requestId !== abortRef.current) return 'stale';
       setSearching(false);
       const raw = response?.suggestions || [];
       setSuggestions(raw.map(normaliseSuggestion));
-      return true;
+      return raw.length > 0 ? 'ok' : 'empty';
     } catch (err) {
       console.warn('[LocationPicker] fetchAutocompleteSuggestions failed:', err);
-      if (requestId !== abortRef.current) return true;
-      setSearching(false);
-      setSuggestions([]);
-      return true;
+      // Permission/RPC errors mean this key can't use Places — remember and skip.
+      placesApiBroken = true;
+      if (requestId !== abortRef.current) return 'stale';
+      return 'failed';
     }
   }, []);
 
   /* ── Geocoder fallback search ──────────────────────────────────────────── */
-  const searchGeocoder = useCallback((searchQuery, requestId) => {
+  const searchGeocoder = useCallback((searchQuery, requestId) => new Promise((resolve) => {
+    if (!geocoderRef.current && window.google?.maps?.Geocoder) {
+      geocoderRef.current = new window.google.maps.Geocoder();
+    }
     const geocoder = geocoderRef.current;
-    if (!geocoder) return false;
+    if (!geocoder) {
+      resolve('unavailable');
+      return;
+    }
     geocoder.geocode(
       { address: searchQuery, componentRestrictions: { country: 'in' } },
       (results, status) => {
-        if (requestId !== abortRef.current) return;
+        if (requestId !== abortRef.current) {
+          resolve('stale');
+          return;
+        }
         setSearching(false);
         if (status === 'OK' && results?.length) {
           setSuggestions(results.map((r) => {
             const place = geocoderResultToPlace(r);
             return normaliseSuggestion({ placePrediction: { ...place, placeId: place.place_id, mainText: { text: place.structured_formatting.main_text }, secondaryText: { text: place.structured_formatting.secondary_text }, text: { text: place.description } } });
           }));
+          resolve('ok');
         } else {
-          setSuggestions([]);
+          resolve('empty');
         }
       },
     );
-    return true;
+  }), []);
+
+  /* ── Photon (OpenStreetMap) fallback search ────────────────────────────── */
+  // Used when Places autocomplete and the Google Geocoder fail or return
+  // nothing. Photon is an autocomplete-oriented OSM service: it matches
+  // short prefixes (2-4 letters) far better than Nominatim or the Geocoder
+  // and needs no API key. Bounded to India via bbox.
+  const searchPhoton = useCallback(async (searchQuery, requestId) => {
+    try {
+      const url = `https://photon.komoot.io/api/?q=${encodeURIComponent(searchQuery)}&limit=6&lang=en&bbox=68.1,6.0,97.4,35.6`;
+      const res = await fetch(url, { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const data = await res.json();
+      if (requestId !== abortRef.current) return;
+      setSearching(false);
+      // Photon often returns both a city and its district boundary — keep first of each
+      const seen = new Set();
+      const unique = ((data && data.features) || [])
+        .map(photonToSuggestion)
+        .filter((norm) => {
+          const key = norm.description.toLowerCase();
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      setSuggestions(unique);
+    } catch (err) {
+      console.warn('[LocationPicker] Photon search failed:', err);
+      if (requestId !== abortRef.current) return;
+      setSearching(false);
+      setSuggestions([]);
+    }
   }, []);
 
   /* ── Unified search dispatcher ──────────────────────────────────────────── */
+  // Cascade: Places autocomplete → Google Geocoder → Photon (OSM).
   const searchGoogle = useCallback((searchQuery) => {
     const trimmed = searchQuery.trim();
-    if (trimmed.length < 1) {
+    if (trimmed.length < MIN_QUERY_LENGTH) {
       setSuggestions([]);
       setSuggestionsActive(false);
       setSearching(false);
@@ -361,59 +444,46 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
     setSuggestionsActive(true);
     setHighlightedIndex(-1);
 
-    if (!searchPlaces(trimmed, requestId)) {
-      if (!searchGeocoder(trimmed, requestId)) {
-        setSearching(false);
-      }
-    }
-  }, [searchPlaces, searchGeocoder]);
+    (async () => {
+      let status = await searchPlaces(trimmed, requestId);
+      if (status === 'ok' || status === 'stale') return;
+      status = await searchGeocoder(trimmed, requestId);
+      if (status === 'ok' || status === 'stale') return;
+      await searchPhoton(trimmed, requestId);
+    })();
+  }, [searchPlaces, searchGeocoder, searchPhoton]);
 
   /* ── Debounced search on input change ──────────────────────────────────── */
+  // Fires automatically once the query reaches MIN_QUERY_LENGTH letters.
   const handleInputChange = useCallback((e) => {
     const value = e.target.value;
     setQuery(value);
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (!value.trim()) {
+    if (value.trim().length < MIN_QUERY_LENGTH) {
       setSuggestions([]);
       setSuggestionsActive(false);
       setSearching(false);
       setHighlightedIndex(-1);
       return;
     }
-    if (googleMode === 'none') {
-      setSuggestionsActive(true);
-      setSearching(false);
-      return;
-    }
     debounceRef.current = setTimeout(() => searchGoogle(value), DEBOUNCE_MS);
-  }, [searchGoogle, googleMode]);
+  }, [searchGoogle]);
 
   /* ── Keyboard navigation in suggestions ─────────────────────────────────── */
   const handleInputKeyDown = useCallback((e) => {
-    if (!suggestionsActive) return;
-    const hasResults = googleMode !== 'none'
-      ? suggestions.length > 0
-      : fallbackCities.length > 0;
-    if (!hasResults && !searching) return;
+    if (!suggestionsActive || suggestions.length === 0) return;
 
     if (e.key === 'ArrowDown') {
       e.preventDefault();
-      const max = googleMode !== 'none' ? suggestions.length : fallbackCities.length;
-      setHighlightedIndex((prev) => (prev + 1) % max);
+      setHighlightedIndex((prev) => (prev + 1) % suggestions.length);
     } else if (e.key === 'ArrowUp') {
       e.preventDefault();
-      const max = googleMode !== 'none' ? suggestions.length : fallbackCities.length;
-      setHighlightedIndex((prev) => (prev <= 0 ? max - 1 : prev - 1));
-    } else if (e.key === 'Enter' && highlightedIndex >= 0) {
+      setHighlightedIndex((prev) => (prev <= 0 ? suggestions.length - 1 : prev - 1));
+    } else if (e.key === 'Enter' && highlightedIndex >= 0 && suggestions[highlightedIndex]) {
       e.preventDefault();
-      if (googleMode !== 'none' && suggestions[highlightedIndex]) {
-        handleSuggestionSelect(suggestions[highlightedIndex]);
-      } else if (googleMode === 'none' && fallbackCities[highlightedIndex]) {
-        selectLocation(fallbackCities[highlightedIndex]);
-        onClose();
-      }
+      handleSuggestionSelect(suggestions[highlightedIndex]);
     }
-  }, [suggestionsActive, googleMode, suggestions, fallbackCities, highlightedIndex, searching, handleSuggestionSelect, selectLocation, onClose]);
+  }, [suggestionsActive, suggestions, highlightedIndex, handleSuggestionSelect]);
 
   /* ── Clear selected location ───────────────────────────────────────────── */
   const handleClear = useCallback(() => {
@@ -424,9 +494,9 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
 
   if (!open) return null;
 
-  const showGoogleSuggestions = googleMode !== 'none' && suggestions.length > 0;
-  const showFallbackCities = googleMode === 'none' || (googleMode !== 'none' && !searching && suggestions.length === 0 && query.trim());
-  const showNoResults = googleMode !== 'none' && !searching && suggestions.length === 0 && query.trim();
+  const showGoogleSuggestions = suggestions.length > 0;
+  const queryLength = query.trim().length;
+  const showNoResults = !searching && !showGoogleSuggestions && queryLength >= MIN_QUERY_LENGTH;
 
   return (
     <>
@@ -504,10 +574,6 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
           )}
         </div>
 
-        <p className="mb-2 text-center text-[11px] font-medium uppercase tracking-wide text-gray-400">
-          {t('location.orPickCity')}
-        </p>
-
         {/* Search input */}
         <div className="relative">
           <Search size={16} className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
@@ -520,7 +586,7 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
             placeholder={t('location.searchPlaceholder')}
             aria-label={t('location.searchPlaceholder')}
             aria-autocomplete="list"
-            aria-expanded={suggestionsActive && (suggestions.length > 0 || fallbackCities.length > 0 || searching)}
+            aria-expanded={suggestionsActive && (suggestions.length > 0 || searching)}
             className="w-full rounded-lg border border-gray-300 py-2 pl-9 pr-3 text-sm"
           />
           {searching && (
@@ -570,15 +636,15 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
           </div>
         )}
 
-        {/* Suggestions / Cities */}
+        {/* Suggestions (search results only — no static list) */}
         <div className="mt-3">
-          {query ? (
+          {queryLength >= MIN_QUERY_LENGTH && (
             <>
               <p className="mb-1.5 flex items-center gap-1 text-xs font-semibold uppercase text-gray-400">
                 <TrendingUp size={12} /> {t('location.results')}
               </p>
 
-              {/* Google suggestions (new Places API or Geocoder) */}
+              {/* Live search suggestions (Places API → Geocoder → Nominatim) */}
               {showGoogleSuggestions && (
                 <ul role="listbox" aria-label={t('nav.selectLocation')} className="max-h-48 space-y-0.5 overflow-auto">
                   {suggestions.map((norm, idx) => (
@@ -614,67 +680,16 @@ export default function LocationPickerModal({ open, onClose, triggerRef }) {
                 </ul>
               )}
 
-              {/* No Google results */}
               {showNoResults && (
                 <p className="py-4 text-center text-sm text-gray-400">{t('location.noResults', 'No locations found')}</p>
               )}
+            </>
+          )}
 
-              {/* Fallback to static CITIES when Google not available */}
-              {showFallbackCities && googleMode === 'none' && (
-                fallbackCities.length > 0 ? (
-                  <ul role="listbox" aria-label={t('nav.selectLocation')} className="max-h-48 space-y-0.5 overflow-auto">
-                    {fallbackCities.map((city, idx) => (
-                      <li key={city}>
-                        <button
-                          type="button"
-                          role="option"
-                          aria-selected={city === selectedLocation || idx === highlightedIndex}
-                          onMouseDown={(e) => {
-                            e.preventDefault();
-                            selectLocation(city);
-                            onClose();
-                          }}
-                          className={`block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-brand-50 ${
-                            city === selectedLocation ? 'bg-brand-50 font-semibold text-brand-800' : 'text-gray-700'
-                          }`}
-                        >
-                          {city}
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="py-4 text-center text-sm text-gray-400">{t('empty.noResults')}</p>
-                )
-              )}
-            </>
-          ) : (
-            <>
-              <p className="mb-1.5 flex items-center gap-1 text-xs font-semibold uppercase text-gray-400">
-                <TrendingUp size={12} /> {t('location.popular')}
-              </p>
-              <ul role="listbox" aria-label={t('nav.selectLocation')} className="max-h-48 space-y-0.5 overflow-auto">
-                {CITIES.map((city) => (
-                  <li key={city}>
-                    <button
-                      type="button"
-                      role="option"
-                      aria-selected={city === selectedLocation}
-                      onMouseDown={(e) => {
-                        e.preventDefault();
-                        selectLocation(city);
-                        onClose();
-                      }}
-                      className={`block w-full rounded-lg px-3 py-2 text-left text-sm hover:bg-brand-50 ${
-                        city === selectedLocation ? 'bg-brand-50 font-semibold text-brand-800' : 'text-gray-700'
-                      }`}
-                    >
-                      {city}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </>
+          {(queryLength === 0 || queryLength < MIN_QUERY_LENGTH) && !searching && (
+            <p className="flex items-center justify-center gap-1.5 py-6 text-center text-sm text-gray-400">
+              <Search size={14} /> {t('location.typeToSearch')}
+            </p>
           )}
         </div>
       </div>

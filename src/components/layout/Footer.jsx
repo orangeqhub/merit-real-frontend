@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import { cmsService } from '../../services/cmsService';
@@ -121,15 +120,9 @@ export default function Footer() {
 
       <div className="border-t border-brand-800 px-4 py-3">
         <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-3 sm:flex-row">
-          <div className="flex flex-col items-center gap-1.5 sm:flex-row sm:gap-3 text-center sm:text-left">
-            <p className="text-xs text-brand-300">
-              &copy; {new Date().getFullYear()} {t('brand.name')}. {t('footer.rights')}
-            </p>
-            <span className="hidden sm:inline text-brand-750 text-xs text-brand-300">•</span>
-            <Link to="/privacy-policy" className="text-xs text-brand-300 hover:text-warm-white hover:underline transition-colors">
-              Privacy Policy
-            </Link>
-          </div>
+          <p className="text-center text-xs text-brand-300 sm:text-left">
+            &copy; {new Date().getFullYear()} {t('brand.name')}. {t('footer.rights')}
+          </p>
           <div className="flex items-center gap-2">
             {SOCIAL_LINKS.map(({ icon: Icon, label, href }) => (
               <a

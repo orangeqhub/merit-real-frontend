@@ -2,14 +2,7 @@ import { loaderService } from '../store/loaderStore';
 
 /** Canonical production API origin for uploads & media. */
 // export const SERVER_ORIGIN = 'http://localhost:3001';
-//export const SERVER_ORIGIN = 'http://187.127.163.100:3500';
-
-export const SERVER_ORIGIN = (
-  import.meta.env.VITE_API_BASE_URL ||
-  'https://api.meritrealsolutions.in/api'
-).replace(/\/api\/?$/, '');
-
-
+export const SERVER_ORIGIN = 'http://187.127.163.100:3500';
 
 const BAD_HOST_RE =
   /^(your_server_ip|localhost|127\.0\.0\.1)$/i;

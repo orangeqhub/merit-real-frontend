@@ -84,10 +84,10 @@ export const MAP_LAYOUT_URL = (
 ).replace(/\/$/, '');
 
 export const PLOT_STATUS_COLORS = {
-  available: '#A5D66A',
-  booked: '#FFD54F',
-  registered: '#42A5F5',
-  sold: '#EF5350',
+  available: '#22C55E',
+  booked: '#22C55E',
+  registered: '#22C55E',
+  sold: '#22C55E',
 };
 
 export const PLOT_STATUS_LABELS = {
@@ -99,9 +99,9 @@ export const PLOT_STATUS_LABELS = {
 
 export const PLOT_TYPE_COLORS = {
   residential: null,
-  amenities: '#F48FB1',
-  commercial: '#FFB74D',
-  mortgage: '#CE93D8',
+  amenities: '#22C55E',
+  commercial: '#22C55E',
+  mortgage: '#22C55E',
 };
 
 export const PLOT_TYPE_LABELS = {

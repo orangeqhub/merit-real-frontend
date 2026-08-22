@@ -25,6 +25,7 @@ function normaliseSuggestion(suggestion) {
     secondaryText: pred.secondaryText?.text || '',
     types: pred.types || [],
     _raw: suggestion,
+    _geometry: suggestion._geometry || null,
   };
 }
 
@@ -190,26 +191,66 @@ export default function MapLocationPicker({ value = '', onChange }) {
 
   /* ── New Places autocomplete search ─────────────────────────────── */
   const searchPlacesAsync = useCallback(async (searchQuery, requestId) => {
-    if (!isPlacesAvailable()) return false;
+    if (!isPlacesAvailable()) return 'unavailable';
     try {
       const response = await window.google.maps.places.AutocompleteSuggestion.fetchAutocompleteSuggestions({
         input: searchQuery,
         includedRegionCodes: ['in'],
         sessionToken: sessionTokenRef.current,
       });
-      if (requestId !== abortRef.current) return true;
+      if (requestId !== abortRef.current) return 'stale';
       setSearching(false);
-      setSuggestions((response?.suggestions || []).map(normaliseSuggestion));
+      const raw = response?.suggestions || [];
+      setSuggestions(raw.map(normaliseSuggestion));
       setShowDropdown(true);
-      return true;
+      return raw.length > 0 ? 'ok' : 'empty';
     } catch (err) {
       console.warn('[MapLocationPicker] fetchAutocompleteSuggestions failed:', err);
-      if (requestId !== abortRef.current) return true;
-      setSearching(false);
-      setSuggestions([]);
-      return true;
+      if (requestId !== abortRef.current) return 'stale';
+      return 'failed';
     }
   }, []);
+
+  /* ── Geocoder fallback for dropdown suggestions ─────────────────── */
+  const searchGeocoderSuggestions = useCallback((searchQuery, requestId) => {
+    if (!isGoogleMapsAvailable()) return false;
+    const geocoder = new window.google.maps.Geocoder();
+    geocoder.geocode(
+      { address: searchQuery, componentRestrictions: { country: 'in' } },
+      (results, status) => {
+        if (requestId !== abortRef.current) return;
+        setSearching(false);
+        if (status === 'OK' && results?.length) {
+          setSuggestions(results.map((r) => {
+            const pred = {
+              placeId: r.place_id,
+              text: { text: r.formatted_address },
+              mainText: { text: r.formatted_address.split(',')[0] || r.formatted_address },
+              secondaryText: { text: r.formatted_address.split(',').slice(1).join(',').trim() },
+              types: r.types || [],
+            };
+            return normaliseSuggestion({ placePrediction: pred, _geometry: r.geometry?.location || null });
+          }));
+          setShowDropdown(true);
+        } else {
+          setSuggestions([]);
+          setShowDropdown(true);
+        }
+      }
+    );
+    return true;
+  }, []);
+
+  /* ── Places first, Geocoder fallback ────────────────────────────── */
+  const runSearch = useCallback(async (searchQuery, requestId) => {
+    const status = await searchPlacesAsync(searchQuery, requestId);
+    if (status === 'ok' || status === 'stale') return;
+    if (!searchGeocoderSuggestions(searchQuery, requestId)) {
+      if (requestId !== abortRef.current) return;
+      setSearching(false);
+      if (status !== 'empty') setSuggestions([]);
+    }
+  }, [searchPlacesAsync, searchGeocoderSuggestions]);
 
   /* ── Handle input change — debounced search ──────────────────────── */
   const handleInputChange = useCallback((e) => {
@@ -217,22 +258,37 @@ export default function MapLocationPicker({ value = '', onChange }) {
     setQuery(value);
     setError('');
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    if (!value.trim() || !isPlacesAvailable()) {
+    if (!value.trim()) {
       setSuggestions([]);
       setShowDropdown(false);
       setSearching(false);
       return;
     }
     setSearching(true);
+    setShowDropdown(true);
     const requestId = ++abortRef.current;
-    debounceRef.current = setTimeout(() => searchPlacesAsync(value.trim(), requestId), DEBOUNCE_MS);
-  }, [searchPlacesAsync]);
+    debounceRef.current = setTimeout(() => runSearch(value.trim(), requestId), DEBOUNCE_MS);
+  }, [runSearch]);
 
   /* ── Handle suggestion selection ─────────────────────────────────── */
   const handleSuggestionSelect = useCallback(async (norm) => {
     setShowDropdown(false);
     setSuggestions([]);
     setQuery(norm.mainText || norm.description || '');
+
+    // Geocoder-fallback results carry geometry directly
+    if (norm._geometry) {
+      const loc = norm._geometry;
+      const newCoords = {
+        lat: typeof loc.lat === 'function' ? loc.lat() : loc.lat,
+        lng: typeof loc.lng === 'function' ? loc.lng() : loc.lng,
+      };
+      setCoords(newCoords);
+      setSelectedAddress(norm.description || norm.mainText);
+      if (markerInstance.current) markerInstance.current.setPosition(new window.google.maps.LatLng(newCoords.lat, newCoords.lng));
+      if (mapInstance.current) mapInstance.current.setCenter(new window.google.maps.LatLng(newCoords.lat, newCoords.lng));
+      return;
+    }
 
     if (norm.placeId && isPlacesAvailable()) {
       try {

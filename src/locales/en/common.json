@@ -127,6 +127,7 @@
     "yourLocation": "Your Location",
     "showingNearby": "✓ Showing nearby properties",
     "orPickCity": "OR pick a city",
+    "typeToSearch": "Type at least 2 letters to search for a location",
     "permissionDenied": "Location permission was denied. Please allow location access to find nearby properties.",
     "tryAgain": "Try Again",
     "unavailable": "Unable to detect your location. Please try again or pick a city manually.",
