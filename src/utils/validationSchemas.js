@@ -13,17 +13,23 @@ export const registrationSchema = z
     district: z.string().min(1, 'validation.required'),
     city: z.string().min(1, 'validation.required'),
     address: z.string().min(1, 'validation.required'),
-    occupation: z
-      .string()
-      .trim()
-      .min(1, 'validation.required'),
+    occupation: z.string().trim().optional().or(z.literal('')),
     aadhaarNumber: z
       .string()
-      .min(1, 'validation.required')
-      .regex(/^\d{12}$/, 'validation.invalidAadhaar'),
+      .optional()
+      .or(z.literal(''))
+      .refine((val) => !val || /^\d{12}$/.test(val), {
+        message: 'validation.invalidAadhaar',
+      }),
     panNumber: z.preprocess(
       (val) => String(val ?? '').toUpperCase().replace(/[^A-Z0-9]/g, ''),
-      z.string().min(1, 'validation.required').regex(/^[A-Z]{5}[0-9]{4}[A-Z]$/, 'validation.invalidPan')
+      z
+        .string()
+        .optional()
+        .or(z.literal(''))
+        .refine((val) => !val || /^[A-Z]{5}[0-9]{4}[A-Z]$/.test(val), {
+          message: 'validation.invalidPan',
+        })
     ),
     role: z.enum(['customer', 'agent', 'sales_member']).default('customer'),
     agentCategoryId: z.union([z.string(), z.number()]).optional().or(z.literal('')),

@@ -112,28 +112,19 @@ export default function Register() {
 
   async function onSubmitForm(data) {
     setFileError('');
-    if (!aadhaarProof?.file) {
-      setFileError(t('registration.aadhaarProofRequired', { defaultValue: 'Aadhaar proof document is required.' }));
-      return;
-    }
-    if (!panProof?.file) {
-      setFileError(t('registration.panProofRequired', { defaultValue: 'PAN proof document is required.' }));
-      return;
-    }
-
     setSubmitting(true);
     try {
       const { acceptTerms: _acceptTerms, confirmPassword: _confirmPassword, role, ...rest } = data;
       const registerRole = isCustomerIntent ? 'customer' : role;
       await registrationService.register(registerRole, {
         ...rest,
-        aadhaarNumber: String(rest.aadhaarNumber || '').replace(/\D/g, ''),
-        panNumber: String(rest.panNumber || '').toUpperCase(),
-        occupation: String(rest.occupation || '').trim(),
+        aadhaarNumber: rest.aadhaarNumber ? String(rest.aadhaarNumber).replace(/\D/g, '') : undefined,
+        panNumber: rest.panNumber ? String(rest.panNumber).toUpperCase() : undefined,
+        occupation: rest.occupation ? String(rest.occupation).trim() : undefined,
         agentCategoryId: registerRole === 'agent' ? Number(rest.agentCategoryId) || undefined : undefined,
         profilePhoto: profilePhoto?.file || undefined,
-        aadhaarProof: aadhaarProof.file,
-        panProof: panProof.file,
+        aadhaarProof: aadhaarProof?.file || undefined,
+        panProof: panProof?.file || undefined,
         referralAgentCode: selectedReferralAgent?.memberId || undefined,
         referralAgentId: selectedReferralAgent?.id || undefined,
       });
@@ -230,14 +221,13 @@ export default function Register() {
         <div>
           <label htmlFor="occupation" className="mb-1.5 block text-sm font-medium text-gray-700">
             {t('registration.occupation', { defaultValue: 'Occupation' })}
-            <span className="text-red-500"> *</span>
           </label>
           <input
             id="occupation"
             {...register('occupation')}
             className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
             placeholder={t('registration.occupationPlaceholder', {
-              defaultValue: 'e.g. Software Engineer, Business Owner, Teacher',
+              defaultValue: 'e.g. Software Engineer, Business Owner (Optional)',
             })}
           />
           {errors.occupation && <p className="mt-1 text-xs text-red-600">{t(errors.occupation.message)}</p>}
@@ -247,7 +237,6 @@ export default function Register() {
           <div>
             <label htmlFor="aadhaarNumber" className="mb-1.5 block text-sm font-medium text-gray-700">
               {t('registration.aadhaarNumber', { defaultValue: 'Aadhaar Card Number' })}
-              <span className="text-red-500"> *</span>
             </label>
             <input
               id="aadhaarNumber"
@@ -259,14 +248,13 @@ export default function Register() {
                 },
               })}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
-              placeholder="123456789012"
+              placeholder="123456789012 (Optional)"
             />
             {errors.aadhaarNumber && <p className="mt-1 text-xs text-red-600">{t(errors.aadhaarNumber.message)}</p>}
           </div>
           <div>
             <label htmlFor="panNumber" className="mb-1.5 block text-sm font-medium text-gray-700">
               {t('registration.panNumber', { defaultValue: 'PAN Card Number' })}
-              <span className="text-red-500"> *</span>
             </label>
             <input
               id="panNumber"
@@ -277,7 +265,7 @@ export default function Register() {
                 },
               })}
               className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm uppercase"
-              placeholder="ABCDE1234F"
+              placeholder="ABCDE1234F (Optional)"
             />
             {errors.panNumber && <p className="mt-1 text-xs text-red-600">{t(errors.panNumber.message)}</p>}
           </div>
@@ -382,15 +370,15 @@ export default function Register() {
 
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <DocumentUploader
-              label={t('registration.aadhaarProof', { defaultValue: 'Aadhaar Proof (Mandatory)' })}
-              required
+              label={t('registration.aadhaarProof', { defaultValue: 'Aadhaar Proof (Optional)' })}
+              required={false}
               accept={DOC_ACCEPT}
               document={aadhaarProof}
               onUpload={handleDocUpload(setAadhaarProof)}
             />
             <DocumentUploader
-              label={t('registration.panProof', { defaultValue: 'PAN Proof (Mandatory)' })}
-              required
+              label={t('registration.panProof', { defaultValue: 'PAN Proof (Optional)' })}
+              required={false}
               accept={DOC_ACCEPT}
               document={panProof}
               onUpload={handleDocUpload(setPanProof)}

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, useCallback } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MapPin, X } from 'lucide-react';
 import { readJSON, writeJSON, STORAGE_KEYS } from '../../utils/storage';
+import { useUserLocationStore } from '../../store/userLocationStore';
 
 const POPUP_DELAY_MS = 5000;
 
@@ -67,11 +68,7 @@ export default function LocationPermissionPopup() {
 
   function requestLocation() {
     if (typeof navigator !== 'undefined' && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        () => {},
-        () => {},
-        { timeout: 8000 }
-      );
+      useUserLocationStore.getState().requestLocation();
     }
   }
 
