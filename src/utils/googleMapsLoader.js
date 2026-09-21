@@ -25,6 +25,20 @@ export function isGoogleMapsAvailable() {
 }
 
 /**
+ * Dev-only diagnostics for troubleshooting API key / origin / library issues.
+ * Never returns the key value itself — only whether one is configured.
+ */
+export function getGoogleMapsDebugInfo() {
+  return {
+    apiKeyLoaded: Boolean(getApiKey()),
+    hostname: window.location.hostname,
+    origin: window.location.origin,
+    mapsLoaded: isGoogleMapsAvailable(),
+    placesLoaded: placesLoaded && isGoogleMapsAvailable(),
+  };
+}
+
+/**
  * Check if the new Places library is available.
  */
 export function isPlacesAvailable() {

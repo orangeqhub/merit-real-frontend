@@ -1,4 +1,4 @@
-import { api, resolveAssetUrl } from '../api/client';
+import { api, resolveAssetUrl, API_BASE_URL } from '../api/client';
 import { getAccessToken } from '../api/session';
 import { readJSON, writeJSON, STORAGE_KEYS } from '../utils/storage';
 
@@ -296,5 +296,58 @@ export const propertyService = {
     } catch {
       return [];
     }
+  },
+
+  /** Admin-only: upload one or more PDF files for a property's Documents section. */
+  async uploadPropertyDocuments(propertyId, files = []) {
+    if (!files.length) return [];
+    const formData = new FormData();
+    files.forEach((file) => formData.append('documents', file));
+    return api(`/properties/${propertyId}/documents`, {
+      method: 'POST',
+      token: getAccessToken(),
+      formData,
+    });
+  },
+
+  /** Admin-only: delete a single property document. */
+  async deletePropertyDocument(propertyId, documentId) {
+    return api(`/properties/${propertyId}/documents/${documentId}`, {
+      method: 'DELETE',
+      token: getAccessToken(),
+    });
+  },
+
+  /**
+   * Fetch a property document as an authenticated request and return an
+   * object URL for viewing/downloading. Requires a logged-in session — the
+   * backend returns 401 for anonymous requests, so the actual file bytes are
+   * never reachable without a valid token.
+   */
+  async fetchPropertyDocumentBlob(propertyId, documentId, { mode = 'attachment' } = {}) {
+    const token = getAccessToken();
+    if (!token) {
+      const err = new Error('Please log in to view or download this document.');
+      err.status = 401;
+      throw err;
+    }
+    const url = `${API_BASE_URL}/properties/${propertyId}/documents/${documentId}${mode === 'inline' ? '?mode=inline' : ''}`;
+    const response = await fetch(url, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      let message = `Unable to open document (${response.status}).`;
+      try {
+        const payload = await response.json();
+        message = payload?.message || message;
+      } catch {
+        // ignore non-JSON error bodies
+      }
+      const err = new Error(message);
+      err.status = response.status;
+      throw err;
+    }
+    const blob = await response.blob();
+    return URL.createObjectURL(blob);
   },
 };

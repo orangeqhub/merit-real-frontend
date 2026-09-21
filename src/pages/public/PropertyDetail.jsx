@@ -15,6 +15,9 @@ import {
   HandHeart,
   ChevronRight,
   Scale,
+  FileText,
+  Download,
+  Lock,
 } from 'lucide-react';
 import { propertyService } from '../../services/propertyService';
 import { cmsService } from '../../services/cmsService';
@@ -57,6 +60,7 @@ export default function PropertyDetail() {
   const [related, setRelated] = useState([]);
   const [cms, setCms] = useState(null);
   const [notFound, setNotFound] = useState(false);
+  const [documentBusyId, setDocumentBusyId] = useState(null);
 
   useEffect(() => {
     let active = true;
@@ -161,6 +165,52 @@ export default function PropertyDetail() {
 
   function handleReport() {
     toast.success('Thank you. This property has been reported to our moderation team.');
+  }
+
+  function requireLoginForDocument() {
+    toast.info('Please login to view or download property documents.');
+    navigate('/login', {
+      state: { from: `/properties/${property.id}`, intent: 'view-document', propertyId: property.id },
+    });
+  }
+
+  async function handleViewDocument(doc) {
+    if (!user) return requireLoginForDocument();
+    setDocumentBusyId(doc.id);
+    try {
+      const blobUrl = await propertyService.fetchPropertyDocumentBlob(property.id, doc.id, { mode: 'inline' });
+      window.open(blobUrl, '_blank', 'noopener,noreferrer');
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+    } catch (err) {
+      toast.error(err.message || 'Unable to open document.');
+    } finally {
+      setDocumentBusyId(null);
+    }
+  }
+
+  async function handleDownloadDocument(doc) {
+    if (!user) return requireLoginForDocument();
+    setDocumentBusyId(doc.id);
+    try {
+      const blobUrl = await propertyService.fetchPropertyDocumentBlob(property.id, doc.id, { mode: 'attachment' });
+      const link = document.createElement('a');
+      link.href = blobUrl;
+      link.download = doc.fileName || 'document.pdf';
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+    } catch (err) {
+      toast.error(err.message || 'Unable to download document.');
+    } finally {
+      setDocumentBusyId(null);
+    }
+  }
+
+  function formatDocumentSize(bytes) {
+    if (!bytes) return '';
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
   function handleFavourite() {
@@ -406,6 +456,56 @@ export default function PropertyDetail() {
                   <span key={a} className="rounded-full bg-brand-50 px-3 py-1.5 text-sm text-brand-800">{a}</span>
                 ))}
               </div>
+            </section>
+          )}
+
+          {property.documents?.length > 0 && (
+            <section className="mt-8">
+              <h2 className="text-lg font-semibold text-brand-800">Documents &amp; Brochures</h2>
+              <ul className="mt-3 space-y-2">
+                {property.documents.map((doc) => (
+                  <li
+                    key={doc.id}
+                    className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-gray-200 p-3"
+                  >
+                    <div className="flex min-w-0 items-center gap-3">
+                      <FileText size={20} className="shrink-0 text-brand-600" aria-hidden />
+                      <div className="min-w-0">
+                        <p className="truncate text-sm font-medium text-gray-800">{doc.fileName}</p>
+                        <p className="text-xs text-gray-500">PDF{doc.fileSize ? ` • ${formatDocumentSize(doc.fileSize)}` : ''}</p>
+                      </div>
+                    </div>
+                    {user ? (
+                      <div className="flex shrink-0 items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={() => handleViewDocument(doc)}
+                          disabled={documentBusyId === doc.id}
+                          className="rounded-lg border border-brand-300 px-3 py-1.5 text-xs font-semibold text-brand-700 hover:bg-brand-50 disabled:opacity-60"
+                        >
+                          {documentBusyId === doc.id ? 'Opening…' : 'View'}
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleDownloadDocument(doc)}
+                          disabled={documentBusyId === doc.id}
+                          className="flex items-center gap-1.5 rounded-lg bg-brand-600 px-3 py-1.5 text-xs font-semibold text-warm-white hover:bg-brand-700 disabled:opacity-60"
+                        >
+                          <Download size={13} /> Download
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={requireLoginForDocument}
+                        className="flex shrink-0 items-center gap-1.5 rounded-lg border border-gray-300 px-3 py-1.5 text-xs font-semibold text-gray-600 hover:bg-gray-50"
+                      >
+                        <Lock size={13} /> Login to view/download
+                      </button>
+                    )}
+                  </li>
+                ))}
+              </ul>
             </section>
           )}
 

@@ -134,7 +134,8 @@
     "browserUnsupported": "Geolocation is not supported on this browser.",
     "deniedHint": "Showing all properties. Enable location to discover nearby properties.",
     "nearYou": "📍 Near You",
-    "kmAway": "📍 {{distance}} km away"
+    "kmAway": "📍 {{distance}} km away",
+    "searchError": "Unable to search locations. Please check your Maps API configuration."
   },
   "accountSelect": {
     "title": "Create New Account",

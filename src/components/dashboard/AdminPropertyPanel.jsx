@@ -15,6 +15,7 @@ import { confirmDialog } from '../../store/confirmStore';
 import MapLocationPicker from '../forms/MapLocationPicker';
 import CategorySpecificFields from '../forms/CategorySpecificFields';
 import PropertyImageGalleryUploader, { buildImageGalleryPayload } from '../forms/PropertyImageGalleryUploader';
+import PropertyDocumentUploader, { buildDocumentPayload } from '../forms/PropertyDocumentUploader';
 import { resolveAssetUrl } from '../../api/client';
 import { resolveCategorySlug, loadCategoryDetailsFromProperty, buildCategoryDetailsPayload } from '../../utils/categoryDetailsUtils';
 import { emptyCategoryDetails } from '../../utils/propertyCategoryFieldConfig';
@@ -69,6 +70,7 @@ export default function AdminPropertyPanel() {
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [imageGallery, setImageGallery] = useState({ items: [], deletedIds: [] });
+  const [documentGallery, setDocumentGallery] = useState({ items: [], deletedIds: [] });
   const [saving, setSaving] = useState(false);
   const [postQueue, setPostQueue] = useState([]);
   const [bulkProgress, setBulkProgress] = useState(null);
@@ -140,6 +142,7 @@ export default function AdminPropertyPanel() {
     setSelected(null);
     setForm({ ...EMPTY_FORM, categoryDetails: {}, categoryDetailsBySlug: {} });
     setImageGallery({ items: [], deletedIds: [] });
+    setDocumentGallery({ items: [], deletedIds: [] });
     setModal('create');
   }
 
@@ -186,6 +189,7 @@ export default function AdminPropertyPanel() {
       categoryDetailsBySlug,
     });
     setImageGallery({ items: [], deletedIds: [] });
+    setDocumentGallery({ items: [], deletedIds: [] });
     setModal('edit');
   }
 
@@ -200,6 +204,7 @@ export default function AdminPropertyPanel() {
     setSelected(null);
     setForm(EMPTY_FORM);
     setImageGallery({ items: [], deletedIds: [] });
+    setDocumentGallery({ items: [], deletedIds: [] });
   }
 
   function updateField(key, value) {
@@ -242,6 +247,7 @@ export default function AdminPropertyPanel() {
   function resetCreateForm() {
     setForm({ ...EMPTY_FORM, categoryDetails: {}, categoryDetailsBySlug: {} });
     setImageGallery({ items: [], deletedIds: [] });
+    setDocumentGallery({ items: [], deletedIds: [] });
     setSelected(null);
   }
 
@@ -292,6 +298,20 @@ export default function AdminPropertyPanel() {
     };
   }
 
+  async function syncDocuments(propertyId) {
+    const { newFiles, deletedIds } = buildDocumentPayload(documentGallery);
+    try {
+      for (const documentId of deletedIds) {
+        await propertyService.deletePropertyDocument(propertyId, documentId);
+      }
+      if (newFiles.length) {
+        await propertyService.uploadPropertyDocuments(propertyId, newFiles);
+      }
+    } catch (err) {
+      toast.error(err.message || 'Failed to save some property documents.');
+    }
+  }
+
   async function submitSingleProperty({ keepOpen = false } = {}) {
     if (submitLockRef.current) return null;
     if (!form.categoryId || !form.titleEn.trim()) {
@@ -306,6 +326,7 @@ export default function AdminPropertyPanel() {
 
       if (modal === 'create') {
         const created = await propertyService.createProperty(payload, newFiles);
+        await syncDocuments(created.id);
         toast.success(t('toast.propertyCreated', { defaultValue: 'Property published successfully.' }));
         if (keepOpen) {
           resetCreateForm();
@@ -318,6 +339,7 @@ export default function AdminPropertyPanel() {
       }
 
       await propertyService.updateProperty(selected.id, payload, newFiles);
+      await syncDocuments(selected.id);
       toast.success(t('toast.propertyUpdated', { defaultValue: 'Property updated successfully.' }));
       closeModal();
       load(page);
@@ -817,6 +839,11 @@ export default function AdminPropertyPanel() {
                 existingImages={modal === 'edit' ? selected?.images : []}
                 value={imageGallery}
                 onChange={setImageGallery}
+              />
+              <PropertyDocumentUploader
+                existingDocuments={modal === 'edit' ? selected?.documents : []}
+                value={documentGallery}
+                onChange={setDocumentGallery}
               />
               <div>
                 <label className="mb-1 block text-xs font-medium text-gray-600">Property Status</label>
