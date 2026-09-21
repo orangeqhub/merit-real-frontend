@@ -1,11 +1,13 @@
 {
   "hero": {
     "heading": "సరైన ఆస్తిని కనుగొనండి. మీ భవిష్యత్తును నిర్మించండి.",
-    "locationPlaceholder": "స్థానం",
-    "categoryPlaceholder": "ఆస్తి వర్గం",
+    "locationPlaceholder": "స్థానం వెతకండి...",
+    "locationSearching": "వెతుకుతోంది...",
+    "locationNoResults": "స్థానాలు కనుగొనబడలేదు",
+    "locationError": "స్థానాలను వెతకడం సాధ్యం కాలేదు.",
+    "detectLocation": "నా స్థానాన్ని గుర్తించు",
     "minPricePlaceholder": "కనీస ధర",
     "maxPricePlaceholder": "గరిష్ట ధర",
-    "allCategories": "అన్ని వర్గాలు",
     "sale": "అమ్మకం"
   },
   "category": {

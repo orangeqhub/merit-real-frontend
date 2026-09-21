@@ -1,14 +1,14 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { ChevronLeft, ChevronRight, Crosshair, Search } from 'lucide-react';
-import { CATEGORIES } from '../../config/categories';
+import { ChevronLeft, ChevronRight, Search } from 'lucide-react';
 import { heroSlideService } from '../../services/heroSlideService';
-import { categoryService } from '../../services/categoryService';
 import { resolveAssetUrl } from '../../api/client';
 import { useLanguageStore } from '../../store/languageStore';
-import { useUserLocationStore } from '../../store/userLocationStore';
 import { HERO_IMAGES } from '../../data/projectImages';
+import HeroLocationSearch from './HeroLocationSearch';
+
+const EMPTY_LOCATION = { query: '', label: '', latitude: null, longitude: null, city: null, state: null, country: null };
 
 const AUTOPLAY_INTERVAL = 3000;
 
@@ -16,15 +16,14 @@ export default function HeroCarousel() {
   const { t } = useTranslation(['properties', 'common']);
   const navigate = useNavigate();
   const language = useLanguageStore((s) => s.language);
-  const userLocation = useUserLocationStore();
   const [slides, setSlides] = useState(() => HERO_IMAGES.map((slide) => ({ ...slide, local: true })));
-  const [categories, setCategories] = useState(CATEGORIES);
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
   const [focused, setFocused] = useState(false);
   const [tabHidden, setTabHidden] = useState(typeof document !== 'undefined' && document.hidden);
   const touchStartX = useRef(null);
-  const [form, setForm] = useState({ categorySlug: '', minPrice: '', maxPrice: '' });
+  const [location, setLocation] = useState(EMPTY_LOCATION);
+  const [form, setForm] = useState({ minPrice: '', maxPrice: '' });
 
   const prefersReducedMotion = useMemo(
     () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -37,9 +36,6 @@ export default function HeroCarousel() {
         if (Array.isArray(list) && list.length > 0) setSlides(list);
       })
       .catch(() => {});
-    categoryService.getPublicCategories()
-      .then((list) => setCategories(Array.isArray(list) ? list : []))
-      .catch(() => setCategories([]));
   }, []);
 
   useEffect(() => {
@@ -86,29 +82,20 @@ export default function HeroCarousel() {
     if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
   }
 
-  useEffect(() => {
-    if (userLocation.label) {
-      setForm((f) => ({ ...f, location: userLocation.label }));
-    }
-  }, [userLocation.label]);
-
   function handleSearch(e) {
     e.preventDefault();
     const params = new URLSearchParams();
-    const locationQuery = form.location || '';
-    if (locationQuery) {
-      params.set('city', locationQuery);
-      params.set('search', locationQuery);
+    const locationText = location.city || location.label || location.query || '';
+    if (locationText) {
+      params.set('city', locationText);
+      params.set('search', locationText);
     }
+    if (location.latitude != null) params.set('lat', String(location.latitude));
+    if (location.longitude != null) params.set('lng', String(location.longitude));
     params.set('transactionType', 'sale');
     if (form.minPrice) params.set('minPrice', form.minPrice);
     if (form.maxPrice) params.set('maxPrice', form.maxPrice);
-    const category = categories.find((c) => c.slug === form.categorySlug);
-    if (category) {
-      navigate(`/properties/category/${category.slug}?${params.toString()}`);
-    } else {
-      navigate(`/properties?${params.toString()}`);
-    }
+    navigate(`/properties?${params.toString()}`);
   }
 
   const slide = slides[index] || slides[0];
@@ -191,30 +178,7 @@ export default function HeroCarousel() {
           onSubmit={handleSearch}
           className="mt-6 flex w-full max-w-[500px] flex-col gap-2 rounded-2xl bg-warm-white/95 p-2.5 shadow-xl sm:mt-8 sm:max-w-4xl sm:flex-row sm:flex-wrap sm:items-center sm:gap-2.5 sm:p-3 md:mt-10 md:max-w-[760px] md:flex-nowrap md:p-4 lg:max-w-[900px]"
         >
-          <button
-            type="button"
-            onClick={() => userLocation.requestLocation()}
-            className="flex min-h-[42px] min-w-0 flex-1 items-center justify-center gap-2 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 hover:bg-gray-50 md:min-h-[48px] md:px-4 md:text-base"
-          >
-            <Crosshair size={16} className="shrink-0 text-brand-600" />
-            <span className="truncate">
-              {userLocation.status === 'loading'
-                ? t('location.detecting', { ns: 'common' })
-                : userLocation.label || t('location.useCurrentLocation', { ns: 'common' })}
-            </span>
-          </button>
-
-          <select
-            value={form.categorySlug}
-            onChange={(e) => setForm((f) => ({ ...f, categorySlug: e.target.value }))}
-            aria-label={t('hero.categoryPlaceholder')}
-            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
-          >
-            <option value="">{t('hero.allCategories')}</option>
-            {categories.map((c) => (
-              <option key={c.slug} value={c.slug}>{language === 'te' ? c.nameTe : c.nameEn}</option>
-            ))}
-          </select>
+          <HeroLocationSearch value={location} onChange={setLocation} />
 
           <input
             type="number"

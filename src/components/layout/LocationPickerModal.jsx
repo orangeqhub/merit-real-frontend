@@ -5,88 +5,16 @@ import { CITIES } from '../../data/locations';
 import { useLocationStore } from '../../store/locationStore';
 import { useUserLocationStore } from '../../store/userLocationStore';
 import { loadGoogleMaps, isPlacesAvailable } from '../../utils/googleMapsLoader';
+import {
+  getCityFromComponents,
+  getStateFromComponents,
+  getAreaFromComponents,
+  getLabelFromComponents,
+  geocoderResultToPlace,
+  normalisePlaceSuggestion as normaliseSuggestion,
+} from '../../utils/googlePlaceAddress';
 
 const DEBOUNCE_MS = 350;
-
-/* ── Address-component helpers ───────────────────────────────────────────── */
-
-function findComponent(components, type) {
-  const c = components.find((x) => {
-    const types = x.types || x.type || [];
-    return types.includes(type);
-  });
-  if (!c) return '';
-  // New API: longName  |  Legacy Geocoder: long_name
-  return c.longName || c.long_name || '';
-}
-
-function getCityFromComponents(components) {
-  return findComponent(components, 'locality')
-    || findComponent(components, 'sublocality')
-    || findComponent(components, 'sublocality_level_1')
-    || findComponent(components, 'administrative_area_level_2')
-    || findComponent(components, 'administrative_area_level_1')
-    || '';
-}
-
-function getStateFromComponents(components) {
-  return findComponent(components, 'administrative_area_level_1');
-}
-
-function getAreaFromComponents(components) {
-  return findComponent(components, 'sublocality')
-    || findComponent(components, 'sublocality_level_1')
-    || findComponent(components, 'neighborhood')
-    || '';
-}
-
-function getLabelFromComponents(components) {
-  const locality = findComponent(components, 'locality');
-  const sublocality = findComponent(components, 'sublocality')
-    || findComponent(components, 'sublocality_level_1');
-  const state = findComponent(components, 'administrative_area_level_1');
-  if (sublocality && locality && sublocality !== locality) {
-    return `${sublocality}, ${locality}`;
-  }
-  if (locality) return state ? `${locality}, ${state}` : locality;
-  return '';
-}
-
-/**
- * Build a normalised place object from a Geocoder result so
- * handlePlaceSelection can consume it uniformly.
- */
-function geocoderResultToPlace(result) {
-  const components = result.address_components || [];
-  return {
-    place_id: result.place_id || null,
-    description: result.formatted_address || '',
-    formatted_address: result.formatted_address || '',
-    address_components: components,
-    geometry: result.geometry || null,
-    name: result.formatted_address || '',
-    structured_formatting: {
-      main_text: getLabelFromComponents(components) || result.formatted_address || '',
-      secondary_text: result.formatted_address || '',
-    },
-  };
-}
-
-/**
- * Normalise a new-API suggestion into the same internal shape
- * so rendering / selection code stays uniform.
- */
-function normaliseSuggestion(suggestion) {
-  const pred = suggestion.placePrediction || suggestion;
-  return {
-    placeId: pred.placeId || pred.place_id || null,
-    description: pred.text?.text || pred.description || '',
-    mainText: pred.mainText?.text || pred.structured_formatting?.main_text || '',
-    secondaryText: pred.secondaryText?.text || pred.structured_formatting?.secondary_text || '',
-    types: pred.types || [],
-    _raw: suggestion,
-  };
-}
 
 /* ── Component ───────────────────────────────────────────────────────────── */
 

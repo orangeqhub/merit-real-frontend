@@ -1,11 +1,13 @@
 {
   "hero": {
     "heading": "Find the Right Property. Build Your Future.",
-    "locationPlaceholder": "Location",
-    "categoryPlaceholder": "Property Category",
+    "locationPlaceholder": "Search Location...",
+    "locationSearching": "Searching...",
+    "locationNoResults": "No locations found",
+    "locationError": "Unable to search locations right now.",
+    "detectLocation": "Detect my location",
     "minPricePlaceholder": "Min Price",
     "maxPricePlaceholder": "Max Price",
-    "allCategories": "All Categories",
     "sale": "Sale"
   },
   "category": {
