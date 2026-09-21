@@ -500,7 +500,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
       return;
     }
     const externalId = plot.externalId || String(plot.id);
-    const resumePath = `/book-plot/${encodeURIComponent(externalId)}`;
+    const resumePath = `/book-plot/${encodeURIComponent(externalId)}?layout=${encodeURIComponent(layout.key)}`;
 
     if (!canBookAsCustomer(user)) {
       savePendingBookPlot(resumePath);

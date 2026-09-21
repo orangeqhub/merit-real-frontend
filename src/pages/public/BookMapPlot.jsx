@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { expressInterestService } from '../../services/expressInterestService';
 import { mapBookingService } from '../../services/mapBookingService';
@@ -14,6 +14,8 @@ import { formatIndianCurrency } from '../../utils/formatIndianNumber';
  */
 export default function BookMapPlot() {
   const { externalId } = useParams();
+  const [searchParams] = useSearchParams();
+  const layoutKey = String(searchParams.get('layout') || '').trim();
   const { t } = useTranslation(['common', 'forms']);
   const navigate = useNavigate();
   const { user } = useAuthStore();
@@ -30,7 +32,7 @@ export default function BookMapPlot() {
   const [validating, setValidating] = useState(false);
 
   const referralSectionRef = useRef(null);
-  const resumePath = `/book-plot/${encodeURIComponent(externalId || '')}`;
+  const resumePath = `/book-plot/${encodeURIComponent(externalId || '')}${layoutKey ? `?layout=${encodeURIComponent(layoutKey)}` : ''}`;
 
   useEffect(() => {
     if (!externalId) return;
@@ -73,7 +75,7 @@ export default function BookMapPlot() {
       return undefined;
     }
     mapBookingService
-      .getPlot(externalId)
+      .getPlot(externalId, { layout: layoutKey || undefined })
       .then((row) => {
         if (!active) return;
         if (!row) setNotFound(true);
@@ -85,7 +87,7 @@ export default function BookMapPlot() {
     return () => {
       active = false;
     };
-  }, [externalId]);
+  }, [externalId, layoutKey]);
 
   const validateAgent = useCallback(async (code) => {
     const trimmed = String(code || '').trim();
@@ -141,6 +143,7 @@ export default function BookMapPlot() {
 
     const payload = {
       mapPlotExternalId: plot.externalId || externalId,
+      mapPlotLayoutKey: layoutKey || plot.layoutKey || undefined,
     };
 
     if (hasJoinedAgent) {

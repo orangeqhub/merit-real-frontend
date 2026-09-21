@@ -28,8 +28,9 @@ export const mapBookingService = {
     };
   },
 
-  async getPlot(id) {
-    return api(`/map/plots/${encodeURIComponent(id)}`, { silent: true });
+  async getPlot(id, { layout } = {}) {
+    const qs = layout ? `?layout=${encodeURIComponent(layout)}` : '';
+    return api(`/map/plots/${encodeURIComponent(id)}${qs}`, { silent: true });
   },
 
   async bookPlot(id, body = {}) {
