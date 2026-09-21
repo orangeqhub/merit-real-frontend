@@ -1,0 +1,97 @@
+// Approximate coordinates for every city in src/data/locations.js's CITIES
+// list. Properties may also carry precise coordinates in `mapLocation`.
+export const CITY_COORDINATES = {
+  Guntur: { lat: 16.3067, lng: 80.4365 },
+  Vijayawada: { lat: 16.5062, lng: 80.648 },
+  Visakhapatnam: { lat: 17.6868, lng: 83.2185 },
+  Ongole: { lat: 15.5057, lng: 80.0499 },
+  Hyderabad: { lat: 17.385, lng: 78.4867 },
+  Warangal: { lat: 17.9784, lng: 79.5941 },
+  Tenali: { lat: 16.243, lng: 80.64 },
+  Mangalagiri: { lat: 16.4307, lng: 80.5525 },
+};
+
+/** Great-circle distance between two coordinates, in kilometres. */
+export function haversineDistanceKm(lat1, lng1, lat2, lng2) {
+  const toRad = (deg) => (deg * Math.PI) / 180;
+  const R = 6371;
+  const dLat = toRad(lat2 - lat1);
+  const dLng = toRad(lng2 - lng1);
+  const a =
+    Math.sin(dLat / 2) ** 2 + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLng / 2) ** 2;
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c;
+}
+
+/** Parse "lat,lng" or Google Maps-style coordinate strings. */
+export function parseMapLocation(value) {
+  if (!value) return null;
+  const text = String(value).trim();
+  const match = text.match(/(-?\d+\.?\d*)\s*,\s*(-?\d+\.?\d*)/);
+  if (!match) return null;
+  const lat = Number(match[1]);
+  const lng = Number(match[2]);
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  return { lat, lng };
+}
+
+/** Coordinates for a property — prefer dedicated latitude/longitude, then mapLocation, then city centroid lookup. */
+export function getPropertyCoordinates(property) {
+  if (!property) return null;
+  // Prefer dedicated latitude/longitude fields from API
+  const lat = property.latitude != null ? Number(property.latitude) : null;
+  const lng = property.longitude != null ? Number(property.longitude) : null;
+  if (Number.isFinite(lat) && Number.isFinite(lng)) return { lat, lng };
+  // Fall back to parsing mapLocation string
+  const fromMap = parseMapLocation(property?.mapLocation);
+  if (fromMap) return fromMap;
+  // Fall back to city centroid
+  const city = property?.city ? String(property.city).trim() : '';
+  return city && CITY_COORDINATES[city] ? CITY_COORDINATES[city] : null;
+}
+
+/**
+ * Reverse-geocodes a coordinate to a city/district/state.
+ * Tries Google Geocoder first (much more accurate in India), then
+ * falls back to OpenStreetMap Nominatim. Only called in direct response
+ * to a user clicking "Use My Current Location".
+ */
+export async function reverseGeocode(lat, lng) {
+  // Try Google Geocoder first (available after loadGoogleMaps resolves)
+  if (typeof window !== 'undefined' && window.google?.maps?.Geocoder) {
+    try {
+      const geocoder = new window.google.maps.Geocoder();
+      const result = await new Promise((resolve, reject) => {
+        geocoder.geocode({ location: { lat, lng } }, (results, status) => {
+          if (status === 'OK' && results?.[0]) resolve(results[0]);
+          else reject(new Error(status));
+        });
+      });
+      const comps = result.address_components || [];
+      const find = (type) => {
+        const c = comps.find((x) => x.types.includes(type));
+        return c ? c.long_name : c.short_name || '';
+      };
+      const city = find('locality') || find('sublocality') || find('sublocality_level_1')
+        || find('administrative_area_level_2') || '';
+      const district = find('administrative_area_level_2') || find('administrative_area_level_1') || '';
+      const state = find('administrative_area_level_1') || '';
+      const label = [city, state].filter(Boolean).join(', ') || result.formatted_address || '';
+      return { city, district, state, label };
+    } catch {
+      // Google failed — fall through to Nominatim
+    }
+  }
+
+  // Fallback: Nominatim (free, no key needed). zoom=14 for better precision.
+  const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lng}&zoom=14&addressdetails=1`;
+  const res = await fetch(url, { headers: { Accept: 'application/json' } });
+  if (!res.ok) throw new Error('Reverse geocoding failed');
+  const data = await res.json();
+  const address = data.address || {};
+  const city = address.city || address.town || address.village || address.county || '';
+  const district = address.state_district || address.county || '';
+  const state = address.state || '';
+  const label = [city, state].filter(Boolean).join(', ') || data.display_name || '';
+  return { city, district, state, label };
+}

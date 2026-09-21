@@ -1,0 +1,108 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 560" width="1000" height="560">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&amp;display=swap');
+      .brand-title {
+        font-family: 'Montserrat', 'Arial Black', -apple-system, sans-serif;
+        font-weight: 900;
+        fill: #FFFFFF;
+        font-size: 50px;
+        letter-spacing: 3.5px;
+      }
+      .pillar-title {
+        font-family: 'Montserrat', 'Arial Black', -apple-system, sans-serif;
+        font-weight: 800;
+        fill: #FFFFFF;
+        font-size: 18px;
+        letter-spacing: 2px;
+      }
+    </style>
+  </defs>
+
+  <!-- Deep Blue Background -->
+  <rect width="1000" height="560" rx="16" fill="#0B2240"/>
+
+  <!-- Logo Mark (Centered Top) -->
+  <g transform="translate(415, 35)">
+    <!-- White M -->
+    <path d="M 15 130 L 15 20 L 60 85 L 105 20 L 150 20 L 150 130 L 118 130 L 118 58 L 85 108 L 60 108 L 46 86 L 46 130 Z" fill="#FFFFFF"/>
+    
+    <!-- Dark Gable Shadow -->
+    <path d="M 50 96 L 102 48 L 152 96 L 152 130 L 50 130 Z" fill="#0B2240"/>
+    
+    <!-- Gold Main Roof -->
+    <path d="M 95 34 L 155 90 L 155 130 L 122 130 L 122 104 L 95 78 L 68 104 L 52 90 Z" fill="#C88E28"/>
+    
+    <!-- Gold Roof Eaves -->
+    <path d="M 38 102 L 95 28 L 162 88" fill="none" stroke="#D49B28" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 52 98 L 95 56 L 138 98" fill="none" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Window -->
+    <rect x="88" y="82" width="15" height="19" rx="2" fill="#FFFFFF"/>
+    <line x1="95.5" y1="82" x2="95.5" y2="101" stroke="#0B2240" stroke-width="2.5"/>
+    <line x1="88" y1="91.5" x2="103" y2="91.5" stroke="#0B2240" stroke-width="2.5"/>
+  </g>
+
+  <!-- Brand Title -->
+  <text x="500" y="260" text-anchor="middle" class="brand-title">MERIT REAL SOLUTIONS</text>
+
+  <!-- Gold Divider Line -->
+  <line x1="120" y1="310" x2="880" y2="310" stroke="#C88E28" stroke-width="3"/>
+  <!-- Diamond Accent -->
+  <polygon points="500,302 508,310 500,318 492,310" fill="#C88E28"/>
+
+  <!-- Column Dividers -->
+  <line x1="320" y1="360" x2="320" y2="470" stroke="#1D3E66" stroke-width="2"/>
+  <line x1="510" y1="360" x2="510" y2="470" stroke="#1D3E66" stroke-width="2"/>
+  <line x1="695" y1="360" x2="695" y2="470" stroke="#1D3E66" stroke-width="2"/>
+
+  <!-- Pillar 1: TRUST -->
+  <g transform="translate(160, 360)">
+    <!-- Shield Icon -->
+    <g transform="translate(22, 0)">
+      <path d="M 24 4 C 24 4 40 10 46 14 C 46 30 42 46 24 56 C 6 46 2 30 2 14 C 8 10 24 4 24 4 Z" fill="none" stroke="#C88E28" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M 14 27 L 22 35 L 35 20" fill="none" stroke="#D49B28" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+    <text x="47" y="96" text-anchor="middle" class="pillar-title">TRUST</text>
+  </g>
+
+  <!-- Pillar 2: TRANSPARENCY -->
+  <g transform="translate(365, 360)">
+    <!-- Handshake Icon -->
+    <g transform="translate(20, 0)" fill="none" stroke="#C88E28" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 6 22 L 18 10 C 22 6 28 6 32 10 L 38 16"/>
+      <path d="M 48 22 L 36 10 C 32 6 26 6 22 10"/>
+      <path d="M 10 26 L 22 38 C 25 41 30 41 33 38 L 44 27"/>
+      <path d="M 16 32 L 22 38"/>
+      <path d="M 21 37 L 26 42"/>
+      <path d="M 26 42 L 31 47"/>
+    </g>
+    <text x="47" y="96" text-anchor="middle" class="pillar-title">TRANSPARENCY</text>
+  </g>
+
+  <!-- Pillar 3: VALUE -->
+  <g transform="translate(560, 360)">
+    <!-- House in Hand / Heart Icon -->
+    <g transform="translate(20, 0)" fill="none" stroke="#C88E28" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M 8 22 L 28 6 L 48 22 L 48 38 L 8 38 Z"/>
+      <path d="M 28 18 C 28 18 23 13 19 17 C 15 21 21 28 28 33 C 35 28 41 21 37 17 C 33 13 28 18 28 18 Z" fill="#C88E28"/>
+      <path d="M 2 40 C 12 50 44 50 54 40"/>
+    </g>
+    <text x="47" y="96" text-anchor="middle" class="pillar-title">VALUE</text>
+  </g>
+
+  <!-- Pillar 4: GROWTH -->
+  <g transform="translate(755, 360)">
+    <!-- Bar Chart + Arrow Icon -->
+    <g transform="translate(20, 0)" fill="none" stroke="#C88E28" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="38" width="8" height="12" rx="1"/>
+      <rect x="14" y="28" width="8" height="22" rx="1"/>
+      <rect x="26" y="18" width="8" height="32" rx="1"/>
+      <rect x="38" y="8" width="8" height="42" rx="1"/>
+      <path d="M 2 32 L 20 18 L 32 22 L 48 2" stroke="#D49B28" stroke-width="4"/>
+      <path d="M 36 2 L 48 2 L 48 14" stroke="#D49B28" stroke-width="4"/>
+    </g>
+    <text x="47" y="96" text-anchor="middle" class="pillar-title">GROWTH</text>
+  </g>
+</svg>
