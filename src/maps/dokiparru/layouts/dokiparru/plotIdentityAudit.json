@@ -1,0 +1,3404 @@
+[
+ {
+  "geometryId": "p-001",
+  "candidatePlotNumber": 1,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-002",
+  "candidatePlotNumber": 2,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-003",
+  "candidatePlotNumber": 3,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-004",
+  "candidatePlotNumber": 4,
+  "verifiedPlotNumber": 4,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-005",
+  "candidatePlotNumber": 5,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-006",
+  "candidatePlotNumber": 6,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-007",
+  "candidatePlotNumber": 7,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-008",
+  "candidatePlotNumber": 8,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-009",
+  "candidatePlotNumber": 9,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-010",
+  "candidatePlotNumber": 10,
+  "verifiedPlotNumber": 10,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-011",
+  "candidatePlotNumber": 11,
+  "verifiedPlotNumber": 11,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-012",
+  "candidatePlotNumber": 12,
+  "verifiedPlotNumber": 12,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-013",
+  "candidatePlotNumber": 13,
+  "verifiedPlotNumber": 13,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-014",
+  "candidatePlotNumber": 14,
+  "verifiedPlotNumber": 14,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-015",
+  "candidatePlotNumber": 15,
+  "verifiedPlotNumber": 15,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-016",
+  "candidatePlotNumber": 16,
+  "verifiedPlotNumber": 16,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-017",
+  "candidatePlotNumber": 17,
+  "verifiedPlotNumber": 17,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-018",
+  "candidatePlotNumber": 18,
+  "verifiedPlotNumber": 18,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-019",
+  "candidatePlotNumber": 19,
+  "verifiedPlotNumber": 19,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-020",
+  "candidatePlotNumber": 20,
+  "verifiedPlotNumber": 20,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-021",
+  "candidatePlotNumber": 21,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-022",
+  "candidatePlotNumber": 22,
+  "verifiedPlotNumber": 22,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 372.2
+ },
+ {
+  "geometryId": "p-023",
+  "candidatePlotNumber": 23,
+  "verifiedPlotNumber": 23,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 409.75
+ },
+ {
+  "geometryId": "p-024",
+  "candidatePlotNumber": 24,
+  "verifiedPlotNumber": 24,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-025",
+  "candidatePlotNumber": 25,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-026",
+  "candidatePlotNumber": 26,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-027",
+  "candidatePlotNumber": 27,
+  "verifiedPlotNumber": 27,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-028",
+  "candidatePlotNumber": 28,
+  "verifiedPlotNumber": 28,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-029",
+  "candidatePlotNumber": 29,
+  "verifiedPlotNumber": 29,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-030",
+  "candidatePlotNumber": 30,
+  "verifiedPlotNumber": 30,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-031",
+  "candidatePlotNumber": 31,
+  "verifiedPlotNumber": 31,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-032",
+  "candidatePlotNumber": 32,
+  "verifiedPlotNumber": 32,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-033",
+  "candidatePlotNumber": 33,
+  "verifiedPlotNumber": 33,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-034",
+  "candidatePlotNumber": 34,
+  "verifiedPlotNumber": 34,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-035",
+  "candidatePlotNumber": 35,
+  "verifiedPlotNumber": 35,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-036",
+  "candidatePlotNumber": 36,
+  "verifiedPlotNumber": 36,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-037",
+  "candidatePlotNumber": 37,
+  "verifiedPlotNumber": 37,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-038",
+  "candidatePlotNumber": 38,
+  "verifiedPlotNumber": 38,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-039",
+  "candidatePlotNumber": 39,
+  "verifiedPlotNumber": 39,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-040",
+  "candidatePlotNumber": 40,
+  "verifiedPlotNumber": 40,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-041",
+  "candidatePlotNumber": 41,
+  "verifiedPlotNumber": 41,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-042",
+  "candidatePlotNumber": 42,
+  "verifiedPlotNumber": 42,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-043",
+  "candidatePlotNumber": 43,
+  "verifiedPlotNumber": 43,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-044",
+  "candidatePlotNumber": 44,
+  "verifiedPlotNumber": 44,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-045",
+  "candidatePlotNumber": 45,
+  "verifiedPlotNumber": 45,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 489.92
+ },
+ {
+  "geometryId": "p-046",
+  "candidatePlotNumber": 46,
+  "verifiedPlotNumber": 46,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-047",
+  "candidatePlotNumber": 47,
+  "verifiedPlotNumber": 47,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-048",
+  "candidatePlotNumber": 48,
+  "verifiedPlotNumber": 48,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-049",
+  "candidatePlotNumber": 49,
+  "verifiedPlotNumber": 49,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-050",
+  "candidatePlotNumber": 50,
+  "verifiedPlotNumber": 50,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-051",
+  "candidatePlotNumber": 51,
+  "verifiedPlotNumber": 51,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-052",
+  "candidatePlotNumber": 52,
+  "verifiedPlotNumber": 52,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-053",
+  "candidatePlotNumber": 53,
+  "verifiedPlotNumber": 53,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-054",
+  "candidatePlotNumber": 54,
+  "verifiedPlotNumber": 54,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-055",
+  "candidatePlotNumber": 55,
+  "verifiedPlotNumber": 55,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-056",
+  "candidatePlotNumber": 56,
+  "verifiedPlotNumber": 56,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-057",
+  "candidatePlotNumber": 57,
+  "verifiedPlotNumber": 57,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-058",
+  "candidatePlotNumber": 58,
+  "verifiedPlotNumber": 58,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-059",
+  "candidatePlotNumber": 59,
+  "verifiedPlotNumber": 59,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-060",
+  "candidatePlotNumber": 60,
+  "verifiedPlotNumber": 60,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-061",
+  "candidatePlotNumber": 61,
+  "verifiedPlotNumber": 61,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-062",
+  "candidatePlotNumber": 62,
+  "verifiedPlotNumber": 62,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-063",
+  "candidatePlotNumber": 63,
+  "verifiedPlotNumber": 63,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-064",
+  "candidatePlotNumber": 64,
+  "verifiedPlotNumber": 64,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-065",
+  "candidatePlotNumber": 65,
+  "verifiedPlotNumber": 65,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-066",
+  "candidatePlotNumber": 66,
+  "verifiedPlotNumber": 66,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-067",
+  "candidatePlotNumber": 67,
+  "verifiedPlotNumber": 67,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-068",
+  "candidatePlotNumber": 68,
+  "verifiedPlotNumber": 68,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 467.87
+ },
+ {
+  "geometryId": "p-069",
+  "candidatePlotNumber": 69,
+  "verifiedPlotNumber": 69,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 505.41
+ },
+ {
+  "geometryId": "p-070",
+  "candidatePlotNumber": 70,
+  "verifiedPlotNumber": 70,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-071",
+  "candidatePlotNumber": 71,
+  "verifiedPlotNumber": 71,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-072",
+  "candidatePlotNumber": 72,
+  "verifiedPlotNumber": 72,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-073",
+  "candidatePlotNumber": 73,
+  "verifiedPlotNumber": 73,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-074",
+  "candidatePlotNumber": 74,
+  "verifiedPlotNumber": 74,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-075",
+  "candidatePlotNumber": 75,
+  "verifiedPlotNumber": 75,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-076",
+  "candidatePlotNumber": 76,
+  "verifiedPlotNumber": 76,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-077",
+  "candidatePlotNumber": 77,
+  "verifiedPlotNumber": 77,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-078",
+  "candidatePlotNumber": 78,
+  "verifiedPlotNumber": 78,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-079",
+  "candidatePlotNumber": 79,
+  "verifiedPlotNumber": 79,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-080",
+  "candidatePlotNumber": 80,
+  "verifiedPlotNumber": 80,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-081",
+  "candidatePlotNumber": 81,
+  "verifiedPlotNumber": 81,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-082",
+  "candidatePlotNumber": 82,
+  "verifiedPlotNumber": 82,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-083",
+  "candidatePlotNumber": 83,
+  "verifiedPlotNumber": 83,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-084",
+  "candidatePlotNumber": 84,
+  "verifiedPlotNumber": 84,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-085",
+  "candidatePlotNumber": 85,
+  "verifiedPlotNumber": 85,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-086",
+  "candidatePlotNumber": 86,
+  "verifiedPlotNumber": 86,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-087",
+  "candidatePlotNumber": 87,
+  "verifiedPlotNumber": 87,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-088",
+  "candidatePlotNumber": 88,
+  "verifiedPlotNumber": 88,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-089",
+  "candidatePlotNumber": 89,
+  "verifiedPlotNumber": 89,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-090",
+  "candidatePlotNumber": 90,
+  "verifiedPlotNumber": 90,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-091",
+  "candidatePlotNumber": 91,
+  "verifiedPlotNumber": 91,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-092",
+  "candidatePlotNumber": 92,
+  "verifiedPlotNumber": 92,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-093",
+  "candidatePlotNumber": 93,
+  "verifiedPlotNumber": 93,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-094",
+  "candidatePlotNumber": 94,
+  "verifiedPlotNumber": 94,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 337.74
+ },
+ {
+  "geometryId": "p-095",
+  "candidatePlotNumber": 95,
+  "verifiedPlotNumber": 95,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 521.88
+ },
+ {
+  "geometryId": "p-096",
+  "candidatePlotNumber": 96,
+  "verifiedPlotNumber": 96,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-097",
+  "candidatePlotNumber": 97,
+  "verifiedPlotNumber": 97,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-098",
+  "candidatePlotNumber": 98,
+  "verifiedPlotNumber": 98,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-099",
+  "candidatePlotNumber": 99,
+  "verifiedPlotNumber": 99,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-100",
+  "candidatePlotNumber": 100,
+  "verifiedPlotNumber": 100,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-101",
+  "candidatePlotNumber": 101,
+  "verifiedPlotNumber": 101,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-102",
+  "candidatePlotNumber": 102,
+  "verifiedPlotNumber": 102,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-103",
+  "candidatePlotNumber": 103,
+  "verifiedPlotNumber": 103,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-104",
+  "candidatePlotNumber": 104,
+  "verifiedPlotNumber": 104,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-105",
+  "candidatePlotNumber": 105,
+  "verifiedPlotNumber": 105,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-106",
+  "candidatePlotNumber": 106,
+  "verifiedPlotNumber": 106,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-107",
+  "candidatePlotNumber": 107,
+  "verifiedPlotNumber": 107,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-108",
+  "candidatePlotNumber": 108,
+  "verifiedPlotNumber": 108,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-109",
+  "candidatePlotNumber": 109,
+  "verifiedPlotNumber": 109,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-110",
+  "candidatePlotNumber": 110,
+  "verifiedPlotNumber": 110,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-111",
+  "candidatePlotNumber": 111,
+  "verifiedPlotNumber": 111,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-112",
+  "candidatePlotNumber": 112,
+  "verifiedPlotNumber": 112,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-113",
+  "candidatePlotNumber": 113,
+  "verifiedPlotNumber": 113,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-114",
+  "candidatePlotNumber": 114,
+  "verifiedPlotNumber": 114,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-115",
+  "candidatePlotNumber": 115,
+  "verifiedPlotNumber": 115,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-116",
+  "candidatePlotNumber": 116,
+  "verifiedPlotNumber": 116,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-117",
+  "candidatePlotNumber": 117,
+  "verifiedPlotNumber": 117,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-118",
+  "candidatePlotNumber": 118,
+  "verifiedPlotNumber": 118,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-119",
+  "candidatePlotNumber": 119,
+  "verifiedPlotNumber": 119,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-120",
+  "candidatePlotNumber": 120,
+  "verifiedPlotNumber": 120,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-121",
+  "candidatePlotNumber": 121,
+  "verifiedPlotNumber": 121,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-122",
+  "candidatePlotNumber": 122,
+  "verifiedPlotNumber": 122,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 363.57
+ },
+ {
+  "geometryId": "p-123",
+  "candidatePlotNumber": 123,
+  "verifiedPlotNumber": 123,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 441.08
+ },
+ {
+  "geometryId": "p-124",
+  "candidatePlotNumber": 124,
+  "verifiedPlotNumber": 124,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-125",
+  "candidatePlotNumber": 125,
+  "verifiedPlotNumber": 125,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-126",
+  "candidatePlotNumber": 126,
+  "verifiedPlotNumber": 126,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-127",
+  "candidatePlotNumber": 127,
+  "verifiedPlotNumber": 127,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-128",
+  "candidatePlotNumber": 128,
+  "verifiedPlotNumber": 128,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-129",
+  "candidatePlotNumber": 129,
+  "verifiedPlotNumber": 129,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-130",
+  "candidatePlotNumber": 130,
+  "verifiedPlotNumber": 130,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-131",
+  "candidatePlotNumber": 131,
+  "verifiedPlotNumber": 131,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-132",
+  "candidatePlotNumber": 132,
+  "verifiedPlotNumber": 132,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-133",
+  "candidatePlotNumber": 133,
+  "verifiedPlotNumber": 133,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 353.33
+ },
+ {
+  "geometryId": "p-134",
+  "candidatePlotNumber": 134,
+  "verifiedPlotNumber": 134,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-135",
+  "candidatePlotNumber": 135,
+  "verifiedPlotNumber": 135,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-136",
+  "candidatePlotNumber": 136,
+  "verifiedPlotNumber": 136,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-137",
+  "candidatePlotNumber": 137,
+  "verifiedPlotNumber": 137,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-138",
+  "candidatePlotNumber": 138,
+  "verifiedPlotNumber": 138,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-139",
+  "candidatePlotNumber": 139,
+  "verifiedPlotNumber": 139,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-140",
+  "candidatePlotNumber": 140,
+  "verifiedPlotNumber": 140,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-141",
+  "candidatePlotNumber": 141,
+  "verifiedPlotNumber": 141,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-142",
+  "candidatePlotNumber": 142,
+  "verifiedPlotNumber": 142,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-143",
+  "candidatePlotNumber": 143,
+  "verifiedPlotNumber": 143,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-144",
+  "candidatePlotNumber": 144,
+  "verifiedPlotNumber": 144,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-145",
+  "candidatePlotNumber": 145,
+  "verifiedPlotNumber": 145,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-146",
+  "candidatePlotNumber": 146,
+  "verifiedPlotNumber": 146,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-147",
+  "candidatePlotNumber": 147,
+  "verifiedPlotNumber": 147,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-148",
+  "candidatePlotNumber": 148,
+  "verifiedPlotNumber": 148,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-149",
+  "candidatePlotNumber": 149,
+  "verifiedPlotNumber": 149,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 532.96
+ },
+ {
+  "geometryId": "p-150",
+  "candidatePlotNumber": 150,
+  "verifiedPlotNumber": 150,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 207.81
+ },
+ {
+  "geometryId": "p-151",
+  "candidatePlotNumber": 151,
+  "verifiedPlotNumber": 151,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-152",
+  "candidatePlotNumber": 152,
+  "verifiedPlotNumber": 152,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-153",
+  "candidatePlotNumber": 153,
+  "verifiedPlotNumber": 153,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-154",
+  "candidatePlotNumber": 154,
+  "verifiedPlotNumber": 154,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-155",
+  "candidatePlotNumber": 155,
+  "verifiedPlotNumber": 155,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-156",
+  "candidatePlotNumber": 156,
+  "verifiedPlotNumber": 156,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-157",
+  "candidatePlotNumber": 157,
+  "verifiedPlotNumber": 157,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-158",
+  "candidatePlotNumber": 158,
+  "verifiedPlotNumber": 158,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-159",
+  "candidatePlotNumber": 159,
+  "verifiedPlotNumber": 159,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-160",
+  "candidatePlotNumber": 160,
+  "verifiedPlotNumber": 160,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-161",
+  "candidatePlotNumber": 161,
+  "verifiedPlotNumber": 161,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-162",
+  "candidatePlotNumber": 162,
+  "verifiedPlotNumber": 162,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-163",
+  "candidatePlotNumber": 163,
+  "verifiedPlotNumber": 163,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-164",
+  "candidatePlotNumber": 164,
+  "verifiedPlotNumber": 164,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-165",
+  "candidatePlotNumber": 165,
+  "verifiedPlotNumber": 165,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-166",
+  "candidatePlotNumber": 166,
+  "verifiedPlotNumber": 166,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-167",
+  "candidatePlotNumber": 167,
+  "verifiedPlotNumber": 167,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 353.33
+ },
+ {
+  "geometryId": "p-168",
+  "candidatePlotNumber": 168,
+  "verifiedPlotNumber": 168,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-169",
+  "candidatePlotNumber": 169,
+  "verifiedPlotNumber": 169,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-170",
+  "candidatePlotNumber": 170,
+  "verifiedPlotNumber": 170,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-171",
+  "candidatePlotNumber": 171,
+  "verifiedPlotNumber": 171,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-172",
+  "candidatePlotNumber": 172,
+  "verifiedPlotNumber": 172,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-173",
+  "candidatePlotNumber": 173,
+  "verifiedPlotNumber": 173,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-174",
+  "candidatePlotNumber": 174,
+  "verifiedPlotNumber": 174,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-175",
+  "candidatePlotNumber": 175,
+  "verifiedPlotNumber": 175,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-176",
+  "candidatePlotNumber": 176,
+  "verifiedPlotNumber": 176,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 220
+ },
+ {
+  "geometryId": "p-177",
+  "candidatePlotNumber": 177,
+  "verifiedPlotNumber": 177,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 515.55
+ },
+ {
+  "geometryId": "p-178",
+  "candidatePlotNumber": 178,
+  "verifiedPlotNumber": 178,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 495.54
+ },
+ {
+  "geometryId": "p-179",
+  "candidatePlotNumber": 179,
+  "verifiedPlotNumber": 179,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-180",
+  "candidatePlotNumber": 180,
+  "verifiedPlotNumber": 180,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-181",
+  "candidatePlotNumber": 181,
+  "verifiedPlotNumber": 181,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-182",
+  "candidatePlotNumber": 182,
+  "verifiedPlotNumber": 182,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-183",
+  "candidatePlotNumber": 183,
+  "verifiedPlotNumber": 183,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-184",
+  "candidatePlotNumber": 184,
+  "verifiedPlotNumber": 184,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-185",
+  "candidatePlotNumber": 185,
+  "verifiedPlotNumber": 185,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-186",
+  "candidatePlotNumber": 186,
+  "verifiedPlotNumber": 186,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-187",
+  "candidatePlotNumber": 187,
+  "verifiedPlotNumber": 187,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-188",
+  "candidatePlotNumber": 188,
+  "verifiedPlotNumber": 188,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-189",
+  "candidatePlotNumber": 189,
+  "verifiedPlotNumber": 189,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-190",
+  "candidatePlotNumber": 190,
+  "verifiedPlotNumber": 190,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-191",
+  "candidatePlotNumber": 191,
+  "verifiedPlotNumber": 191,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-192",
+  "candidatePlotNumber": 192,
+  "verifiedPlotNumber": 192,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-193",
+  "candidatePlotNumber": 193,
+  "verifiedPlotNumber": 193,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-194",
+  "candidatePlotNumber": 194,
+  "verifiedPlotNumber": 194,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-195",
+  "candidatePlotNumber": 195,
+  "verifiedPlotNumber": 195,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-196",
+  "candidatePlotNumber": 196,
+  "verifiedPlotNumber": 196,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-197",
+  "candidatePlotNumber": 197,
+  "verifiedPlotNumber": 197,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-198",
+  "candidatePlotNumber": 198,
+  "verifiedPlotNumber": 198,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-199",
+  "candidatePlotNumber": 199,
+  "verifiedPlotNumber": 199,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-200",
+  "candidatePlotNumber": 200,
+  "verifiedPlotNumber": 200,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-201",
+  "candidatePlotNumber": 201,
+  "verifiedPlotNumber": 201,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-202",
+  "candidatePlotNumber": 202,
+  "verifiedPlotNumber": 202,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-203",
+  "candidatePlotNumber": 203,
+  "verifiedPlotNumber": 203,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-204",
+  "candidatePlotNumber": 204,
+  "verifiedPlotNumber": 204,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-205",
+  "candidatePlotNumber": 205,
+  "verifiedPlotNumber": 205,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-206",
+  "candidatePlotNumber": 206,
+  "verifiedPlotNumber": 206,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-207",
+  "candidatePlotNumber": 207,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-208",
+  "candidatePlotNumber": 208,
+  "verifiedPlotNumber": 208,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-209",
+  "candidatePlotNumber": 209,
+  "verifiedPlotNumber": 209,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-210",
+  "candidatePlotNumber": 210,
+  "verifiedPlotNumber": 210,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 392.81
+ },
+ {
+  "geometryId": "p-211",
+  "candidatePlotNumber": 211,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 413.84
+ },
+ {
+  "geometryId": "p-212",
+  "candidatePlotNumber": 212,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-213",
+  "candidatePlotNumber": 213,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-214",
+  "candidatePlotNumber": 214,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-215",
+  "candidatePlotNumber": 215,
+  "verifiedPlotNumber": 215,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-216",
+  "candidatePlotNumber": 216,
+  "verifiedPlotNumber": 216,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-217",
+  "candidatePlotNumber": 217,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-218",
+  "candidatePlotNumber": 218,
+  "verifiedPlotNumber": 218,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-219",
+  "candidatePlotNumber": 219,
+  "verifiedPlotNumber": 219,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-220",
+  "candidatePlotNumber": 220,
+  "verifiedPlotNumber": 220,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-221",
+  "candidatePlotNumber": 221,
+  "verifiedPlotNumber": 221,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-222",
+  "candidatePlotNumber": 222,
+  "verifiedPlotNumber": 222,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-223",
+  "candidatePlotNumber": 223,
+  "verifiedPlotNumber": 223,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-224",
+  "candidatePlotNumber": 224,
+  "verifiedPlotNumber": 224,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-225",
+  "candidatePlotNumber": 225,
+  "verifiedPlotNumber": 225,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-226",
+  "candidatePlotNumber": 226,
+  "verifiedPlotNumber": 226,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-227",
+  "candidatePlotNumber": 227,
+  "verifiedPlotNumber": 227,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-228",
+  "candidatePlotNumber": 228,
+  "verifiedPlotNumber": 228,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-229",
+  "candidatePlotNumber": 229,
+  "verifiedPlotNumber": 229,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-230",
+  "candidatePlotNumber": 230,
+  "verifiedPlotNumber": 230,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-231",
+  "candidatePlotNumber": 231,
+  "verifiedPlotNumber": 231,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-232",
+  "candidatePlotNumber": 232,
+  "verifiedPlotNumber": 232,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-233",
+  "candidatePlotNumber": 233,
+  "verifiedPlotNumber": 233,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-234",
+  "candidatePlotNumber": 234,
+  "verifiedPlotNumber": 234,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-235",
+  "candidatePlotNumber": 235,
+  "verifiedPlotNumber": 235,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-236",
+  "candidatePlotNumber": 236,
+  "verifiedPlotNumber": 236,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-237",
+  "candidatePlotNumber": 237,
+  "verifiedPlotNumber": 237,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-238",
+  "candidatePlotNumber": 238,
+  "verifiedPlotNumber": 238,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-239",
+  "candidatePlotNumber": 239,
+  "verifiedPlotNumber": 239,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-240",
+  "candidatePlotNumber": 240,
+  "verifiedPlotNumber": 240,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-241",
+  "candidatePlotNumber": 241,
+  "verifiedPlotNumber": 241,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 378.41
+ },
+ {
+  "geometryId": "p-242",
+  "candidatePlotNumber": 242,
+  "verifiedPlotNumber": 242,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 536.16
+ },
+ {
+  "geometryId": "p-243",
+  "candidatePlotNumber": 243,
+  "verifiedPlotNumber": 243,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-244",
+  "candidatePlotNumber": 244,
+  "verifiedPlotNumber": 244,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-245",
+  "candidatePlotNumber": 245,
+  "verifiedPlotNumber": 245,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-246",
+  "candidatePlotNumber": 246,
+  "verifiedPlotNumber": 246,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-247",
+  "candidatePlotNumber": 247,
+  "verifiedPlotNumber": 247,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-248",
+  "candidatePlotNumber": 248,
+  "verifiedPlotNumber": 248,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-249",
+  "candidatePlotNumber": 249,
+  "verifiedPlotNumber": 249,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-250",
+  "candidatePlotNumber": 250,
+  "verifiedPlotNumber": 250,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-251",
+  "candidatePlotNumber": 251,
+  "verifiedPlotNumber": 251,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-252",
+  "candidatePlotNumber": 252,
+  "verifiedPlotNumber": 252,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-253",
+  "candidatePlotNumber": 253,
+  "verifiedPlotNumber": 253,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-254",
+  "candidatePlotNumber": 254,
+  "verifiedPlotNumber": 254,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-255",
+  "candidatePlotNumber": 255,
+  "verifiedPlotNumber": 255,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-256",
+  "candidatePlotNumber": 256,
+  "verifiedPlotNumber": 256,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-257",
+  "candidatePlotNumber": 257,
+  "verifiedPlotNumber": 257,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-258",
+  "candidatePlotNumber": 258,
+  "verifiedPlotNumber": 258,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-259",
+  "candidatePlotNumber": 259,
+  "verifiedPlotNumber": 259,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-260",
+  "candidatePlotNumber": 260,
+  "verifiedPlotNumber": 260,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-261",
+  "candidatePlotNumber": 261,
+  "verifiedPlotNumber": 261,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-262",
+  "candidatePlotNumber": 262,
+  "verifiedPlotNumber": 262,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-263",
+  "candidatePlotNumber": 263,
+  "verifiedPlotNumber": 263,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-264",
+  "candidatePlotNumber": 264,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-265",
+  "candidatePlotNumber": 265,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-266",
+  "candidatePlotNumber": 266,
+  "verifiedPlotNumber": 266,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-267",
+  "candidatePlotNumber": 267,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-268",
+  "candidatePlotNumber": 268,
+  "verifiedPlotNumber": 268,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-269",
+  "candidatePlotNumber": 269,
+  "verifiedPlotNumber": 269,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-270",
+  "candidatePlotNumber": 270,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 298
+ },
+ {
+  "geometryId": "p-271",
+  "candidatePlotNumber": 271,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 317.78
+ },
+ {
+  "geometryId": "p-272",
+  "candidatePlotNumber": 272,
+  "verifiedPlotNumber": 272,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-273",
+  "candidatePlotNumber": 273,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-274",
+  "candidatePlotNumber": 274,
+  "verifiedPlotNumber": 274,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-275",
+  "candidatePlotNumber": 275,
+  "verifiedPlotNumber": 275,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-276",
+  "candidatePlotNumber": 276,
+  "verifiedPlotNumber": 276,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-277",
+  "candidatePlotNumber": 277,
+  "verifiedPlotNumber": 277,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-278",
+  "candidatePlotNumber": 278,
+  "verifiedPlotNumber": 278,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-279",
+  "candidatePlotNumber": 279,
+  "verifiedPlotNumber": 279,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-280",
+  "candidatePlotNumber": 280,
+  "verifiedPlotNumber": 280,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-281",
+  "candidatePlotNumber": 281,
+  "verifiedPlotNumber": 281,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-282",
+  "candidatePlotNumber": 282,
+  "verifiedPlotNumber": 282,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-283",
+  "candidatePlotNumber": 283,
+  "verifiedPlotNumber": 283,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-284",
+  "candidatePlotNumber": 284,
+  "verifiedPlotNumber": 284,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-285",
+  "candidatePlotNumber": 285,
+  "verifiedPlotNumber": 285,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-286",
+  "candidatePlotNumber": 286,
+  "verifiedPlotNumber": 286,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-287",
+  "candidatePlotNumber": 287,
+  "verifiedPlotNumber": 287,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-288",
+  "candidatePlotNumber": 288,
+  "verifiedPlotNumber": 288,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-289",
+  "candidatePlotNumber": 289,
+  "verifiedPlotNumber": 289,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-290",
+  "candidatePlotNumber": 290,
+  "verifiedPlotNumber": 290,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-291",
+  "candidatePlotNumber": 291,
+  "verifiedPlotNumber": 291,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-292",
+  "candidatePlotNumber": 292,
+  "verifiedPlotNumber": 292,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-293",
+  "candidatePlotNumber": 293,
+  "verifiedPlotNumber": 293,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-294",
+  "candidatePlotNumber": 294,
+  "verifiedPlotNumber": 294,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-295",
+  "candidatePlotNumber": 295,
+  "verifiedPlotNumber": 295,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-296",
+  "candidatePlotNumber": 296,
+  "verifiedPlotNumber": 296,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-297",
+  "candidatePlotNumber": 297,
+  "verifiedPlotNumber": 297,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 360.66
+ },
+ {
+  "geometryId": "p-298",
+  "candidatePlotNumber": 298,
+  "verifiedPlotNumber": 298,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 518.41
+ },
+ {
+  "geometryId": "p-299",
+  "candidatePlotNumber": 299,
+  "verifiedPlotNumber": 299,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-300",
+  "candidatePlotNumber": 300,
+  "verifiedPlotNumber": 300,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-301",
+  "candidatePlotNumber": 301,
+  "verifiedPlotNumber": 301,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-302",
+  "candidatePlotNumber": 302,
+  "verifiedPlotNumber": 302,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-303",
+  "candidatePlotNumber": 303,
+  "verifiedPlotNumber": 303,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-304",
+  "candidatePlotNumber": 304,
+  "verifiedPlotNumber": 304,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-305",
+  "candidatePlotNumber": 305,
+  "verifiedPlotNumber": 305,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-306",
+  "candidatePlotNumber": 306,
+  "verifiedPlotNumber": 306,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-307",
+  "candidatePlotNumber": 307,
+  "verifiedPlotNumber": 307,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-308",
+  "candidatePlotNumber": 308,
+  "verifiedPlotNumber": 308,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-309",
+  "candidatePlotNumber": 309,
+  "verifiedPlotNumber": 309,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-310",
+  "candidatePlotNumber": 310,
+  "verifiedPlotNumber": 310,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-311",
+  "candidatePlotNumber": 311,
+  "verifiedPlotNumber": 311,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-312",
+  "candidatePlotNumber": 312,
+  "verifiedPlotNumber": 312,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-313",
+  "candidatePlotNumber": 313,
+  "verifiedPlotNumber": 313,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-314",
+  "candidatePlotNumber": 314,
+  "verifiedPlotNumber": 314,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-315",
+  "candidatePlotNumber": 315,
+  "verifiedPlotNumber": 315,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-316",
+  "candidatePlotNumber": 316,
+  "verifiedPlotNumber": 316,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-317",
+  "candidatePlotNumber": 317,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-318",
+  "candidatePlotNumber": 318,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-319",
+  "candidatePlotNumber": 319,
+  "verifiedPlotNumber": 319,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-320",
+  "candidatePlotNumber": 320,
+  "verifiedPlotNumber": 320,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-321",
+  "candidatePlotNumber": 321,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 401.5
+ },
+ {
+  "geometryId": "p-322",
+  "candidatePlotNumber": 322,
+  "verifiedPlotNumber": 322,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 421.25
+ },
+ {
+  "geometryId": "p-323",
+  "candidatePlotNumber": 323,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-324",
+  "candidatePlotNumber": 324,
+  "verifiedPlotNumber": 324,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-325",
+  "candidatePlotNumber": 325,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-326",
+  "candidatePlotNumber": 326,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-327",
+  "candidatePlotNumber": 327,
+  "verifiedPlotNumber": 327,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-328",
+  "candidatePlotNumber": 328,
+  "verifiedPlotNumber": 328,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-329",
+  "candidatePlotNumber": 329,
+  "verifiedPlotNumber": 329,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-330",
+  "candidatePlotNumber": 330,
+  "verifiedPlotNumber": 330,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-331",
+  "candidatePlotNumber": 331,
+  "verifiedPlotNumber": 331,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-332",
+  "candidatePlotNumber": 332,
+  "verifiedPlotNumber": 332,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-333",
+  "candidatePlotNumber": 333,
+  "verifiedPlotNumber": 333,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-334",
+  "candidatePlotNumber": 334,
+  "verifiedPlotNumber": 334,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-335",
+  "candidatePlotNumber": 335,
+  "verifiedPlotNumber": 335,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-336",
+  "candidatePlotNumber": 336,
+  "verifiedPlotNumber": 336,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-337",
+  "candidatePlotNumber": 337,
+  "verifiedPlotNumber": 337,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-338",
+  "candidatePlotNumber": 338,
+  "verifiedPlotNumber": 338,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-339",
+  "candidatePlotNumber": 339,
+  "verifiedPlotNumber": 339,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-340",
+  "candidatePlotNumber": 340,
+  "verifiedPlotNumber": 340,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 379.33
+ },
+ {
+  "geometryId": "p-341",
+  "candidatePlotNumber": 341,
+  "verifiedPlotNumber": 341,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 265.53
+ },
+ {
+  "geometryId": "p-342",
+  "candidatePlotNumber": 342,
+  "verifiedPlotNumber": 342,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 265.53
+ },
+ {
+  "geometryId": "p-343",
+  "candidatePlotNumber": 343,
+  "verifiedPlotNumber": 343,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 327.84
+ },
+ {
+  "geometryId": "p-344",
+  "candidatePlotNumber": 344,
+  "verifiedPlotNumber": 344,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-345",
+  "candidatePlotNumber": 345,
+  "verifiedPlotNumber": 345,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-346",
+  "candidatePlotNumber": 346,
+  "verifiedPlotNumber": 346,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-347",
+  "candidatePlotNumber": 347,
+  "verifiedPlotNumber": 347,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-348",
+  "candidatePlotNumber": 348,
+  "verifiedPlotNumber": 348,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-349",
+  "candidatePlotNumber": 349,
+  "verifiedPlotNumber": 349,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-350",
+  "candidatePlotNumber": 350,
+  "verifiedPlotNumber": 350,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-351",
+  "candidatePlotNumber": 351,
+  "verifiedPlotNumber": 351,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-352",
+  "candidatePlotNumber": 352,
+  "verifiedPlotNumber": 352,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-353",
+  "candidatePlotNumber": 353,
+  "verifiedPlotNumber": 353,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-354",
+  "candidatePlotNumber": 354,
+  "verifiedPlotNumber": 354,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-355",
+  "candidatePlotNumber": 355,
+  "verifiedPlotNumber": 355,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-356",
+  "candidatePlotNumber": 356,
+  "verifiedPlotNumber": 356,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-357",
+  "candidatePlotNumber": 357,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-358",
+  "candidatePlotNumber": 358,
+  "verifiedPlotNumber": 358,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-359",
+  "candidatePlotNumber": 359,
+  "verifiedPlotNumber": 359,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-360",
+  "candidatePlotNumber": 360,
+  "verifiedPlotNumber": 360,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-361",
+  "candidatePlotNumber": 361,
+  "verifiedPlotNumber": 361,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 305.36
+ },
+ {
+  "geometryId": "p-362",
+  "candidatePlotNumber": 362,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 384
+ },
+ {
+  "geometryId": "p-363",
+  "candidatePlotNumber": 363,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-364",
+  "candidatePlotNumber": 364,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-365",
+  "candidatePlotNumber": 365,
+  "verifiedPlotNumber": 365,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-366",
+  "candidatePlotNumber": 366,
+  "verifiedPlotNumber": 366,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-367",
+  "candidatePlotNumber": 367,
+  "verifiedPlotNumber": 367,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-368",
+  "candidatePlotNumber": 368,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-369",
+  "candidatePlotNumber": 369,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-370",
+  "candidatePlotNumber": 370,
+  "verifiedPlotNumber": 370,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-371",
+  "candidatePlotNumber": 371,
+  "verifiedPlotNumber": 371,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-372",
+  "candidatePlotNumber": 372,
+  "verifiedPlotNumber": 372,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-373",
+  "candidatePlotNumber": 373,
+  "verifiedPlotNumber": 373,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 326.66
+ },
+ {
+  "geometryId": "p-374",
+  "candidatePlotNumber": 374,
+  "verifiedPlotNumber": 374,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 333.33
+ },
+ {
+  "geometryId": "p-375",
+  "candidatePlotNumber": 375,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-376",
+  "candidatePlotNumber": 376,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-377",
+  "candidatePlotNumber": 377,
+  "verifiedPlotNumber": null,
+  "status": "needs-review",
+  "confidence": "low",
+  "note": "Plot number inferred positionally (no direct OCR label match) — verify against Dokiparru.jpeg.",
+  "extentSqYd": 200
+ },
+ {
+  "geometryId": "p-378",
+  "candidatePlotNumber": 378,
+  "verifiedPlotNumber": 378,
+  "status": "verified",
+  "confidence": "high",
+  "note": "Plot number read directly from OCR label inside/near the cell.",
+  "extentSqYd": 318.07
+ }
+]

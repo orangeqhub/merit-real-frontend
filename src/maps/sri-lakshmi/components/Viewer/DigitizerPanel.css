@@ -1,0 +1,204 @@
+.digitizer-panel {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  z-index: 1000;
+  width: 300px;
+  max-height: calc(100% - 140px);
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: rgba(20, 20, 20, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  color: #e5e7eb;
+  font-size: 13px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+
+.digitizer-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.digitizer-header strong {
+  font-size: 15px;
+  color: #fff;
+}
+
+.digitizer-layout {
+  font-size: 12px;
+  color: #9ca3af;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.digitizer-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.digitizer-btn {
+  padding: 7px 12px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.digitizer-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.digitizer-btn-new {
+  background: #4caf50;
+  color: #fff;
+}
+
+.digitizer-btn-done {
+  background: #2196f3;
+  color: #fff;
+}
+
+.digitizer-btn-cancel {
+  background: rgba(255, 255, 255, 0.12);
+  color: #e5e7eb;
+}
+
+.digitizer-btn-export {
+  background: #f59e0b;
+  color: #0b1b2b;
+}
+
+.digitizer-btn-danger {
+  background: #dc2626;
+  color: #fff;
+}
+
+.digitizer-hint {
+  margin: 0;
+  padding: 8px 10px;
+  background: rgba(33, 150, 243, 0.15);
+  border: 1px solid rgba(33, 150, 243, 0.4);
+  border-radius: 8px;
+  line-height: 1.45;
+}
+
+.digitizer-edit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+}
+
+.digitizer-field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.digitizer-field input {
+  width: 96px;
+  padding: 6px 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  font-size: 14px;
+  text-align: center;
+}
+
+.digitizer-edit-stats {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.digitizer-edit-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.digitizer-list-title {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #9ca3af;
+  margin-bottom: 4px;
+}
+
+.digitizer-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.digitizer-chip {
+  min-width: 32px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #e5e7eb;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.digitizer-chip:hover {
+  border-color: #f59e0b;
+}
+
+.digitizer-chip-selected {
+  background: #f59e0b;
+  border-color: #f59e0b;
+  color: #0b1b2b;
+  font-weight: 700;
+}
+
+.digitizer-empty {
+  color: #6b7280;
+  font-style: italic;
+}
+
+.digitizer-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.digitizer-link-btn {
+  border: none;
+  background: transparent;
+  color: #f87171;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.digitizer-link-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .digitizer-panel {
+    width: 240px;
+    bottom: 12px;
+    left: 12px;
+  }
+}

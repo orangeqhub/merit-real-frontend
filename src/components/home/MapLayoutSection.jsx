@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Map as MapIcon } from 'lucide-react';
 import {
@@ -17,6 +17,40 @@ import { toast } from '../../store/toastStore';
 import { formatInr, formatIndianNumber } from '../../utils/formatIndianNumber';
 import SmartImage from '../common/SmartImage';
 import { PROJECT_IMAGES } from '../../data/projectImages';
+
+// TEMPORARY, single-layout wiring: mandira-developers is the first (and so
+// far only) layout ported to a native in-bundle React component (see
+// src/maps/mandira-developers/) instead of the standalone-app iframe every
+// other layout still uses below. This map/prefix pairing is deliberately
+// hardcoded and scoped to this one layout key -- once all six layouts are
+// ported this becomes a generic, config-driven lookup (see MAP_LAYOUTS in
+// src/config/mapLayouts.js) rather than a per-layout `if`.
+const NATIVE_MAP_LAYOUTS = {
+  'mandira-developers': {
+    Component: lazy(() => import('../../maps/mandira-developers/MapLayoutView')),
+    externalIdPrefix: 'mnd-',
+  },
+  'manjunadha-enclave': {
+    Component: lazy(() => import('../../maps/manjunadha-enclave/MapLayoutView')),
+    externalIdPrefix: '',
+  },
+  vinfra: {
+    Component: lazy(() => import('../../maps/vinfra/MapLayoutView')),
+    externalIdPrefix: '',
+  },
+  dokiparru: {
+    Component: lazy(() => import('../../maps/dokiparru/MapLayoutView')),
+    externalIdPrefix: 'dk-',
+  },
+  'sri-lakshmi': {
+    Component: lazy(() => import('../../maps/sri-lakshmi/MapLayoutView')),
+    externalIdPrefix: 'sl-',
+  },
+  'anne-enclave': {
+    Component: lazy(() => import('../../maps/anne-enclave/MapLayoutView')),
+    externalIdPrefix: '',
+  },
+};
 
 /** A merged board tile like "67&68" is one tile but two real plot numbers,
  * so it must count as 2 units everywhere a total is tallied. */
@@ -67,8 +101,28 @@ function canBookAsCustomer(user) {
   return true;
 }
 
-/** Normalize API row to public display plot number; never drops rows. */
+/**
+ * Normalize API row to its public display plot number; never drops rows.
+ *
+ * The backend already stores the authoritative public plotNo/phase (series
+ * form, e.g. Anne Enclave Phase 2 = 135-272 -- see plotSeries.js/ts). When
+ * both are present, trust them as-is. The geometry-derived fallback below
+ * (a *different*, internal 1-138 numbering read from plotLayoutIndex.js) is
+ * only for the defensive case where a row genuinely lacks a backend
+ * plotNo/phase -- it must never override an already-valid backend value,
+ * or it silently relabels a plot with a different plot's number.
+ */
 function normalizePlotForBoard(plot, forceSinglePhase = false) {
+  const hasBackendPlotNo = plot.plotNo != null && String(plot.plotNo).trim() !== '';
+  const hasBackendPhase = [1, 2, '1', '2'].includes(plot.phase);
+  if (hasBackendPlotNo && hasBackendPhase) {
+    return {
+      ...plot,
+      phase: Number(plot.phase) === 2 ? 2 : 1,
+      plotNo: String(plot.plotNo).trim(),
+    };
+  }
+
   if (!forceSinglePhase) {
     const meta = getPlotLayoutMeta(plot.externalId || plot.id);
     if (meta) {
@@ -121,6 +175,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   const user = useAuthStore((s) => s.user);
   const layout = getMapLayoutByKey(layoutKey);
   const hasPhase2 = layout.phases === 2;
+  const nativeMap = NATIVE_MAP_LAYOUTS[layout.key] || null;
   const [syncedPlots, setSyncedPlots] = useState([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState('');
@@ -460,6 +515,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   }, [allPlots, user, layout.key]);
 
   useEffect(() => {
+    if (nativeMap) return undefined; // natively mounted: no standalone dev server to probe
     let cancelled = false;
     const timer = window.setTimeout(() => {
       fetch(mapLayoutIframeUrl(layout.key), { method: 'HEAD', mode: 'no-cors', cache: 'no-store' }).catch(() => {
@@ -474,7 +530,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
       cancelled = true;
       window.clearTimeout(timer);
     };
-  }, [iframeKey]);
+  }, [iframeKey, nativeMap, layout.key]);
 
   const counts = useMemo(() => statusCounts(allPlots), [allPlots]);
 
@@ -511,6 +567,34 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
 
     navigate(resumePath);
   }
+
+  // Native-mount equivalents of the 'merit-map-select' / 'merit-map-book'
+  // postMessage handlers above (see the big onMessage effect) -- same
+  // matching logic (by externalId, falling back to plotNo), just invoked
+  // directly via callback props instead of a cross-frame message, since
+  // there's no iframe boundary for a natively-mounted layout.
+  const handleNativeSelect = useCallback(
+    (externalId) => {
+      const id = String(externalId || '').trim();
+      if (!id) {
+        setSelected1(null);
+        return;
+      }
+      const match = allPlots.find((p) => p.externalId === id || String(p.id) === id) || null;
+      if (match) selectPlot(match, match.phase || 1, { fromMap: true });
+    },
+    [allPlots]
+  );
+
+  const handleNativeBook = useCallback(
+    (externalId) => {
+      const id = String(externalId || '').trim();
+      if (!id) return;
+      const match = allPlots.find((p) => p.externalId === id || String(p.id) === id) || null;
+      handleBook(match || { externalId: id, id, plotType: 'residential', status: 'available' });
+    },
+    [allPlots]
+  );
 
   return (
     <section className="mx-auto w-full max-w-screen-2xl px-3 py-6 sm:px-4 sm:py-8 md:px-6 md:py-10 lg:px-6">
@@ -610,19 +694,30 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
             </div>
           )}
           <div className="relative">
-            <iframe
-              key={`${layout.key}-${iframeKey}`}
-              title={layout.title}
-              data-layout-key={layout.key}
-              src={mapLayoutIframeUrl(layout.key)}
-              className={`w-full border-0 ${compact ? 'h-[40vh] min-h-[300px] sm:h-[50vh] sm:min-h-[400px] lg:h-[56vh] lg:min-h-[480px]' : 'h-[56vh] min-h-[400px] sm:h-[68vh] sm:min-h-[560px] lg:h-[78vh] lg:min-h-[640px]'}`}
-              loading="eager"
-              referrerPolicy="no-referrer"
-              onLoad={() => {
-                setViewerWarning('');
-                syncMapPhase('all');
-              }}
-            />
+            {nativeMap ? (
+              <div
+                data-native-layout-key={layout.key}
+                className={`w-full ${compact ? 'h-[40vh] min-h-[300px] sm:h-[50vh] sm:min-h-[400px] lg:h-[56vh] lg:min-h-[480px]' : 'h-[56vh] min-h-[400px] sm:h-[68vh] sm:min-h-[560px] lg:h-[78vh] lg:min-h-[640px]'}`}
+              >
+                <Suspense fallback={<div className="flex h-full items-center justify-center text-xs text-white/60">Loading map…</div>}>
+                  <nativeMap.Component onSelectPlot={handleNativeSelect} onBookPlot={handleNativeBook} />
+                </Suspense>
+              </div>
+            ) : (
+              <iframe
+                key={`${layout.key}-${iframeKey}`}
+                title={layout.title}
+                data-layout-key={layout.key}
+                src={mapLayoutIframeUrl(layout.key)}
+                className={`w-full border-0 ${compact ? 'h-[40vh] min-h-[300px] sm:h-[50vh] sm:min-h-[400px] lg:h-[56vh] lg:min-h-[480px]' : 'h-[56vh] min-h-[400px] sm:h-[68vh] sm:min-h-[560px] lg:h-[78vh] lg:min-h-[640px]'}`}
+                loading="eager"
+                referrerPolicy="no-referrer"
+                onLoad={() => {
+                  setViewerWarning('');
+                  syncMapPhase('all');
+                }}
+              />
+            )}
             <div className="pointer-events-none absolute left-2 top-14 z-10 w-[120px] sm:left-5 sm:top-[82px] sm:w-[180px] lg:w-[220px]">
               <div className="flex flex-col gap-1.5 rounded-lg border border-white/15 bg-black/55 p-2 backdrop-blur-sm">
                 {Object.entries(PLOT_STATUS_LABELS).map(([key, label]) => (

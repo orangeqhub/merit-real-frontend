@@ -51,7 +51,7 @@ export default function WalletHeaderIcon() {
 
   return (
     <Link
-      to="/mediator/wallet"
+      to={user?.role === 'agent' ? '/agent/wallet' : '/mediator/wallet'}
       className="relative flex items-center gap-2 rounded-full bg-brand-700 px-3 py-1.5 text-warm-white shadow-sm ring-1 ring-brand-800/20 hover:bg-brand-800"
       title="My Wallet"
     >

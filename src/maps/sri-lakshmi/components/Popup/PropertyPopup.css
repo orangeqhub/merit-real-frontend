@@ -1,0 +1,178 @@
+.property-popup {
+  position: absolute;
+  right: 16px;
+  top: 72px;
+  z-index: 1200;
+  width: 320px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+}
+
+.property-popup__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #2E7D32;
+  color: #fff;
+  padding: 10px 12px;
+  font-weight: 700;
+}
+
+.property-popup__close {
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.property-popup__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.property-popup__label {
+  background: #2E7D32;
+  color: #fff;
+  padding: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  border: 1px solid #c8c8c8;
+  white-space: nowrap;
+}
+
+.property-popup__value {
+  background: #fff;
+  color: #111827;
+  padding: 2px;
+  font-size: 13px;
+  border: 1px solid #c8c8c8;
+}
+
+.property-popup__input {
+  width: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: #111827;
+  font-size: 13px;
+  padding: 4px 5px;
+  box-sizing: border-box;
+}
+
+.property-popup__footer {
+  padding: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.property-popup__book-btn {
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  background: #1d4ed8;
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 12px;
+  cursor: pointer;
+  min-height: 44px;
+}
+
+.property-popup__book-btn:hover {
+  background: #1e40af;
+}
+
+/* ─── Mobile drag handle indicator ─── */
+.property-popup__drag-handle {
+  display: none;
+}
+
+/* ─── Tablet: narrower popup ─── */
+@media (max-width: 768px) {
+  .property-popup {
+    width: 280px;
+    right: 12px;
+    top: 80px;
+  }
+
+  .property-popup__label {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .property-popup__value {
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+
+  .property-popup__input {
+    font-size: 13px;
+    padding: 5px;
+  }
+}
+
+/* ─── Mobile: full-width bottom sheet ─── */
+@media (max-width: 640px) {
+  .property-popup {
+    position: fixed;
+    right: 0;
+    left: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    max-height: 55dvh;
+    max-height: 55vh;
+    overflow-y: auto;
+    border-radius: 16px 16px 0 0;
+    z-index: 1300;
+  }
+
+  .property-popup__drag-handle {
+    display: flex;
+    justify-content: center;
+    padding: 8px 0 4px;
+  }
+
+  .property-popup__drag-handle::before {
+    content: "";
+    width: 36px;
+    height: 4px;
+    border-radius: 2px;
+    background: #d1d5db;
+  }
+
+  .property-popup__header {
+    padding: 8px 14px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .property-popup__label {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .property-popup__value {
+    font-size: 12px;
+    padding: 2px 4px;
+  }
+
+  .property-popup__input {
+    font-size: max(16px, 1rem);
+    padding: 6px 5px;
+  }
+
+  .property-popup__footer {
+    padding: 12px 14px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .property-popup__book-btn {
+    font-size: 15px;
+    padding: 14px 12px;
+    min-height: 48px;
+    border-radius: 12px;
+  }
+}

@@ -13,6 +13,7 @@
   "dependencies": {
     "@googlemaps/js-api-loader": "^2.1.1",
     "@hookform/resolvers": "^5.5.7",
+    "dxf-parser": "^1.1.2",
     "html2canvas": "^1.4.1",
     "i18next": "^26.3.6",
     "jspdf": "^4.2.1",
@@ -22,6 +23,7 @@
     "react-dom": "^19.2.7",
     "react-hook-form": "^7.83.0",
     "react-i18next": "^17.0.11",
+    "react-leaflet": "^5.0.0",
     "react-router-dom": "^7.18.1",
     "recharts": "^3.10.1",
     "socket.io-client": "^4.8.3",

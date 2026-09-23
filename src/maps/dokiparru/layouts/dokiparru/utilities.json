@@ -1,0 +1,52 @@
+[
+ {
+  "id": "utility-1",
+  "label": "UTILITY",
+  "precision": "source-traced (Phase 2N); right edge corrected Phase 3R — Phase 2N's right edge at x=819 was wrong: a fresh pixel trace of road-v-0 (the 'PROPOSED 33'-00\" WIDE ROAD' immediately east of this utility) found its own left/right vertical edges at x=760 and x=819 running continuously alongside this utility, meaning the utility's hatched area cannot extend past x=760 without overlapping that road. Direct visual crop confirmed the hatching visibly stops at x=760, not x=819 — the space from 760 to 819 belongs to road-v-0. Right edge moved from 8190 to 7600, with the bottom-right/hypotenuse-end y recalculated at the same slope (0.549, matching the original Phase 2N measurement) to 22490 instead of 22815, so the triangle keeps its verified hypotenuse angle while stopping at the correct x.",
+  "polygon": [
+   {
+    "x": 4850,
+    "y": 20980
+   },
+   {
+    "x": 7600,
+    "y": 20980
+   },
+   {
+    "x": 7600,
+    "y": 22490
+   }
+  ]
+ },
+ {
+  "id": "utility-2",
+  "label": "UTILITY",
+  "precision": "source-traced (Phase 2M) — bounded above by p-150 south edge, right by p-210 west edge, hypotenuse measured directly off the Donka Road boundary line",
+  "polygon": [
+   {
+    "x": 14140,
+    "y": 25430
+   },
+   {
+    "x": 15210,
+    "y": 25430
+   },
+   {
+    "x": 15210,
+    "y": 27390
+   },
+   {
+    "x": 15000,
+    "y": 27450
+   },
+   {
+    "x": 14400,
+    "y": 27365
+   },
+   {
+    "x": 14000,
+    "y": 27000
+   }
+  ]
+ }
+]

@@ -1,0 +1,64 @@
+.search-box {
+  position: absolute;
+  top: 20px;
+  right: 76px;
+  z-index: 999;
+  /* The mobile breakpoint below sets left+right together, making this
+     wrapper span the full viewport width -- pointer-events:none here
+     (with :auto restored on the input itself) guarantees that empty side
+     padding can never intercept hover/clicks on the map underneath. */
+  pointer-events: none;
+}
+
+.search-box input {
+  width: 260px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+  pointer-events: auto;
+}
+
+.search-box input:hover {
+  border-color: rgba(33, 150, 243, 0.4);
+}
+
+.search-box input:focus {
+  border-color: #2196f3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
+}
+
+/* Tablet */
+@media (max-width: 768px) {
+  .search-box {
+    top: 14px;
+    right: 70px;
+  }
+
+  .search-box input {
+    width: 200px;
+    padding: 10px 12px;
+    font-size: 15px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .search-box {
+    top: auto;
+    bottom: 16px;
+    left: 12px;
+    right: 12px;
+    transform: none;
+  }
+
+  .search-box input {
+    width: 100%;
+    max-width: none;
+    padding: 12px 14px;
+    font-size: max(16px, 1rem);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+  }
+}

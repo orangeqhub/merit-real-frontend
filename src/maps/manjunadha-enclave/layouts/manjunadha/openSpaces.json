@@ -1,0 +1,45 @@
+[
+ {
+  "id": "manjunadha-openspace-1",
+  "label": "OPEN SPACE\nAC 0.53 22 CENTS",
+  "polygon": [
+   {
+    "x": 0.0,
+    "y": 0.0
+   },
+   {
+    "x": 1191.15,
+    "y": 0.0
+   },
+   {
+    "x": 1191.15,
+    "y": 1492.76
+   },
+   {
+    "x": 1821.15,
+    "y": 1492.76
+   },
+   {
+    "x": 1821.15,
+    "y": 1965.2
+   },
+   {
+    "x": 1191.15,
+    "y": 1965.2
+   },
+   {
+    "x": 1191.15,
+    "y": 2802.59
+   },
+   {
+    "x": 0.0,
+    "y": 2802.59
+   }
+  ],
+  "precision": "L-shaped: the main body (x:0-1191.15, full north-south span) is an area-preserving rectangle (exact printed acreage 0.5322 ac / dimension-derived height); the true west (tree-line) edge is gently irregular in the source and was not independently pixel-traced. A notch (x:1191.15-1821.15, y:1492.76-1965.2) was added to cover the gap between plot 44's south edge and the Utility plot's north edge in that column -- the source shows this strip as continuous open space/grass, not empty ground, matching the same plot-column width used by 41-45/Utility.",
+  "center": {
+   "x": 595.58,
+   "y": 1401.3
+  }
+ }
+]

@@ -1,0 +1,798 @@
+[
+ {
+  "geometryId": "p-001",
+  "plotNumber": 1,
+  "reason": "open-space-1",
+  "extentSqYd": 333.33,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-002",
+  "plotNumber": 2,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-003",
+  "plotNumber": 3,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-004",
+  "plotNumber": 4,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-005",
+  "plotNumber": 5,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-006",
+  "plotNumber": 6,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-007",
+  "plotNumber": 7,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-008",
+  "plotNumber": 8,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-009",
+  "plotNumber": 9,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-010",
+  "plotNumber": 10,
+  "reason": "open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-011",
+  "plotNumber": 11,
+  "reason": "outer-boundary,open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-012",
+  "plotNumber": 12,
+  "reason": "outer-boundary,open-space-1",
+  "extentSqYd": 333.33,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-013",
+  "plotNumber": 13,
+  "reason": "outer-boundary,open-space-1",
+  "extentSqYd": 333.33,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-014",
+  "plotNumber": 14,
+  "reason": "outer-boundary,open-space-1",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-015",
+  "plotNumber": 15,
+  "reason": "outer-boundary",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-045",
+  "plotNumber": 45,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 489.92,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true
+ },
+ {
+  "geometryId": "p-046",
+  "plotNumber": 46,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 333.33,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-091",
+  "plotNumber": 91,
+  "reason": "donka-road",
+  "extentSqYd": 333.33,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-092",
+  "plotNumber": 92,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-093",
+  "plotNumber": 93,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-094",
+  "plotNumber": 94,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 337.74,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true
+ },
+ {
+  "geometryId": "p-095",
+  "plotNumber": 95,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 521.88,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2J). Plot is a quadrilateral clipped by an internal boundary diagonal that bends at the column-E/F seam. Geometric area validated against printed extent-map value within 1.5%.",
+  "causeClassification": "source-ambiguous"
+ },
+ {
+  "geometryId": "p-096",
+  "plotNumber": 96,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-097",
+  "plotNumber": 97,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-098",
+  "plotNumber": 98,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "direct-crop-inspection",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-146",
+  "plotNumber": 146,
+  "reason": "donka-road",
+  "extentSqYd": 220,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-147",
+  "plotNumber": 147,
+  "reason": "donka-road",
+  "extentSqYd": 220,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-148",
+  "plotNumber": 148,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 220,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-149",
+  "plotNumber": 149,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 532.96,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2J). Plot is a quadrilateral clipped by an internal boundary diagonal that bends at the column-E/F seam. Geometric area validated against printed extent-map value within 1.5%.",
+  "causeClassification": "source-ambiguous"
+ },
+ {
+  "geometryId": "p-150",
+  "plotNumber": 150,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 207.81,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "rectangle-correct",
+  "sourceVerified": true,
+  "geometryChanged": false,
+  "note": "Directly cropped and inspected (Phase 2J). All four edges confirmed by clean purple CAD subdivision lines matching the existing rectangle within a few px. No correction needed."
+ },
+ {
+  "geometryId": "p-151",
+  "plotNumber": 151,
+  "reason": "donka-road",
+  "extentSqYd": 220,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-152",
+  "plotNumber": 152,
+  "reason": "donka-road",
+  "extentSqYd": 220,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-177",
+  "plotNumber": 177,
+  "reason": "outer-boundary",
+  "extentSqYd": 515.55,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Directly measured against B.T Road curb line in a fresh precise crop (x1300-1800,y300-800). Trapezoid, not a corner-clip. Verified visually via search + reference overlay: top edge matches curb line closely."
+ },
+ {
+  "geometryId": "p-178",
+  "plotNumber": 178,
+  "reason": "outer-boundary",
+  "extentSqYd": 495.54,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Directly measured against B.T Road curb line in a fresh precise crop (x1300-1800,y300-800). Trapezoid, not a corner-clip. Verified visually via search + reference overlay: top edge matches curb line closely."
+ },
+ {
+  "geometryId": "p-205",
+  "plotNumber": 205,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-206",
+  "plotNumber": 206,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-207",
+  "plotNumber": 207,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-208",
+  "plotNumber": 208,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-209",
+  "plotNumber": 209,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-210",
+  "plotNumber": 210,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 392.81,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2J). Plot is a quadrilateral clipped by an internal boundary diagonal that bends at the column-E/F seam. Geometric area validated against printed extent-map value within 1.5%."
+ },
+ {
+  "geometryId": "p-211",
+  "plotNumber": 211,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 413.84,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2K). Quadrilateral clipped by the existing Donka Road edge (same physical line drawn in source, labeled EXISTING DONKA ROAD). Geometric area validated against printed extent-map value."
+ },
+ {
+  "geometryId": "p-212",
+  "plotNumber": 212,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-213",
+  "plotNumber": 213,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-214",
+  "plotNumber": 214,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-215",
+  "plotNumber": 215,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-266",
+  "plotNumber": 266,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-267",
+  "plotNumber": 267,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-268",
+  "plotNumber": 268,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-269",
+  "plotNumber": 269,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-270",
+  "plotNumber": 270,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 298,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2K). Quadrilateral clipped by the existing Donka Road edge (same physical line drawn in source, labeled EXISTING DONKA ROAD). Geometric area validated against printed extent-map value."
+ },
+ {
+  "geometryId": "p-271",
+  "plotNumber": 271,
+  "reason": "donka-road",
+  "extentSqYd": 317.78,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2K). Quadrilateral clipped by the existing Donka Road edge (same physical line drawn in source, labeled EXISTING DONKA ROAD). Geometric area validated against printed extent-map value."
+ },
+ {
+  "geometryId": "p-272",
+  "plotNumber": 272,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-273",
+  "plotNumber": 273,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-274",
+  "plotNumber": 274,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-275",
+  "plotNumber": 275,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-318",
+  "plotNumber": 318,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-319",
+  "plotNumber": 319,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-320",
+  "plotNumber": 320,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-321",
+  "plotNumber": 321,
+  "reason": "donka-road",
+  "extentSqYd": 401.5,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement (Phase 2K). Also corrected a column-assignment error: OCR had inferred plot 321 into column M (x:2235-2343) by proximity to 322, but direct visual inspection proves it is in column L (x:2069-2176), stacked directly below plot 320. Quadrilateral clipped by existing Donka Road edge. Geometric area validated within 3.8% of printed value."
+ },
+ {
+  "geometryId": "p-322",
+  "plotNumber": 322,
+  "reason": "donka-road",
+  "extentSqYd": 421.25,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2L). Quadrilateral clipped by Existing Donka Road edge. Geometric area validated against printed extent-map value."
+ },
+ {
+  "geometryId": "p-323",
+  "plotNumber": 323,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-324",
+  "plotNumber": 324,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-356",
+  "plotNumber": 356,
+  "reason": "donka-road",
+  "extentSqYd": 333.33,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-357",
+  "plotNumber": 357,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-358",
+  "plotNumber": 358,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-359",
+  "plotNumber": 359,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-360",
+  "plotNumber": 360,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-361",
+  "plotNumber": 361,
+  "reason": "donka-road",
+  "extentSqYd": 305.36,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2L). Quadrilateral clipped by Existing Donka Road edge. Geometric area validated against printed extent-map value."
+ },
+ {
+  "geometryId": "p-362",
+  "plotNumber": 362,
+  "reason": "donka-road",
+  "extentSqYd": 384,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement (Phase 2L). Also corrected a column-assignment error: OCR had placed 362 stacked below 361 in column N (x:2358-2450), but no such row exists there (the Existing Donka Road clips 361 directly). Direct visual inspection proves 362 is a separate single-row plot in the next column east (x:2509-2616), across a proposed road gap, clipped by the same Donka Road edge."
+ },
+ {
+  "geometryId": "p-363",
+  "plotNumber": 363,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-364",
+  "plotNumber": 364,
+  "reason": "outer-boundary,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-365",
+  "plotNumber": 365,
+  "reason": "donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-366",
+  "plotNumber": 366,
+  "reason": "donka-road",
+  "extentSqYd": 333.33,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-374",
+  "plotNumber": 374,
+  "reason": "open-space-2,donka-road",
+  "extentSqYd": 333.33,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-375",
+  "plotNumber": 375,
+  "reason": "open-space-2,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-376",
+  "plotNumber": 376,
+  "reason": "open-space-2,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-377",
+  "plotNumber": 377,
+  "reason": "open-space-2,donka-road",
+  "extentSqYd": 200,
+  "classificationMethod": "area-frequency-heuristic (validated against 8 directly-cropped plots in this region)",
+  "status": "rectangle-correct",
+  "sourceVerified": false,
+  "geometryChanged": false
+ },
+ {
+  "geometryId": "p-378",
+  "plotNumber": 378,
+  "reason": "open-space-2,donka-road",
+  "extentSqYd": 318.07,
+  "classificationMethod": "direct-source-line-trace",
+  "status": "traced-irregular",
+  "sourceVerified": true,
+  "geometryChanged": true,
+  "note": "Traced from direct pixel measurement of Dokiparru.jpeg (Phase 2L). Quadrilateral clipped by Existing Donka Road edge. Geometric area validated against printed extent-map value."
+ }
+]

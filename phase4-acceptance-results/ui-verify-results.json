@@ -1,0 +1,543 @@
+{
+  "anne-enclave": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 1295,
+      "bestBox": {
+        "x": 229.43360900878906,
+        "y": 1325.1259765625,
+        "width": 909.4793701171875,
+        "height": 179.46728515625
+      },
+      "totalColoredShapes": 1288,
+      "greenShapes": 804,
+      "distinctColors": [
+        "#3f3f46",
+        "#22C55E",
+        "#2E7D32",
+        "#9C27B0",
+        "#5d4630",
+        "#0f172a"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 1295,
+      "bestBox": {
+        "x": 22.384408950805664,
+        "y": 1400.9715576171875,
+        "width": 1309.650390625,
+        "height": 258.4327392578125
+      },
+      "totalColoredShapes": 1288,
+      "greenShapes": 804,
+      "distinctColors": [
+        "#3f3f46",
+        "#22C55E",
+        "#2E7D32",
+        "#9C27B0",
+        "#5d4630",
+        "#0f172a"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 1296,
+      "bestBox": {
+        "x": 373.2178039550781,
+        "y": 1272.45556640625,
+        "width": 631.5830078125,
+        "height": 124.630126953125
+      },
+      "totalColoredShapes": 1289,
+      "greenShapes": 804,
+      "distinctColors": [
+        "#3f3f46",
+        "#22C55E",
+        "#2E7D32",
+        "#9C27B0",
+        "#5d4630",
+        "#0f172a"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 1295,
+      "bestBox": {
+        "x": 229.43360900878906,
+        "y": 1325.1259765625,
+        "width": 909.4793701171875,
+        "height": 179.46728515625
+      },
+      "totalColoredShapes": 1288,
+      "greenShapes": 804,
+      "distinctColors": [
+        "#3f3f46",
+        "#22C55E",
+        "#2E7D32",
+        "#9C27B0",
+        "#5d4630",
+        "#0f172a"
+      ]
+    },
+    "consoleErrors": []
+  },
+  "sri-lakshmi": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 387,
+      "bestBox": {
+        "x": 68.03125,
+        "y": 744.375,
+        "width": 1090.96875,
+        "height": 988.03125
+      },
+      "totalColoredShapes": 386,
+      "greenShapes": 283,
+      "distinctColors": [
+        "#ef4444",
+        "#f87171",
+        "#3f4652",
+        "#4b5563",
+        "#4a4238",
+        "#2E7D32",
+        "#9C27B0",
+        "#22C55E"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 387,
+      "bestBox": {
+        "x": -210.03500366210938,
+        "y": 564.6900024414062,
+        "width": 1570.9951171875,
+        "height": 1422.76513671875
+      },
+      "totalColoredShapes": 386,
+      "greenShapes": 283,
+      "distinctColors": [
+        "#ef4444",
+        "#f87171",
+        "#3f4652",
+        "#4b5563",
+        "#4a4238",
+        "#2E7D32",
+        "#9C27B0",
+        "#22C55E"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 433,
+      "bestBox": {
+        "x": 261.1328125,
+        "y": 869.15625,
+        "width": 757.6173095703125,
+        "height": 686.1329345703125
+      },
+      "totalColoredShapes": 432,
+      "greenShapes": 283,
+      "distinctColors": [
+        "#ef4444",
+        "#f87171",
+        "#3f4652",
+        "#4b5563",
+        "#4a4238",
+        "#2E7D32",
+        "#9C27B0",
+        "#5d4630",
+        "#22C55E"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 387,
+      "bestBox": {
+        "x": 68.03125,
+        "y": 744.375,
+        "width": 1090.96875,
+        "height": 988.03125
+      },
+      "totalColoredShapes": 386,
+      "greenShapes": 283,
+      "distinctColors": [
+        "#ef4444",
+        "#f87171",
+        "#3f4652",
+        "#4b5563",
+        "#4a4238",
+        "#2E7D32",
+        "#9C27B0",
+        "#22C55E"
+      ]
+    },
+    "consoleErrors": []
+  },
+  "manjunadha-enclave": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 128,
+      "bestBox": {
+        "x": 414,
+        "y": 988.75,
+        "width": 540,
+        "height": 129
+      },
+      "totalColoredShapes": 105,
+      "greenShapes": 68,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#64748b",
+        "#94a3b8",
+        "#3f3f46",
+        "#A5D66A",
+        "#5d4630"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 128,
+      "bestBox": {
+        "x": 414,
+        "y": 988.75,
+        "width": 540,
+        "height": 129
+      },
+      "totalColoredShapes": 105,
+      "greenShapes": 68,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#64748b",
+        "#94a3b8",
+        "#3f3f46",
+        "#A5D66A",
+        "#5d4630"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 128,
+      "bestBox": {
+        "x": 557,
+        "y": 1021.75,
+        "width": 269,
+        "height": 64
+      },
+      "totalColoredShapes": 105,
+      "greenShapes": 68,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#64748b",
+        "#94a3b8",
+        "#3f3f46",
+        "#A5D66A",
+        "#5d4630"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 128,
+      "bestBox": {
+        "x": 414.18377685546875,
+        "y": 988.2155151367188,
+        "width": 540,
+        "height": 129.00006103515625
+      },
+      "totalColoredShapes": 105,
+      "greenShapes": 68,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#64748b",
+        "#94a3b8",
+        "#3f3f46",
+        "#A5D66A",
+        "#5d4630"
+      ]
+    },
+    "consoleErrors": []
+  },
+  "vinfra": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 215,
+      "bestBox": {
+        "x": 925.0279541015625,
+        "y": 790.3499755859375,
+        "width": 109.9852294921875,
+        "height": 609.845947265625
+      },
+      "totalColoredShapes": 215,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#2E7D32",
+        "#78716C",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 215,
+      "bestBox": {
+        "x": 1321.040283203125,
+        "y": 805.7940063476562,
+        "width": 158.37890625,
+        "height": 878.1781616210938
+      },
+      "totalColoredShapes": 215,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#2E7D32",
+        "#78716C",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 215,
+      "bestBox": {
+        "x": 650.0194702148438,
+        "y": 779.625,
+        "width": 76.37872314453125,
+        "height": 423.504150390625
+      },
+      "totalColoredShapes": 215,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#2E7D32",
+        "#78716C",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 215,
+      "bestBox": {
+        "x": 925.0279541015625,
+        "y": 790.3499755859375,
+        "width": 109.9852294921875,
+        "height": 609.845947265625
+      },
+      "totalColoredShapes": 215,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#2E7D32",
+        "#78716C",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "consoleErrors": []
+  },
+  "dokiparru": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 396,
+      "bestBox": {
+        "x": 838.5651245117188,
+        "y": 918.6489868164062,
+        "width": 164.9019775390625,
+        "height": 344.51458740234375
+      },
+      "totalColoredShapes": 396,
+      "greenShapes": 380,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#dc2626",
+        "#94a3b8",
+        "#475569",
+        "#64748b",
+        "#52525b",
+        "#3f3f46",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 396,
+      "bestBox": {
+        "x": 899.5338134765625,
+        "y": 859.20458984375,
+        "width": 237.4588623046875,
+        "height": 496.10107421875
+      },
+      "totalColoredShapes": 396,
+      "greenShapes": 380,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#dc2626",
+        "#94a3b8",
+        "#475569",
+        "#64748b",
+        "#52525b",
+        "#3f3f46",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 396,
+      "bestBox": {
+        "x": 796.225830078125,
+        "y": 959.9298706054688,
+        "width": 114.51531982421875,
+        "height": 239.24627685546875
+      },
+      "totalColoredShapes": 396,
+      "greenShapes": 380,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#dc2626",
+        "#94a3b8",
+        "#475569",
+        "#64748b",
+        "#52525b",
+        "#3f3f46",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 396,
+      "bestBox": {
+        "x": 838.5651245117188,
+        "y": 918.6489868164062,
+        "width": 164.9019775390625,
+        "height": 344.51458740234375
+      },
+      "totalColoredShapes": 396,
+      "greenShapes": 380,
+      "distinctColors": [
+        "#2E7D32",
+        "#9C27B0",
+        "#dc2626",
+        "#94a3b8",
+        "#475569",
+        "#64748b",
+        "#52525b",
+        "#3f3f46",
+        "#A5D66A"
+      ]
+    },
+    "consoleErrors": []
+  },
+  "mandira-developers": {
+    "hasZoomIn": true,
+    "hasZoomOut": true,
+    "hasReset": true,
+    "metricsBefore": {
+      "shapeCount": 214,
+      "bestBox": {
+        "x": 776.0031127929688,
+        "y": 799.8182373046875,
+        "width": 310.60821533203125,
+        "height": 243.8848876953125
+      },
+      "totalColoredShapes": 214,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#4C7BE1",
+        "#FFD500",
+        "#E0BC00",
+        "#2E7D32",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomIn": {
+      "shapeCount": 214,
+      "bestBox": {
+        "x": 1106.444580078125,
+        "y": 842.5282592773438,
+        "width": 447.2757568359375,
+        "height": 351.19427490234375
+      },
+      "totalColoredShapes": 214,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#4C7BE1",
+        "#FFD500",
+        "#E0BC00",
+        "#2E7D32",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterZoomOut": {
+      "shapeCount": 214,
+      "bestBox": {
+        "x": 546.530029296875,
+        "y": 770.1585083007812,
+        "width": 215.70013427734375,
+        "height": 169.36456298828125
+      },
+      "totalColoredShapes": 214,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#4C7BE1",
+        "#FFD500",
+        "#E0BC00",
+        "#2E7D32",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "metricsAfterReset": {
+      "shapeCount": 214,
+      "bestBox": {
+        "x": 776.0031127929688,
+        "y": 799.8182373046875,
+        "width": 310.60821533203125,
+        "height": 243.8848876953125
+      },
+      "totalColoredShapes": 214,
+      "greenShapes": 197,
+      "distinctColors": [
+        "rgb(0, 0, 0)",
+        "#4C7BE1",
+        "#FFD500",
+        "#E0BC00",
+        "#2E7D32",
+        "#3f3f46",
+        "#94a3b8",
+        "#64748b",
+        "#52525b",
+        "#A5D66A"
+      ]
+    },
+    "consoleErrors": []
+  }
+}

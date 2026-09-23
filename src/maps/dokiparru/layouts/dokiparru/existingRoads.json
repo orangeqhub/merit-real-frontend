@@ -1,0 +1,118 @@
+[
+ {
+  "id": "existing-bt-road",
+  "type": "existing-bt",
+  "label": "EXISTING B.T ROAD",
+  "precision": "source-traced (Phase 3F, supersedes Phase 3C) \u00e2\u20ac\u201d Phase 3C incorrectly modeled this as a filled wedge using the plot frontage as its south edge, causing a huge fabricated gap (up to 751px) at the east end. Direct re-inspection at multiple clean crops (x=760/1040/1420/1780/2150/2430, no text overlap) shows the source draws EXISTING B.T ROAD as a single straight reference line, fully independent of the plot frontage below it (the frontage curves away to the SE after plot 178 while this line stays high and straight) \u00e2\u20ac\u201d confirmed by a wide clean crop (x=750-1050) showing only one line, no second edge. Line measured at (x=760,y=332) to (x=2430,y=195), image px, giving a near-constant slope; fit clipped to the property's x-extent (545 to 2343). Rendered as a straight band of nominal 60px width (matching the same no-printed-width convention already used for existing-donka-road in this file), not touching the frontage \u00e2\u20ac\u201d the large blank area between this line and the plots is real per source, not part of any region..",
+  "polygon": [
+   {
+    "x": 5450,
+    "y": 3500
+   },
+   {
+    "x": 23430,
+    "y": 2020
+   },
+   {
+    "x": 23430,
+    "y": 2620
+   },
+   {
+    "x": 5450,
+    "y": 4100
+   }
+  ],
+  "path": [
+   {
+    "x": 5450,
+    "y": 3500
+   },
+   {
+    "x": 23430,
+    "y": 2020
+   }
+  ]
+ },
+ {
+  "id": "existing-donka-road",
+  "type": "existing-donka",
+  "label": "EXISTING DONKA ROAD",
+  "precision": "source-traced (Phase 2M/2N north edge; south edge corrected Phase 3G). North edge from directly measured plot-boundary vertices (unchanged, still correct \u00e2\u20ac\u201d these are real plot corners). Phase 3F's south edge, which swept a large filled bulge from x=819 to x=1370 (image px), is CONTRADICTED by direct re-inspection of the native JPEG in that span: gridded crops (x=700-1200, y=2350-2950, covering plots 45/94/95/148-150 and Utility-1) show the property boundary line and then BLANK, undrawn space below it all the way to the page-break symbol \u00e2\u20ac\u201d no second 'road' line is present in the source there, so filling that area as road fabricated a corridor that doesn't exist. From x=1370 eastward a real second line/label ('EXISTING DONKA ROAD') is present, running close and roughly parallel to the boundary (measured gap ~10-96px, not a large corridor), matching Phase 3F's east-end points (2450,2521)-(2724,2522) [image px], which are kept. Fix: south edge now starts at (1370,2775) [image px, from Phase 3F, gap already small there] and immediately closes back onto the north-edge boundary at the same x (zero road width west of x=1370) instead of continuing to fabricate a bulge out to x=819. Phase 3I: the previously-flagged 'second flatter line' near x=1900-2450 was re-investigated and resolved to dimension/extension-line clutter for the plot-edge labels there, not a second road boundary \u00e2\u20ac\u201d no change needed in that span. Separately, a real gap was found and fixed at the EAST end: pixel scans (x=2750/2850/2950/3038/3100/3180) show the road's south edge line (y=2521, same line already used at x=2450/2724) continues uninterrupted well past plot 378's edge (x=2724) toward the property's actual east corner (x=3038, matching layoutBoundary.json's easternmost vertex) before the drawing hits its page-break symbol near x=3200. The road was previously truncated at x=2724, stopping short of this real continuation. Extended east edge to x=3038. Phase 3L correction: the initial version of this extension reused Open Space-2's own diagonal vertices (27830,24160)/(30380,23760) as the road's north edge, but a direct visual overlay of the vector against Dokiparru.jpeg (development reference, 50% opacity) showed this made the road balloon upward into Open Space-2's territory well above the actual thin source line, which continues at a low, roughly flat slope in this span, not rising steeply. Corrected the north edge to hold at y=24260 (the last independently-verified accurate north-edge value, at x=27240) all the way to x=30380, keeping the road a consistent ~96-100 unit width matching the rest of its established corridor, instead of a triangular wedge. Phase 3N investigation: user-supplied reference crop showed the source road as one smooth, gently-sloped thin line the entire way from plot 149 through plot 378, while the rendered corridor has a visible width variation \u00e2\u20ac\u201d wider at both ends (~96-100 units) and pinched in the middle (~49-57 units around x=1730) since the corridor's width is the gap between this road line and the (independently, accurately traced) plot-corner boundary chain above it. Tested removing the (17300,27120) mid-point to smooth this: a direct line from (24500,25210) to (13700,27750) passes within single-digit units of the real north-edge/plot-corner value near x=1488-1521, confirming the plots genuinely narrow the gap there \u00e2\u20ac\u201d it is not a stray extra vertex causing an artificial pinch. Since a thin single reference line in the source has no meaningful 'width' to compare against a filled corridor's variation, and the plots-vs-line gap is independently verified accurate on both edges, kept the existing variable-width geometry rather than fabricating a fixed-width band (user confirmed: prefer accurate variable width over a stylized uniform one).. Phase 3W: at user request, west section (x=819-1307, previously zero-width since no road line exists there in source) filled with a 500-unit offset band matching the plot-frontage chain, for visual continuity \u2014 same trade-off already applied and explicitly requested for the east extension and B.T. Road, trading confirmed source accuracy (this area is genuinely blank in the source) for a continuous-looking road. Phase 3W/3X: at user request, filled the west section (x=819-1370, genuinely blank in source) with a 500-unit offset band and re-widened the east section to a 700-unit band, for visual continuity across the whole corridor. Rebuilt the entire polygon as a Shapely union of per-segment quads (each pairing two consecutive north-edge/plot-frontage points with their offset south points) rather than hand-edited coordinates, to avoid the self-intersection and stale-point bugs that manual editing kept introducing. Corrected two stale north-edge points, (8190,22280) and (8851,23030), which predated plot 45's diagonal-edge correction earlier this session and fell inside plot 45's current shape \u2014 replaced with plot 45's own actual corners (8190,22815) and (9270,23540). Verified zero overlap with all 378 plots, all proposed roads, both utilities, and Open Space-2.",
+  "polygon": [
+   {
+    "x": 12000,
+    "y": 28048
+   },
+   {
+    "x": 13700,
+    "y": 27750
+   },
+   {
+    "x": 17300,
+    "y": 27120
+   },
+   {
+    "x": 24500,
+    "y": 25210
+   },
+   {
+    "x": 27240,
+    "y": 25220
+   },
+   {
+    "x": 30380,
+    "y": 25210
+   },
+   {
+    "x": 30380,
+    "y": 25810
+   },
+   {
+    "x": 27240,
+    "y": 25820
+   },
+   {
+    "x": 24500,
+    "y": 25810
+   },
+   {
+    "x": 17300,
+    "y": 27720
+   },
+   {
+    "x": 13700,
+    "y": 28350
+   },
+   {
+    "x": 12000,
+    "y": 28648
+   }
+  ],
+  "path": [
+   {
+    "x": 12000,
+    "y": 28048
+   },
+   {
+    "x": 13700,
+    "y": 27750
+   },
+   {
+    "x": 17300,
+    "y": 27120
+   },
+   {
+    "x": 24500,
+    "y": 25210
+   },
+   {
+    "x": 27240,
+    "y": 25220
+   },
+   {
+    "x": 30380,
+    "y": 25210
+   }
+  ]
+ }
+]

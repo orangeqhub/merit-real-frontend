@@ -1,0 +1,72 @@
+[
+ {
+  "id": "open-space-1",
+  "label": "OPEN SPACE 1.459 Ac.",
+  "precision": "source-traced (Phase 2N) — full perimeter measured: top-right and bottom-right diagonals each confirmed straight via 4-8 interior points (slopes consistent to within 0.02), right edge shared with the adjacent 33ft road. Geometric area 1.457 Ac vs printed 1.459 Ac (0.1%).",
+  "polygon": [
+   {
+    "x": 4860,
+    "y": 12430
+   },
+   {
+    "x": 2900,
+    "y": 13190
+   },
+   {
+    "x": 1300,
+    "y": 19020
+   },
+   {
+    "x": 4860,
+    "y": 20980
+   }
+  ]
+ },
+ {
+  "id": "open-space-2",
+  "label": "OPEN SPACE 1.566 Ac.",
+  "precision": "source-traced (Phase 3C) — full re-measurement found a previously-missed 33ft proposed road (x:2724-2783) between plots 374-378 and the open space; west edge now correctly follows col-N (x=2343) -> road-v-6 edge (x=2509) -> plots 367-373 column edge (x=2617) -> this newly-measured 33ft road edge (x=2783, spans y:2028-2416, length matches the printed \"216-8\" label exactly). South edge is a real measured line (slope -0.157, previously misidentified as unrelated outer-boundary continuation) running from (2783,2416) to (3038,2376) where it meets the main east diagonal (slope 2.25, confirmed via 15+ points). Geometric area 1.620 Ac vs printed 1.566 Ac (3.5%).",
+  "polygon": [
+   {
+    "x": 24110,
+    "y": 9640
+   },
+   {
+    "x": 30380,
+    "y": 23760
+   },
+   {
+    "x": 27830,
+    "y": 24160
+   },
+   {
+    "x": 27830,
+    "y": 20280
+   },
+   {
+    "x": 26170,
+    "y": 20280
+   },
+   {
+    "x": 26170,
+    "y": 15910
+   },
+   {
+    "x": 25090,
+    "y": 15910
+   },
+   {
+    "x": 25090,
+    "y": 13205
+   },
+   {
+    "x": 23430,
+    "y": 13205
+   },
+   {
+    "x": 23430,
+    "y": 9640
+   }
+  ]
+ }
+]

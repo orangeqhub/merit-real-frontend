@@ -108,12 +108,18 @@ export const DASHBOARD_NAV = {
 };
 
 DASHBOARD_NAV.customer = DASHBOARD_NAV.buyer;
-DASHBOARD_NAV.agent = DASHBOARD_NAV.mediator;
+// Agent's own canonical nav (same pages as mediator, but under /agent so
+// Agents always land on /agent, never /mediator). /mediator's nav stays
+// separate for backward compatibility.
+DASHBOARD_NAV.agent = DASHBOARD_NAV.mediator.map((item) => ({
+  ...item,
+  path: item.path.replace(/^\/mediator/, '/agent'),
+}));
 
 export const ROLE_HOME = {
   buyer: '/buyer/dashboard',
   customer: '/buyer/dashboard',
-  agent: '/mediator/dashboard',
+  agent: '/agent/dashboard',
   seller: '/seller/dashboard',
   mediator: '/mediator/dashboard',
   employee: '/',
@@ -124,5 +130,6 @@ export const ROLE_HOME = {
 /** Default post-login route when no return URL or pending action exists. */
 export function getPostLoginDestination(role) {
   if (role === 'admin') return ROLE_HOME.admin;
+  if (role === 'agent') return ROLE_HOME.agent;
   return '/';
 }

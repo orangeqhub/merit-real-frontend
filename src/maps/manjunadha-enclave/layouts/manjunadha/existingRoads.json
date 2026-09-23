@@ -1,0 +1,84 @@
+[
+ {
+  "id": "existing-donka-road",
+  "type": "existing-donka",
+  "polygon": [
+   {
+    "x": 12130.24,
+    "y": -48.0
+   },
+   {
+    "x": 12097.24,
+    "y": 440.04
+   },
+   {
+    "x": 12068.24,
+    "y": 843.91
+   },
+   {
+    "x": 12022.24,
+    "y": 1492.76
+   },
+   {
+    "x": 11981.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11920.58,
+    "y": 2851.59
+   },
+   {
+    "x": 12400.58,
+    "y": 2851.59
+   },
+   {
+    "x": 12461.58,
+    "y": 1965.2
+   },
+   {
+    "x": 12502.24,
+    "y": 1492.76
+   },
+   {
+    "x": 12548.24,
+    "y": 843.91
+   },
+   {
+    "x": 12577.24,
+    "y": 440.04
+   },
+   {
+    "x": 12610.24,
+    "y": -48.0
+   }
+  ],
+  "path": [
+   {
+    "x": 12130.24,
+    "y": -48.0
+   },
+   {
+    "x": 12097.24,
+    "y": 440.04
+   },
+   {
+    "x": 12068.24,
+    "y": 843.91
+   },
+   {
+    "x": 12022.24,
+    "y": 1492.76
+   },
+   {
+    "x": 11981.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11920.58,
+    "y": 2851.59
+   }
+  ],
+  "label": "EXISTING DONKA ROAD",
+  "precision": "West edge is EXACT: the literal shared east faces of plots 3, 2, 1 and 67&68, whose printed top/bottom widths already shrink row by row (76'-11\" -> 74'-2\" -> 71'-9\" -> 67'-11\" -> 67&68's 78'-8\"/73'-7\"), which is what encodes the road's real diagonal angle in this drawing. East (outer) edge is a nominal 40ft parallel offset -- no road-width dimension is printed for this EXISTING road, so that figure is an approximation, not a measurement. Road extended straight north/south to the layout boundary's own top/bottom edge (y=-48 / y=2851.59, keeping the same x at those ends) so the existing road itself reaches the full extent instead of leaving a gap that had been visually closed by the decorative tree border -- that tree segment beside this road was removed (see LayoutBoundaryLayer), since a public existing road frontage isn't landscaped boundary planting."
+ }
+]

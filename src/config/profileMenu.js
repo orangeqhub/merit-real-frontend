@@ -58,7 +58,10 @@ export const PROFILE_MENU = {
 };
 
 PROFILE_MENU.customer = PROFILE_MENU.buyer;
-PROFILE_MENU.agent = PROFILE_MENU.mediator;
+PROFILE_MENU.agent = PROFILE_MENU.mediator.map((item) => ({
+  ...item,
+  path: item.path.replace(/^\/mediator/, '/agent'),
+}));
 PROFILE_MENU.sales_member = [
   { key: 'myProfile', path: '/sales/profile', labelKey: 'profileMenu.myProfile', icon: 'UserCircle' },
   { key: 'dashboard', path: '/sales/dashboard', labelKey: 'profileMenu.dashboard', icon: 'LayoutDashboard' },
@@ -73,7 +76,7 @@ PROFILE_MENU.sales_member = [
 export const PROFILE_ROUTE = {
   buyer: '/buyer/profile',
   customer: '/buyer/profile',
-  agent: '/mediator/profile',
+  agent: '/agent/profile',
   seller: '/seller/profile',
   mediator: '/mediator/profile',
   admin: '/admin/settings',

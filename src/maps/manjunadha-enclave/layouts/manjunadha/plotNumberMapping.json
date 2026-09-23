@@ -1,0 +1,2013 @@
+[
+ {
+  "id": "manjunadha-plot-041",
+  "plotNumber": 41,
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 0.0
+   },
+   {
+    "x": 1821.15,
+    "y": 0.0
+   },
+   {
+    "x": 1821.15,
+    "y": 473.36
+   },
+   {
+    "x": 1191.15,
+    "y": 473.36
+   }
+  ],
+  "area": 298217.3,
+  "areaSqYd": 243.96,
+  "computedAreaSqYd": 230.11,
+  "center": {
+   "x": 1506.15,
+   "y": 236.68
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-042",
+  "plotNumber": 42,
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 473.36
+   },
+   {
+    "x": 1821.15,
+    "y": 473.36
+   },
+   {
+    "x": 1821.15,
+    "y": 813.16
+   },
+   {
+    "x": 1191.15,
+    "y": 813.16
+   }
+  ],
+  "area": 214074.23,
+  "areaSqYd": 175.2,
+  "computedAreaSqYd": 165.18,
+  "center": {
+   "x": 1506.15,
+   "y": 643.26
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-043",
+  "plotNumber": 43,
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 813.16
+   },
+   {
+    "x": 1821.15,
+    "y": 813.16
+   },
+   {
+    "x": 1821.15,
+    "y": 1152.96
+   },
+   {
+    "x": 1191.15,
+    "y": 1152.96
+   }
+  ],
+  "area": 214074.23,
+  "areaSqYd": 175.2,
+  "computedAreaSqYd": 165.18,
+  "center": {
+   "x": 1506.15,
+   "y": 983.06
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-044",
+  "plotNumber": 44,
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 1152.96
+   },
+   {
+    "x": 1821.15,
+    "y": 1152.96
+   },
+   {
+    "x": 1821.15,
+    "y": 1492.76
+   },
+   {
+    "x": 1191.15,
+    "y": 1492.76
+   }
+  ],
+  "area": 214074.23,
+  "areaSqYd": 175.2,
+  "computedAreaSqYd": 165.18,
+  "center": {
+   "x": 1506.15,
+   "y": 1322.86
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-045",
+  "plotNumber": 45,
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 2122.59
+   },
+   {
+    "x": 1821.15,
+    "y": 2122.59
+   },
+   {
+    "x": 1821.15,
+    "y": 2802.59
+   },
+   {
+    "x": 1191.15,
+    "y": 2802.59
+   }
+  ],
+  "area": 428400.0,
+  "areaSqYd": 323.07,
+  "computedAreaSqYd": 330.56,
+  "center": {
+   "x": 1506.15,
+   "y": 2462.59
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-040",
+  "plotNumber": 40,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 0.0
+   },
+   {
+    "x": 2953.59,
+    "y": 0.0
+   },
+   {
+    "x": 2953.59,
+    "y": 369.96
+   },
+   {
+    "x": 2293.59,
+    "y": 369.96
+   }
+  ],
+  "area": 244173.54,
+  "areaSqYd": 194.97,
+  "computedAreaSqYd": 188.41,
+  "center": {
+   "x": 2623.59,
+   "y": 184.98
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-033",
+  "plotNumber": 33,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 0.0
+   },
+   {
+    "x": 3613.59,
+    "y": 0.0
+   },
+   {
+    "x": 3613.59,
+    "y": 369.96
+   },
+   {
+    "x": 2953.59,
+    "y": 369.96
+   }
+  ],
+  "area": 244173.54,
+  "areaSqYd": 187.16,
+  "computedAreaSqYd": 188.41,
+  "center": {
+   "x": 3283.59,
+   "y": 184.98
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-039",
+  "plotNumber": 39,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 369.96
+   },
+   {
+    "x": 2953.59,
+    "y": 369.96
+   },
+   {
+    "x": 2953.59,
+    "y": 714.55
+   },
+   {
+    "x": 2293.59,
+    "y": 714.55
+   }
+  ],
+  "area": 227432.02,
+  "areaSqYd": 183.52,
+  "computedAreaSqYd": 175.49,
+  "center": {
+   "x": 2623.59,
+   "y": 542.26
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-034",
+  "plotNumber": 34,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 369.96
+   },
+   {
+    "x": 3613.59,
+    "y": 369.96
+   },
+   {
+    "x": 3613.59,
+    "y": 714.55
+   },
+   {
+    "x": 2953.59,
+    "y": 714.55
+   }
+  ],
+  "area": 227432.02,
+  "areaSqYd": 183.52,
+  "computedAreaSqYd": 175.49,
+  "center": {
+   "x": 3283.59,
+   "y": 542.26
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-038",
+  "plotNumber": 38,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 714.55
+   },
+   {
+    "x": 2953.59,
+    "y": 714.55
+   },
+   {
+    "x": 2953.59,
+    "y": 1059.15
+   },
+   {
+    "x": 2293.59,
+    "y": 1059.15
+   }
+  ],
+  "area": 227432.02,
+  "areaSqYd": 183.52,
+  "computedAreaSqYd": 175.49,
+  "center": {
+   "x": 2623.59,
+   "y": 886.85
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-035",
+  "plotNumber": 35,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 714.55
+   },
+   {
+    "x": 3613.59,
+    "y": 714.55
+   },
+   {
+    "x": 3613.59,
+    "y": 1059.15
+   },
+   {
+    "x": 2953.59,
+    "y": 1059.15
+   }
+  ],
+  "area": 227432.02,
+  "areaSqYd": 183.52,
+  "computedAreaSqYd": 175.49,
+  "center": {
+   "x": 3283.59,
+   "y": 886.85
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-037",
+  "plotNumber": 37,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 1059.15
+   },
+   {
+    "x": 2953.59,
+    "y": 1059.15
+   },
+   {
+    "x": 2953.59,
+    "y": 1492.76
+   },
+   {
+    "x": 2293.59,
+    "y": 1492.76
+   }
+  ],
+  "area": 286185.29,
+  "areaSqYd": 230.85,
+  "computedAreaSqYd": 220.82,
+  "center": {
+   "x": 2623.59,
+   "y": 1275.95
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-036",
+  "plotNumber": 36,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 1059.15
+   },
+   {
+    "x": 3613.59,
+    "y": 1059.15
+   },
+   {
+    "x": 3613.59,
+    "y": 1492.76
+   },
+   {
+    "x": 2953.59,
+    "y": 1492.76
+   }
+  ],
+  "area": 286185.29,
+  "areaSqYd": 230.85,
+  "computedAreaSqYd": 220.82,
+  "center": {
+   "x": 3283.59,
+   "y": 1275.95
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-032",
+  "plotNumber": 32,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 0.0
+   },
+   {
+    "x": 4660.92,
+    "y": 0.0
+   },
+   {
+    "x": 4660.92,
+    "y": 375.05
+   },
+   {
+    "x": 3967.92,
+    "y": 375.05
+   }
+  ],
+  "area": 259908.53,
+  "areaSqYd": 207.43,
+  "computedAreaSqYd": 200.55,
+  "center": {
+   "x": 4314.42,
+   "y": 187.52
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-025",
+  "plotNumber": 25,
+  "polygon": [
+   {
+    "x": 4660.92,
+    "y": 0.0
+   },
+   {
+    "x": 5416.92,
+    "y": 0.0
+   },
+   {
+    "x": 5416.92,
+    "y": 375.05
+   },
+   {
+    "x": 4660.92,
+    "y": 375.05
+   }
+  ],
+  "area": 283536.57,
+  "areaSqYd": 216.06,
+  "computedAreaSqYd": 218.78,
+  "center": {
+   "x": 5038.92,
+   "y": 187.52
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-031",
+  "plotNumber": 31,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 375.05
+   },
+   {
+    "x": 4660.92,
+    "y": 375.05
+   },
+   {
+    "x": 4660.92,
+    "y": 731.77
+   },
+   {
+    "x": 3967.92,
+    "y": 731.77
+   }
+  ],
+  "area": 247204.94,
+  "areaSqYd": 192.53,
+  "computedAreaSqYd": 190.74,
+  "center": {
+   "x": 4314.42,
+   "y": 553.41
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-026",
+  "plotNumber": 26,
+  "polygon": [
+   {
+    "x": 4660.92,
+    "y": 375.05
+   },
+   {
+    "x": 5416.92,
+    "y": 375.05
+   },
+   {
+    "x": 5416.92,
+    "y": 731.77
+   },
+   {
+    "x": 4660.92,
+    "y": 731.77
+   }
+  ],
+  "area": 269678.11,
+  "areaSqYd": 210.1,
+  "computedAreaSqYd": 208.08,
+  "center": {
+   "x": 5038.92,
+   "y": 553.41
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-030",
+  "plotNumber": 30,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 731.77
+   },
+   {
+    "x": 4660.92,
+    "y": 731.77
+   },
+   {
+    "x": 4660.92,
+    "y": 1088.48
+   },
+   {
+    "x": 3967.92,
+    "y": 1088.48
+   }
+  ],
+  "area": 247204.94,
+  "areaSqYd": 192.53,
+  "computedAreaSqYd": 190.74,
+  "center": {
+   "x": 4314.42,
+   "y": 910.12
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-027",
+  "plotNumber": 27,
+  "polygon": [
+   {
+    "x": 4660.92,
+    "y": 731.77
+   },
+   {
+    "x": 5416.92,
+    "y": 731.77
+   },
+   {
+    "x": 5416.92,
+    "y": 1088.48
+   },
+   {
+    "x": 4660.92,
+    "y": 1088.48
+   }
+  ],
+  "area": 269678.11,
+  "areaSqYd": 210.1,
+  "computedAreaSqYd": 208.08,
+  "center": {
+   "x": 5038.92,
+   "y": 910.12
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-029",
+  "plotNumber": 29,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 1088.48
+   },
+   {
+    "x": 4660.92,
+    "y": 1088.48
+   },
+   {
+    "x": 4660.92,
+    "y": 1492.76
+   },
+   {
+    "x": 3967.92,
+    "y": 1492.76
+   }
+  ],
+  "area": 280165.6,
+  "areaSqYd": 218.2,
+  "computedAreaSqYd": 216.18,
+  "center": {
+   "x": 4314.42,
+   "y": 1290.62
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-028",
+  "plotNumber": 28,
+  "polygon": [
+   {
+    "x": 4660.92,
+    "y": 1088.48
+   },
+   {
+    "x": 5416.92,
+    "y": 1088.48
+   },
+   {
+    "x": 5416.92,
+    "y": 1492.76
+   },
+   {
+    "x": 4660.92,
+    "y": 1492.76
+   }
+  ],
+  "area": 305635.2,
+  "areaSqYd": 218.11,
+  "computedAreaSqYd": 235.83,
+  "center": {
+   "x": 5038.92,
+   "y": 1290.62
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-024",
+  "plotNumber": 24,
+  "polygon": [
+   {
+    "x": 5771.25,
+    "y": 0.0
+   },
+   {
+    "x": 6455.75,
+    "y": 0.0
+   },
+   {
+    "x": 6455.75,
+    "y": 456.8
+   },
+   {
+    "x": 5771.25,
+    "y": 456.8
+   }
+  ],
+  "area": 312680.6,
+  "areaSqYd": 241.11,
+  "computedAreaSqYd": 241.27,
+  "center": {
+   "x": 6113.5,
+   "y": 228.4
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-019",
+  "plotNumber": 19,
+  "polygon": [
+   {
+    "x": 6455.75,
+    "y": 0.0
+   },
+   {
+    "x": 7144.25,
+    "y": 0.0
+   },
+   {
+    "x": 7144.25,
+    "y": 456.8
+   },
+   {
+    "x": 6455.75,
+    "y": 456.8
+   }
+  ],
+  "area": 314507.8,
+  "areaSqYd": 233.65,
+  "computedAreaSqYd": 242.68,
+  "center": {
+   "x": 6800.0,
+   "y": 228.4
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-023",
+  "plotNumber": 23,
+  "polygon": [
+   {
+    "x": 5771.25,
+    "y": 456.8
+   },
+   {
+    "x": 6455.75,
+    "y": 456.8
+   },
+   {
+    "x": 6455.75,
+    "y": 860.58
+   },
+   {
+    "x": 5771.25,
+    "y": 860.58
+   }
+  ],
+  "area": 276387.31,
+  "areaSqYd": 209.11,
+  "computedAreaSqYd": 213.26,
+  "center": {
+   "x": 6113.5,
+   "y": 658.69
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-020",
+  "plotNumber": 20,
+  "polygon": [
+   {
+    "x": 6455.75,
+    "y": 456.8
+   },
+   {
+    "x": 7144.25,
+    "y": 456.8
+   },
+   {
+    "x": 7144.25,
+    "y": 860.58
+   },
+   {
+    "x": 6455.75,
+    "y": 860.58
+   }
+  ],
+  "area": 278002.43,
+  "areaSqYd": 210.37,
+  "computedAreaSqYd": 214.51,
+  "center": {
+   "x": 6800.0,
+   "y": 658.69
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-022",
+  "plotNumber": 22,
+  "polygon": [
+   {
+    "x": 5771.25,
+    "y": 860.58
+   },
+   {
+    "x": 6455.75,
+    "y": 860.58
+   },
+   {
+    "x": 6455.75,
+    "y": 1492.76
+   },
+   {
+    "x": 5771.25,
+    "y": 1492.76
+   }
+  ],
+  "area": 432727.61,
+  "areaSqYd": 327.43,
+  "computedAreaSqYd": 333.89,
+  "center": {
+   "x": 6113.5,
+   "y": 1176.67
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-021",
+  "plotNumber": 21,
+  "polygon": [
+   {
+    "x": 6455.75,
+    "y": 860.58
+   },
+   {
+    "x": 7144.25,
+    "y": 860.58
+   },
+   {
+    "x": 7144.25,
+    "y": 1492.76
+   },
+   {
+    "x": 6455.75,
+    "y": 1492.76
+   }
+  ],
+  "area": 435256.33,
+  "areaSqYd": 329.4,
+  "computedAreaSqYd": 335.85,
+  "center": {
+   "x": 6800.0,
+   "y": 1176.67
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-018",
+  "plotNumber": 18,
+  "polygon": [
+   {
+    "x": 7498.58,
+    "y": 0.0
+   },
+   {
+    "x": 8098.58,
+    "y": 0.0
+   },
+   {
+    "x": 8098.58,
+    "y": 431.92
+   },
+   {
+    "x": 7498.58,
+    "y": 431.92
+   }
+  ],
+  "area": 259153.77,
+  "areaSqYd": 192.33,
+  "computedAreaSqYd": 199.96,
+  "center": {
+   "x": 7798.58,
+   "y": 215.96
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-013",
+  "plotNumber": 13,
+  "polygon": [
+   {
+    "x": 8098.58,
+    "y": 0.0
+   },
+   {
+    "x": 8698.58,
+    "y": 0.0
+   },
+   {
+    "x": 8698.58,
+    "y": 431.92
+   },
+   {
+    "x": 8098.58,
+    "y": 431.92
+   }
+  ],
+  "area": 259153.77,
+  "areaSqYd": 188.15,
+  "computedAreaSqYd": 199.96,
+  "center": {
+   "x": 8398.58,
+   "y": 215.96
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-017",
+  "plotNumber": 17,
+  "polygon": [
+   {
+    "x": 7498.58,
+    "y": 431.92
+   },
+   {
+    "x": 8098.58,
+    "y": 431.92
+   },
+   {
+    "x": 8098.58,
+    "y": 845.4
+   },
+   {
+    "x": 7498.58,
+    "y": 845.4
+   }
+  ],
+  "area": 248085.96,
+  "areaSqYd": 183.36,
+  "computedAreaSqYd": 191.42,
+  "center": {
+   "x": 7798.58,
+   "y": 638.66
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-014",
+  "plotNumber": 14,
+  "polygon": [
+   {
+    "x": 8098.58,
+    "y": 431.92
+   },
+   {
+    "x": 8698.58,
+    "y": 431.92
+   },
+   {
+    "x": 8698.58,
+    "y": 845.4
+   },
+   {
+    "x": 8098.58,
+    "y": 845.4
+   }
+  ],
+  "area": 248085.96,
+  "areaSqYd": 183.36,
+  "computedAreaSqYd": 191.42,
+  "center": {
+   "x": 8398.58,
+   "y": 638.66
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-016",
+  "plotNumber": 16,
+  "polygon": [
+   {
+    "x": 7498.58,
+    "y": 845.4
+   },
+   {
+    "x": 8098.58,
+    "y": 845.4
+   },
+   {
+    "x": 8098.58,
+    "y": 1492.76
+   },
+   {
+    "x": 7498.58,
+    "y": 1492.76
+   }
+  ],
+  "area": 388417.41,
+  "areaSqYd": 287.11,
+  "computedAreaSqYd": 299.7,
+  "center": {
+   "x": 7798.58,
+   "y": 1169.08
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-015",
+  "plotNumber": 15,
+  "polygon": [
+   {
+    "x": 8098.58,
+    "y": 845.4
+   },
+   {
+    "x": 8698.58,
+    "y": 845.4
+   },
+   {
+    "x": 8698.58,
+    "y": 1492.76
+   },
+   {
+    "x": 8098.58,
+    "y": 1492.76
+   }
+  ],
+  "area": 388417.41,
+  "areaSqYd": 287.11,
+  "computedAreaSqYd": 299.7,
+  "center": {
+   "x": 8398.58,
+   "y": 1169.08
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-012",
+  "plotNumber": 12,
+  "polygon": [
+   {
+    "x": 9052.91,
+    "y": 0.0
+   },
+   {
+    "x": 9652.91,
+    "y": 0.0
+   },
+   {
+    "x": 9652.91,
+    "y": 424.93
+   },
+   {
+    "x": 9052.91,
+    "y": 424.93
+   }
+  ],
+  "area": 254956.01,
+  "areaSqYd": 187.65,
+  "computedAreaSqYd": 196.73,
+  "center": {
+   "x": 9352.91,
+   "y": 212.46
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-007",
+  "plotNumber": 7,
+  "polygon": [
+   {
+    "x": 9652.91,
+    "y": 0.0
+   },
+   {
+    "x": 10252.91,
+    "y": 0.0
+   },
+   {
+    "x": 10252.91,
+    "y": 424.93
+   },
+   {
+    "x": 9652.91,
+    "y": 424.93
+   }
+  ],
+  "area": 254956.01,
+  "areaSqYd": 192.4,
+  "computedAreaSqYd": 196.73,
+  "center": {
+   "x": 9952.91,
+   "y": 212.46
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-011",
+  "plotNumber": 11,
+  "polygon": [
+   {
+    "x": 9052.91,
+    "y": 424.93
+   },
+   {
+    "x": 9652.91,
+    "y": 424.93
+   },
+   {
+    "x": 9652.91,
+    "y": 834.68
+   },
+   {
+    "x": 9052.91,
+    "y": 834.68
+   }
+  ],
+  "area": 245850.44,
+  "areaSqYd": 183.36,
+  "computedAreaSqYd": 189.7,
+  "center": {
+   "x": 9352.91,
+   "y": 629.8
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-008",
+  "plotNumber": 8,
+  "polygon": [
+   {
+    "x": 9652.91,
+    "y": 424.93
+   },
+   {
+    "x": 10252.91,
+    "y": 424.93
+   },
+   {
+    "x": 10252.91,
+    "y": 834.68
+   },
+   {
+    "x": 9652.91,
+    "y": 834.68
+   }
+  ],
+  "area": 245850.44,
+  "areaSqYd": 183.36,
+  "computedAreaSqYd": 189.7,
+  "center": {
+   "x": 9952.91,
+   "y": 629.8
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-010",
+  "plotNumber": 10,
+  "polygon": [
+   {
+    "x": 9052.91,
+    "y": 834.68
+   },
+   {
+    "x": 9652.91,
+    "y": 834.68
+   },
+   {
+    "x": 9652.91,
+    "y": 1492.76
+   },
+   {
+    "x": 9052.91,
+    "y": 1492.76
+   }
+  ],
+  "area": 394850.7,
+  "areaSqYd": 294.55,
+  "computedAreaSqYd": 304.67,
+  "center": {
+   "x": 9352.91,
+   "y": 1163.72
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-009",
+  "plotNumber": 9,
+  "polygon": [
+   {
+    "x": 9652.91,
+    "y": 834.68
+   },
+   {
+    "x": 10252.91,
+    "y": 834.68
+   },
+   {
+    "x": 10252.91,
+    "y": 1492.76
+   },
+   {
+    "x": 9652.91,
+    "y": 1492.76
+   }
+  ],
+  "area": 394850.7,
+  "areaSqYd": 294.55,
+  "computedAreaSqYd": 304.67,
+  "center": {
+   "x": 9952.91,
+   "y": 1163.72
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-006",
+  "plotNumber": 6,
+  "polygon": [
+   {
+    "x": 10607.24,
+    "y": 0.0
+   },
+   {
+    "x": 11207.24,
+    "y": 0.0
+   },
+   {
+    "x": 11207.24,
+    "y": 440.04
+   },
+   {
+    "x": 10607.24,
+    "y": 440.04
+   }
+  ],
+  "area": 264021.76,
+  "areaSqYd": 199.95,
+  "computedAreaSqYd": 203.72,
+  "center": {
+   "x": 10907.24,
+   "y": 220.02
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-005",
+  "plotNumber": 5,
+  "polygon": [
+   {
+    "x": 10607.24,
+    "y": 440.04
+   },
+   {
+    "x": 11207.24,
+    "y": 440.04
+   },
+   {
+    "x": 11207.24,
+    "y": 843.91
+   },
+   {
+    "x": 10607.24,
+    "y": 843.91
+   }
+  ],
+  "area": 242325.53,
+  "areaSqYd": 183.36,
+  "computedAreaSqYd": 186.98,
+  "center": {
+   "x": 10907.24,
+   "y": 641.97
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-004",
+  "plotNumber": 4,
+  "polygon": [
+   {
+    "x": 10607.24,
+    "y": 843.91
+   },
+   {
+    "x": 11207.24,
+    "y": 843.91
+   },
+   {
+    "x": 11207.24,
+    "y": 1492.76
+   },
+   {
+    "x": 10607.24,
+    "y": 1492.76
+   }
+  ],
+  "area": 389309.86,
+  "areaSqYd": 294.55,
+  "computedAreaSqYd": 300.39,
+  "center": {
+   "x": 10907.24,
+   "y": 1168.34
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-003",
+  "plotNumber": 3,
+  "polygon": [
+   {
+    "x": 11207.24,
+    "y": 0.0
+   },
+   {
+    "x": 12130.24,
+    "y": 0.0
+   },
+   {
+    "x": 12097.24,
+    "y": 440.04
+   },
+   {
+    "x": 11207.24,
+    "y": 440.04
+   }
+  ],
+  "area": 398892.87,
+  "areaSqYd": 311.01,
+  "computedAreaSqYd": 307.79,
+  "center": {
+   "x": 11660.49,
+   "y": 220.02
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-002",
+  "plotNumber": 2,
+  "polygon": [
+   {
+    "x": 11207.24,
+    "y": 440.04
+   },
+   {
+    "x": 12097.24,
+    "y": 440.04
+   },
+   {
+    "x": 12068.24,
+    "y": 843.91
+   },
+   {
+    "x": 11207.24,
+    "y": 843.91
+   }
+  ],
+  "area": 353593.33,
+  "areaSqYd": 267.6,
+  "computedAreaSqYd": 272.83,
+  "center": {
+   "x": 11644.99,
+   "y": 641.97
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-001",
+  "plotNumber": 1,
+  "polygon": [
+   {
+    "x": 11207.24,
+    "y": 843.91
+   },
+   {
+    "x": 12068.24,
+    "y": 843.91
+   },
+   {
+    "x": 12022.24,
+    "y": 1492.76
+   },
+   {
+    "x": 11207.24,
+    "y": 1492.76
+   }
+  ],
+  "area": 543736.1,
+  "areaSqYd": 411.61,
+  "computedAreaSqYd": 419.55,
+  "center": {
+   "x": 11626.24,
+   "y": 1168.34
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-047",
+  "plotNumber": 47,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 1965.2
+   },
+   {
+    "x": 2953.59,
+    "y": 1965.2
+   },
+   {
+    "x": 2953.59,
+    "y": 2372.92
+   },
+   {
+    "x": 2293.59,
+    "y": 2372.92
+   }
+  ],
+  "area": 269090.11,
+  "areaSqYd": 201.78,
+  "computedAreaSqYd": 207.63,
+  "center": {
+   "x": 2623.59,
+   "y": 2169.06
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-048",
+  "plotNumber": 48,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 1965.2
+   },
+   {
+    "x": 3613.59,
+    "y": 1965.2
+   },
+   {
+    "x": 3613.59,
+    "y": 2372.92
+   },
+   {
+    "x": 2953.59,
+    "y": 2372.92
+   }
+  ],
+  "area": 269090.11,
+  "areaSqYd": 201.78,
+  "computedAreaSqYd": 207.63,
+  "center": {
+   "x": 3283.59,
+   "y": 2169.06
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-046",
+  "plotNumber": 46,
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 2372.92
+   },
+   {
+    "x": 2953.59,
+    "y": 2372.92
+   },
+   {
+    "x": 2953.59,
+    "y": 2802.59
+   },
+   {
+    "x": 2293.59,
+    "y": 2802.59
+   }
+  ],
+  "area": 283586.55,
+  "areaSqYd": 204.89,
+  "computedAreaSqYd": 218.82,
+  "center": {
+   "x": 2623.59,
+   "y": 2587.75
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-049",
+  "plotNumber": 49,
+  "polygon": [
+   {
+    "x": 2953.59,
+    "y": 2372.92
+   },
+   {
+    "x": 3613.59,
+    "y": 2372.92
+   },
+   {
+    "x": 3613.59,
+    "y": 2802.59
+   },
+   {
+    "x": 2953.59,
+    "y": 2802.59
+   }
+  ],
+  "area": 283586.55,
+  "areaSqYd": 201.06,
+  "computedAreaSqYd": 218.82,
+  "center": {
+   "x": 3283.59,
+   "y": 2587.75
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-051",
+  "plotNumber": 51,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 1965.2
+   },
+   {
+    "x": 4654.92,
+    "y": 1965.2
+   },
+   {
+    "x": 4654.92,
+    "y": 2442.57
+   },
+   {
+    "x": 3967.92,
+    "y": 2442.57
+   }
+  ],
+  "area": 327954.11,
+  "areaSqYd": 256.7,
+  "computedAreaSqYd": 253.05,
+  "center": {
+   "x": 4311.42,
+   "y": 2203.89
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-052",
+  "plotNumber": 52,
+  "polygon": [
+   {
+    "x": 4654.92,
+    "y": 1965.2
+   },
+   {
+    "x": 5410.92,
+    "y": 1965.2
+   },
+   {
+    "x": 5410.92,
+    "y": 2442.57
+   },
+   {
+    "x": 4654.92,
+    "y": 2442.57
+   }
+  ],
+  "area": 360892.73,
+  "areaSqYd": 280.12,
+  "computedAreaSqYd": 278.47,
+  "center": {
+   "x": 5032.92,
+   "y": 2203.89
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-050",
+  "plotNumber": 50,
+  "polygon": [
+   {
+    "x": 3967.92,
+    "y": 2442.57
+   },
+   {
+    "x": 4654.92,
+    "y": 2442.57
+   },
+   {
+    "x": 4654.92,
+    "y": 2802.59
+   },
+   {
+    "x": 3967.92,
+    "y": 2802.59
+   }
+  ],
+  "area": 247332.06,
+  "areaSqYd": 191.68,
+  "computedAreaSqYd": 190.84,
+  "center": {
+   "x": 4311.42,
+   "y": 2622.58
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-053",
+  "plotNumber": 53,
+  "polygon": [
+   {
+    "x": 4654.92,
+    "y": 2442.57
+   },
+   {
+    "x": 5410.92,
+    "y": 2442.57
+   },
+   {
+    "x": 5410.92,
+    "y": 2802.59
+   },
+   {
+    "x": 4654.92,
+    "y": 2802.59
+   }
+  ],
+  "area": 272173.27,
+  "areaSqYd": 211.02,
+  "computedAreaSqYd": 210.01,
+  "center": {
+   "x": 5032.92,
+   "y": 2622.58
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-055",
+  "plotNumber": 55,
+  "polygon": [
+   {
+    "x": 5765.25,
+    "y": 1965.2
+   },
+   {
+    "x": 6449.25,
+    "y": 1965.2
+   },
+   {
+    "x": 6449.25,
+    "y": 2408.76
+   },
+   {
+    "x": 5765.25,
+    "y": 2408.76
+   }
+  ],
+  "area": 303393.35,
+  "areaSqYd": 235.44,
+  "computedAreaSqYd": 234.1,
+  "center": {
+   "x": 6107.25,
+   "y": 2186.98
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-056",
+  "plotNumber": 56,
+  "polygon": [
+   {
+    "x": 6449.25,
+    "y": 1965.2
+   },
+   {
+    "x": 7137.25,
+    "y": 1965.2
+   },
+   {
+    "x": 7137.25,
+    "y": 2408.76
+   },
+   {
+    "x": 6449.25,
+    "y": 2408.76
+   }
+  ],
+  "area": 305167.58,
+  "areaSqYd": 236.87,
+  "computedAreaSqYd": 235.47,
+  "center": {
+   "x": 6793.25,
+   "y": 2186.98
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-054",
+  "plotNumber": 54,
+  "polygon": [
+   {
+    "x": 5765.25,
+    "y": 2408.76
+   },
+   {
+    "x": 6449.25,
+    "y": 2408.76
+   },
+   {
+    "x": 6449.25,
+    "y": 2802.59
+   },
+   {
+    "x": 5765.25,
+    "y": 2802.59
+   }
+  ],
+  "area": 269380.65,
+  "areaSqYd": 209.18,
+  "computedAreaSqYd": 207.86,
+  "center": {
+   "x": 6107.25,
+   "y": 2605.68
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-057",
+  "plotNumber": 57,
+  "polygon": [
+   {
+    "x": 6449.25,
+    "y": 2408.76
+   },
+   {
+    "x": 7137.25,
+    "y": 2408.76
+   },
+   {
+    "x": 7137.25,
+    "y": 2802.59
+   },
+   {
+    "x": 6449.25,
+    "y": 2802.59
+   }
+  ],
+  "area": 270955.97,
+  "areaSqYd": 210.43,
+  "computedAreaSqYd": 209.07,
+  "center": {
+   "x": 6793.25,
+   "y": 2605.68
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-059",
+  "plotNumber": 59,
+  "polygon": [
+   {
+    "x": 7491.58,
+    "y": 1965.2
+   },
+   {
+    "x": 8091.58,
+    "y": 1965.2
+   },
+   {
+    "x": 8091.58,
+    "y": 2408.76
+   },
+   {
+    "x": 7491.58,
+    "y": 2408.76
+   }
+  ],
+  "area": 266134.52,
+  "areaSqYd": 206.45,
+  "computedAreaSqYd": 205.35,
+  "center": {
+   "x": 7791.58,
+   "y": 2186.98
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-058",
+  "plotNumber": 58,
+  "polygon": [
+   {
+    "x": 7491.58,
+    "y": 2408.76
+   },
+   {
+    "x": 8091.58,
+    "y": 2408.76
+   },
+   {
+    "x": 8091.58,
+    "y": 2802.59
+   },
+   {
+    "x": 7491.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 236298.81,
+  "areaSqYd": 183.42,
+  "computedAreaSqYd": 182.33,
+  "center": {
+   "x": 7791.58,
+   "y": 2605.68
+  },
+  "hatch": "green"
+ },
+ {
+  "id": "manjunadha-plot-060",
+  "plotNumber": 60,
+  "polygon": [
+   {
+    "x": 8091.58,
+    "y": 1965.2
+   },
+   {
+    "x": 8637.58,
+    "y": 1965.2
+   },
+   {
+    "x": 8637.58,
+    "y": 2802.59
+   },
+   {
+    "x": 8091.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 457214.94,
+  "areaSqYd": 354.83,
+  "computedAreaSqYd": 352.79,
+  "center": {
+   "x": 8364.58,
+   "y": 2383.89
+  },
+  "hatch": null,
+  "note": "Shifted west by 354.33px together with plots 61-66/67&68, after removing the erroneous 9m road that had been placed between plot 58/59 and plot 60 (the source shows plot 58 directly adjacent to plot 60, no road between them). Width restored to the original dimension-derived ~45.5ft (matching the source's printed \"45'-6\"\" label and the 354.83 Sq.Yd table entry) -- an earlier fix had wrongly stretched this plot to ~75ft to fill the whole gap instead of shifting the row."
+ },
+ {
+  "id": "manjunadha-plot-061",
+  "plotNumber": 61,
+  "polygon": [
+   {
+    "x": 8637.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9045.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9045.58,
+    "y": 2802.59
+   },
+   {
+    "x": 8637.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 341655.12,
+  "areaSqYd": 265.28,
+  "computedAreaSqYd": 263.62,
+  "center": {
+   "x": 8841.58,
+   "y": 2383.89
+  },
+  "hatch": "blue"
+ },
+ {
+  "id": "manjunadha-plot-062",
+  "plotNumber": 62,
+  "polygon": [
+   {
+    "x": 9045.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9441.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9441.58,
+    "y": 2802.59
+   },
+   {
+    "x": 9045.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 331606.44,
+  "areaSqYd": 257.35,
+  "computedAreaSqYd": 255.87,
+  "center": {
+   "x": 9243.58,
+   "y": 2383.89
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-063",
+  "plotNumber": 63,
+  "polygon": [
+   {
+    "x": 9441.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9837.58,
+    "y": 1965.2
+   },
+   {
+    "x": 9837.58,
+    "y": 2802.59
+   },
+   {
+    "x": 9441.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 331606.44,
+  "areaSqYd": 257.35,
+  "computedAreaSqYd": 255.87,
+  "center": {
+   "x": 9639.58,
+   "y": 2383.89
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-064",
+  "plotNumber": 64,
+  "polygon": [
+   {
+    "x": 9837.58,
+    "y": 1965.2
+   },
+   {
+    "x": 10245.58,
+    "y": 1965.2
+   },
+   {
+    "x": 10245.58,
+    "y": 2802.59
+   },
+   {
+    "x": 9837.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 341655.12,
+  "areaSqYd": 265.03,
+  "computedAreaSqYd": 263.62,
+  "center": {
+   "x": 10041.58,
+   "y": 2383.89
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-065",
+  "plotNumber": 65,
+  "polygon": [
+   {
+    "x": 10245.58,
+    "y": 1965.2
+   },
+   {
+    "x": 10641.58,
+    "y": 1965.2
+   },
+   {
+    "x": 10641.58,
+    "y": 2802.59
+   },
+   {
+    "x": 10245.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 331606.44,
+  "areaSqYd": 257.35,
+  "computedAreaSqYd": 255.87,
+  "center": {
+   "x": 10443.58,
+   "y": 2383.89
+  },
+  "hatch": "blue"
+ },
+ {
+  "id": "manjunadha-plot-066",
+  "plotNumber": 66,
+  "polygon": [
+   {
+    "x": 10641.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11037.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11037.58,
+    "y": 2802.59
+   },
+   {
+    "x": 10641.58,
+    "y": 2802.59
+   }
+  ],
+  "area": 331606.44,
+  "areaSqYd": 257.35,
+  "computedAreaSqYd": 255.87,
+  "center": {
+   "x": 10839.58,
+   "y": 2383.89
+  },
+  "hatch": null
+ },
+ {
+  "id": "manjunadha-plot-67-68",
+  "plotNumber": "67&68",
+  "polygon": [
+   {
+    "x": 11037.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11981.58,
+    "y": 1965.2
+   },
+   {
+    "x": 11920.58,
+    "y": 2803.59
+   },
+   {
+    "x": 11037.58,
+    "y": 2801.6
+   }
+  ],
+  "area": 764990.68,
+  "areaSqYd": 593.48,
+  "computedAreaSqYd": 590.27,
+  "center": {
+   "x": 11494.33,
+   "y": 2383.9
+  },
+  "hatch": null
+ }
+]

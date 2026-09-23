@@ -1,0 +1,234 @@
+{
+ "precision": "source-traced-partial (Phase 2O, NE segment verified Phase 3K) — B.T. Road frontage for columns A-N (plots 22 through 343, x:545-2343) is now source-traced from directly measured plot-top edges, including the angled 177/178 curb (verified: 0 self-intersections, plot containment preserved). Southern (Donka Road) frontage remains fully source-traced (Phases 2G-2N), including the confirmed-straight 1902-2069 span. Phase 3K: (1) the NE transition beyond column N (x>2343) through the far-east corner, previously flagged as 'hull-approximated,' was re-verified with a dense row-by-row pixel scan (y=1000 to y=2360, ~35 clean sample rows) despite multiple dimension labels along it ('195'-9\"', '84'-9\"', '65'-9\"', '249'', '216'-8\"', '143'-10\"') suggesting several segments — it fits a SINGLE straight line (dx/dy=0.444) matching the currently-stored 2-point segment (24110,9640)-(30380,23760) to within 1px at both ends. No change needed; this segment is now considered source-verified, not approximated. NOT resolved: (2) the entire west connector (open-space-1/column-A area) was previously flagged as hull-approximated, but a Phase 3-series re-investigation found it already reuses real shared vertices from plots 45/94/Utility-1 rather than being independently hull-approximated (see existingRoads.json and plotNumberMapping.json plot-45 precision notes) — only plot 45's own corner needed a small correction, which was made; the boundary chain itself does not need further work here either. [Phase-visual-fix] Removed two crude hull leftover vertices (0,320)/(0,390) that extended the boundary to the image edge with no source support, creating a visible spurious crossing near the NW corner; the boundary now closes directly from column A's B.T. Road frontage start (545,641) to Open-Space-1's top corner (486,1243), matching the source silhouette.",
+ "note": "See precision field for exactly which sections are source-verified vs approximate.",
+ "polygon": [
+  {
+   "x": 5450,
+   "y": 6410
+  },
+  {
+   "x": 6530,
+   "y": 6410
+  },
+  {
+   "x": 6530,
+   "y": 6280
+  },
+  {
+   "x": 7600,
+   "y": 6280
+  },
+  {
+   "x": 8190,
+   "y": 6280
+  },
+  {
+   "x": 9270,
+   "y": 6280
+  },
+  {
+   "x": 9270,
+   "y": 6130
+  },
+  {
+   "x": 10340,
+   "y": 6130
+  },
+  {
+   "x": 10930,
+   "y": 5805
+  },
+  {
+   "x": 12000,
+   "y": 5805
+  },
+  {
+   "x": 12000,
+   "y": 5780
+  },
+  {
+   "x": 13080,
+   "y": 5780
+  },
+  {
+   "x": 14140,
+   "y": 5430
+  },
+  {
+   "x": 15210,
+   "y": 5350
+  },
+  {
+   "x": 16280,
+   "y": 5300
+  },
+  {
+   "x": 16880,
+   "y": 6365
+  },
+  {
+   "x": 17950,
+   "y": 6365
+  },
+  {
+   "x": 17950,
+   "y": 7190
+  },
+  {
+   "x": 19020,
+   "y": 7190
+  },
+  {
+   "x": 19610,
+   "y": 8030
+  },
+  {
+   "x": 20690,
+   "y": 8030
+  },
+  {
+   "x": 20690,
+   "y": 8775
+  },
+  {
+   "x": 21760,
+   "y": 8775
+  },
+  {
+   "x": 22350,
+   "y": 9560
+  },
+  {
+   "x": 23430,
+   "y": 9560
+  },
+  {
+   "x": 24110,
+   "y": 9640
+  },
+  {
+   "x": 30380,
+   "y": 23760
+  },
+  {
+   "x": 27240,
+   "y": 24220
+  },
+  {
+   "x": 26160,
+   "y": 24400
+  },
+  {
+   "x": 25090,
+   "y": 24610
+  },
+  {
+   "x": 24500,
+   "y": 24680
+  },
+  {
+   "x": 23430,
+   "y": 25020
+  },
+  {
+   "x": 22350,
+   "y": 25300
+  },
+  {
+   "x": 21760,
+   "y": 25420
+  },
+  {
+   "x": 20690,
+   "y": 25780
+  },
+  {
+   "x": 19020,
+   "y": 26370
+  },
+  {
+   "x": 17940,
+   "y": 26570
+  },
+  {
+   "x": 16880,
+   "y": 26900
+  },
+  {
+   "x": 16280,
+   "y": 27060
+  },
+  {
+   "x": 15210,
+   "y": 27390
+  },
+  {
+   "x": 15000,
+   "y": 27450
+  },
+  {
+   "x": 14400,
+   "y": 27365
+  },
+  {
+   "x": 14000,
+   "y": 27000
+  },
+  {
+   "x": 13070,
+   "y": 26140
+  },
+  {
+   "x": 12000,
+   "y": 25220
+  },
+  {
+   "x": 10930,
+   "y": 24560
+  },
+  {
+   "x": 10340,
+   "y": 23690
+  },
+  {
+   "x": 9468,
+   "y": 23690
+  },
+  {
+   "x": 9270,
+   "y": 23465
+  },
+  {
+   "x": 9270,
+   "y": 22990
+  },
+  {
+   "x": 8851,
+   "y": 22990
+  },
+  {
+   "x": 8190,
+   "y": 22240
+  },
+  {
+   "x": 8190,
+   "y": 22815
+  },
+  {
+   "x": 4850,
+   "y": 20980
+  },
+  {
+   "x": 1300,
+   "y": 19020
+  },
+  {
+   "x": 2900,
+   "y": 13190
+  },
+  {
+   "x": 4860,
+   "y": 12430
+  }
+ ]
+}

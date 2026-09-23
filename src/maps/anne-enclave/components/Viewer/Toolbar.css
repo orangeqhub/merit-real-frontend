@@ -1,0 +1,196 @@
+.toolbar {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  background: rgba(25, 25, 25, 0.9);
+  border-radius: 10px;
+  z-index: 999;
+}
+
+.toolbar button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.toolbar button:hover {
+  background: #2196f3;
+  color: white;
+}
+
+.toolbar-phase {
+  display: flex;
+  gap: 6px;
+  margin-left: 4px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.toolbar-phase button {
+  font-size: 13px;
+  font-weight: 600;
+  color: #e5e7eb;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.toolbar-phase button.phase-1.active {
+  background: #64b5f6;
+  color: #0b1b2b;
+}
+
+.toolbar-phase button.phase-2.active {
+  background: #a5d66a;
+  color: #14210f;
+}
+
+.toolbar-phase button.phase-all.active {
+  background: #6366f1;
+  color: #fff;
+}
+
+.toolbar-legend {
+  display: flex;
+  gap: 10px;
+  margin-left: 4px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #e5e7eb;
+  white-space: nowrap;
+}
+
+.toolbar-legend .legend-orange::before,
+.toolbar-legend .legend-pink::before {
+  content: "";
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  margin-right: 6px;
+  vertical-align: middle;
+  border-radius: 1px;
+}
+
+.toolbar-legend .legend-orange::before {
+  background: #F57C00;
+}
+
+.toolbar-legend .legend-pink::before {
+  background: #E91E8C;
+}
+
+.toolbar-phase button:hover {
+  filter: brightness(1.05);
+}
+
+/* ─── Tablet: slightly smaller ─── */
+@media (max-width: 768px) {
+  .toolbar {
+    top: 14px;
+    left: 14px;
+    padding: 8px;
+    gap: 8px;
+    border-radius: 10px;
+  }
+
+  .toolbar button {
+    padding: 7px 12px;
+    font-size: 14px;
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .toolbar-phase {
+    gap: 5px;
+    margin-left: 0;
+    padding-left: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 6px;
+    margin-top: 2px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .toolbar-phase button {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .toolbar-legend {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    justify-content: center;
+    padding-top: 4px;
+  }
+}
+
+/* ─── Mobile: compact stacked toolbar ─── */
+@media (max-width: 640px) {
+  .toolbar {
+    top: 12px;
+    left: 12px;
+    right: 12px;
+    padding: 6px;
+    gap: 6px;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    max-width: calc(100vw - 24px);
+  }
+
+  .toolbar button {
+    padding: 6px 10px;
+    font-size: 13px;
+    min-height: 40px;
+    min-width: 40px;
+  }
+
+  .toolbar-phase {
+    gap: 4px;
+    margin-left: 0;
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 6px;
+    margin-top: 2px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .toolbar-phase button {
+    font-size: 11px;
+    padding: 5px 8px;
+    min-height: 36px;
+    min-width: 36px;
+  }
+}
+
+/* ─── Very small screens: single-row zoom + stacked phase ─── */
+@media (max-width: 380px) {
+  .toolbar {
+    left: 8px;
+    right: 8px;
+    padding: 5px;
+    gap: 4px;
+  }
+
+  .toolbar button {
+    padding: 6px 8px;
+    font-size: 12px;
+    min-height: 38px;
+    min-width: 38px;
+  }
+
+  .toolbar-phase button {
+    font-size: 10px;
+    padding: 4px 6px;
+    min-height: 34px;
+  }
+}

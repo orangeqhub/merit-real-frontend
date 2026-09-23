@@ -1,0 +1,752 @@
+[
+ {
+  "id": "road-corridor-2",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 772,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-6",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 809,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-8",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 456,
+  "measuredWidth": 550
+ },
+ {
+  "id": "road-corridor-9",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1022,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-11",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6024,
+  "measuredWidth": 200
+ },
+ {
+  "id": "road-corridor-13",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5118,
+  "measuredWidth": 150
+ },
+ {
+  "id": "road-corridor-14",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5048,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-15",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5114,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-16",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5070,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-17",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5048,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-20",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4439,
+  "measuredWidth": 100
+ },
+ {
+  "id": "road-corridor-22",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4132,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-23",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4211,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-24",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4158,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-25",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4129,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-27",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3993,
+  "measuredWidth": 75
+ },
+ {
+  "id": "road-corridor-29",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3552,
+  "measuredWidth": 50
+ },
+ {
+  "id": "road-corridor-30",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2870,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-32",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2465,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-33",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2593,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-34",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2506,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-35",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2451,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-42",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1479,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-43",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1678,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-44",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1540,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-45",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1441,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-50",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5133,
+  "measuredWidth": 425
+ },
+ {
+  "id": "road-corridor-58",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3194,
+  "measuredWidth": 350
+ },
+ {
+  "id": "road-corridor-59",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 845,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-60",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1146,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-61",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 933,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-62",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 734,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-63",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1016,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-65",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1195,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-67",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3459,
+  "measuredWidth": 75
+ },
+ {
+  "id": "road-corridor-68",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4309,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-70",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 2771,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-71",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1973,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-72",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1539,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-73",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1779,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-74",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1649,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-75",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1539,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-76",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 1681,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-79",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6586,
+  "measuredWidth": 125
+ },
+ {
+  "id": "road-corridor-80",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7156,
+  "measuredWidth": 50
+ },
+ {
+  "id": "road-corridor-82",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6627,
+  "measuredWidth": 300
+ },
+ {
+  "id": "road-corridor-83",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3187,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-85",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7156,
+  "measuredWidth": 200
+ },
+ {
+  "id": "road-corridor-86",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7410,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-87",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7119,
+  "measuredWidth": 200
+ },
+ {
+  "id": "road-corridor-88",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3568,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-89",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3266,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-91",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3084,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-105",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4947,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-116",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6914,
+  "measuredWidth": 1400
+ },
+ {
+  "id": "road-corridor-118",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6672,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-122",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4095,
+  "measuredWidth": 350
+ },
+ {
+  "id": "road-corridor-126",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3110,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-127",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4075,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-128",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 4870,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-130",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6214,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-131",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6533,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-134",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 3570,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-136",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 5175,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-137",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 6489,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-138",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7125,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-139",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7405,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-141",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7594,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-142",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 7858,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-146",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 8510,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-147",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 8746,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-148",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 9345,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-156",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 10818,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-157",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 11005,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-158",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 11542,
+  "measuredWidth": 25
+ },
+ {
+  "id": "road-corridor-159",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 11875,
+  "measuredWidth": 300
+ },
+ {
+  "id": "road-corridor-160",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 12048,
+  "measuredWidth": 300
+ },
+ {
+  "id": "road-added-242-openspace",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "40 FEET PRO. WIDE ROAD",
+  "nearestLabelDistance": 12048,
+  "measuredWidth": 300
+ },
+ {
+  "id": "road-highway",
+  "type": "highway",
+  "widthClass": "highway",
+  "nearestLabel": "NATIONAL HIGHWAY ROAD"
+ },
+ {
+  "id": "road-missing-cluster-1",
+  "type": "minor-road",
+  "widthClass": "30ft",
+  "nearestLabel": "30 FEET PRO. WIDE ROAD (missing-cluster digitization, corrected position)"
+ },
+ {
+  "id": "road-corridor-107",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-108",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-109",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-110",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-111",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-113",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-corridor-114",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "restored: real 40ft cross-road, was incorrectly grouped with a thin unrelated artifact band"
+ },
+ {
+  "id": "road-added-3-4",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-17-18",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-39-40",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-213",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-264",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-275",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: horizontal 40ft cross-road segment, matches the established band at y=1447.5-1502.5 shared by the rest of this row"
+ },
+ {
+  "id": "road-added-plot1-utility",
+  "type": "major-road",
+  "widthClass": "40ft",
+  "nearestLabel": "user-specified: extends the 40ft road above plot 1 to the highway, matching reference (verified via high-res crop showing continuous road there)"
+ },
+ {
+  "id": "road-added-260-269",
+  "type": "minor-road",
+  "widthClass": "30ft"
+ },
+ {
+  "id": "road-corridor-18",
+  "type": "minor-road",
+  "widthClass": "30ft"
+ },
+ {
+  "id": "road-corridor-26",
+  "type": "minor-road",
+  "widthClass": "30ft"
+ },
+ {
+  "id": "road-corridor-36",
+  "type": "minor-road",
+  "widthClass": "30ft"
+ },
+ {
+  "id": "road-corridor-46",
+  "type": "minor-road",
+  "widthClass": "30ft"
+ },
+ {
+  "id": "road-added-212-213",
+  "type": "major-road",
+  "widthClass": "40ft"
+ }
+]

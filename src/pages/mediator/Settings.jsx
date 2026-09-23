@@ -1,5 +1,8 @@
 import AccountSettingsForm from '../../components/dashboard/AccountSettingsForm';
+import { useAuthStore } from '../../store/authStore';
 
 export default function Settings() {
-  return <AccountSettingsForm profilePath="/mediator/profile" />;
+  const { user } = useAuthStore();
+  const profilePath = user?.role === 'agent' ? '/agent/profile' : '/mediator/profile';
+  return <AccountSettingsForm profilePath={profilePath} />;
 }

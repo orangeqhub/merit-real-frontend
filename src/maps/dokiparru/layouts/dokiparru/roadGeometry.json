@@ -1,0 +1,261 @@
+[
+ {
+  "id": "road-v-0",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "polygon": [
+   {
+    "x": 7600,
+    "y": 6415
+   },
+   {
+    "x": 8190,
+    "y": 6415
+   },
+   {
+    "x": 8190,
+    "y": 22815
+   },
+   {
+    "x": 7600,
+    "y": 22491
+   }
+  ],
+  "precision": "bottom edge corrected (Phase 3P, re-confirmed 3R) \u2014 direct pixel trace of both vertical edges (x=760 and x=819) shows them persisting to y=2250 and y=2281 respectively before terminating, matching this trapezoid almost exactly. The overlap this created with Utility-1 was Utility-1's own bug (see utilities.json), not this road's \u2014 Utility-1's hatching visibly stops at x=760 in the source, not x=819."
+ },
+ {
+  "id": "road-v-1",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "precision": "bottom termination corrected (Phase 3J) \u00e2\u20ac\u201d was a flat rectangle bottom (y=24430) that neither matched plot 94's own SE corner (10340,23690) nor plot 95's own NW corner (10930,24560), leaving a gap on one side and a small triangular overlap sliver on the other where the road crossed the diagonal boundary at an angle inconsistent with either plot's edge. Bottom edge now goes directly to those two plots' own existing vertices (no plot geometry changed), so the road's termination is a real shared edge with both neighbors instead of an independently-guessed flat line.",
+  "polygon": [
+   {
+    "x": 10340,
+    "y": 5920
+   },
+   {
+    "x": 10930,
+    "y": 5920
+   },
+   {
+    "x": 10930,
+    "y": 24560
+   },
+   {
+    "x": 10340,
+    "y": 23690
+   }
+  ]
+ },
+ {
+  "id": "road-v-2",
+  "type": "proposed-60ft",
+  "widthPx": 106,
+  "polygon": [
+   {
+    "x": 13080,
+    "y": 5815
+   },
+   {
+    "x": 14140,
+    "y": 5815
+   },
+   {
+    "x": 14140,
+    "y": 25430
+   },
+   {
+    "x": 13080,
+    "y": 26140
+   }
+  ],
+  "precision": "bottom edge corrected (Phase 3V) \u2014 was a flat rectangle bottom (y=25425) leaving a large black gap where plot 149's actual bottom-right corner (13070,26140) extends much further south. Bottom-left now matches plot 149's own corner exactly; bottom-right matches Utility-2's own top-edge vertex (14140,25430) exactly."
+ },
+ {
+  "id": "road-v-3",
+  "type": "proposed-33ft",
+  "widthPx": 60,
+  "polygon": [
+   {
+    "x": 16280,
+    "y": 5780
+   },
+   {
+    "x": 16880,
+    "y": 5780
+   },
+   {
+    "x": 16880,
+    "y": 26940
+   },
+   {
+    "x": 16280,
+    "y": 26950
+   }
+  ]
+ },
+ {
+  "id": "road-v-4",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "polygon": [
+   {
+    "x": 19020,
+    "y": 7380
+   },
+   {
+    "x": 19610,
+    "y": 7380
+   },
+   {
+    "x": 19610,
+    "y": 26190
+   },
+   {
+    "x": 19020,
+    "y": 26190
+   }
+  ]
+ },
+ {
+  "id": "road-v-5",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "polygon": [
+   {
+    "x": 21760,
+    "y": 8970
+   },
+   {
+    "x": 22350,
+    "y": 8970
+   },
+   {
+    "x": 22350,
+    "y": 25340
+   },
+   {
+    "x": 21760,
+    "y": 25460
+   }
+  ],
+  "precision": "bottom edge corrected (Phase 3S) \u2014 flat bottom (y=25535) extended past Donka Road's actual frontage line at this x-range (25460 at x=21760, 25340 at x=22350), overlapping Donka Road by ~79650 sq units. Corrected to match Donka Road's own existing north-edge vertices exactly."
+ },
+ {
+  "id": "road-v-6",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "precision": "bottom termination corrected (Phase 3M) \u00e2\u20ac\u201d was extending to y=26530, well past both the Donka Road boundary (~25210) and plot 361/362's own frontage corners, visually overlapping the Donka Road corridor. Confirmed via pixel scan (x=2480, y=2420-2650) that the space between the plots and Donka Road is blank/open in the source, not occupied by this road down to 26530. Bottom edge now terminates at plot 361's and plot 362's own existing corners (24500,24680) and (25090,24610) instead of an independently-guessed flat line.",
+  "polygon": [
+   {
+    "x": 24500,
+    "y": 13205
+   },
+   {
+    "x": 25090,
+    "y": 13205
+   },
+   {
+    "x": 25090,
+    "y": 24610
+   },
+   {
+    "x": 24500,
+    "y": 24680
+   }
+  ]
+ },
+ {
+  "id": "road-h-7",
+  "type": "proposed-40ft",
+  "polygon": [
+   {
+    "x": 5450,
+    "y": 12410
+   },
+   {
+    "x": 23430,
+    "y": 12410
+   },
+   {
+    "x": 23430,
+    "y": 13120
+   },
+   {
+    "x": 5450,
+    "y": 13120
+   }
+  ],
+  "precision": "source-traced (Phase 2M) \u00e2\u20ac\u201d y-position corrected to the real measured row gap (was centered on the wrong contiguous plot-row boundary)"
+ },
+ {
+  "id": "road-h-8",
+  "type": "proposed-40ft",
+  "polygon": [
+   {
+    "x": 5450,
+    "y": 20280
+   },
+   {
+    "x": 27240,
+    "y": 20280
+   },
+   {
+    "x": 27240,
+    "y": 20990
+   },
+   {
+    "x": 5450,
+    "y": 20980
+   }
+  ],
+  "precision": "source-traced (Phase 2M, extended Phase 3F, corrected Phase 3H/3I/3O) \u00e2\u20ac\u201d y-position corrected to the real measured row gap; east edge extended from x=2617 to x=2724 (world 26170->27240) after direct pixel crop confirmed blank/unfilled space above plot 374's column, contiguous with road-v-7's west edge (x=2724). West edge extended from x=819 to x=545: both a gridded re-crop of the native JPEG and a user-supplied reference crop confirm the 'PROPOSED ...' road/utility boundary continues uninterrupted under plots 1/2/43/44 to column A's west edge, connecting cleanly with road-v-open-space-1's bottom edge instead of leaving a blank gap. Phase 3O: top-left y was still 19970 (matching plot 1's bottom BEFORE its Phase 3E row-alignment correction to 20280), while the top-right stayed at 20280 \u00e2\u20ac\u201d this stale mismatch created a sloped top edge that overlapped every plot along this row (1/44/90/143/200/261/314/355, all bottom=20280) except right at the east end, visible as a light-green tint where each plot's fill rendered over the road color underneath. Corrected top-left y to 20280 to match, making the top edge flat and consistent with all these plots' actual (already-correct) bottom edge."
+ },
+ {
+  "id": "road-v-open-space-1",
+  "type": "proposed-33ft",
+  "widthPx": 65,
+  "precision": "evidenced (label seen in source crop); bottom edge extended Phase 3I from y=19970 to y=20980 to close a fabricated gap \u00e2\u20ac\u201d the source shows this road continuing down to meet utility-1's top edge (y=20980) directly, with no blank space between the road and the utility hatch triangle.",
+  "polygon": [
+   {
+    "x": 4800,
+    "y": 6470
+   },
+   {
+    "x": 5450,
+    "y": 6470
+   },
+   {
+    "x": 5450,
+    "y": 20980
+   },
+   {
+    "x": 4800,
+    "y": 20980
+   }
+  ]
+ },
+ {
+  "id": "road-v-7",
+  "type": "proposed-33ft",
+  "widthPx": 59,
+  "polygon": [
+   {
+    "x": 27240,
+    "y": 20280
+   },
+   {
+    "x": 27830,
+    "y": 20280
+   },
+   {
+    "x": 27830,
+    "y": 24160
+   },
+   {
+    "x": 27240,
+    "y": 24160
+   }
+  ]
+ }
+]

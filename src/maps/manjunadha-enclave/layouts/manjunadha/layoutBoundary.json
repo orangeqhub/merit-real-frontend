@@ -1,0 +1,21 @@
+{
+ "polygon": [
+  {
+   "x": -48.0,
+   "y": -48.0
+  },
+  {
+   "x": 12863.91,
+   "y": -48.0
+  },
+  {
+   "x": 12863.91,
+   "y": 2851.59
+  },
+  {
+   "x": -48.0,
+   "y": 2851.59
+  }
+ ],
+ "precision": "Approximate bounding rectangle around all dimension-derived plots/roads plus a small margin for the decorative tree border seen in the source. NOT a pixel trace of the printed tree-line boundary -- the true outer edge is gently irregular (especially the Donka Road frontage and the open-space west edge) and was not independently pixel-traced at this pass. Treat as approximate, not surveyed."
+}

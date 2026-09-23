@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Eye, X } from 'lucide-react';
 import { registrationService } from '../../services/registrationService';
+import { agentService } from '../../services/managedUserService';
 import { toast } from '../../store/toastStore';
 import EmptyState from '../common/EmptyState';
 import TablePagination from '../common/TablePagination';
@@ -56,6 +57,19 @@ export default function RegistrationApprovalList() {
   const [agentGrade, setAgentGrade] = useState('');
   const [gradeError, setGradeError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [linkedAbpId, setLinkedAbpId] = useState('');
+  const [linkedAbcId, setLinkedAbcId] = useState('');
+  const [abpOptions, setAbpOptions] = useState([]);
+  const [abcOptions, setAbcOptions] = useState([]);
+
+  useEffect(() => {
+    agentService.list({ agentGrade: 'ABP', status: 'approved', pageSize: 200 })
+      .then((data) => setAbpOptions(data.items || []))
+      .catch(() => setAbpOptions([]));
+    agentService.list({ agentGrade: 'ABC', status: 'approved', pageSize: 200 })
+      .then((data) => setAbcOptions(data.items || []))
+      .catch(() => setAbcOptions([]));
+  }, []);
 
   function load() {
     registrationService.listPending().then((list) => {
@@ -86,18 +100,26 @@ export default function RegistrationApprovalList() {
       }));
       return;
     }
+    if (viewing?.role === 'agent' && agentGrade === 'BA' && (!linkedAbpId || !linkedAbcId)) {
+      setGradeError('Select the linked Area Business Partner and Area Business Coordinator for this Business Advisor.');
+      return;
+    }
 
     setBusy(true);
     setGradeError('');
     try {
       const updated = await registrationService.approve(id, {
         grade: viewing?.role === 'agent' ? agentGrade : undefined,
+        linkedAbpId: agentGrade === 'BA' ? Number(linkedAbpId) : undefined,
+        linkedAbcId: agentGrade === 'BA' ? Number(linkedAbcId) : undefined,
       });
       toast.success(t('toast.registrationApproved', { ns: 'dashboard', memberId: updated.memberId }));
       setViewing(null);
       setRejecting(false);
       setReason('');
       setAgentGrade('');
+      setLinkedAbpId('');
+      setLinkedAbcId('');
       load();
     } catch (err) {
       toast.error(err.message);
@@ -128,6 +150,8 @@ export default function RegistrationApprovalList() {
     setRejecting(false);
     setReason('');
     setAgentGrade('');
+    setLinkedAbpId('');
+    setLinkedAbcId('');
     setGradeError('');
   }
 
@@ -137,6 +161,8 @@ export default function RegistrationApprovalList() {
     setRejecting(false);
     setReason('');
     setAgentGrade('');
+    setLinkedAbpId('');
+    setLinkedAbcId('');
     setGradeError('');
   }
 
@@ -342,6 +368,43 @@ export default function RegistrationApprovalList() {
                               <option key={g.code} value={g.code}>{g.label}</option>
                             ))}
                           </select>
+                          {agentGrade === 'BA' && (
+                            <div className="mt-3 space-y-3">
+                              <div>
+                                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                  Linked Area Business Partner <span className="text-red-600">*</span>
+                                </label>
+                                <select
+                                  value={linkedAbpId}
+                                  onChange={(e) => { setLinkedAbpId(e.target.value); setGradeError(''); }}
+                                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
+                                >
+                                  <option value="">-- Select ABP --</option>
+                                  {abpOptions.map((a) => (
+                                    <option key={a.id} value={a.id}>{a.name} ({a.memberId || a.id})</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <div>
+                                <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                                  Linked Area Business Coordinator <span className="text-red-600">*</span>
+                                </label>
+                                <select
+                                  value={linkedAbcId}
+                                  onChange={(e) => { setLinkedAbcId(e.target.value); setGradeError(''); }}
+                                  className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
+                                >
+                                  <option value="">-- Select ABC --</option>
+                                  {abcOptions.map((a) => (
+                                    <option key={a.id} value={a.id}>{a.name} ({a.memberId || a.id})</option>
+                                  ))}
+                                </select>
+                              </div>
+                              <p className="text-xs text-gray-500">
+                                Commission on this Business Advisor's deals is auto-split: ABP 20% · ABC 20% · Business Advisor 60%.
+                              </p>
+                            </div>
+                          )}
                           {gradeError && <p className="mt-1 text-xs text-red-600">{gradeError}</p>}
                         </div>
                       )}

@@ -1,0 +1,2115 @@
+[
+ {
+  "geometryId": "p-1",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-2."
+ },
+ {
+  "geometryId": "p-2",
+  "geometryType": "plot",
+  "plotNumber": "213",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-3",
+  "geometryType": "plot",
+  "plotNumber": "214",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-4",
+  "geometryType": "plot",
+  "plotNumber": "227",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-5",
+  "geometryType": "plot",
+  "plotNumber": "224",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-6",
+  "geometryType": "plot",
+  "plotNumber": "215",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-7",
+  "geometryType": "plot",
+  "plotNumber": "226",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-8",
+  "geometryType": "plot",
+  "plotNumber": "217",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-9",
+  "geometryType": "plot",
+  "plotNumber": "216",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-10",
+  "geometryType": "plot",
+  "plotNumber": "225",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-11",
+  "geometryType": "plot",
+  "plotNumber": "218",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-12",
+  "geometryType": "plot",
+  "plotNumber": "219",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-13",
+  "geometryType": "plot",
+  "plotNumber": "220",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-14",
+  "geometryType": "plot",
+  "plotNumber": "221",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-15",
+  "geometryType": "plot",
+  "plotNumber": "20",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-16",
+  "geometryType": "plot",
+  "plotNumber": "21",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-17",
+  "geometryType": "plot",
+  "plotNumber": "222",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-18",
+  "geometryType": "plot",
+  "plotNumber": "22",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-19",
+  "geometryType": "plot",
+  "plotNumber": "223",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-20",
+  "geometryType": "plot",
+  "plotNumber": "23",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-21",
+  "geometryType": "plot",
+  "plotNumber": "24",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-22",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-23."
+ },
+ {
+  "geometryId": "p-23",
+  "geometryType": "plot",
+  "plotNumber": "25",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-24",
+  "geometryType": "plot",
+  "plotNumber": "26",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-25",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-24."
+ },
+ {
+  "geometryId": "p-26",
+  "geometryType": "plot",
+  "plotNumber": "27",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-27",
+  "geometryType": "plot",
+  "plotNumber": "28",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-28",
+  "geometryType": "plot",
+  "plotNumber": "29",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-29",
+  "geometryType": "plot",
+  "plotNumber": "30",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-30",
+  "geometryType": "plot",
+  "plotNumber": "31",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-31",
+  "geometryType": "plot",
+  "plotNumber": "32",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-32",
+  "geometryType": "plot",
+  "plotNumber": "33",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-33",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-34."
+ },
+ {
+  "geometryId": "p-34",
+  "geometryType": "plot",
+  "plotNumber": "34",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-35",
+  "geometryType": "plot",
+  "plotNumber": "35",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-36",
+  "geometryType": "plot",
+  "plotNumber": "36",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-37",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-36."
+ },
+ {
+  "geometryId": "p-38",
+  "geometryType": "plot",
+  "plotNumber": "38",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-39",
+  "geometryType": "plot",
+  "plotNumber": "39",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-40",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-41."
+ },
+ {
+  "geometryId": "p-41",
+  "geometryType": "plot",
+  "plotNumber": "40",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-42",
+  "geometryType": "plot",
+  "plotNumber": "41",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-43",
+  "geometryType": "plot",
+  "plotNumber": "42",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-44",
+  "geometryType": "plot",
+  "plotNumber": "43",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-45",
+  "geometryType": "plot",
+  "plotNumber": "44",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-46",
+  "geometryType": "plot",
+  "plotNumber": "45",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-47",
+  "geometryType": "plot",
+  "plotNumber": "47",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-48",
+  "geometryType": "plot",
+  "plotNumber": "46",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-49",
+  "geometryType": "plot",
+  "plotNumber": "48",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-50",
+  "geometryType": "plot",
+  "plotNumber": "49",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-51",
+  "geometryType": "plot",
+  "plotNumber": "50",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-52",
+  "geometryType": "plot",
+  "plotNumber": "242",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-53",
+  "geometryType": "plot",
+  "plotNumber": "51",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-54",
+  "geometryType": "plot",
+  "plotNumber": "52",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-55",
+  "geometryType": "plot",
+  "plotNumber": "202",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-56",
+  "geometryType": "plot",
+  "plotNumber": "53",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-57",
+  "geometryType": "plot",
+  "plotNumber": "203",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-58",
+  "geometryType": "plot",
+  "plotNumber": "54",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-59",
+  "geometryType": "plot",
+  "plotNumber": "204",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-60",
+  "geometryType": "plot",
+  "plotNumber": "55",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-61",
+  "geometryType": "plot",
+  "plotNumber": "205",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-62",
+  "geometryType": "plot",
+  "plotNumber": "56",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-63",
+  "geometryType": "plot",
+  "plotNumber": "206",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-64",
+  "geometryType": "plot",
+  "plotNumber": "57",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-65",
+  "geometryType": "plot",
+  "plotNumber": "207",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-66",
+  "geometryType": "plot",
+  "plotNumber": "58",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-67",
+  "geometryType": "plot",
+  "plotNumber": "208",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-68",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-26."
+ },
+ {
+  "geometryId": "p-69",
+  "geometryType": "plot",
+  "plotNumber": "59",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-70",
+  "geometryType": "plot",
+  "plotNumber": "209",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-71",
+  "geometryType": "plot",
+  "plotNumber": "60",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-72",
+  "geometryType": "plot",
+  "plotNumber": "210",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-73",
+  "geometryType": "plot",
+  "plotNumber": "61",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-74",
+  "geometryType": "plot",
+  "plotNumber": "211",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-75",
+  "geometryType": "plot",
+  "plotNumber": "62",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-76",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-78."
+ },
+ {
+  "geometryId": "p-77",
+  "geometryType": "plot",
+  "plotNumber": "63",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-78",
+  "geometryType": "plot",
+  "plotNumber": "212",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-79",
+  "geometryType": "plot",
+  "plotNumber": "64",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-80",
+  "geometryType": "plot",
+  "plotNumber": "65",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-81",
+  "geometryType": "plot",
+  "plotNumber": "66",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-82",
+  "geometryType": "plot",
+  "plotNumber": "67",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-83",
+  "geometryType": "plot",
+  "plotNumber": "68",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-84",
+  "geometryType": "plot",
+  "plotNumber": "69",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-85",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-86."
+ },
+ {
+  "geometryId": "p-86",
+  "geometryType": "plot",
+  "plotNumber": "70",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-87",
+  "geometryType": "plot",
+  "plotNumber": "71",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-88",
+  "geometryType": "plot",
+  "plotNumber": "72",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-89",
+  "geometryType": "plot",
+  "plotNumber": "73",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-90",
+  "geometryType": "plot",
+  "plotNumber": "74",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-91",
+  "geometryType": "plot",
+  "plotNumber": "75",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-92",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-93."
+ },
+ {
+  "geometryId": "p-93",
+  "geometryType": "plot",
+  "plotNumber": "76",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-94",
+  "geometryType": "plot",
+  "plotNumber": "78",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-95",
+  "geometryType": "plot",
+  "plotNumber": "79",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-96",
+  "geometryType": "plot",
+  "plotNumber": "80",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-97",
+  "geometryType": "plot",
+  "plotNumber": "81",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-98",
+  "geometryType": "plot",
+  "plotNumber": "82",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-99",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-100."
+ },
+ {
+  "geometryId": "p-100",
+  "geometryType": "plot",
+  "plotNumber": "83",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-101",
+  "geometryType": "plot",
+  "plotNumber": "84",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-102",
+  "geometryType": "plot",
+  "plotNumber": "77",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-103",
+  "geometryType": "plot",
+  "plotNumber": "85",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-104",
+  "geometryType": "plot",
+  "plotNumber": "86",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-105",
+  "geometryType": "plot",
+  "plotNumber": "87",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-106",
+  "geometryType": "plot",
+  "plotNumber": "88",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-107",
+  "geometryType": "plot",
+  "plotNumber": "89",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-108",
+  "geometryType": "plot",
+  "plotNumber": "90",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-109",
+  "geometryType": "plot",
+  "plotNumber": "91",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-110",
+  "geometryType": "plot",
+  "plotNumber": "92",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-111",
+  "geometryType": "plot",
+  "plotNumber": "93",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-112",
+  "geometryType": "plot",
+  "plotNumber": "94",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-113",
+  "geometryType": "plot",
+  "plotNumber": "95",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-114",
+  "geometryType": "plot",
+  "plotNumber": "96",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-115",
+  "geometryType": "plot",
+  "plotNumber": "97",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-116",
+  "geometryType": "plot",
+  "plotNumber": "98",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-117",
+  "geometryType": "plot",
+  "plotNumber": "99",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-118",
+  "geometryType": "plot",
+  "plotNumber": "100",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-119",
+  "geometryType": "plot",
+  "plotNumber": "101",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-120",
+  "geometryType": "plot",
+  "plotNumber": "102",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-121",
+  "geometryType": "plot",
+  "plotNumber": "103",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-122",
+  "geometryType": "plot",
+  "plotNumber": "104",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-123",
+  "geometryType": "plot",
+  "plotNumber": "105",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-124",
+  "geometryType": "plot",
+  "plotNumber": "106",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-125",
+  "geometryType": "plot",
+  "plotNumber": "107",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-126",
+  "geometryType": "plot",
+  "plotNumber": "108",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-127",
+  "geometryType": "plot",
+  "plotNumber": "109",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-128",
+  "geometryType": "plot",
+  "plotNumber": "110",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-129",
+  "geometryType": "plot",
+  "plotNumber": "111",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-130",
+  "geometryType": "plot",
+  "plotNumber": "112",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-131",
+  "geometryType": "plot",
+  "plotNumber": "113",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-132",
+  "geometryType": "plot",
+  "plotNumber": "114",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-133",
+  "geometryType": "plot",
+  "plotNumber": "115",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-134",
+  "geometryType": "plot",
+  "plotNumber": "116",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-135",
+  "geometryType": "plot",
+  "plotNumber": "117",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-136",
+  "geometryType": "plot",
+  "plotNumber": "118",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-137",
+  "geometryType": "plot",
+  "plotNumber": "119",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-138",
+  "geometryType": "plot",
+  "plotNumber": "120",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-139",
+  "geometryType": "plot",
+  "plotNumber": "121",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-140",
+  "geometryType": "plot",
+  "plotNumber": "122",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-141",
+  "geometryType": "plot",
+  "plotNumber": "123",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-142",
+  "geometryType": "plot",
+  "plotNumber": "124",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-143",
+  "geometryType": "plot",
+  "plotNumber": "125",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-144",
+  "geometryType": "plot",
+  "plotNumber": "126",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-145",
+  "geometryType": "plot",
+  "plotNumber": "127",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-146",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-147."
+ },
+ {
+  "geometryId": "p-147",
+  "geometryType": "plot",
+  "plotNumber": "128",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-148",
+  "geometryType": "plot",
+  "plotNumber": "129",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-149",
+  "geometryType": "plot",
+  "plotNumber": "130",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-150",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-151."
+ },
+ {
+  "geometryId": "p-151",
+  "geometryType": "plot",
+  "plotNumber": "131",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-152",
+  "geometryType": "plot",
+  "plotNumber": "132",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-153",
+  "geometryType": "plot",
+  "plotNumber": "133",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-154",
+  "geometryType": "plot",
+  "plotNumber": "134",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-155",
+  "geometryType": "plot",
+  "plotNumber": "135",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-156",
+  "geometryType": "plot",
+  "plotNumber": "136",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-157",
+  "geometryType": "plot",
+  "plotNumber": "137",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-158",
+  "geometryType": "plot",
+  "plotNumber": "138",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-159",
+  "geometryType": "plot",
+  "plotNumber": "139",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-160",
+  "geometryType": "plot",
+  "plotNumber": "140",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-161",
+  "geometryType": "plot",
+  "plotNumber": "141",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-162",
+  "geometryType": "plot",
+  "plotNumber": "142",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-163",
+  "geometryType": "plot",
+  "plotNumber": "143",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-164",
+  "geometryType": "plot",
+  "plotNumber": "144",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-165",
+  "geometryType": "plot",
+  "plotNumber": "145",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-166",
+  "geometryType": "plot",
+  "plotNumber": "146",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-167",
+  "geometryType": "plot",
+  "plotNumber": "147",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-168",
+  "geometryType": "plot",
+  "plotNumber": "148",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-169",
+  "geometryType": "plot",
+  "plotNumber": "149",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-170",
+  "geometryType": "plot",
+  "plotNumber": "150",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-171",
+  "geometryType": "plot",
+  "plotNumber": "151",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-172",
+  "geometryType": "plot",
+  "plotNumber": "152",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-173",
+  "geometryType": "plot",
+  "plotNumber": "153",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-174",
+  "geometryType": "plot",
+  "plotNumber": "154",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-175",
+  "geometryType": "plot",
+  "plotNumber": "155",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-176",
+  "geometryType": "plot",
+  "plotNumber": "156",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-177",
+  "geometryType": "plot",
+  "plotNumber": "157",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-178",
+  "geometryType": "plot",
+  "plotNumber": "158",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-179",
+  "geometryType": "plot",
+  "plotNumber": "159",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-180",
+  "geometryType": "plot",
+  "plotNumber": "160",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-181",
+  "geometryType": "plot",
+  "plotNumber": "161",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-182",
+  "geometryType": "plot",
+  "plotNumber": "162",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-183",
+  "geometryType": "plot",
+  "plotNumber": "163",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-184",
+  "geometryType": "plot",
+  "plotNumber": "164",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-185",
+  "geometryType": "plot",
+  "plotNumber": "165",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-186",
+  "geometryType": "plot",
+  "plotNumber": "166",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-187",
+  "geometryType": "plot",
+  "plotNumber": "167",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-188",
+  "geometryType": "plot",
+  "plotNumber": "168",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-189",
+  "geometryType": "plot",
+  "plotNumber": "169",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-190",
+  "geometryType": "plot",
+  "plotNumber": "170",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-191",
+  "geometryType": "plot",
+  "plotNumber": "171",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-192",
+  "geometryType": "plot",
+  "plotNumber": "172",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-193",
+  "geometryType": "plot",
+  "plotNumber": "173",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-194",
+  "geometryType": "plot",
+  "plotNumber": "174",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-195",
+  "geometryType": "plot",
+  "plotNumber": "175",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-196",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-197."
+ },
+ {
+  "geometryId": "p-197",
+  "geometryType": "plot",
+  "plotNumber": "176",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-198",
+  "geometryType": "plot",
+  "plotNumber": "177",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-199",
+  "geometryType": "plot",
+  "plotNumber": "178",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-200",
+  "geometryType": "plot",
+  "plotNumber": "180",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-201",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-202."
+ },
+ {
+  "geometryId": "p-202",
+  "geometryType": "plot",
+  "plotNumber": "179",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-203",
+  "geometryType": "plot",
+  "plotNumber": "191",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-204",
+  "geometryType": "plot",
+  "plotNumber": "190",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-205",
+  "geometryType": "plot",
+  "plotNumber": "189",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-206",
+  "geometryType": "plot",
+  "plotNumber": "188",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-207",
+  "geometryType": "plot",
+  "plotNumber": "187",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-208",
+  "geometryType": "plot",
+  "plotNumber": "186",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-209",
+  "geometryType": "plot",
+  "plotNumber": "185",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-210",
+  "geometryType": "plot",
+  "plotNumber": "184",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-211",
+  "geometryType": "plot",
+  "plotNumber": "183",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-212",
+  "geometryType": "plot",
+  "plotNumber": "182",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-213",
+  "geometryType": "plot",
+  "plotNumber": "181",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-214",
+  "geometryType": "plot",
+  "plotNumber": "192",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-215",
+  "geometryType": "plot",
+  "plotNumber": "194",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-216",
+  "geometryType": "plot",
+  "plotNumber": "193",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-217",
+  "geometryType": "plot",
+  "plotNumber": "195",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-218",
+  "geometryType": "plot",
+  "plotNumber": "198",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-219",
+  "geometryType": "plot",
+  "plotNumber": "197",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-220",
+  "geometryType": "plot",
+  "plotNumber": "196",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-221",
+  "geometryType": "plot",
+  "plotNumber": "200",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-222",
+  "geometryType": "plot",
+  "plotNumber": "199",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-223",
+  "geometryType": "plot",
+  "plotNumber": "201",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-224",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-225."
+ },
+ {
+  "geometryId": "p-225",
+  "geometryType": "plot",
+  "plotNumber": "228",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-226",
+  "geometryType": "plot",
+  "plotNumber": "229",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-227",
+  "geometryType": "plot",
+  "plotNumber": "230",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-228",
+  "geometryType": "plot",
+  "plotNumber": "231",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-229",
+  "geometryType": "plot",
+  "plotNumber": "232",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-230",
+  "geometryType": "plot",
+  "plotNumber": "233",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-231",
+  "geometryType": "plot",
+  "plotNumber": "234",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-232",
+  "geometryType": "plot",
+  "plotNumber": "235",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-233",
+  "geometryType": "plot",
+  "plotNumber": "236",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-234",
+  "geometryType": "plot",
+  "plotNumber": "237",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-235",
+  "geometryType": "plot",
+  "plotNumber": "238",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-236",
+  "geometryType": "plot",
+  "plotNumber": "239",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-237",
+  "geometryType": "plot",
+  "plotNumber": "240",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-238",
+  "geometryType": "plot",
+  "plotNumber": "241",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-239",
+  "geometryType": "plot",
+  "plotNumber": "244",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-240",
+  "geometryType": "plot",
+  "plotNumber": "243",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-241",
+  "geometryType": "plot",
+  "plotNumber": "248",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-242",
+  "geometryType": "plot",
+  "plotNumber": "247",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-243",
+  "geometryType": "plot",
+  "plotNumber": "246",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-244",
+  "geometryType": "plot",
+  "plotNumber": "245",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-245",
+  "geometryType": "plot",
+  "plotNumber": "250",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-246",
+  "geometryType": "plot",
+  "plotNumber": "249",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-247",
+  "geometryType": "plot",
+  "plotNumber": "252",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-248",
+  "geometryType": "plot",
+  "plotNumber": "251",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-249",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-250."
+ },
+ {
+  "geometryId": "p-250",
+  "geometryType": "plot",
+  "plotNumber": "255",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-251",
+  "geometryType": "plot",
+  "plotNumber": "254",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-252",
+  "geometryType": "plot",
+  "plotNumber": "253",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-253",
+  "geometryType": "plot",
+  "plotNumber": "256",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-254",
+  "geometryType": "plot",
+  "plotNumber": "257",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-255",
+  "geometryType": "plot",
+  "plotNumber": "258",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-256",
+  "geometryType": "plot",
+  "plotNumber": "259",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-257",
+  "geometryType": "plot",
+  "plotNumber": "260",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-258",
+  "geometryType": "plot",
+  "plotNumber": "261",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-259",
+  "geometryType": "plot",
+  "plotNumber": "262",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-260",
+  "geometryType": "plot",
+  "plotNumber": "263",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-261",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-262."
+ },
+ {
+  "geometryId": "p-262",
+  "geometryType": "plot",
+  "plotNumber": "264",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-263",
+  "geometryType": "plot",
+  "plotNumber": "266",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-264",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-265."
+ },
+ {
+  "geometryId": "p-265",
+  "geometryType": "plot",
+  "plotNumber": "265",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-266",
+  "geometryType": "plot",
+  "plotNumber": "269",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-267",
+  "geometryType": "plot",
+  "plotNumber": "268",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-268",
+  "geometryType": "plot",
+  "plotNumber": "267",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-269",
+  "geometryType": "plot",
+  "plotNumber": "270",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-270",
+  "geometryType": "plot",
+  "plotNumber": "271",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-271",
+  "geometryType": "plot",
+  "plotNumber": "272",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-272",
+  "geometryType": "plot",
+  "plotNumber": "273",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-273",
+  "geometryType": "duplicate-polygon",
+  "plotNumber": null,
+  "status": "excluded",
+  "note": "Undersized/overlapping bounding box; reference position duplicates already-verified geometry p-274."
+ },
+ {
+  "geometryId": "p-274",
+  "geometryType": "plot",
+  "plotNumber": "274",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-275",
+  "geometryType": "plot",
+  "plotNumber": "275",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-276",
+  "geometryType": "plot",
+  "plotNumber": "276",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-277",
+  "geometryType": "plot",
+  "plotNumber": "278",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-278",
+  "geometryType": "plot",
+  "plotNumber": "277",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "p-279",
+  "geometryType": "plot",
+  "plotNumber": "279",
+  "status": "verified",
+  "verificationMethod": "reference-image"
+ },
+ {
+  "geometryId": "missing-p1",
+  "geometryType": "plot",
+  "plotNumber": "1",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p2",
+  "geometryType": "plot",
+  "plotNumber": "2",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p3",
+  "geometryType": "plot",
+  "plotNumber": "3",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p4",
+  "geometryType": "plot",
+  "plotNumber": "4",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p5",
+  "geometryType": "plot",
+  "plotNumber": "5",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p6",
+  "geometryType": "plot",
+  "plotNumber": "6",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p7",
+  "geometryType": "plot",
+  "plotNumber": "7",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p8",
+  "geometryType": "plot",
+  "plotNumber": "8",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p9",
+  "geometryType": "plot",
+  "plotNumber": "9",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p10",
+  "geometryType": "plot",
+  "plotNumber": "10",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p11",
+  "geometryType": "plot",
+  "plotNumber": "11",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p12",
+  "geometryType": "plot",
+  "plotNumber": "12",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p13",
+  "geometryType": "plot",
+  "plotNumber": "13",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p14",
+  "geometryType": "plot",
+  "plotNumber": "14",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p15",
+  "geometryType": "plot",
+  "plotNumber": "15",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p16",
+  "geometryType": "plot",
+  "plotNumber": "16",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p17",
+  "geometryType": "plot",
+  "plotNumber": "17",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p18",
+  "geometryType": "plot",
+  "plotNumber": "18",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p19",
+  "geometryType": "plot",
+  "plotNumber": "19",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ },
+ {
+  "geometryId": "missing-p37",
+  "geometryType": "plot",
+  "plotNumber": "37",
+  "status": "verified",
+  "verificationMethod": "reference-image-digitization-2026-09-08",
+  "note": "Newly digitized: this plot number had no vector geometry in the original 279-geometry digitization pass. Traced from the reference image using frozen neighboring plot/road edges as calibration anchors."
+ }
+]

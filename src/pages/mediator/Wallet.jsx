@@ -174,6 +174,7 @@ export default function MediatorWallet() {
   const balanceAmount = Number(wallet?.balance ?? wallet?.availableBalance ?? 0);
 
   const bottomStats = [
+    { label: 'Commission %', value: wallet?.commissionPercent != null ? `${wallet.commissionPercent}%` : '—' },
     { label: 'Total Amount', value: formatInr(totalAmount) },
     { label: 'Available Balance', value: formatInr(wallet?.availableBalance) },
     { label: 'Total Earned', value: formatInr(wallet?.totalEarned) },
@@ -194,7 +195,7 @@ export default function MediatorWallet() {
           </div>
         <div className="flex flex-wrap gap-2">
           <Link
-            to="/mediator/bank-details"
+            to={user?.role === 'agent' ? '/agent/bank-details' : '/mediator/bank-details'}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
           >
             <Landmark size={16} /> Bank Details

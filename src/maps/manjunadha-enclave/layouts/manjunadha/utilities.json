@@ -1,0 +1,25 @@
+[
+ {
+  "id": "manjunadha-utility-1",
+  "label": "Utility\nAc 0.02 66 Cents",
+  "polygon": [
+   {
+    "x": 1191.15,
+    "y": 1965.2
+   },
+   {
+    "x": 1821.15,
+    "y": 1965.2
+   },
+   {
+    "x": 1821.15,
+    "y": 2122.59
+   },
+   {
+    "x": 1191.15,
+    "y": 2122.59
+   }
+  ],
+  "precision": "Rectangle sized from printed acreage (0.0266 ac) and the same column width as plot 45/41; height back-solved to close the gap between Open Space and plot 45 in this column since no separate utility edge dimension was printed."
+ }
+]

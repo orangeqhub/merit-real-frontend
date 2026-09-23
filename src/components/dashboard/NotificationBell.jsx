@@ -98,7 +98,8 @@ export default function NotificationBell() {
   const notificationsPath = (() => {
     if (!user) return '/';
     if (user.role === 'admin') return '/admin/notifications';
-    if (user.role === 'agent' || user.role === 'mediator') return '/mediator/notifications';
+    if (user.role === 'agent') return '/agent/notifications';
+    if (user.role === 'mediator') return '/mediator/notifications';
     if (user.role === 'seller') return '/seller/notifications';
     if (user.role === 'employee') return '/employee/notifications';
     if (user.role === 'sales_member') return '/sales/notifications';

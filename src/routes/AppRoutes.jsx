@@ -233,6 +233,31 @@ export default function AppRoutes() {
           <Route path="settings" element={<MediatorSettings />} />
         </Route>
 
+        {/*
+          Canonical Agent dashboard route. Reuses the exact same Mediator*
+          page components as /mediator (same data, same styling) -- Agents
+          are only ever meant to land here, not /mediator, but /mediator is
+          left untouched for backward compatibility.
+        */}
+        <Route path="/agent" element={<DashboardRoute role="agent" />}>
+          <Route index element={<Navigate to="/agent/dashboard" replace />} />
+          <Route path="dashboard" element={<MediatorDashboard />} />
+          <Route path="leads" element={<MediatorLeads />} />
+          <Route path="purchases" element={<MediatorPurchases />} />
+          <Route path="bookings" element={<MediatorBookings />} />
+          <Route path="closed-deals" element={<MediatorClosedDeals />} />
+          <Route path="wallet" element={<MediatorWallet />} />
+          <Route path="bank-details" element={<MediatorBankDetails />} />
+          <Route path="documents" element={<MediatorDocuments />} />
+          <Route path="properties" element={<MediatorProperties />} />
+          <Route path="visits" element={<MediatorVisits />} />
+          <Route path="follow-ups" element={<MediatorFollowUps />} />
+          <Route path="profile" element={<MediatorProfile />} />
+          <Route path="commission" element={<MediatorCommissionHistory />} />
+          <Route path="notifications" element={<MediatorNotifications />} />
+          <Route path="settings" element={<MediatorSettings />} />
+        </Route>
+
         <Route path="/employee" element={<DashboardRoute role="employee" />}>
           <Route index element={<Navigate to="/" replace />} />
           <Route

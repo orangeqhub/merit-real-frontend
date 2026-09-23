@@ -648,7 +648,7 @@ export default function DecisionRequests({ type = 'purchase', scope = 'admin' })
                     : scope === 'sales'
                       ? '/sales/properties'
                       : scope === 'agent'
-                        ? '/mediator/documents'
+                        ? '/agent/documents'
                         : '/buyer/documents'
                 ),
               },

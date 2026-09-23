@@ -1,0 +1,32 @@
+{
+  "totalPlots": 279,
+  "visuallyVerified": 256,
+  "needsManualReview": 23,
+  "duplicateVerifiedNumbers": [],
+  "missingVerifiedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    27,
+    37,
+    107,
+    228
+  ],
+  "generatedAt": "2026-09-08T06:54:52.226Z"
+}

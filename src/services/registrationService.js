@@ -74,6 +74,8 @@ async function assignEmployee() {
 async function approve(id, options = {}) {
   const body = {};
   if (options.grade) body.grade = options.grade;
+  if (options.linkedAbpId) body.linkedAbpId = options.linkedAbpId;
+  if (options.linkedAbcId) body.linkedAbcId = options.linkedAbcId;
   const user = await api(`/registrations/${id}/approve`, {
     method: 'POST',
     token: getAccessToken(),

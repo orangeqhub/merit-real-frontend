@@ -1,0 +1,209 @@
+[
+  {
+    "id": "road-v-0",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 160,
+        "y": 370
+      },
+      {
+        "x": 278.12,
+        "y": 370
+      },
+      {
+        "x": 278.12,
+        "y": 3008
+      },
+      {
+        "x": 160,
+        "y": 3008
+      }
+    ]
+  },
+  {
+    "id": "road-v-1",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 678.12,
+        "y": 415
+      },
+      {
+        "x": 796.24,
+        "y": 415
+      },
+      {
+        "x": 796.24,
+        "y": 2390
+      },
+      {
+        "x": 678.12,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-2",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 1196.24,
+        "y": 415
+      },
+      {
+        "x": 1314.36,
+        "y": 415
+      },
+      {
+        "x": 1314.36,
+        "y": 2390
+      },
+      {
+        "x": 1196.24,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-3",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 1714.36,
+        "y": 314.12
+      },
+      {
+        "x": 1832.48,
+        "y": 314.12
+      },
+      {
+        "x": 1832.48,
+        "y": 2390
+      },
+      {
+        "x": 1714.36,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-4",
+    "type": "proposed-12m",
+    "label": "12 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 2232.48,
+        "y": -265
+      },
+      {
+        "x": 2389.96,
+        "y": -265
+      },
+      {
+        "x": 2389.96,
+        "y": 2390
+      },
+      {
+        "x": 2232.48,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-5",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 2789.96,
+        "y": 300
+      },
+      {
+        "x": 2908.08,
+        "y": 300
+      },
+      {
+        "x": 2908.08,
+        "y": 2390
+      },
+      {
+        "x": 2789.96,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-6",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 3308.08,
+        "y": 325
+      },
+      {
+        "x": 3431,
+        "y": 325
+      },
+      {
+        "x": 3431,
+        "y": 2390
+      },
+      {
+        "x": 3308.08,
+        "y": 2390
+      }
+    ]
+  },
+  {
+    "id": "road-v-7",
+    "type": "proposed-9m",
+    "label": "9 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": 3851,
+        "y": 325
+      },
+      {
+        "x": 3962,
+        "y": 325
+      },
+      {
+        "x": 3962,
+        "y": 1318.12
+      },
+      {
+        "x": 3851,
+        "y": 1318.12
+      }
+    ]
+  },
+  {
+    "id": "road-h-0",
+    "type": "proposed-12m",
+    "label": "12 Meters Wide Proposed Road",
+    "polygon": [
+      {
+        "x": -20,
+        "y": 1318.12
+      },
+      {
+        "x": 4775,
+        "y": 1318.12
+      },
+      {
+        "x": 4775,
+        "y": 1475.6
+      },
+      {
+        "x": -20,
+        "y": 1475.6
+      }
+    ]
+  }
+]

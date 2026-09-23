@@ -1,0 +1,3629 @@
+[
+ {
+  "plotNumber": "1",
+  "geometryId": "p-1",
+  "center": {
+   "x": 22985,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "incorrect",
+  "confidence": "high",
+  "verificationMethod": "manual-reference"
+ },
+ {
+  "plotNumber": "2",
+  "geometryId": "p-2",
+  "center": {
+   "x": 22985,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "3",
+  "geometryId": "p-3",
+  "center": {
+   "x": 22985,
+   "y": 13510
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "4",
+  "geometryId": "p-4",
+  "center": {
+   "x": 23630,
+   "y": 13510
+  },
+  "ocrReading": "227",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "5",
+  "geometryId": "p-5",
+  "center": {
+   "x": 23630,
+   "y": 12100
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "6",
+  "geometryId": "p-6",
+  "center": {
+   "x": 22985,
+   "y": 13040
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "7",
+  "geometryId": "p-7",
+  "center": {
+   "x": 23630,
+   "y": 13040
+  },
+  "ocrReading": "226",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "8",
+  "geometryId": "p-8",
+  "center": {
+   "x": 22985,
+   "y": 12110
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "9",
+  "geometryId": "p-9",
+  "center": {
+   "x": 22985,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "10",
+  "geometryId": "p-10",
+  "center": {
+   "x": 23630,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "11",
+  "geometryId": "p-11",
+  "center": {
+   "x": 23075,
+   "y": 11645
+  },
+  "ocrReading": "218",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "12",
+  "geometryId": "p-12",
+  "center": {
+   "x": 23080,
+   "y": 11180
+  },
+  "ocrReading": "219",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "13",
+  "geometryId": "p-13",
+  "center": {
+   "x": 23080,
+   "y": 10720
+  },
+  "ocrReading": "020",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "14",
+  "geometryId": "p-14",
+  "center": {
+   "x": 23060,
+   "y": 10250
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "15",
+  "geometryId": "p-15",
+  "center": {
+   "x": 13895,
+   "y": 10715
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "16",
+  "geometryId": "p-16",
+  "center": {
+   "x": 13895,
+   "y": 11180
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "17",
+  "geometryId": "p-17",
+  "center": {
+   "x": 23090,
+   "y": 9785
+  },
+  "ocrReading": "222",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "18",
+  "geometryId": "p-18",
+  "center": {
+   "x": 13895,
+   "y": 11645
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "19",
+  "geometryId": "p-19",
+  "center": {
+   "x": 23095,
+   "y": 9270
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "20",
+  "geometryId": "p-20",
+  "center": {
+   "x": 13895,
+   "y": 12110
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "21",
+  "geometryId": "p-21",
+  "center": {
+   "x": 13895,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "22",
+  "geometryId": "p-22",
+  "center": {
+   "x": 13895,
+   "y": 12950
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "23",
+  "geometryId": "p-23",
+  "center": {
+   "x": 13895,
+   "y": 13290
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "24",
+  "geometryId": "p-24",
+  "center": {
+   "x": 13895,
+   "y": 13715
+  },
+  "ocrReading": null,
+  "verified": true,
+  "verificationStatus": "correct",
+  "confidence": "high",
+  "verificationMethod": "manual-reference"
+ },
+ {
+  "plotNumber": "25",
+  "geometryId": "p-25",
+  "center": {
+   "x": 13895,
+   "y": 14180
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "26",
+  "geometryId": "p-26",
+  "center": {
+   "x": 13895,
+   "y": 15575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "27",
+  "geometryId": "p-27",
+  "center": {
+   "x": 13895,
+   "y": 16065
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "28",
+  "geometryId": "p-28",
+  "center": {
+   "x": 13895,
+   "y": 16530
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "29",
+  "geometryId": "p-29",
+  "center": {
+   "x": 13895,
+   "y": 16995
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "30",
+  "geometryId": "p-30",
+  "center": {
+   "x": 13895,
+   "y": 17460
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "31",
+  "geometryId": "p-31",
+  "center": {
+   "x": 13895,
+   "y": 17925
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "32",
+  "geometryId": "p-32",
+  "center": {
+   "x": 13895,
+   "y": 18415
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "33",
+  "geometryId": "p-33",
+  "center": {
+   "x": 14925,
+   "y": 17840
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "34",
+  "geometryId": "p-34",
+  "center": {
+   "x": 14925,
+   "y": 18205
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "35",
+  "geometryId": "p-35",
+  "center": {
+   "x": 14925,
+   "y": 17460
+  },
+  "ocrReading": "35",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "36",
+  "geometryId": "p-36",
+  "center": {
+   "x": 14925,
+   "y": 16530
+  },
+  "ocrReading": "36",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "37",
+  "geometryId": "p-37",
+  "center": {
+   "x": 14925,
+   "y": 16995
+  },
+  "ocrReading": "36",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "38",
+  "geometryId": "p-38",
+  "center": {
+   "x": 14925,
+   "y": 16065
+  },
+  "ocrReading": "38",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "39",
+  "geometryId": "p-39",
+  "center": {
+   "x": 14925,
+   "y": 15430
+  },
+  "ocrReading": "39",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "40",
+  "geometryId": "p-40",
+  "center": {
+   "x": 14925,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "41",
+  "geometryId": "p-41",
+  "center": {
+   "x": 14925,
+   "y": 14235
+  },
+  "ocrReading": "40",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "42",
+  "geometryId": "p-42",
+  "center": {
+   "x": 14925,
+   "y": 13510
+  },
+  "ocrReading": "41",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "43",
+  "geometryId": "p-43",
+  "center": {
+   "x": 14925,
+   "y": 13040
+  },
+  "ocrReading": "42",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "44",
+  "geometryId": "p-44",
+  "center": {
+   "x": 14925,
+   "y": 12575
+  },
+  "ocrReading": "43",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "45",
+  "geometryId": "p-45",
+  "center": {
+   "x": 14925,
+   "y": 12110
+  },
+  "ocrReading": "44",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "46",
+  "geometryId": "p-46",
+  "center": {
+   "x": 14925,
+   "y": 11645
+  },
+  "ocrReading": "45",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "47",
+  "geometryId": "p-47",
+  "center": {
+   "x": 14925,
+   "y": 10735
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "48",
+  "geometryId": "p-48",
+  "center": {
+   "x": 14925,
+   "y": 11180
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "49",
+  "geometryId": "p-49",
+  "center": {
+   "x": 15810,
+   "y": 2755
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "50",
+  "geometryId": "p-50",
+  "center": {
+   "x": 15795,
+   "y": 3310
+  },
+  "ocrReading": "49",
+  "verified": true,
+  "verificationStatus": "correct",
+  "confidence": "high",
+  "verificationMethod": "manual-reference"
+ },
+ {
+  "plotNumber": "51",
+  "geometryId": "p-51",
+  "center": {
+   "x": 15780,
+   "y": 3775
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "52",
+  "geometryId": "p-52",
+  "center": {
+   "x": 24765,
+   "y": 21435
+  },
+  "ocrReading": "242",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "53",
+  "geometryId": "p-53",
+  "center": {
+   "x": 15770,
+   "y": 4240
+  },
+  "ocrReading": "29",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "54",
+  "geometryId": "p-54",
+  "center": {
+   "x": 15755,
+   "y": 4705
+  },
+  "ocrReading": "452",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "55",
+  "geometryId": "p-55",
+  "center": {
+   "x": 21915,
+   "y": 9285
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "56",
+  "geometryId": "p-56",
+  "center": {
+   "x": 15745,
+   "y": 5170
+  },
+  "ocrReading": "53",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "57",
+  "geometryId": "p-57",
+  "center": {
+   "x": 21915,
+   "y": 9785
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "58",
+  "geometryId": "p-58",
+  "center": {
+   "x": 15730,
+   "y": 5635
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "59",
+  "geometryId": "p-59",
+  "center": {
+   "x": 21915,
+   "y": 10250
+  },
+  "ocrReading": "204",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "60",
+  "geometryId": "p-60",
+  "center": {
+   "x": 15715,
+   "y": 6100
+  },
+  "ocrReading": "55",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "61",
+  "geometryId": "p-61",
+  "center": {
+   "x": 21915,
+   "y": 10720
+  },
+  "ocrReading": "205",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "62",
+  "geometryId": "p-62",
+  "center": {
+   "x": 15700,
+   "y": 6560
+  },
+  "ocrReading": "56",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "63",
+  "geometryId": "p-63",
+  "center": {
+   "x": 21915,
+   "y": 11180
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "64",
+  "geometryId": "p-64",
+  "center": {
+   "x": 15685,
+   "y": 7085
+  },
+  "ocrReading": "57",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "65",
+  "geometryId": "p-65",
+  "center": {
+   "x": 21915,
+   "y": 11645
+  },
+  "ocrReading": "207",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "66",
+  "geometryId": "p-66",
+  "center": {
+   "x": 15650,
+   "y": 8195
+  },
+  "ocrReading": "58",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "67",
+  "geometryId": "p-67",
+  "center": {
+   "x": 21915,
+   "y": 12110
+  },
+  "ocrReading": "208",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "68",
+  "geometryId": "p-68",
+  "center": {
+   "x": 13895,
+   "y": 15185
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "69",
+  "geometryId": "p-69",
+  "center": {
+   "x": 15635,
+   "y": 8855
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "70",
+  "geometryId": "p-70",
+  "center": {
+   "x": 21915,
+   "y": 12575
+  },
+  "ocrReading": "209",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "71",
+  "geometryId": "p-71",
+  "center": {
+   "x": 15625,
+   "y": 9315
+  },
+  "ocrReading": "60",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "72",
+  "geometryId": "p-72",
+  "center": {
+   "x": 21915,
+   "y": 13040
+  },
+  "ocrReading": "210",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "73",
+  "geometryId": "p-73",
+  "center": {
+   "x": 15610,
+   "y": 9785
+  },
+  "ocrReading": "61",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "74",
+  "geometryId": "p-74",
+  "center": {
+   "x": 21915,
+   "y": 13510
+  },
+  "ocrReading": "211",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "75",
+  "geometryId": "p-75",
+  "center": {
+   "x": 15595,
+   "y": 10250
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "76",
+  "geometryId": "p-76",
+  "center": {
+   "x": 21915,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "77",
+  "geometryId": "p-77",
+  "center": {
+   "x": 15745,
+   "y": 10720
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "78",
+  "geometryId": "p-78",
+  "center": {
+   "x": 21915,
+   "y": 14235
+  },
+  "ocrReading": "212",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "79",
+  "geometryId": "p-79",
+  "center": {
+   "x": 15745,
+   "y": 11180
+  },
+  "ocrReading": "64",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "80",
+  "geometryId": "p-80",
+  "center": {
+   "x": 15745,
+   "y": 11645
+  },
+  "ocrReading": "65",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "81",
+  "geometryId": "p-81",
+  "center": {
+   "x": 15745,
+   "y": 12110
+  },
+  "ocrReading": "66",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "82",
+  "geometryId": "p-82",
+  "center": {
+   "x": 15745,
+   "y": 12575
+  },
+  "ocrReading": "67",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "83",
+  "geometryId": "p-83",
+  "center": {
+   "x": 15745,
+   "y": 13040
+  },
+  "ocrReading": "68",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "84",
+  "geometryId": "p-84",
+  "center": {
+   "x": 15745,
+   "y": 13505
+  },
+  "ocrReading": "69",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "85",
+  "geometryId": "p-85",
+  "center": {
+   "x": 15745,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "86",
+  "geometryId": "p-86",
+  "center": {
+   "x": 15745,
+   "y": 14235
+  },
+  "ocrReading": "70",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "87",
+  "geometryId": "p-87",
+  "center": {
+   "x": 15745,
+   "y": 15430
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "88",
+  "geometryId": "p-88",
+  "center": {
+   "x": 15745,
+   "y": 16065
+  },
+  "ocrReading": "72",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "89",
+  "geometryId": "p-89",
+  "center": {
+   "x": 15745,
+   "y": 16530
+  },
+  "ocrReading": "73",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "90",
+  "geometryId": "p-90",
+  "center": {
+   "x": 15745,
+   "y": 16995
+  },
+  "ocrReading": "74",
+  "verified": false,
+  "verificationStatus": "incorrect",
+  "confidence": "high",
+  "verificationMethod": "manual-reference"
+ },
+ {
+  "plotNumber": "91",
+  "geometryId": "p-91",
+  "center": {
+   "x": 15745,
+   "y": 17460
+  },
+  "ocrReading": "75",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "92",
+  "geometryId": "p-92",
+  "center": {
+   "x": 15745,
+   "y": 17840
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "93",
+  "geometryId": "p-93",
+  "center": {
+   "x": 15745,
+   "y": 18205
+  },
+  "ocrReading": "584",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "94",
+  "geometryId": "p-94",
+  "center": {
+   "x": 17170,
+   "y": 17460
+  },
+  "ocrReading": "78",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "95",
+  "geometryId": "p-95",
+  "center": {
+   "x": 17165,
+   "y": 16995
+  },
+  "ocrReading": "79",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "96",
+  "geometryId": "p-96",
+  "center": {
+   "x": 17165,
+   "y": 16530
+  },
+  "ocrReading": "80",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "97",
+  "geometryId": "p-97",
+  "center": {
+   "x": 17395,
+   "y": 15765
+  },
+  "ocrReading": "01",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "98",
+  "geometryId": "p-98",
+  "center": {
+   "x": 17130,
+   "y": 15430
+  },
+  "ocrReading": "82",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "99",
+  "geometryId": "p-99",
+  "center": {
+   "x": 16985,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "100",
+  "geometryId": "p-100",
+  "center": {
+   "x": 16985,
+   "y": 14235
+  },
+  "ocrReading": "83",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "101",
+  "geometryId": "p-101",
+  "center": {
+   "x": 16985,
+   "y": 13510
+  },
+  "ocrReading": "84",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "102",
+  "geometryId": "p-102",
+  "center": {
+   "x": 17170,
+   "y": 18095
+  },
+  "ocrReading": "77",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "103",
+  "geometryId": "p-103",
+  "center": {
+   "x": 16985,
+   "y": 13040
+  },
+  "ocrReading": "85",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "104",
+  "geometryId": "p-104",
+  "center": {
+   "x": 16985,
+   "y": 12575
+  },
+  "ocrReading": "86",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "105",
+  "geometryId": "p-105",
+  "center": {
+   "x": 16985,
+   "y": 12110
+  },
+  "ocrReading": "87",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "106",
+  "geometryId": "p-106",
+  "center": {
+   "x": 16985,
+   "y": 11645
+  },
+  "ocrReading": "88",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "107",
+  "geometryId": "p-107",
+  "center": {
+   "x": 16985,
+   "y": 11180
+  },
+  "ocrReading": "89",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "108",
+  "geometryId": "p-108",
+  "center": {
+   "x": 16985,
+   "y": 10720
+  },
+  "ocrReading": "90",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "109",
+  "geometryId": "p-109",
+  "center": {
+   "x": 16985,
+   "y": 10250
+  },
+  "ocrReading": "91",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "110",
+  "geometryId": "p-110",
+  "center": {
+   "x": 16985,
+   "y": 9790
+  },
+  "ocrReading": "92",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "111",
+  "geometryId": "p-111",
+  "center": {
+   "x": 16985,
+   "y": 9315
+  },
+  "ocrReading": "93",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "112",
+  "geometryId": "p-112",
+  "center": {
+   "x": 16985,
+   "y": 8855
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "113",
+  "geometryId": "p-113",
+  "center": {
+   "x": 16985,
+   "y": 8195
+  },
+  "ocrReading": "95",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "114",
+  "geometryId": "p-114",
+  "center": {
+   "x": 16985,
+   "y": 7085
+  },
+  "ocrReading": "96",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "115",
+  "geometryId": "p-115",
+  "center": {
+   "x": 16985,
+   "y": 6560
+  },
+  "ocrReading": "97",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "116",
+  "geometryId": "p-116",
+  "center": {
+   "x": 16985,
+   "y": 6100
+  },
+  "ocrReading": "98",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "117",
+  "geometryId": "p-117",
+  "center": {
+   "x": 16985,
+   "y": 5635
+  },
+  "ocrReading": "99",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "118",
+  "geometryId": "p-118",
+  "center": {
+   "x": 16985,
+   "y": 5170
+  },
+  "ocrReading": "100",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "119",
+  "geometryId": "p-119",
+  "center": {
+   "x": 16985,
+   "y": 4705
+  },
+  "ocrReading": "101",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "120",
+  "geometryId": "p-120",
+  "center": {
+   "x": 16985,
+   "y": 4240
+  },
+  "ocrReading": "102",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "121",
+  "geometryId": "p-121",
+  "center": {
+   "x": 16985,
+   "y": 3775
+  },
+  "ocrReading": "103",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "122",
+  "geometryId": "p-122",
+  "center": {
+   "x": 16985,
+   "y": 3310
+  },
+  "ocrReading": "104",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "123",
+  "geometryId": "p-123",
+  "center": {
+   "x": 16985,
+   "y": 2790
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "124",
+  "geometryId": "p-124",
+  "center": {
+   "x": 17805,
+   "y": 2815
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "125",
+  "geometryId": "p-125",
+  "center": {
+   "x": 17805,
+   "y": 3310
+  },
+  "ocrReading": "107",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "126",
+  "geometryId": "p-126",
+  "center": {
+   "x": 17805,
+   "y": 3775
+  },
+  "ocrReading": "108",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "127",
+  "geometryId": "p-127",
+  "center": {
+   "x": 17805,
+   "y": 4240
+  },
+  "ocrReading": "109",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "128",
+  "geometryId": "p-128",
+  "center": {
+   "x": 17805,
+   "y": 4705
+  },
+  "ocrReading": "110",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "129",
+  "geometryId": "p-129",
+  "center": {
+   "x": 17805,
+   "y": 5170
+  },
+  "ocrReading": "111",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "130",
+  "geometryId": "p-130",
+  "center": {
+   "x": 17805,
+   "y": 5635
+  },
+  "ocrReading": "112",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "131",
+  "geometryId": "p-131",
+  "center": {
+   "x": 17805,
+   "y": 6100
+  },
+  "ocrReading": "113",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "132",
+  "geometryId": "p-132",
+  "center": {
+   "x": 17805,
+   "y": 6560
+  },
+  "ocrReading": "114",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "133",
+  "geometryId": "p-133",
+  "center": {
+   "x": 17805,
+   "y": 7085
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "134",
+  "geometryId": "p-134",
+  "center": {
+   "x": 17805,
+   "y": 8195
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "135",
+  "geometryId": "p-135",
+  "center": {
+   "x": 17805,
+   "y": 8855
+  },
+  "ocrReading": "117",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "136",
+  "geometryId": "p-136",
+  "center": {
+   "x": 17805,
+   "y": 9315
+  },
+  "ocrReading": "118",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "137",
+  "geometryId": "p-137",
+  "center": {
+   "x": 17805,
+   "y": 9790
+  },
+  "ocrReading": "119",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "138",
+  "geometryId": "p-138",
+  "center": {
+   "x": 17805,
+   "y": 10250
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "139",
+  "geometryId": "p-139",
+  "center": {
+   "x": 17805,
+   "y": 10720
+  },
+  "ocrReading": "121",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "140",
+  "geometryId": "p-140",
+  "center": {
+   "x": 17805,
+   "y": 11180
+  },
+  "ocrReading": "122",
+  "verified": false,
+  "verificationStatus": "incorrect",
+  "confidence": "high",
+  "verificationMethod": "manual-reference"
+ },
+ {
+  "plotNumber": "141",
+  "geometryId": "p-141",
+  "center": {
+   "x": 17805,
+   "y": 11645
+  },
+  "ocrReading": "123",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "142",
+  "geometryId": "p-142",
+  "center": {
+   "x": 17805,
+   "y": 12110
+  },
+  "ocrReading": "124",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "143",
+  "geometryId": "p-143",
+  "center": {
+   "x": 17805,
+   "y": 12575
+  },
+  "ocrReading": "125",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "144",
+  "geometryId": "p-144",
+  "center": {
+   "x": 17805,
+   "y": 13040
+  },
+  "ocrReading": "126",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "145",
+  "geometryId": "p-145",
+  "center": {
+   "x": 17805,
+   "y": 13505
+  },
+  "ocrReading": "127",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "146",
+  "geometryId": "p-146",
+  "center": {
+   "x": 17805,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "147",
+  "geometryId": "p-147",
+  "center": {
+   "x": 17805,
+   "y": 14235
+  },
+  "ocrReading": "128",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "148",
+  "geometryId": "p-148",
+  "center": {
+   "x": 17955,
+   "y": 15205
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "149",
+  "geometryId": "p-149",
+  "center": {
+   "x": 19175,
+   "y": 15295
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "150",
+  "geometryId": "p-150",
+  "center": {
+   "x": 19170,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "151",
+  "geometryId": "p-151",
+  "center": {
+   "x": 19170,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "152",
+  "geometryId": "p-152",
+  "center": {
+   "x": 19170,
+   "y": 13510
+  },
+  "ocrReading": "132",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "153",
+  "geometryId": "p-153",
+  "center": {
+   "x": 19170,
+   "y": 13040
+  },
+  "ocrReading": "133",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "154",
+  "geometryId": "p-154",
+  "center": {
+   "x": 19170,
+   "y": 12575
+  },
+  "ocrReading": "134",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "155",
+  "geometryId": "p-155",
+  "center": {
+   "x": 19170,
+   "y": 12110
+  },
+  "ocrReading": "135",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "156",
+  "geometryId": "p-156",
+  "center": {
+   "x": 19170,
+   "y": 11645
+  },
+  "ocrReading": "136",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "157",
+  "geometryId": "p-157",
+  "center": {
+   "x": 19170,
+   "y": 11180
+  },
+  "ocrReading": "137",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "158",
+  "geometryId": "p-158",
+  "center": {
+   "x": 19170,
+   "y": 10720
+  },
+  "ocrReading": "138",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "159",
+  "geometryId": "p-159",
+  "center": {
+   "x": 19170,
+   "y": 10250
+  },
+  "ocrReading": "139",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "160",
+  "geometryId": "p-160",
+  "center": {
+   "x": 19170,
+   "y": 9790
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "161",
+  "geometryId": "p-161",
+  "center": {
+   "x": 19170,
+   "y": 9315
+  },
+  "ocrReading": "141",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "162",
+  "geometryId": "p-162",
+  "center": {
+   "x": 19170,
+   "y": 8855
+  },
+  "ocrReading": "142",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "163",
+  "geometryId": "p-163",
+  "center": {
+   "x": 19170,
+   "y": 8195
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "164",
+  "geometryId": "p-164",
+  "center": {
+   "x": 19170,
+   "y": 7085
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "165",
+  "geometryId": "p-165",
+  "center": {
+   "x": 19170,
+   "y": 6560
+  },
+  "ocrReading": "145",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "166",
+  "geometryId": "p-166",
+  "center": {
+   "x": 19170,
+   "y": 6100
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "167",
+  "geometryId": "p-167",
+  "center": {
+   "x": 19170,
+   "y": 5635
+  },
+  "ocrReading": "147",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "168",
+  "geometryId": "p-168",
+  "center": {
+   "x": 19170,
+   "y": 5170
+  },
+  "ocrReading": "148",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "169",
+  "geometryId": "p-169",
+  "center": {
+   "x": 19170,
+   "y": 4705
+  },
+  "ocrReading": "149",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "170",
+  "geometryId": "p-170",
+  "center": {
+   "x": 19170,
+   "y": 4240
+  },
+  "ocrReading": "150",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "171",
+  "geometryId": "p-171",
+  "center": {
+   "x": 19170,
+   "y": 3775
+  },
+  "ocrReading": "151",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "172",
+  "geometryId": "p-172",
+  "center": {
+   "x": 19170,
+   "y": 3310
+  },
+  "ocrReading": "152",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "173",
+  "geometryId": "p-173",
+  "center": {
+   "x": 19170,
+   "y": 2830
+  },
+  "ocrReading": "153",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "174",
+  "geometryId": "p-174",
+  "center": {
+   "x": 19990,
+   "y": 2825
+  },
+  "ocrReading": "154",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "175",
+  "geometryId": "p-175",
+  "center": {
+   "x": 19990,
+   "y": 3310
+  },
+  "ocrReading": "155",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "176",
+  "geometryId": "p-176",
+  "center": {
+   "x": 19990,
+   "y": 3775
+  },
+  "ocrReading": "156",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "177",
+  "geometryId": "p-177",
+  "center": {
+   "x": 19990,
+   "y": 4240
+  },
+  "ocrReading": "157",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "178",
+  "geometryId": "p-178",
+  "center": {
+   "x": 19990,
+   "y": 4705
+  },
+  "ocrReading": "158",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "179",
+  "geometryId": "p-179",
+  "center": {
+   "x": 19990,
+   "y": 5170
+  },
+  "ocrReading": "159",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "180",
+  "geometryId": "p-180",
+  "center": {
+   "x": 19990,
+   "y": 5635
+  },
+  "ocrReading": "160",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "181",
+  "geometryId": "p-181",
+  "center": {
+   "x": 19990,
+   "y": 6100
+  },
+  "ocrReading": "161",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "182",
+  "geometryId": "p-182",
+  "center": {
+   "x": 19990,
+   "y": 6560
+  },
+  "ocrReading": "162",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "183",
+  "geometryId": "p-183",
+  "center": {
+   "x": 19990,
+   "y": 7085
+  },
+  "ocrReading": "163",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "184",
+  "geometryId": "p-184",
+  "center": {
+   "x": 19990,
+   "y": 8195
+  },
+  "ocrReading": "164",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "185",
+  "geometryId": "p-185",
+  "center": {
+   "x": 19990,
+   "y": 8855
+  },
+  "ocrReading": "165",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "186",
+  "geometryId": "p-186",
+  "center": {
+   "x": 19990,
+   "y": 9315
+  },
+  "ocrReading": "166",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "187",
+  "geometryId": "p-187",
+  "center": {
+   "x": 19990,
+   "y": 9790
+  },
+  "ocrReading": "167",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "188",
+  "geometryId": "p-188",
+  "center": {
+   "x": 19990,
+   "y": 10250
+  },
+  "ocrReading": "168",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "189",
+  "geometryId": "p-189",
+  "center": {
+   "x": 19990,
+   "y": 10720
+  },
+  "ocrReading": "169",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "190",
+  "geometryId": "p-190",
+  "center": {
+   "x": 19990,
+   "y": 11180
+  },
+  "ocrReading": "170",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "191",
+  "geometryId": "p-191",
+  "center": {
+   "x": 19990,
+   "y": 11645
+  },
+  "ocrReading": "171",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "192",
+  "geometryId": "p-192",
+  "center": {
+   "x": 19990,
+   "y": 12110
+  },
+  "ocrReading": "172",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "193",
+  "geometryId": "p-193",
+  "center": {
+   "x": 19990,
+   "y": 12575
+  },
+  "ocrReading": "173",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "194",
+  "geometryId": "p-194",
+  "center": {
+   "x": 19990,
+   "y": 13040
+  },
+  "ocrReading": "174",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "195",
+  "geometryId": "p-195",
+  "center": {
+   "x": 19990,
+   "y": 13505
+  },
+  "ocrReading": "175",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "196",
+  "geometryId": "p-196",
+  "center": {
+   "x": 19990,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "197",
+  "geometryId": "p-197",
+  "center": {
+   "x": 19990,
+   "y": 14235
+  },
+  "ocrReading": "176",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "198",
+  "geometryId": "p-198",
+  "center": {
+   "x": 19990,
+   "y": 15275
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "199",
+  "geometryId": "p-199",
+  "center": {
+   "x": 21175,
+   "y": 15240
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "200",
+  "geometryId": "p-200",
+  "center": {
+   "x": 21180,
+   "y": 13510
+  },
+  "ocrReading": "180",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "201",
+  "geometryId": "p-201",
+  "center": {
+   "x": 21180,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "202",
+  "geometryId": "p-202",
+  "center": {
+   "x": 21180,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "203",
+  "geometryId": "p-203",
+  "center": {
+   "x": 21195,
+   "y": 8195
+  },
+  "ocrReading": "2191",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "204",
+  "geometryId": "p-204",
+  "center": {
+   "x": 21190,
+   "y": 8855
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "205",
+  "geometryId": "p-205",
+  "center": {
+   "x": 21180,
+   "y": 9320
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "206",
+  "geometryId": "p-206",
+  "center": {
+   "x": 21180,
+   "y": 9785
+  },
+  "ocrReading": "188",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "207",
+  "geometryId": "p-207",
+  "center": {
+   "x": 21180,
+   "y": 10250
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "208",
+  "geometryId": "p-208",
+  "center": {
+   "x": 21180,
+   "y": 10720
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "209",
+  "geometryId": "p-209",
+  "center": {
+   "x": 21180,
+   "y": 11180
+  },
+  "ocrReading": "185",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "210",
+  "geometryId": "p-210",
+  "center": {
+   "x": 21180,
+   "y": 11645
+  },
+  "ocrReading": "184",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "211",
+  "geometryId": "p-211",
+  "center": {
+   "x": 21180,
+   "y": 12110
+  },
+  "ocrReading": "183",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "212",
+  "geometryId": "p-212",
+  "center": {
+   "x": 21180,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "213",
+  "geometryId": "p-213",
+  "center": {
+   "x": 21180,
+   "y": 13040
+  },
+  "ocrReading": "181",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "214",
+  "geometryId": "p-214",
+  "center": {
+   "x": 21205,
+   "y": 7085
+  },
+  "ocrReading": "192",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "215",
+  "geometryId": "p-215",
+  "center": {
+   "x": 21210,
+   "y": 6100
+  },
+  "ocrReading": "194",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "216",
+  "geometryId": "p-216",
+  "center": {
+   "x": 21205,
+   "y": 6565
+  },
+  "ocrReading": "13983",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "217",
+  "geometryId": "p-217",
+  "center": {
+   "x": 21215,
+   "y": 5635
+  },
+  "ocrReading": "195",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "218",
+  "geometryId": "p-218",
+  "center": {
+   "x": 21225,
+   "y": 4240
+  },
+  "ocrReading": "198",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "219",
+  "geometryId": "p-219",
+  "center": {
+   "x": 21220,
+   "y": 4705
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "220",
+  "geometryId": "p-220",
+  "center": {
+   "x": 21215,
+   "y": 5170
+  },
+  "ocrReading": "1996",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "221",
+  "geometryId": "p-221",
+  "center": {
+   "x": 21230,
+   "y": 3310
+  },
+  "ocrReading": "200",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "222",
+  "geometryId": "p-222",
+  "center": {
+   "x": 21225,
+   "y": 3775
+  },
+  "ocrReading": "099",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "223",
+  "geometryId": "p-223",
+  "center": {
+   "x": 21235,
+   "y": 2820
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "224",
+  "geometryId": "p-224",
+  "center": {
+   "x": 23630,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "225",
+  "geometryId": "p-225",
+  "center": {
+   "x": 23630,
+   "y": 14235
+  },
+  "ocrReading": "228",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "226",
+  "geometryId": "p-226",
+  "center": {
+   "x": 23575,
+   "y": 15555
+  },
+  "ocrReading": "229",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "227",
+  "geometryId": "p-227",
+  "center": {
+   "x": 23575,
+   "y": 16320
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "228",
+  "geometryId": "p-228",
+  "center": {
+   "x": 23575,
+   "y": 16785
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "229",
+  "geometryId": "p-229",
+  "center": {
+   "x": 23575,
+   "y": 17255
+  },
+  "ocrReading": "232",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "230",
+  "geometryId": "p-230",
+  "center": {
+   "x": 23575,
+   "y": 17715
+  },
+  "ocrReading": "233",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "231",
+  "geometryId": "p-231",
+  "center": {
+   "x": 23575,
+   "y": 18180
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "232",
+  "geometryId": "p-232",
+  "center": {
+   "x": 23575,
+   "y": 18645
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "233",
+  "geometryId": "p-233",
+  "center": {
+   "x": 23575,
+   "y": 19110
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "234",
+  "geometryId": "p-234",
+  "center": {
+   "x": 23575,
+   "y": 19575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "235",
+  "geometryId": "p-235",
+  "center": {
+   "x": 23575,
+   "y": 20040
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "236",
+  "geometryId": "p-236",
+  "center": {
+   "x": 23575,
+   "y": 20505
+  },
+  "ocrReading": "239",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "237",
+  "geometryId": "p-237",
+  "center": {
+   "x": 23575,
+   "y": 20970
+  },
+  "ocrReading": "24",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "238",
+  "geometryId": "p-238",
+  "center": {
+   "x": 23575,
+   "y": 21435
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "239",
+  "geometryId": "p-239",
+  "center": {
+   "x": 24760,
+   "y": 20505
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "240",
+  "geometryId": "p-240",
+  "center": {
+   "x": 24765,
+   "y": 20970
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "241",
+  "geometryId": "p-241",
+  "center": {
+   "x": 24765,
+   "y": 18645
+  },
+  "ocrReading": "248",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "242",
+  "geometryId": "p-242",
+  "center": {
+   "x": 24765,
+   "y": 19110
+  },
+  "ocrReading": "247",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "243",
+  "geometryId": "p-243",
+  "center": {
+   "x": 24765,
+   "y": 19575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "244",
+  "geometryId": "p-244",
+  "center": {
+   "x": 24760,
+   "y": 20040
+  },
+  "ocrReading": "245",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "245",
+  "geometryId": "p-245",
+  "center": {
+   "x": 24760,
+   "y": 17715
+  },
+  "ocrReading": "250",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "246",
+  "geometryId": "p-246",
+  "center": {
+   "x": 24760,
+   "y": 18180
+  },
+  "ocrReading": "249",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "247",
+  "geometryId": "p-247",
+  "center": {
+   "x": 24760,
+   "y": 16785
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "248",
+  "geometryId": "p-248",
+  "center": {
+   "x": 24760,
+   "y": 17255
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "249",
+  "geometryId": "p-249",
+  "center": {
+   "x": 24765,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "250",
+  "geometryId": "p-250",
+  "center": {
+   "x": 24765,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "251",
+  "geometryId": "p-251",
+  "center": {
+   "x": 24760,
+   "y": 15555
+  },
+  "ocrReading": "254",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "252",
+  "geometryId": "p-252",
+  "center": {
+   "x": 24760,
+   "y": 16320
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "253",
+  "geometryId": "p-253",
+  "center": {
+   "x": 24760,
+   "y": 13510
+  },
+  "ocrReading": "256",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "254",
+  "geometryId": "p-254",
+  "center": {
+   "x": 24760,
+   "y": 13040
+  },
+  "ocrReading": "257",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "255",
+  "geometryId": "p-255",
+  "center": {
+   "x": 24765,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "256",
+  "geometryId": "p-256",
+  "center": {
+   "x": 24760,
+   "y": 12085
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "257",
+  "geometryId": "p-257",
+  "center": {
+   "x": 25470,
+   "y": 12075
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "258",
+  "geometryId": "p-258",
+  "center": {
+   "x": 25470,
+   "y": 12575
+  },
+  "ocrReading": "261",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "259",
+  "geometryId": "p-259",
+  "center": {
+   "x": 25470,
+   "y": 13040
+  },
+  "ocrReading": "2625",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "260",
+  "geometryId": "p-260",
+  "center": {
+   "x": 25470,
+   "y": 13510
+  },
+  "ocrReading": "263",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "261",
+  "geometryId": "p-261",
+  "center": {
+   "x": 25470,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "262",
+  "geometryId": "p-262",
+  "center": {
+   "x": 25470,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "263",
+  "geometryId": "p-263",
+  "center": {
+   "x": 26590,
+   "y": 13510
+  },
+  "ocrReading": "266",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "264",
+  "geometryId": "p-264",
+  "center": {
+   "x": 26590,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "265",
+  "geometryId": "p-265",
+  "center": {
+   "x": 26590,
+   "y": 14235
+  },
+  "ocrReading": "265",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "266",
+  "geometryId": "p-266",
+  "center": {
+   "x": 26590,
+   "y": 12065
+  },
+  "ocrReading": "269",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "267",
+  "geometryId": "p-267",
+  "center": {
+   "x": 26590,
+   "y": 12575
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "268",
+  "geometryId": "p-268",
+  "center": {
+   "x": 26590,
+   "y": 13040
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "269",
+  "geometryId": "p-269",
+  "center": {
+   "x": 27290,
+   "y": 12055
+  },
+  "ocrReading": "270",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "270",
+  "geometryId": "p-270",
+  "center": {
+   "x": 27290,
+   "y": 12575
+  },
+  "ocrReading": "271",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "271",
+  "geometryId": "p-271",
+  "center": {
+   "x": 27290,
+   "y": 13040
+  },
+  "ocrReading": "272",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "272",
+  "geometryId": "p-272",
+  "center": {
+   "x": 27290,
+   "y": 13510
+  },
+  "ocrReading": "273",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "273",
+  "geometryId": "p-273",
+  "center": {
+   "x": 27290,
+   "y": 13880
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "274",
+  "geometryId": "p-274",
+  "center": {
+   "x": 27290,
+   "y": 14235
+  },
+  "ocrReading": null,
+  "verified": false,
+  "verificationStatus": "unverified",
+  "confidence": "none",
+  "verificationMethod": "unverified"
+ },
+ {
+  "plotNumber": "275",
+  "geometryId": "p-275",
+  "center": {
+   "x": 28365,
+   "y": 14105
+  },
+  "ocrReading": "275",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "276",
+  "geometryId": "p-276",
+  "center": {
+   "x": 28365,
+   "y": 13510
+  },
+  "ocrReading": "276",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "277",
+  "geometryId": "p-277",
+  "center": {
+   "x": 28365,
+   "y": 12575
+  },
+  "ocrReading": "4768",
+  "verified": false,
+  "verificationStatus": "likely-incorrect",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "278",
+  "geometryId": "p-278",
+  "center": {
+   "x": 28365,
+   "y": 13040
+  },
+  "ocrReading": "277",
+  "verified": false,
+  "verificationStatus": "uncertain",
+  "confidence": "low",
+  "verificationMethod": "ocr-assisted-unverified"
+ },
+ {
+  "plotNumber": "279",
+  "geometryId": "p-279",
+  "center": {
+   "x": 28365,
+   "y": 12045
+  },
+  "ocrReading": "279",
+  "verified": false,
+  "verificationStatus": "correct",
+  "confidence": "medium",
+  "verificationMethod": "ocr-assisted-unverified"
+ }
+]

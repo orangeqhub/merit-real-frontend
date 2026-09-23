@@ -1,0 +1,263 @@
+[
+ {
+  "geometryId": "p-045",
+  "plotNumber": 45,
+  "previousGeometry": "rectangle",
+  "newGeometry": "clipped-rectangle (pentagon)",
+  "reason": "outer-boundary,donka-road",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-094",
+  "plotNumber": 94,
+  "previousGeometry": "rectangle",
+  "newGeometry": "clipped-rectangle (pentagon)",
+  "reason": "outer-boundary,donka-road",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-177",
+  "plotNumber": 177,
+  "previousGeometry": "rectangle",
+  "newGeometry": "clipped-rectangle (pentagon)",
+  "reason": "outer-boundary",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-178",
+  "plotNumber": 178,
+  "previousGeometry": "rectangle",
+  "newGeometry": "clipped-rectangle (pentagon)",
+  "reason": "outer-boundary",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-095",
+  "plotNumber": 95,
+  "previousGeometry": "rectangle (wrong extent, 200 sqyd geom)",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "internal-boundary-diagonal",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-149",
+  "plotNumber": 149,
+  "previousGeometry": "rectangle (wrong extent)",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "internal-boundary-diagonal",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-210",
+  "plotNumber": 210,
+  "previousGeometry": "rectangle (wrong extent)",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "internal-boundary-diagonal (mortgage-block edge)",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-096",
+  "plotNumber": 96,
+  "previousGeometry": "rectangle (bottom edge 21px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-095",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-148",
+  "plotNumber": 148,
+  "previousGeometry": "rectangle (bottom edge 17px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-149",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-209",
+  "plotNumber": 209,
+  "previousGeometry": "rectangle (bottom edge 12px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-210",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-211",
+  "plotNumber": 211,
+  "previousGeometry": "rectangle",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "existing-donka-road-edge",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-270",
+  "plotNumber": 270,
+  "previousGeometry": "rectangle (miscoded in wrong column, x:1961-2069)",
+  "newGeometry": "trapezoid (quadrilateral), repositioned to true column x:1794-1902",
+  "reason": "existing-donka-road-edge + column-assignment correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-271",
+  "plotNumber": 271,
+  "previousGeometry": "rectangle",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "existing-donka-road-edge",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-321",
+  "plotNumber": 321,
+  "previousGeometry": "rectangle (miscoded in wrong column, x:2235-2343 / column M)",
+  "newGeometry": "trapezoid (quadrilateral), repositioned to true column x:2069-2176 / column L",
+  "reason": "existing-donka-road-edge + column-assignment correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-212",
+  "plotNumber": 212,
+  "previousGeometry": "rectangle (bottom edge 2px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-211",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-272",
+  "plotNumber": 272,
+  "previousGeometry": "rectangle (bottom edge 1px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-271",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-322",
+  "plotNumber": 322,
+  "previousGeometry": "rectangle",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "existing-donka-road-edge",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-361",
+  "plotNumber": 361,
+  "previousGeometry": "rectangle (left edge 15px too far right)",
+  "newGeometry": "trapezoid (quadrilateral), left edge corrected",
+  "reason": "existing-donka-road-edge + shared-edge correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-362",
+  "plotNumber": 362,
+  "previousGeometry": "rectangle (miscoded stacked below 361 in column N, x:2358-2450 -- physically impossible slot, already clipped by road)",
+  "newGeometry": "trapezoid (quadrilateral), repositioned to true column x:2509-2616",
+  "reason": "existing-donka-road-edge + column-assignment correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-378",
+  "plotNumber": 378,
+  "previousGeometry": "rectangle",
+  "newGeometry": "trapezoid (quadrilateral)",
+  "reason": "existing-donka-road-edge",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-269",
+  "plotNumber": 269,
+  "previousGeometry": "rectangle fragment (27px sliver, wrong row -- OCR split one real row between 266 and true-267 into two mislabeled fragments \"269\" and \"267\")",
+  "newGeometry": "rectangle, repositioned to its true row (one full row south, directly above corrected p-270)",
+  "reason": "OCR row-assignment correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-267",
+  "plotNumber": 267,
+  "previousGeometry": "rectangle fragment (bottom sliver of the same split row)",
+  "newGeometry": "rectangle, expanded to the full true row (absorbs the fragment wrongly labeled 269)",
+  "reason": "OCR row-assignment correction",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-266",
+  "plotNumber": 266,
+  "previousGeometry": "rectangle (bottom edge 3px too high)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "companion-fix: shared edge with corrected p-267",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-268",
+  "plotNumber": 268,
+  "previousGeometry": "rectangle (top/bottom edges ~2px off)",
+  "newGeometry": "rectangle (corrected edges)",
+  "reason": "companion-fix: shared edge with corrected p-267/p-269",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-360",
+  "plotNumber": 360,
+  "previousGeometry": "rectangle (left edge 15px too far right, y-edges ~2-6px off)",
+  "newGeometry": "rectangle (corrected edges)",
+  "reason": "companion-fix: shared edge with corrected p-361",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-323",
+  "plotNumber": 323,
+  "previousGeometry": "rectangle (top/bottom edges ~8-9px off)",
+  "newGeometry": "rectangle (corrected edges)",
+  "reason": "companion-fix: shared edge with corrected p-322",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-377",
+  "plotNumber": 377,
+  "previousGeometry": "rectangle (top/bottom edges ~3-10px off)",
+  "newGeometry": "rectangle (corrected edges)",
+  "reason": "companion-fix: shared edge with corrected p-378",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-324",
+  "plotNumber": 324,
+  "previousGeometry": "rectangle (bottom edge ~8.5px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "2nd-order companion-fix: shared edge with corrected p-323",
+  "precision": "source-traced",
+  "sourceVerified": true
+ },
+ {
+  "geometryId": "p-376",
+  "plotNumber": 376,
+  "previousGeometry": "rectangle (bottom edge ~2.5px too low)",
+  "newGeometry": "rectangle (corrected bottom edge only)",
+  "reason": "2nd-order companion-fix: shared edge with corrected p-377",
+  "precision": "source-traced",
+  "sourceVerified": true
+ }
+]

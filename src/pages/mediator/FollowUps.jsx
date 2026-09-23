@@ -92,7 +92,7 @@ export default function FollowUps() {
               key: 'open',
               label: 'Open from Leads',
               icon: Eye,
-              onClick: () => navigate('/mediator/leads'),
+              onClick: () => navigate(user?.role === 'agent' ? '/agent/leads' : '/mediator/leads'),
             },
           ]}
         />

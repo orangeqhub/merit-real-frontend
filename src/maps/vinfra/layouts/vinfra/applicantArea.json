@@ -1,0 +1,20 @@
+[
+  {
+    "id": "vinfra-applicant-area",
+    "label": "Applicant Area",
+    "polygon": [
+      {
+        "x": 2820,
+        "y": 371.336
+      },
+      {
+        "x": 2820,
+        "y": 792.668
+      },
+      {
+        "x": 2984,
+        "y": 792.668
+      }
+    ]
+  }
+]

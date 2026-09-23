@@ -31,6 +31,8 @@ const EMPTY_FORM = {
   preferredPropertyType: '',
   occupation: '',
   agentGrade: '',
+  linkedAbpId: '',
+  linkedAbcId: '',
   score: '',
   status: 'approved',
 };
@@ -72,6 +74,19 @@ export default function ManagedUserPanel({ mode, service }) {
   const [selected, setSelected] = useState(null);
   const [form, setForm] = useState(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [abpOptions, setAbpOptions] = useState([]);
+  const [abcOptions, setAbcOptions] = useState([]);
+
+  useEffect(() => {
+    if (!isAgent) return;
+    service.list({ agentGrade: 'ABP', status: 'approved', pageSize: 200 })
+      .then((data) => setAbpOptions(data.items || []))
+      .catch(() => setAbpOptions([]));
+    service.list({ agentGrade: 'ABC', status: 'approved', pageSize: 200 })
+      .then((data) => setAbcOptions(data.items || []))
+      .catch(() => setAbcOptions([]));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAgent]);
 
   const title = isSales
     ? t('admin.salesMemberManagement', { defaultValue: 'Sales Members' })
@@ -138,6 +153,8 @@ export default function ManagedUserPanel({ mode, service }) {
       preferredPropertyType: row.preferredPropertyType || '',
       occupation: row.occupation || '',
       agentGrade: row.agentGrade || '',
+      linkedAbpId: row.linkedAbpId ? String(row.linkedAbpId) : '',
+      linkedAbcId: row.linkedAbcId ? String(row.linkedAbcId) : '',
       score: row.score != null ? String(row.score) : '',
       status: row.status || 'approved',
     });
@@ -181,6 +198,15 @@ export default function ManagedUserPanel({ mode, service }) {
       } else if (isAgent) {
         payload.agentGrade = form.agentGrade || undefined;
         payload.score = form.score === '' ? null : Number(form.score);
+        if (form.agentGrade === 'BA') {
+          if (!form.linkedAbpId || !form.linkedAbcId) {
+            toast.error('Select the linked Area Business Partner and Area Business Coordinator for this Business Advisor.');
+            setSaving(false);
+            return;
+          }
+          payload.linkedAbpId = Number(form.linkedAbpId);
+          payload.linkedAbcId = Number(form.linkedAbcId);
+        }
       }
 
       if (modal === 'create') {
@@ -537,6 +563,45 @@ export default function ManagedUserPanel({ mode, service }) {
                         {AGENT_GRADES.map((g) => <option key={g.code} value={g.code}>{g.label}</option>)}
                       </select>
                     </div>
+                    {form.agentGrade === 'BA' && (
+                      <>
+                        <div>
+                          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                            Linked Area Business Partner<span className="text-red-500"> *</span>
+                          </label>
+                          <select
+                            required
+                            value={form.linkedAbpId}
+                            onChange={(e) => updateField('linkedAbpId', e.target.value)}
+                            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
+                          >
+                            <option value="">-- Select ABP --</option>
+                            {abpOptions.map((a) => (
+                              <option key={a.id} value={a.id}>{a.name} ({a.memberId || a.id})</option>
+                            ))}
+                          </select>
+                        </div>
+                        <div>
+                          <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                            Linked Area Business Coordinator<span className="text-red-500"> *</span>
+                          </label>
+                          <select
+                            required
+                            value={form.linkedAbcId}
+                            onChange={(e) => updateField('linkedAbcId', e.target.value)}
+                            className="w-full rounded-lg border border-gray-300 px-3 py-2.5 text-sm"
+                          >
+                            <option value="">-- Select ABC --</option>
+                            {abcOptions.map((a) => (
+                              <option key={a.id} value={a.id}>{a.name} ({a.memberId || a.id})</option>
+                            ))}
+                          </select>
+                        </div>
+                        <p className="sm:col-span-2 -mt-2 text-xs text-gray-500">
+                          Commission on this Business Advisor's deals is auto-split: ABP 20% · ABC 20% · Business Advisor 60%.
+                        </p>
+                      </>
+                    )}
                     <div className="sm:col-span-2">
                       <label className="mb-1.5 block text-sm font-medium text-gray-700">
                         Score
@@ -604,6 +669,12 @@ export default function ManagedUserPanel({ mode, service }) {
                   <>
                     <DetailRow label="Assigned Grade" value={selected.agentGradeLabel || selected.agentGrade} />
                     <DetailRow label="Score" value={selected.score != null ? selected.score : null} />
+                    {selected.agentGrade === 'BA' && (
+                      <>
+                        <DetailRow label="Linked ABP" value={selected.linkedAbp?.name} />
+                        <DetailRow label="Linked ABC" value={selected.linkedAbc?.name} />
+                      </>
+                    )}
                   </>
                 )}
               </dl>

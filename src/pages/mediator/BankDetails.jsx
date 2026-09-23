@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { walletService } from '../../services/walletService';
 import { toast } from '../../store/toastStore';
 import { resolveAssetUrl } from '../../api/client';
+import { useAuthStore } from '../../store/authStore';
 
 const EMPTY = {
   accountHolderName: '',
@@ -17,6 +18,8 @@ const EMPTY = {
 };
 
 export default function MediatorBankDetails() {
+  const { user } = useAuthStore();
+  const base = user?.role === 'agent' ? '/agent' : '/mediator';
   const [form, setForm] = useState(EMPTY);
   const [existing, setExisting] = useState(null);
   const [cheque, setCheque] = useState(null);
@@ -84,7 +87,7 @@ export default function MediatorBankDetails() {
           <h1 className="text-xl font-semibold text-gray-900">Bank Details</h1>
           <p className="text-sm text-gray-500">Used for commission redemption settlements.</p>
         </div>
-        <Link to="/mediator/wallet" className="text-sm font-medium text-brand-700 hover:underline">Back to Wallet</Link>
+        <Link to={`${base}/wallet`} className="text-sm font-medium text-brand-700 hover:underline">Back to Wallet</Link>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4 rounded-xl border border-gray-100 bg-warm-white p-5">

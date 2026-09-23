@@ -1,0 +1,48 @@
+{
+  "results": [
+    {
+      "layoutKey": "sri-lakshmi",
+      "file": "sri-lakshmi.xlsx",
+      "layoutTitle": "Sri Lakshmi Divine City",
+      "resultText": "Upload Result · Sri Lakshmi Divine City\n\n✓ 2 processed\n\n✓ 2 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    },
+    {
+      "layoutKey": "manjunadha-enclave",
+      "file": "manjunadha-enclave.xlsx",
+      "layoutTitle": "Manjunadha Enclave",
+      "resultText": "Upload Result · Manjunadha Enclave\n\n✓ 2 processed\n\n✓ 2 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    },
+    {
+      "layoutKey": "vinfra",
+      "file": "vinfra.xlsx",
+      "layoutTitle": "V Infra ORR Nandana Vanam @ Saripudi",
+      "resultText": "Upload Result · V Infra ORR Nandana Vanam @ Saripudi\n\n✓ 2 processed\n\n✓ 2 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    },
+    {
+      "layoutKey": "dokiparru",
+      "file": "dokiparru.xlsx",
+      "layoutTitle": "Elite Sky City",
+      "resultText": "Upload Result · Elite Sky City\n\n✓ 2 processed\n\n✓ 2 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    },
+    {
+      "layoutKey": "mandira-developers",
+      "file": "mandira-developers.xlsx",
+      "layoutTitle": "Mandira Developers Quantum City",
+      "resultText": "Upload Result · Mandira Developers Quantum City\n\n✓ 2 processed\n\n✓ 2 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    },
+    {
+      "layoutKey": "anne-enclave",
+      "file": "anne-enclave.xlsx",
+      "layoutTitle": "Sky line Infra Anne Enclave",
+      "resultText": "Upload Result · Sky line Infra Anne Enclave\n\n✓ 272 processed\n\n✓ 272 updated\n\n⚠ 0 skipped/unmatched",
+      "ok": true
+    }
+  ],
+  "consoleErrors": [],
+  "standaloneHits": []
+}

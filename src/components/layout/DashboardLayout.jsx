@@ -109,8 +109,8 @@ export default function DashboardLayout({ role }) {
 
   return (
     <div className="flex min-h-screen-ios bg-gray-50">
-      <aside className="hidden w-64 shrink-0 border-r border-gray-100 bg-warm-white lg:block">
-        <Link to="/" className="flex items-center gap-2 border-b border-gray-100 px-4 py-3.5">
+      <aside className="sticky top-0 hidden h-screen-ios w-64 shrink-0 flex-col overflow-y-auto border-r border-gray-100 bg-warm-white lg:flex">
+        <Link to="/" className="flex shrink-0 items-center gap-2 border-b border-gray-100 px-4 py-3.5">
           <img src="/logo.svg" alt={t('brand.logoAlt', { ns: 'common' })} className="h-10 w-auto max-w-[190px] object-contain rounded" />
         </Link>
         {SidebarContent}
@@ -119,8 +119,8 @@ export default function DashboardLayout({ role }) {
       {drawerOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-black/40" onClick={() => setDrawerOpen(false)} />
-          <div className="absolute left-0 top-0 h-full w-64 bg-warm-white shadow-xl pt-safe-top">
-            <div className="flex items-center justify-between border-b border-gray-100 px-4 py-4">
+          <div className="absolute left-0 top-0 flex h-full w-64 flex-col overflow-y-auto bg-warm-white shadow-xl pt-safe-top">
+            <div className="flex shrink-0 items-center justify-between border-b border-gray-100 px-4 py-4">
               <span className="text-sm font-bold text-brand-800">{t('brand.name', { ns: 'common' })}</span>
               <button type="button" onClick={() => setDrawerOpen(false)} aria-label="Close menu">
                 <X size={20} />

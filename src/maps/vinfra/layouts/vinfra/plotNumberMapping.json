@@ -1,0 +1,6078 @@
+[
+  {
+    "id": "vinfra-plot-001",
+    "plotNumber": 1,
+    "polygon": [
+      {
+        "x": 2820,
+        "y": 792.668
+      },
+      {
+        "x": 2987.332,
+        "y": 792.668
+      },
+      {
+        "x": 2987.332,
+        "y": 921
+      },
+      {
+        "x": 2820,
+        "y": 921
+      }
+    ],
+    "area": 1342,
+    "areaSqYd": 147.62,
+    "center": {
+      "x": 2903.666,
+      "y": 856.8340000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-002",
+    "plotNumber": 2,
+    "polygon": [
+      {
+        "x": 2820,
+        "y": 921
+      },
+      {
+        "x": 2990,
+        "y": 921
+      },
+      {
+        "x": 2990,
+        "y": 1029
+      },
+      {
+        "x": 2820,
+        "y": 1029
+      }
+    ],
+    "area": 1148,
+    "areaSqYd": 126.63,
+    "center": {
+      "x": 2905,
+      "y": 975
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-003",
+    "plotNumber": 3,
+    "polygon": [
+      {
+        "x": 2820,
+        "y": 1029
+      },
+      {
+        "x": 2993,
+        "y": 1029
+      },
+      {
+        "x": 2993,
+        "y": 1137
+      },
+      {
+        "x": 2820,
+        "y": 1137
+      }
+    ],
+    "area": 1168,
+    "areaSqYd": 128.71,
+    "center": {
+      "x": 2906.5,
+      "y": 1083
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-004",
+    "plotNumber": 4,
+    "polygon": [
+      {
+        "x": 2820,
+        "y": 1137
+      },
+      {
+        "x": 2996.332,
+        "y": 1137
+      },
+      {
+        "x": 2996.332,
+        "y": 1297
+      },
+      {
+        "x": 2820,
+        "y": 1297
+      }
+    ],
+    "area": 1763,
+    "areaSqYd": 194.21,
+    "center": {
+      "x": 2908.166,
+      "y": 1217
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-005",
+    "plotNumber": 5,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 1457
+      },
+      {
+        "x": 2999.668,
+        "y": 1457
+      },
+      {
+        "x": 2999.668,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2818,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1847,
+    "areaSqYd": 203.59,
+    "center": {
+      "x": 2908.834,
+      "y": 1538.3339999999998
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-006",
+    "plotNumber": 6,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 3001.332,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 3001.332,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2818,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1375,
+    "areaSqYd": 151.98,
+    "center": {
+      "x": 2909.666,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-007",
+    "plotNumber": 7,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 3003.332,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 3003.332,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2818,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1390,
+    "areaSqYd": 153.61,
+    "center": {
+      "x": 2910.666,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-008",
+    "plotNumber": 8,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 3005.332,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 3005.332,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2818,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1405,
+    "areaSqYd": 155.28,
+    "center": {
+      "x": 2911.666,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-009",
+    "plotNumber": 9,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 3007.332,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 3007.332,
+        "y": 2099.668
+      },
+      {
+        "x": 2818,
+        "y": 2099.668
+      }
+    ],
+    "area": 1420,
+    "areaSqYd": 156.85,
+    "center": {
+      "x": 2912.666,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-010",
+    "plotNumber": 10,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 2099.668
+      },
+      {
+        "x": 3009.332,
+        "y": 2099.668
+      },
+      {
+        "x": 3009.332,
+        "y": 2219.668
+      },
+      {
+        "x": 2818,
+        "y": 2219.668
+      }
+    ],
+    "area": 1435,
+    "areaSqYd": 158.46,
+    "center": {
+      "x": 2913.666,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-011",
+    "plotNumber": 11,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 2219.668
+      },
+      {
+        "x": 3011,
+        "y": 2219.668
+      },
+      {
+        "x": 3011,
+        "y": 2326.3360000000002
+      },
+      {
+        "x": 2818,
+        "y": 2326.3360000000002
+      }
+    ],
+    "area": 1287,
+    "areaSqYd": 142.49,
+    "center": {
+      "x": 2914.5,
+      "y": 2273.0020000000004
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-012",
+    "plotNumber": 12,
+    "polygon": [
+      {
+        "x": 2818,
+        "y": 2326.3360000000002
+      },
+      {
+        "x": 3012.668,
+        "y": 2326.3360000000002
+      },
+      {
+        "x": 3012.668,
+        "y": 2432.0040000000004
+      },
+      {
+        "x": 2818,
+        "y": 2432.0040000000004
+      }
+    ],
+    "area": 1286,
+    "areaSqYd": 143.78,
+    "center": {
+      "x": 2915.334,
+      "y": 2379.1700000000005
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-013",
+    "plotNumber": 13,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 2317.668
+      },
+      {
+        "x": 2698,
+        "y": 2317.668
+      },
+      {
+        "x": 2698,
+        "y": 2428.3360000000002
+      },
+      {
+        "x": 2518,
+        "y": 2428.3360000000002
+      }
+    ],
+    "area": 1245,
+    "areaSqYd": 140.49,
+    "center": {
+      "x": 2608,
+      "y": 2373.002
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-014",
+    "plotNumber": 14,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 2208.668
+      },
+      {
+        "x": 2698,
+        "y": 2208.668
+      },
+      {
+        "x": 2698,
+        "y": 2317.668
+      },
+      {
+        "x": 2518,
+        "y": 2317.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 136.06,
+    "center": {
+      "x": 2608,
+      "y": 2263.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-015",
+    "plotNumber": 15,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 2099.668
+      },
+      {
+        "x": 2698,
+        "y": 2099.668
+      },
+      {
+        "x": 2698,
+        "y": 2208.668
+      },
+      {
+        "x": 2518,
+        "y": 2208.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 136.06,
+    "center": {
+      "x": 2608,
+      "y": 2154.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-016",
+    "plotNumber": 16,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 2099.668
+      },
+      {
+        "x": 2518,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2608,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-017",
+    "plotNumber": 17,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2608,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-018",
+    "plotNumber": 18,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2608,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-019",
+    "plotNumber": 19,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2698,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2608,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-020",
+    "plotNumber": 20,
+    "polygon": [
+      {
+        "x": 2518,
+        "y": 1457
+      },
+      {
+        "x": 2698,
+        "y": 1457
+      },
+      {
+        "x": 2698,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.27,
+    "center": {
+      "x": 2608,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-021",
+    "plotNumber": 21,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 1117
+      },
+      {
+        "x": 2700,
+        "y": 1117
+      },
+      {
+        "x": 2700,
+        "y": 1297
+      },
+      {
+        "x": 2520,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 2610,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-022",
+    "plotNumber": 22,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 997
+      },
+      {
+        "x": 2700,
+        "y": 997
+      },
+      {
+        "x": 2700,
+        "y": 1117
+      },
+      {
+        "x": 2520,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-023",
+    "plotNumber": 23,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 877
+      },
+      {
+        "x": 2700,
+        "y": 877
+      },
+      {
+        "x": 2700,
+        "y": 997
+      },
+      {
+        "x": 2520,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-024",
+    "plotNumber": 24,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 757
+      },
+      {
+        "x": 2700,
+        "y": 757
+      },
+      {
+        "x": 2700,
+        "y": 877
+      },
+      {
+        "x": 2520,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-025",
+    "plotNumber": 25,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 637
+      },
+      {
+        "x": 2700,
+        "y": 637
+      },
+      {
+        "x": 2700,
+        "y": 757
+      },
+      {
+        "x": 2520,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-026",
+    "plotNumber": 26,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 517
+      },
+      {
+        "x": 2700,
+        "y": 517
+      },
+      {
+        "x": 2700,
+        "y": 637
+      },
+      {
+        "x": 2520,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-027",
+    "plotNumber": 27,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 397
+      },
+      {
+        "x": 2700,
+        "y": 397
+      },
+      {
+        "x": 2700,
+        "y": 517
+      },
+      {
+        "x": 2520,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-028",
+    "plotNumber": 28,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 277
+      },
+      {
+        "x": 2700,
+        "y": 277
+      },
+      {
+        "x": 2700,
+        "y": 397
+      },
+      {
+        "x": 2520,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-029",
+    "plotNumber": 29,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 157
+      },
+      {
+        "x": 2700,
+        "y": 157
+      },
+      {
+        "x": 2700,
+        "y": 277
+      },
+      {
+        "x": 2520,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2610,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-030",
+    "plotNumber": 30,
+    "polygon": [
+      {
+        "x": 2520,
+        "y": 0
+      },
+      {
+        "x": 2700,
+        "y": 0
+      },
+      {
+        "x": 2700,
+        "y": 157
+      },
+      {
+        "x": 2520,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 190.96,
+    "center": {
+      "x": 2610,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-031",
+    "plotNumber": 31,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 0
+      },
+      {
+        "x": 2520,
+        "y": 0
+      },
+      {
+        "x": 2520,
+        "y": 157
+      },
+      {
+        "x": 2340,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 196.46,
+    "center": {
+      "x": 2430,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-032",
+    "plotNumber": 32,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 157
+      },
+      {
+        "x": 2520,
+        "y": 157
+      },
+      {
+        "x": 2520,
+        "y": 277
+      },
+      {
+        "x": 2340,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-033",
+    "plotNumber": 33,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 277
+      },
+      {
+        "x": 2520,
+        "y": 277
+      },
+      {
+        "x": 2520,
+        "y": 397
+      },
+      {
+        "x": 2340,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-034",
+    "plotNumber": 34,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 397
+      },
+      {
+        "x": 2520,
+        "y": 397
+      },
+      {
+        "x": 2520,
+        "y": 517
+      },
+      {
+        "x": 2340,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-035",
+    "plotNumber": 35,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 517
+      },
+      {
+        "x": 2520,
+        "y": 517
+      },
+      {
+        "x": 2520,
+        "y": 637
+      },
+      {
+        "x": 2340,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-036",
+    "plotNumber": 36,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 637
+      },
+      {
+        "x": 2520,
+        "y": 637
+      },
+      {
+        "x": 2520,
+        "y": 757
+      },
+      {
+        "x": 2340,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-037",
+    "plotNumber": 37,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 757
+      },
+      {
+        "x": 2520,
+        "y": 757
+      },
+      {
+        "x": 2520,
+        "y": 877
+      },
+      {
+        "x": 2340,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-038",
+    "plotNumber": 38,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 877
+      },
+      {
+        "x": 2520,
+        "y": 877
+      },
+      {
+        "x": 2520,
+        "y": 997
+      },
+      {
+        "x": 2340,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-039",
+    "plotNumber": 39,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 997
+      },
+      {
+        "x": 2520,
+        "y": 997
+      },
+      {
+        "x": 2520,
+        "y": 1117
+      },
+      {
+        "x": 2340,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2430,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-040",
+    "plotNumber": 40,
+    "polygon": [
+      {
+        "x": 2340,
+        "y": 1117
+      },
+      {
+        "x": 2520,
+        "y": 1117
+      },
+      {
+        "x": 2520,
+        "y": 1297
+      },
+      {
+        "x": 2340,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 2430,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-041",
+    "plotNumber": 41,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 1457
+      },
+      {
+        "x": 2518,
+        "y": 1457
+      },
+      {
+        "x": 2518,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2338,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.37,
+    "center": {
+      "x": 2428,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-042",
+    "plotNumber": 42,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2338,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2428,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-043",
+    "plotNumber": 43,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2338,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2428,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-044",
+    "plotNumber": 44,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2338,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2428,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-045",
+    "plotNumber": 45,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2518,
+        "y": 2099.668
+      },
+      {
+        "x": 2338,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 2428,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-046",
+    "plotNumber": 46,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 2099.668
+      },
+      {
+        "x": 2518,
+        "y": 2099.668
+      },
+      {
+        "x": 2518,
+        "y": 2208.668
+      },
+      {
+        "x": 2338,
+        "y": 2208.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 136.13,
+    "center": {
+      "x": 2428,
+      "y": 2154.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-047",
+    "plotNumber": 47,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 2208.668
+      },
+      {
+        "x": 2518,
+        "y": 2208.668
+      },
+      {
+        "x": 2518,
+        "y": 2317.668
+      },
+      {
+        "x": 2338,
+        "y": 2317.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 136.13,
+    "center": {
+      "x": 2428,
+      "y": 2263.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-048",
+    "plotNumber": 48,
+    "polygon": [
+      {
+        "x": 2338,
+        "y": 2317.668
+      },
+      {
+        "x": 2518,
+        "y": 2317.668
+      },
+      {
+        "x": 2518,
+        "y": 2428.3360000000002
+      },
+      {
+        "x": 2338,
+        "y": 2428.3360000000002
+      }
+    ],
+    "area": 1245,
+    "areaSqYd": 138.17,
+    "center": {
+      "x": 2428,
+      "y": 2373.002
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-049",
+    "plotNumber": 49,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 2339.668
+      },
+      {
+        "x": 2218,
+        "y": 2339.668
+      },
+      {
+        "x": 2218,
+        "y": 2704.332
+      },
+      {
+        "x": 2018,
+        "y": 2704.332
+      }
+    ],
+    "area": 4206,
+    "areaSqYd": 467.35,
+    "center": {
+      "x": 2118,
+      "y": 2507.918
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-050",
+    "plotNumber": 50,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 2219.668
+      },
+      {
+        "x": 2218,
+        "y": 2219.668
+      },
+      {
+        "x": 2218,
+        "y": 2339.668
+      },
+      {
+        "x": 2018,
+        "y": 2339.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-051",
+    "plotNumber": 51,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 2099.668
+      },
+      {
+        "x": 2218,
+        "y": 2099.668
+      },
+      {
+        "x": 2218,
+        "y": 2219.668
+      },
+      {
+        "x": 2018,
+        "y": 2219.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-052",
+    "plotNumber": 52,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 2099.668
+      },
+      {
+        "x": 2018,
+        "y": 2099.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-053",
+    "plotNumber": 53,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-054",
+    "plotNumber": 54,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-055",
+    "plotNumber": 55,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2218,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2118,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-056",
+    "plotNumber": 56,
+    "polygon": [
+      {
+        "x": 2018,
+        "y": 1457
+      },
+      {
+        "x": 2218,
+        "y": 1457
+      },
+      {
+        "x": 2218,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 2033,
+    "areaSqYd": 225.99,
+    "center": {
+      "x": 2118,
+      "y": 1538.3339999999998
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-057",
+    "plotNumber": 57,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 1117
+      },
+      {
+        "x": 2220,
+        "y": 1117
+      },
+      {
+        "x": 2220,
+        "y": 1297
+      },
+      {
+        "x": 2020,
+        "y": 1297
+      }
+    ],
+    "area": 2250,
+    "areaSqYd": 250,
+    "center": {
+      "x": 2120,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-058",
+    "plotNumber": 58,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 997
+      },
+      {
+        "x": 2220,
+        "y": 997
+      },
+      {
+        "x": 2220,
+        "y": 1117
+      },
+      {
+        "x": 2020,
+        "y": 1117
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-059",
+    "plotNumber": 59,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 877
+      },
+      {
+        "x": 2220,
+        "y": 877
+      },
+      {
+        "x": 2220,
+        "y": 997
+      },
+      {
+        "x": 2020,
+        "y": 997
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-060",
+    "plotNumber": 60,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 757
+      },
+      {
+        "x": 2220,
+        "y": 757
+      },
+      {
+        "x": 2220,
+        "y": 877
+      },
+      {
+        "x": 2020,
+        "y": 877
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-061",
+    "plotNumber": 61,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 637
+      },
+      {
+        "x": 2220,
+        "y": 637
+      },
+      {
+        "x": 2220,
+        "y": 757
+      },
+      {
+        "x": 2020,
+        "y": 757
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-062",
+    "plotNumber": 62,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 517
+      },
+      {
+        "x": 2220,
+        "y": 517
+      },
+      {
+        "x": 2220,
+        "y": 637
+      },
+      {
+        "x": 2020,
+        "y": 637
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-063",
+    "plotNumber": 63,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 397
+      },
+      {
+        "x": 2220,
+        "y": 397
+      },
+      {
+        "x": 2220,
+        "y": 517
+      },
+      {
+        "x": 2020,
+        "y": 517
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-064",
+    "plotNumber": 64,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 277
+      },
+      {
+        "x": 2220,
+        "y": 277
+      },
+      {
+        "x": 2220,
+        "y": 397
+      },
+      {
+        "x": 2020,
+        "y": 397
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-065",
+    "plotNumber": 65,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 157
+      },
+      {
+        "x": 2220,
+        "y": 157
+      },
+      {
+        "x": 2220,
+        "y": 277
+      },
+      {
+        "x": 2020,
+        "y": 277
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 2120,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-066",
+    "plotNumber": 66,
+    "polygon": [
+      {
+        "x": 2020,
+        "y": 0
+      },
+      {
+        "x": 2220,
+        "y": 0
+      },
+      {
+        "x": 2220,
+        "y": 157
+      },
+      {
+        "x": 2020,
+        "y": 157
+      }
+    ],
+    "area": 1963,
+    "areaSqYd": 218.01,
+    "center": {
+      "x": 2120,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-067",
+    "plotNumber": 67,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 0
+      },
+      {
+        "x": 2020,
+        "y": 0
+      },
+      {
+        "x": 2020,
+        "y": 157
+      },
+      {
+        "x": 1820,
+        "y": 157
+      }
+    ],
+    "area": 1963,
+    "areaSqYd": 218.27,
+    "center": {
+      "x": 1920,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-068",
+    "plotNumber": 68,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 157
+      },
+      {
+        "x": 2020,
+        "y": 157
+      },
+      {
+        "x": 2020,
+        "y": 277
+      },
+      {
+        "x": 1820,
+        "y": 277
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-069",
+    "plotNumber": 69,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 277
+      },
+      {
+        "x": 2020,
+        "y": 277
+      },
+      {
+        "x": 2020,
+        "y": 397
+      },
+      {
+        "x": 1820,
+        "y": 397
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-070",
+    "plotNumber": 70,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 397
+      },
+      {
+        "x": 2020,
+        "y": 397
+      },
+      {
+        "x": 2020,
+        "y": 517
+      },
+      {
+        "x": 1820,
+        "y": 517
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-071",
+    "plotNumber": 71,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 517
+      },
+      {
+        "x": 2020,
+        "y": 517
+      },
+      {
+        "x": 2020,
+        "y": 637
+      },
+      {
+        "x": 1820,
+        "y": 637
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-072",
+    "plotNumber": 72,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 637
+      },
+      {
+        "x": 2020,
+        "y": 637
+      },
+      {
+        "x": 2020,
+        "y": 757
+      },
+      {
+        "x": 1820,
+        "y": 757
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-073",
+    "plotNumber": 73,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 757
+      },
+      {
+        "x": 2020,
+        "y": 757
+      },
+      {
+        "x": 2020,
+        "y": 877
+      },
+      {
+        "x": 1820,
+        "y": 877
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-074",
+    "plotNumber": 74,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 877
+      },
+      {
+        "x": 2020,
+        "y": 877
+      },
+      {
+        "x": 2020,
+        "y": 997
+      },
+      {
+        "x": 1820,
+        "y": 997
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-075",
+    "plotNumber": 75,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 997
+      },
+      {
+        "x": 2020,
+        "y": 997
+      },
+      {
+        "x": 2020,
+        "y": 1117
+      },
+      {
+        "x": 1820,
+        "y": 1117
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1920,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-076",
+    "plotNumber": 76,
+    "polygon": [
+      {
+        "x": 1820,
+        "y": 1117
+      },
+      {
+        "x": 2020,
+        "y": 1117
+      },
+      {
+        "x": 2020,
+        "y": 1297
+      },
+      {
+        "x": 1820,
+        "y": 1297
+      }
+    ],
+    "area": 2250,
+    "areaSqYd": 250,
+    "center": {
+      "x": 1920,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-077",
+    "plotNumber": 77,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 1457
+      },
+      {
+        "x": 2018,
+        "y": 1457
+      },
+      {
+        "x": 2018,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1818,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 2033,
+    "areaSqYd": 225.99,
+    "center": {
+      "x": 1918,
+      "y": 1538.3339999999998
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-078",
+    "plotNumber": 78,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1818,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-079",
+    "plotNumber": 79,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1818,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-080",
+    "plotNumber": 80,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1818,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-081",
+    "plotNumber": 81,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 2018,
+        "y": 2099.668
+      },
+      {
+        "x": 1818,
+        "y": 2099.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-082",
+    "plotNumber": 82,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 2099.668
+      },
+      {
+        "x": 2018,
+        "y": 2099.668
+      },
+      {
+        "x": 2018,
+        "y": 2219.668
+      },
+      {
+        "x": 1818,
+        "y": 2219.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-083",
+    "plotNumber": 83,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 2219.668
+      },
+      {
+        "x": 2018,
+        "y": 2219.668
+      },
+      {
+        "x": 2018,
+        "y": 2339.668
+      },
+      {
+        "x": 1818,
+        "y": 2339.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-084",
+    "plotNumber": 84,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 2339.668
+      },
+      {
+        "x": 2018,
+        "y": 2339.668
+      },
+      {
+        "x": 2018,
+        "y": 2459.668
+      },
+      {
+        "x": 1818,
+        "y": 2459.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 1918,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-085",
+    "plotNumber": 85,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 2459.668
+      },
+      {
+        "x": 2018,
+        "y": 2459.668
+      },
+      {
+        "x": 2018,
+        "y": 2568.668
+      },
+      {
+        "x": 1818,
+        "y": 2568.668
+      }
+    ],
+    "area": 1363,
+    "areaSqYd": 151.28,
+    "center": {
+      "x": 1918,
+      "y": 2514.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-086",
+    "plotNumber": 86,
+    "polygon": [
+      {
+        "x": 1818,
+        "y": 2568.668
+      },
+      {
+        "x": 2018,
+        "y": 2568.668
+      },
+      {
+        "x": 2018,
+        "y": 2704.332
+      },
+      {
+        "x": 1818,
+        "y": 2704.332
+      }
+    ],
+    "area": 1396,
+    "areaSqYd": 137.72,
+    "center": {
+      "x": 1918,
+      "y": 2624.5020000000004
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-087",
+    "plotNumber": 87,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 2568.668
+      },
+      {
+        "x": 1658,
+        "y": 2568.668
+      },
+      {
+        "x": 1658,
+        "y": 2704.332
+      },
+      {
+        "x": 1478,
+        "y": 2704.332
+      }
+    ],
+    "area": 1187,
+    "areaSqYd": 152.87,
+    "center": {
+      "x": 1568,
+      "y": 2621.418
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-088",
+    "plotNumber": 88,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 2459.668
+      },
+      {
+        "x": 1658,
+        "y": 2459.668
+      },
+      {
+        "x": 1658,
+        "y": 2568.668
+      },
+      {
+        "x": 1478,
+        "y": 2568.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 136.17,
+    "center": {
+      "x": 1568,
+      "y": 2514.168
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-089",
+    "plotNumber": 89,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 2339.668
+      },
+      {
+        "x": 1658,
+        "y": 2339.668
+      },
+      {
+        "x": 1658,
+        "y": 2459.668
+      },
+      {
+        "x": 1478,
+        "y": 2459.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": "mortgage",
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-090",
+    "plotNumber": 90,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 2219.668
+      },
+      {
+        "x": 1658,
+        "y": 2219.668
+      },
+      {
+        "x": 1658,
+        "y": 2339.668
+      },
+      {
+        "x": 1478,
+        "y": 2339.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-091",
+    "plotNumber": 91,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 2099.668
+      },
+      {
+        "x": 1658,
+        "y": 2099.668
+      },
+      {
+        "x": 1658,
+        "y": 2219.668
+      },
+      {
+        "x": 1478,
+        "y": 2219.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-092",
+    "plotNumber": 92,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 2099.668
+      },
+      {
+        "x": 1478,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-093",
+    "plotNumber": 93,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-094",
+    "plotNumber": 94,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-095",
+    "plotNumber": 95,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1658,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1568,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-096",
+    "plotNumber": 96,
+    "polygon": [
+      {
+        "x": 1478,
+        "y": 1457
+      },
+      {
+        "x": 1658,
+        "y": 1457
+      },
+      {
+        "x": 1658,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.43,
+    "center": {
+      "x": 1568,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-097",
+    "plotNumber": 97,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 1117
+      },
+      {
+        "x": 1660,
+        "y": 1117
+      },
+      {
+        "x": 1660,
+        "y": 1297
+      },
+      {
+        "x": 1480,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 1570,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-098",
+    "plotNumber": 98,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 997
+      },
+      {
+        "x": 1660,
+        "y": 997
+      },
+      {
+        "x": 1660,
+        "y": 1117
+      },
+      {
+        "x": 1480,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-099",
+    "plotNumber": 99,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 877
+      },
+      {
+        "x": 1660,
+        "y": 877
+      },
+      {
+        "x": 1660,
+        "y": 997
+      },
+      {
+        "x": 1480,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-100",
+    "plotNumber": 100,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 757
+      },
+      {
+        "x": 1660,
+        "y": 757
+      },
+      {
+        "x": 1660,
+        "y": 877
+      },
+      {
+        "x": 1480,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-101",
+    "plotNumber": 101,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 637
+      },
+      {
+        "x": 1660,
+        "y": 637
+      },
+      {
+        "x": 1660,
+        "y": 757
+      },
+      {
+        "x": 1480,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-102",
+    "plotNumber": 102,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 517
+      },
+      {
+        "x": 1660,
+        "y": 517
+      },
+      {
+        "x": 1660,
+        "y": 637
+      },
+      {
+        "x": 1480,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-103",
+    "plotNumber": 103,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 397
+      },
+      {
+        "x": 1660,
+        "y": 397
+      },
+      {
+        "x": 1660,
+        "y": 517
+      },
+      {
+        "x": 1480,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-104",
+    "plotNumber": 104,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 277
+      },
+      {
+        "x": 1660,
+        "y": 277
+      },
+      {
+        "x": 1660,
+        "y": 397
+      },
+      {
+        "x": 1480,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-105",
+    "plotNumber": 105,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 157
+      },
+      {
+        "x": 1660,
+        "y": 157
+      },
+      {
+        "x": 1660,
+        "y": 277
+      },
+      {
+        "x": 1480,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1570,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-106",
+    "plotNumber": 106,
+    "polygon": [
+      {
+        "x": 1480,
+        "y": 0
+      },
+      {
+        "x": 1660,
+        "y": 0
+      },
+      {
+        "x": 1660,
+        "y": 157
+      },
+      {
+        "x": 1480,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 196.05,
+    "center": {
+      "x": 1570,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": "amenity",
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-107",
+    "plotNumber": 107,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 0
+      },
+      {
+        "x": 1480,
+        "y": 0
+      },
+      {
+        "x": 1480,
+        "y": 157
+      },
+      {
+        "x": 1300,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 195.75,
+    "center": {
+      "x": 1390,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-108",
+    "plotNumber": 108,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 157
+      },
+      {
+        "x": 1480,
+        "y": 157
+      },
+      {
+        "x": 1480,
+        "y": 277
+      },
+      {
+        "x": 1300,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-109",
+    "plotNumber": 109,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 277
+      },
+      {
+        "x": 1480,
+        "y": 277
+      },
+      {
+        "x": 1480,
+        "y": 397
+      },
+      {
+        "x": 1300,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-110",
+    "plotNumber": 110,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 397
+      },
+      {
+        "x": 1480,
+        "y": 397
+      },
+      {
+        "x": 1480,
+        "y": 517
+      },
+      {
+        "x": 1300,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-111",
+    "plotNumber": 111,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 517
+      },
+      {
+        "x": 1480,
+        "y": 517
+      },
+      {
+        "x": 1480,
+        "y": 637
+      },
+      {
+        "x": 1300,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-112",
+    "plotNumber": 112,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 637
+      },
+      {
+        "x": 1480,
+        "y": 637
+      },
+      {
+        "x": 1480,
+        "y": 757
+      },
+      {
+        "x": 1300,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-113",
+    "plotNumber": 113,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 757
+      },
+      {
+        "x": 1480,
+        "y": 757
+      },
+      {
+        "x": 1480,
+        "y": 877
+      },
+      {
+        "x": 1300,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-114",
+    "plotNumber": 114,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 877
+      },
+      {
+        "x": 1480,
+        "y": 877
+      },
+      {
+        "x": 1480,
+        "y": 997
+      },
+      {
+        "x": 1300,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-115",
+    "plotNumber": 115,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 997
+      },
+      {
+        "x": 1480,
+        "y": 997
+      },
+      {
+        "x": 1480,
+        "y": 1117
+      },
+      {
+        "x": 1300,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1390,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-116",
+    "plotNumber": 116,
+    "polygon": [
+      {
+        "x": 1300,
+        "y": 1117
+      },
+      {
+        "x": 1480,
+        "y": 1117
+      },
+      {
+        "x": 1480,
+        "y": 1297
+      },
+      {
+        "x": 1300,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 1390,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-117",
+    "plotNumber": 117,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 1457
+      },
+      {
+        "x": 1478,
+        "y": 1457
+      },
+      {
+        "x": 1478,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1298,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.31,
+    "center": {
+      "x": 1388,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-118",
+    "plotNumber": 118,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1298,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-119",
+    "plotNumber": 119,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1298,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-120",
+    "plotNumber": 120,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1298,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-121",
+    "plotNumber": 121,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1478,
+        "y": 2099.668
+      },
+      {
+        "x": 1298,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-122",
+    "plotNumber": 122,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 2099.668
+      },
+      {
+        "x": 1478,
+        "y": 2099.668
+      },
+      {
+        "x": 1478,
+        "y": 2219.668
+      },
+      {
+        "x": 1298,
+        "y": 2219.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-123",
+    "plotNumber": 123,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 2219.668
+      },
+      {
+        "x": 1478,
+        "y": 2219.668
+      },
+      {
+        "x": 1478,
+        "y": 2339.668
+      },
+      {
+        "x": 1298,
+        "y": 2339.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-124",
+    "plotNumber": 124,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 2339.668
+      },
+      {
+        "x": 1478,
+        "y": 2339.668
+      },
+      {
+        "x": 1478,
+        "y": 2459.668
+      },
+      {
+        "x": 1298,
+        "y": 2459.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-125",
+    "plotNumber": 125,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 2459.668
+      },
+      {
+        "x": 1478,
+        "y": 2459.668
+      },
+      {
+        "x": 1478,
+        "y": 2568.668
+      },
+      {
+        "x": 1298,
+        "y": 2568.668
+      }
+    ],
+    "area": 1226,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1388,
+      "y": 2514.168
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-126",
+    "plotNumber": 126,
+    "polygon": [
+      {
+        "x": 1298,
+        "y": 2568.668
+      },
+      {
+        "x": 1478,
+        "y": 2568.668
+      },
+      {
+        "x": 1478,
+        "y": 2704.332
+      },
+      {
+        "x": 1298,
+        "y": 2704.332
+      }
+    ],
+    "area": 1187,
+    "areaSqYd": 131.85,
+    "center": {
+      "x": 1388,
+      "y": 2621.418
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-127",
+    "plotNumber": 127,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 2579.668
+      },
+      {
+        "x": 1178,
+        "y": 2579.668
+      },
+      {
+        "x": 1178,
+        "y": 2704.332
+      },
+      {
+        "x": 998,
+        "y": 2704.332
+      }
+    ],
+    "area": 1239,
+    "areaSqYd": 136.45,
+    "center": {
+      "x": 1088,
+      "y": 2634.7520000000004
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-128",
+    "plotNumber": 128,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 2459.668
+      },
+      {
+        "x": 1178,
+        "y": 2459.668
+      },
+      {
+        "x": 1178,
+        "y": 2579.668
+      },
+      {
+        "x": 998,
+        "y": 2579.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 2519.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-129",
+    "plotNumber": 129,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 2339.668
+      },
+      {
+        "x": 1178,
+        "y": 2339.668
+      },
+      {
+        "x": 1178,
+        "y": 2459.668
+      },
+      {
+        "x": 998,
+        "y": 2459.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-130",
+    "plotNumber": 130,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 2219.668
+      },
+      {
+        "x": 1178,
+        "y": 2219.668
+      },
+      {
+        "x": 1178,
+        "y": 2339.668
+      },
+      {
+        "x": 998,
+        "y": 2339.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-131",
+    "plotNumber": 131,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 2099.668
+      },
+      {
+        "x": 1178,
+        "y": 2099.668
+      },
+      {
+        "x": 1178,
+        "y": 2219.668
+      },
+      {
+        "x": 998,
+        "y": 2219.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-132",
+    "plotNumber": 132,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 2099.668
+      },
+      {
+        "x": 998,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-133",
+    "plotNumber": 133,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-134",
+    "plotNumber": 134,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-135",
+    "plotNumber": 135,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 1178,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1088,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-136",
+    "plotNumber": 136,
+    "polygon": [
+      {
+        "x": 998,
+        "y": 1457
+      },
+      {
+        "x": 1178,
+        "y": 1457
+      },
+      {
+        "x": 1178,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.45,
+    "center": {
+      "x": 1088,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-137",
+    "plotNumber": 137,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 1117
+      },
+      {
+        "x": 1180,
+        "y": 1117
+      },
+      {
+        "x": 1180,
+        "y": 1297
+      },
+      {
+        "x": 1000,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 1090,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-138",
+    "plotNumber": 138,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 997
+      },
+      {
+        "x": 1180,
+        "y": 997
+      },
+      {
+        "x": 1180,
+        "y": 1117
+      },
+      {
+        "x": 1000,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-139",
+    "plotNumber": 139,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 877
+      },
+      {
+        "x": 1180,
+        "y": 877
+      },
+      {
+        "x": 1180,
+        "y": 997
+      },
+      {
+        "x": 1000,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-140",
+    "plotNumber": 140,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 757
+      },
+      {
+        "x": 1180,
+        "y": 757
+      },
+      {
+        "x": 1180,
+        "y": 877
+      },
+      {
+        "x": 1000,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-141",
+    "plotNumber": 141,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 637
+      },
+      {
+        "x": 1180,
+        "y": 637
+      },
+      {
+        "x": 1180,
+        "y": 757
+      },
+      {
+        "x": 1000,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-142",
+    "plotNumber": 142,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 517
+      },
+      {
+        "x": 1180,
+        "y": 517
+      },
+      {
+        "x": 1180,
+        "y": 637
+      },
+      {
+        "x": 1000,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-143",
+    "plotNumber": 143,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 397
+      },
+      {
+        "x": 1180,
+        "y": 397
+      },
+      {
+        "x": 1180,
+        "y": 517
+      },
+      {
+        "x": 1000,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-144",
+    "plotNumber": 144,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 277
+      },
+      {
+        "x": 1180,
+        "y": 277
+      },
+      {
+        "x": 1180,
+        "y": 397
+      },
+      {
+        "x": 1000,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-145",
+    "plotNumber": 145,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 157
+      },
+      {
+        "x": 1180,
+        "y": 157
+      },
+      {
+        "x": 1180,
+        "y": 277
+      },
+      {
+        "x": 1000,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 1090,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-146",
+    "plotNumber": 146,
+    "polygon": [
+      {
+        "x": 1000,
+        "y": 0
+      },
+      {
+        "x": 1180,
+        "y": 0
+      },
+      {
+        "x": 1180,
+        "y": 157
+      },
+      {
+        "x": 1000,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 196.25,
+    "center": {
+      "x": 1090,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-147",
+    "plotNumber": 147,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 0
+      },
+      {
+        "x": 1000,
+        "y": 0
+      },
+      {
+        "x": 1000,
+        "y": 157
+      },
+      {
+        "x": 820,
+        "y": 157
+      }
+    ],
+    "area": 1766,
+    "areaSqYd": 196.25,
+    "center": {
+      "x": 910,
+      "y": 78.5
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-148",
+    "plotNumber": 148,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 157
+      },
+      {
+        "x": 1000,
+        "y": 157
+      },
+      {
+        "x": 1000,
+        "y": 277
+      },
+      {
+        "x": 820,
+        "y": 277
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 217
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-149",
+    "plotNumber": 149,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 277
+      },
+      {
+        "x": 1000,
+        "y": 277
+      },
+      {
+        "x": 1000,
+        "y": 397
+      },
+      {
+        "x": 820,
+        "y": 397
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 337
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-150",
+    "plotNumber": 150,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 397
+      },
+      {
+        "x": 1000,
+        "y": 397
+      },
+      {
+        "x": 1000,
+        "y": 517
+      },
+      {
+        "x": 820,
+        "y": 517
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 457
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-151",
+    "plotNumber": 151,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 517
+      },
+      {
+        "x": 1000,
+        "y": 517
+      },
+      {
+        "x": 1000,
+        "y": 637
+      },
+      {
+        "x": 820,
+        "y": 637
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 577
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-152",
+    "plotNumber": 152,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 637
+      },
+      {
+        "x": 1000,
+        "y": 637
+      },
+      {
+        "x": 1000,
+        "y": 757
+      },
+      {
+        "x": 820,
+        "y": 757
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 697
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-153",
+    "plotNumber": 153,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 757
+      },
+      {
+        "x": 1000,
+        "y": 757
+      },
+      {
+        "x": 1000,
+        "y": 877
+      },
+      {
+        "x": 820,
+        "y": 877
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 817
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-154",
+    "plotNumber": 154,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 877
+      },
+      {
+        "x": 1000,
+        "y": 877
+      },
+      {
+        "x": 1000,
+        "y": 997
+      },
+      {
+        "x": 820,
+        "y": 997
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 937
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-155",
+    "plotNumber": 155,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 997
+      },
+      {
+        "x": 1000,
+        "y": 997
+      },
+      {
+        "x": 1000,
+        "y": 1117
+      },
+      {
+        "x": 820,
+        "y": 1117
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 910,
+      "y": 1057
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-156",
+    "plotNumber": 156,
+    "polygon": [
+      {
+        "x": 820,
+        "y": 1117
+      },
+      {
+        "x": 1000,
+        "y": 1117
+      },
+      {
+        "x": 1000,
+        "y": 1297
+      },
+      {
+        "x": 820,
+        "y": 1297
+      }
+    ],
+    "area": 2025,
+    "areaSqYd": 225,
+    "center": {
+      "x": 910,
+      "y": 1207
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-157",
+    "plotNumber": 157,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 1457
+      },
+      {
+        "x": 998,
+        "y": 1457
+      },
+      {
+        "x": 998,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 818,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 1830,
+    "areaSqYd": 203.31,
+    "center": {
+      "x": 908,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-158",
+    "plotNumber": 158,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 818,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-159",
+    "plotNumber": 159,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 818,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-160",
+    "plotNumber": 160,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 818,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-161",
+    "plotNumber": 161,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 998,
+        "y": 2099.668
+      },
+      {
+        "x": 818,
+        "y": 2099.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-162",
+    "plotNumber": 162,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 2099.668
+      },
+      {
+        "x": 998,
+        "y": 2099.668
+      },
+      {
+        "x": 998,
+        "y": 2219.668
+      },
+      {
+        "x": 818,
+        "y": 2219.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-163",
+    "plotNumber": 163,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 2219.668
+      },
+      {
+        "x": 998,
+        "y": 2219.668
+      },
+      {
+        "x": 998,
+        "y": 2339.668
+      },
+      {
+        "x": 818,
+        "y": 2339.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-164",
+    "plotNumber": 164,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 2339.668
+      },
+      {
+        "x": 998,
+        "y": 2339.668
+      },
+      {
+        "x": 998,
+        "y": 2459.668
+      },
+      {
+        "x": 818,
+        "y": 2459.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-165",
+    "plotNumber": 165,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 2459.668
+      },
+      {
+        "x": 998,
+        "y": 2459.668
+      },
+      {
+        "x": 998,
+        "y": 2579.668
+      },
+      {
+        "x": 818,
+        "y": 2579.668
+      }
+    ],
+    "area": 1350,
+    "areaSqYd": 150,
+    "center": {
+      "x": 908,
+      "y": 2519.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-166",
+    "plotNumber": 166,
+    "polygon": [
+      {
+        "x": 818,
+        "y": 2579.668
+      },
+      {
+        "x": 998,
+        "y": 2579.668
+      },
+      {
+        "x": 998,
+        "y": 2704.332
+      },
+      {
+        "x": 818,
+        "y": 2704.332
+      }
+    ],
+    "area": 1239,
+    "areaSqYd": 139.23,
+    "center": {
+      "x": 908,
+      "y": 2634.7520000000004
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-167",
+    "plotNumber": 167,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 2579.668
+      },
+      {
+        "x": 698,
+        "y": 2579.668
+      },
+      {
+        "x": 698,
+        "y": 2704.332
+      },
+      {
+        "x": 498,
+        "y": 2704.332
+      }
+    ],
+    "area": 1469,
+    "areaSqYd": 160,
+    "center": {
+      "x": 598,
+      "y": 2638.418
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-168",
+    "plotNumber": 168,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 2459.668
+      },
+      {
+        "x": 698,
+        "y": 2459.668
+      },
+      {
+        "x": 698,
+        "y": 2579.668
+      },
+      {
+        "x": 498,
+        "y": 2579.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 2519.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-169",
+    "plotNumber": 169,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 2339.668
+      },
+      {
+        "x": 698,
+        "y": 2339.668
+      },
+      {
+        "x": 698,
+        "y": 2459.668
+      },
+      {
+        "x": 498,
+        "y": 2459.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-170",
+    "plotNumber": 170,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 2219.668
+      },
+      {
+        "x": 698,
+        "y": 2219.668
+      },
+      {
+        "x": 698,
+        "y": 2339.668
+      },
+      {
+        "x": 498,
+        "y": 2339.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-171",
+    "plotNumber": 171,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 2099.668
+      },
+      {
+        "x": 698,
+        "y": 2099.668
+      },
+      {
+        "x": 698,
+        "y": 2219.668
+      },
+      {
+        "x": 498,
+        "y": 2219.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-172",
+    "plotNumber": 172,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 2099.668
+      },
+      {
+        "x": 498,
+        "y": 2099.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-173",
+    "plotNumber": 173,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-174",
+    "plotNumber": 174,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-175",
+    "plotNumber": 175,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 698,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 598,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-176",
+    "plotNumber": 176,
+    "polygon": [
+      {
+        "x": 498,
+        "y": 1457
+      },
+      {
+        "x": 698,
+        "y": 1457
+      },
+      {
+        "x": 698,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 2033,
+    "areaSqYd": 226,
+    "center": {
+      "x": 598,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-177",
+    "plotNumber": 177,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 1457
+      },
+      {
+        "x": 498,
+        "y": 1457
+      },
+      {
+        "x": 498,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 298,
+        "y": 1619.6680000000001
+      }
+    ],
+    "area": 2033,
+    "areaSqYd": 226,
+    "center": {
+      "x": 398,
+      "y": 1538.334
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-178",
+    "plotNumber": 178,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1619.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 298,
+        "y": 1739.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 1679.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-179",
+    "plotNumber": 179,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1739.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 298,
+        "y": 1859.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 1799.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-180",
+    "plotNumber": 180,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1859.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 298,
+        "y": 1979.6680000000001
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 1919.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-181",
+    "plotNumber": 181,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 1979.6680000000001
+      },
+      {
+        "x": 498,
+        "y": 2099.668
+      },
+      {
+        "x": 298,
+        "y": 2099.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 2039.6680000000001
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-182",
+    "plotNumber": 182,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 2099.668
+      },
+      {
+        "x": 498,
+        "y": 2099.668
+      },
+      {
+        "x": 498,
+        "y": 2219.668
+      },
+      {
+        "x": 298,
+        "y": 2219.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 2159.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-183",
+    "plotNumber": 183,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 2219.668
+      },
+      {
+        "x": 498,
+        "y": 2219.668
+      },
+      {
+        "x": 498,
+        "y": 2339.668
+      },
+      {
+        "x": 298,
+        "y": 2339.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 2279.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-184",
+    "plotNumber": 184,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 2339.668
+      },
+      {
+        "x": 498,
+        "y": 2339.668
+      },
+      {
+        "x": 498,
+        "y": 2459.668
+      },
+      {
+        "x": 298,
+        "y": 2459.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 2399.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-185",
+    "plotNumber": 185,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 2459.668
+      },
+      {
+        "x": 498,
+        "y": 2459.668
+      },
+      {
+        "x": 498,
+        "y": 2579.668
+      },
+      {
+        "x": 298,
+        "y": 2579.668
+      }
+    ],
+    "area": 1500,
+    "areaSqYd": 166.66,
+    "center": {
+      "x": 398,
+      "y": 2519.668
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": false
+  },
+  {
+    "id": "vinfra-plot-186",
+    "plotNumber": 186,
+    "polygon": [
+      {
+        "x": 298,
+        "y": 2579.668
+      },
+      {
+        "x": 498,
+        "y": 2579.668
+      },
+      {
+        "x": 498,
+        "y": 2704.332
+      },
+      {
+        "x": 298,
+        "y": 2704.332
+      }
+    ],
+    "area": 1469,
+    "areaSqYd": 163.37,
+    "center": {
+      "x": 398,
+      "y": 2638.418
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-187",
+    "plotNumber": 187,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 1457
+      },
+      {
+        "x": 179,
+        "y": 1457
+      },
+      {
+        "x": 179,
+        "y": 1624.3319999999999
+      },
+      {
+        "x": 0,
+        "y": 1624.3319999999999
+      }
+    ],
+    "area": 1872,
+    "areaSqYd": 202.55,
+    "center": {
+      "x": 89.5,
+      "y": 1540.6660000000002
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-188",
+    "plotNumber": 188,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 1624.3319999999999
+      },
+      {
+        "x": 178.668,
+        "y": 1624.3319999999999
+      },
+      {
+        "x": 178.668,
+        "y": 1744.3319999999999
+      },
+      {
+        "x": 0,
+        "y": 1744.3319999999999
+      }
+    ],
+    "area": 1340,
+    "areaSqYd": 149.03,
+    "center": {
+      "x": 89.334,
+      "y": 1684.3319999999999
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-189",
+    "plotNumber": 189,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 1744.3319999999999
+      },
+      {
+        "x": 178.332,
+        "y": 1744.3319999999999
+      },
+      {
+        "x": 178.332,
+        "y": 1864.3319999999999
+      },
+      {
+        "x": 0,
+        "y": 1864.3319999999999
+      }
+    ],
+    "area": 1337,
+    "areaSqYd": 148.78,
+    "center": {
+      "x": 89.166,
+      "y": 1804.3319999999999
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-190",
+    "plotNumber": 190,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 1864.3319999999999
+      },
+      {
+        "x": 178.332,
+        "y": 1864.3319999999999
+      },
+      {
+        "x": 178.332,
+        "y": 1984.3319999999999
+      },
+      {
+        "x": 0,
+        "y": 1984.3319999999999
+      }
+    ],
+    "area": 1337,
+    "areaSqYd": 148.54,
+    "center": {
+      "x": 89.166,
+      "y": 1924.3319999999999
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-191",
+    "plotNumber": 191,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 1984.3319999999999
+      },
+      {
+        "x": 178,
+        "y": 1984.3319999999999
+      },
+      {
+        "x": 178,
+        "y": 2104.332
+      },
+      {
+        "x": 0,
+        "y": 2104.332
+      }
+    ],
+    "area": 1335,
+    "areaSqYd": 148.29,
+    "center": {
+      "x": 89,
+      "y": 2044.3319999999999
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-192",
+    "plotNumber": 192,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 2104.332
+      },
+      {
+        "x": 177.668,
+        "y": 2104.332
+      },
+      {
+        "x": 177.668,
+        "y": 2224.332
+      },
+      {
+        "x": 0,
+        "y": 2224.332
+      }
+    ],
+    "area": 1333,
+    "areaSqYd": 148.05,
+    "center": {
+      "x": 88.834,
+      "y": 2164.332
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-193",
+    "plotNumber": 193,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 2224.332
+      },
+      {
+        "x": 177.332,
+        "y": 2224.332
+      },
+      {
+        "x": 177.332,
+        "y": 2344.332
+      },
+      {
+        "x": 0,
+        "y": 2344.332
+      }
+    ],
+    "area": 1330,
+    "areaSqYd": 147.8,
+    "center": {
+      "x": 88.666,
+      "y": 2284.332
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-194",
+    "plotNumber": 194,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 2344.332
+      },
+      {
+        "x": 177,
+        "y": 2344.332
+      },
+      {
+        "x": 177,
+        "y": 2464.332
+      },
+      {
+        "x": 0,
+        "y": 2464.332
+      }
+    ],
+    "area": 1328,
+    "areaSqYd": 147.56,
+    "center": {
+      "x": 88.5,
+      "y": 2404.332
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-195",
+    "plotNumber": 195,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 2464.332
+      },
+      {
+        "x": 176.668,
+        "y": 2464.332
+      },
+      {
+        "x": 176.668,
+        "y": 2584.332
+      },
+      {
+        "x": 0,
+        "y": 2584.332
+      }
+    ],
+    "area": 1325,
+    "areaSqYd": 147.31,
+    "center": {
+      "x": 88.334,
+      "y": 2524.332
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  },
+  {
+    "id": "vinfra-plot-196",
+    "plotNumber": 196,
+    "polygon": [
+      {
+        "x": 0,
+        "y": 2584.332
+      },
+      {
+        "x": 176.332,
+        "y": 2584.332
+      },
+      {
+        "x": 176.332,
+        "y": 2704.332
+      },
+      {
+        "x": 0,
+        "y": 2704.332
+      }
+    ],
+    "area": 1322,
+    "areaSqYd": 148.79,
+    "center": {
+      "x": 88.166,
+      "y": 2644.332
+    },
+    "status": "available",
+    "landUse": null,
+    "needsReview": true
+  }
+]

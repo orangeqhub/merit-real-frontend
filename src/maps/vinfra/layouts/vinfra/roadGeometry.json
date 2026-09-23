@@ -1,0 +1,288 @@
+[
+  {
+    "id": "vinfra-road-0",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 700,
+        "y": -20
+      },
+      {
+        "x": 820,
+        "y": -20
+      },
+      {
+        "x": 820,
+        "y": 1297
+      },
+      {
+        "x": 700,
+        "y": 1297
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-1",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 1180,
+        "y": -20
+      },
+      {
+        "x": 1300,
+        "y": -20
+      },
+      {
+        "x": 1300,
+        "y": 1297
+      },
+      {
+        "x": 1180,
+        "y": 1297
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-2",
+    "type": "proposed-40ft",
+    "label": "PROPOSED 40'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 1660,
+        "y": -20
+      },
+      {
+        "x": 1820,
+        "y": -20
+      },
+      {
+        "x": 1820,
+        "y": 1297
+      },
+      {
+        "x": 1660,
+        "y": 1297
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-3",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 2220,
+        "y": -20
+      },
+      {
+        "x": 2340,
+        "y": -20
+      },
+      {
+        "x": 2340,
+        "y": 1297
+      },
+      {
+        "x": 2220,
+        "y": 1297
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-4",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 2700,
+        "y": -20
+      },
+      {
+        "x": 2700,
+        "y": 1297
+      },
+      {
+        "x": 2820,
+        "y": 1297
+      },
+      {
+        "x": 2820,
+        "y": 371.336
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-5",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 178,
+        "y": 1437
+      },
+      {
+        "x": 298,
+        "y": 1437
+      },
+      {
+        "x": 298,
+        "y": 2704.332
+      },
+      {
+        "x": 178,
+        "y": 2704.332
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-6",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 698,
+        "y": 1437
+      },
+      {
+        "x": 818,
+        "y": 1437
+      },
+      {
+        "x": 818,
+        "y": 2704.332
+      },
+      {
+        "x": 698,
+        "y": 2704.332
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-7",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 1178,
+        "y": 1437
+      },
+      {
+        "x": 1298,
+        "y": 1437
+      },
+      {
+        "x": 1298,
+        "y": 2704.332
+      },
+      {
+        "x": 1178,
+        "y": 2704.332
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-8",
+    "type": "proposed-40ft",
+    "label": "PROPOSED 40'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 1658,
+        "y": 1437
+      },
+      {
+        "x": 1818,
+        "y": 1437
+      },
+      {
+        "x": 1818,
+        "y": 2704.332
+      },
+      {
+        "x": 1658,
+        "y": 2704.332
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-9",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 2218,
+        "y": 1437
+      },
+      {
+        "x": 2338,
+        "y": 1437
+      },
+      {
+        "x": 2338,
+        "y": 2428.3360000000002
+      },
+      {
+        "x": 2218,
+        "y": 2704.332
+      }
+    ],
+    "centerline": [
+      {
+        "x": 2278,
+        "y": 1437
+      },
+      {
+        "x": 2278,
+        "y": 2566.334
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-10",
+    "type": "proposed-30ft",
+    "label": "PROPOSED 30'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": 2698,
+        "y": 1437
+      },
+      {
+        "x": 2818,
+        "y": 1437
+      },
+      {
+        "x": 2818,
+        "y": 2428.3360000000002
+      },
+      {
+        "x": 2698,
+        "y": 2428.3360000000002
+      }
+    ]
+  },
+  {
+    "id": "vinfra-road-h-0",
+    "type": "proposed-40ft",
+    "label": "PROPOSED 40'-0\" WIDE ROAD",
+    "polygon": [
+      {
+        "x": -20,
+        "y": 1297
+      },
+      {
+        "x": 2998,
+        "y": 1297
+      },
+      {
+        "x": 2998,
+        "y": 1457
+      },
+      {
+        "x": -20,
+        "y": 1457
+      }
+    ]
+  }
+]

@@ -1,0 +1,252 @@
+[
+ {
+  "id": "road-v-west-12m",
+  "type": "proposed-12m",
+  "polygon": [
+   {
+    "x": 1821.15,
+    "y": 0.0
+   },
+   {
+    "x": 2293.59,
+    "y": 0.0
+   },
+   {
+    "x": 2293.59,
+    "y": 2802.59
+   },
+   {
+    "x": 1821.15,
+    "y": 2802.59
+   }
+  ],
+  "widthPx": 472.44,
+  "label": "12 Meters Wide Proposed Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-sb1",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 3613.59,
+    "y": 0.0
+   },
+   {
+    "x": 3967.92,
+    "y": 0.0
+   },
+   {
+    "x": 3967.92,
+    "y": 1492.76
+   },
+   {
+    "x": 3613.59,
+    "y": 1492.76
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-sb2",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 5416.92,
+    "y": 0.0
+   },
+   {
+    "x": 5771.25,
+    "y": 0.0
+   },
+   {
+    "x": 5771.25,
+    "y": 1492.76
+   },
+   {
+    "x": 5416.92,
+    "y": 1492.76
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-sb3",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 7144.25,
+    "y": 0.0
+   },
+   {
+    "x": 7498.58,
+    "y": 0.0
+   },
+   {
+    "x": 7498.58,
+    "y": 1492.76
+   },
+   {
+    "x": 7144.25,
+    "y": 1492.76
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-sb4",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 8698.58,
+    "y": 0.0
+   },
+   {
+    "x": 9052.91,
+    "y": 0.0
+   },
+   {
+    "x": 9052.91,
+    "y": 1492.76
+   },
+   {
+    "x": 8698.58,
+    "y": 1492.76
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-sb5",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 10252.91,
+    "y": 0.0
+   },
+   {
+    "x": 10607.24,
+    "y": 0.0
+   },
+   {
+    "x": 10607.24,
+    "y": 1492.76
+   },
+   {
+    "x": 10252.91,
+    "y": 1492.76
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-lower-g1-g2",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 3613.59,
+    "y": 1965.2
+   },
+   {
+    "x": 3967.92,
+    "y": 1965.2
+   },
+   {
+    "x": 3967.92,
+    "y": 2802.59
+   },
+   {
+    "x": 3613.59,
+    "y": 2802.59
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-lower-g2-g3",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 5410.92,
+    "y": 1965.2
+   },
+   {
+    "x": 5765.25,
+    "y": 1965.2
+   },
+   {
+    "x": 5765.25,
+    "y": 2802.59
+   },
+   {
+    "x": 5410.92,
+    "y": 2802.59
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-v-lower-g3-g4",
+  "type": "proposed-9m",
+  "polygon": [
+   {
+    "x": 7137.25,
+    "y": 1965.2
+   },
+   {
+    "x": 7491.58,
+    "y": 1965.2
+   },
+   {
+    "x": 7491.58,
+    "y": 2802.59
+   },
+   {
+    "x": 7137.25,
+    "y": 2802.59
+   }
+  ],
+  "widthPx": 354.33,
+  "label": "9M. Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ },
+ {
+  "id": "road-h-12m",
+  "type": "proposed-12m",
+  "polygon": [
+   {
+    "x": 2293.59,
+    "y": 1492.76
+   },
+   {
+    "x": 12022.24,
+    "y": 1492.76
+   },
+   {
+    "x": 12022.24,
+    "y": 1965.2
+   },
+   {
+    "x": 2293.59,
+    "y": 1965.2
+   }
+  ],
+  "widthPx": 9728.65,
+  "label": "12 Meters Wide Proposed Road",
+  "precision": "Nominal metric road width (12m/9m) converted to feet per the printed label; centered/bounded by the real, dimension-derived plot faces on both sides (not independently re-measured in the drawing)."
+ }
+]
