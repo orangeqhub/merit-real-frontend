@@ -26,12 +26,20 @@ export default function ImageGallery({ images = [], title }) {
     setActive((i) => (i >= ordered.length - 1 ? 0 : i + 1));
   }, [ordered.length]);
 
+  // Arrow-key navigation works both while browsing the inline gallery and
+  // inside the full-size preview; Escape only makes sense in the preview.
+  // Ignored while typing in any form field elsewhere on the page.
   useEffect(() => {
-    if (!previewOpen) return undefined;
     function onKey(e) {
+      if (!previewOpen) {
+        const tag = e.target?.tagName;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || e.target?.isContentEditable) return;
+      }
       if (e.key === 'ArrowLeft') goPrev();
-      if (e.key === 'ArrowRight') goNext();
-      if (e.key === 'Escape') setPreviewOpen(false);
+      else if (e.key === 'ArrowRight') goNext();
+      else if (e.key === 'Escape' && previewOpen) setPreviewOpen(false);
+      else return;
+      e.preventDefault();
     }
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
@@ -60,7 +68,7 @@ export default function ImageGallery({ images = [], title }) {
   return (
     <div>
       <div
-        className="relative aspect-video w-full overflow-hidden rounded-xl bg-gray-100"
+        className="relative aspect-video w-full overflow-hidden rounded-xl bg-gray-50 transition-opacity"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -71,9 +79,10 @@ export default function ImageGallery({ images = [], title }) {
           aria-label="Open full-size image preview"
         >
           <SmartImage
+            key={current.id || current.slotId || active}
             src={resolveAssetUrl(current.url)}
             alt={current.caption || title}
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain p-2 sm:p-3 animate-[fadeIn_0.2s_ease-out]"
             loading="eager"
           />
         </button>
@@ -84,7 +93,7 @@ export default function ImageGallery({ images = [], title }) {
               type="button"
               onClick={goPrev}
               aria-label="Previous image"
-              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/45 p-2 text-white hover:bg-black/60"
+              className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/45 p-2 text-white transition-all hover:scale-110 hover:bg-black/60"
             >
               <ChevronLeft size={20} />
             </button>
@@ -92,7 +101,7 @@ export default function ImageGallery({ images = [], title }) {
               type="button"
               onClick={goNext}
               aria-label="Next image"
-              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/45 p-2 text-white hover:bg-black/60"
+              className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/45 p-2 text-white transition-all hover:scale-110 hover:bg-black/60"
             >
               <ChevronRight size={20} />
             </button>
@@ -112,11 +121,11 @@ export default function ImageGallery({ images = [], title }) {
               onClick={() => setActive(i)}
               aria-label={`Show image ${i + 1}`}
               aria-current={i === active}
-              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 ${
-                i === active ? 'border-brand-600' : 'border-transparent'
+              className={`relative h-16 w-24 shrink-0 overflow-hidden rounded-lg border-2 bg-gray-50 transition-colors ${
+                i === active ? 'border-brand-600' : 'border-transparent hover:border-brand-300'
               }`}
             >
-              <SmartImage src={resolveAssetUrl(img.url)} alt={img.caption || ''} className="h-full w-full object-cover" />
+              <SmartImage src={resolveAssetUrl(img.url)} alt={img.caption || ''} className="h-full w-full object-contain p-0.5" />
               {img.isPrimary && (
                 <span className="absolute bottom-0 left-0 right-0 bg-black/55 py-0.5 text-center text-[9px] text-white">
                   Cover

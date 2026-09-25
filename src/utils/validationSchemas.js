@@ -5,6 +5,11 @@ export const mobileSchema = z.string().regex(/^\d{10}$/, 'validation.invalidMobi
 export const registrationSchema = z
   .object({
     name: z.string().min(1, 'validation.required'),
+    username: z
+      .string()
+      .trim()
+      .min(1, 'validation.required')
+      .regex(/^[a-zA-Z0-9._]{3,30}$/, 'validation.invalidUsername'),
     mobile: mobileSchema,
     altMobile: z.string().regex(/^\d{10}$/, 'validation.invalidMobile').optional().or(z.literal('')),
     email: z.string().email('validation.invalidEmail'),

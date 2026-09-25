@@ -125,6 +125,15 @@ textarea:focus-visible,
   overflow-wrap: anywhere;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* Global branded loader — pulse + soft gold/navy glow */
 @keyframes loader-mark-pulse {
   0%, 100% {

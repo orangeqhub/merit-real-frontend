@@ -42,8 +42,11 @@
     "profilePhoto": "Profile Photo",
     "aadhaarNumber": "Aadhaar Card Number",
     "panNumber": "PAN Card Number",
-    "aadhaarProof": "Aadhaar Proof (Mandatory)",
-    "panProof": "PAN Proof (Mandatory)",
+    "aadhaarProof": "Aadhaar Proof",
+    "panProof": "PAN Proof",
+    "username": "Username",
+    "usernamePlaceholder": "e.g. ravi.kumar",
+    "createPassword": "Create your new password",
     "aadhaarProofRequired": "Aadhaar proof document is required.",
     "panProofRequired": "PAN proof document is required.",
     "identityProof": "Identity Proof",
@@ -57,7 +60,10 @@
     "otpLabel": "Enter OTP",
     "verify": "Verify & Continue",
     "resendOtp": "Resend OTP",
-    "success": "Registration submitted successfully."
+    "success": "Registration submitted successfully.",
+    "error": {
+      "failed": "Registration failed. Please try again."
+    }
   },
   "login": {
     "title": "Login",
@@ -219,6 +225,7 @@
     "consentRequired": "You must agree to be contacted before submitting.",
     "passwordTooShort": "Password must be at least 6 characters",
     "passwordMismatch": "Passwords do not match",
+    "invalidUsername": "Username must be 3–30 characters: letters, numbers, dot or underscore",
     "invalidAadhaar": "Aadhaar number must be exactly 12 digits",
     "invalidPan": "PAN must be in format ABCDE1234F",
     "minValue": "Value must be at least {{min}}",

@@ -303,8 +303,8 @@ export default function PropertyDetail() {
 
       <PromotionsCarousel compact propertyId={property.id} />
 
-      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[1fr_340px]">
-        <div>
+      <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_340px]">
+        <div className="min-w-0">
           <ImageGallery images={property.images} title={title} />
 
           <div className="mt-6 flex flex-wrap items-start justify-between gap-3">

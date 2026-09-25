@@ -14,6 +14,11 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  // Pre-bundle deps used only by lazy-loaded pages so Vite doesn't re-optimize
+  // mid-session (which causes "504 Outdated Optimize Dep" errors).
+  optimizeDeps: {
+    include: ['recharts', 'socket.io-client'],
+  },
   server: {
     host: '0.0.0.0',
     port: 3000,

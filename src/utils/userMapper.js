@@ -39,6 +39,7 @@ export function mapApiUserToUi(apiUser) {
     address: apiUser.address || null,
     preferredPropertyType: apiUser.preferredPropertyType || null,
     occupation: apiUser.occupation || null,
+    username: apiUser.username || null,
     profilePhoto: media(apiUser.profilePhoto),
     identityProof: media(apiUser.identityProof || apiUser.aadhaarProofPath),
     addressProof: media(apiUser.addressProof || apiUser.panProofPath),

@@ -6,6 +6,7 @@ async function register(role, data) {
   try {
     const formData = new FormData();
     formData.append('name', data.name);
+    if (data.username) formData.append('username', String(data.username).trim().toLowerCase());
     formData.append('mobile', data.mobile);
     formData.append('email', data.email);
     formData.append('password', data.password);
@@ -31,8 +32,14 @@ async function register(role, data) {
 
     return mapApiUserToUi(user);
   } catch (err) {
-    if (err.code === 'DUPLICATE_USER') {
+    if (err.code === 'DUPLICATE_MOBILE' || err.code === 'DUPLICATE_USER') {
       throw new Error('auth.error.mobileAlreadyRegistered');
+    }
+    if (err.code === 'DUPLICATE_EMAIL') {
+      throw new Error('auth.error.emailAlreadyRegistered');
+    }
+    if (err.code === 'DUPLICATE_USERNAME') {
+      throw new Error('auth.error.usernameTaken');
     }
     throw new Error(err.message || 'registration.error.failed');
   }
