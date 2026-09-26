@@ -36,12 +36,13 @@ import {
   type LayoutSpec,
 } from "../layouts";
 import {
+  assignPlotPhases,
   filterPlotsByPhase,
   getLayoutPhaseCounts,
   parsePhaseParam,
+  toDisplayPlotNumber,
   type PhaseFilter,
 } from "../utils/plotPhases";
-import { toSeriesPlotNumber } from "../utils/plotSeries";
 import { calculateArea } from "../utils/geometry/AreaCalculator";
 import SnapEngine from "../utils/geometry/SnapEngine";
 import {
@@ -55,6 +56,12 @@ import { usePlotInfo } from "../context/PlotInfoContext";
 
 const LIGHT_GREEN_PLOT_NUMBERS = new Set([75, 76, 77, 91, 92, 93, 94, 86, 51]);
 
+/** Public series plot number + phase -- the identity this layout's rows use. */
+export interface PlotSeriesIdentity {
+  plotNo: string;
+  phase: 1 | 2;
+}
+
 interface Props {
   drawing: DXFDrawing;
   layout: LayoutSpec;
@@ -67,9 +74,9 @@ interface Props {
     status: string;
   }) => void;
   /** Additive: native (non-iframe) host hook for plot selection. */
-  onSelectPlot?: (externalId: string | null) => void;
+  onSelectPlot?: (externalId: string | null, identity?: PlotSeriesIdentity) => void;
   /** Additive: native (non-iframe) host hook for the booking action. */
-  onBookPlot?: (externalId: string) => void;
+  onBookPlot?: (externalId: string, identity?: PlotSeriesIdentity) => void;
 }
 
 const DxfCanvas: React.FC<Props> = ({
@@ -122,19 +129,18 @@ const DxfCanvas: React.FC<Props> = ({
     [lineEntities]
   );
 
-  const numberPlots = useMemo(
-    () =>
-      filterPlotsByPhase(
-        getPlotNumberMapping() as unknown as PlotNumberEntry[],
-        phase
-      ).map(
-        (plot) => ({
-          ...plot,
-          displayPlotNumber: toSeriesPlotNumber(plot.phase, plot.plotNumber),
-        })
-      ),
-    [phase]
-  );
+  // Each polygon's public series number (Phase 2 = Plan-8 number + 134) comes
+  // from its assigned phase -- the same identity PlotInfoContext uses to merge
+  // the backend rows -- so it is identical in every phase view and search,
+  // Plot Board and booking all refer to the plot whose data is shown.
+  const numberPlots = useMemo(() => {
+    const mapping = getPlotNumberMapping() as unknown as PlotNumberEntry[];
+    const assignedPhase = new Map(assignPlotPhases(mapping).map((p) => [p.id, p.phase]));
+    return filterPlotsByPhase(mapping, phase).map((plot) => ({
+      ...plot,
+      displayPlotNumber: toDisplayPlotNumber(assignedPhase.get(plot.id) ?? plot.phase, plot.plotNumber),
+    }));
+  }, [phase]);
 
   const layoutPhaseCounts = useMemo(
     () =>
@@ -196,19 +202,19 @@ const DxfCanvas: React.FC<Props> = ({
           setHighlightedNumbers(new Set());
           return;
         }
+        // Board plots carry the series number this map's data is merged by,
+        // so match on it first (a board row's externalId is not a geometry id
+        // for this layout).
         const target =
+          (rawPlotNo && numberPlots.find((p) => String(p.displayPlotNumber ?? p.plotNumber) === rawPlotNo)) ||
           numberPlots.find(
             (p) =>
               externalId &&
               (p.id === externalId || `${parentExternalIdPrefix}${p.id}` === externalId)
           ) ||
-          numberPlots.find((p) => {
-            const series = String(p.displayPlotNumber ?? p.plotNumber);
-            return rawPlotNo && (series === rawPlotNo || String(p.plotNumber) === rawPlotNo);
-          }) ||
           null;
         if (!target) return;
-        focusPlotOnCanvas(target);
+        latestFocus.current(target);
         setSelectedNumberPlotId(target.id);
       }
     }
@@ -342,6 +348,7 @@ const DxfCanvas: React.FC<Props> = ({
   const [snapPoint, setSnapPoint] = useState<Point | null>(null);
   const [selectedNumberPlotId, setSelectedNumberPlotId] = useState<string | null>(null);
   const [highlightedNumbers, setHighlightedNumbers] = useState<Set<number>>(new Set());
+  const [searchNotFound, setSearchNotFound] = useState<string | null>(null);
   const [regionHover, setRegionHover] = useState<RegionInfo | null>(null);
   const [regionHoverPos, setRegionHoverPos] = useState({ x: 0, y: 0 });
   const [plotHover, setPlotHover] = useState<PlotInformation | null>(null);
@@ -365,7 +372,7 @@ const DxfCanvas: React.FC<Props> = ({
     zoomByFactor,
     setZoom,
     setOffset,
-  } = usePanZoom(true, width, height);
+  } = usePanZoom(true, width, height, svgRef);
 
   const zoomRef = useRef(zoom);
   zoomRef.current = zoom;
@@ -539,12 +546,19 @@ const DxfCanvas: React.FC<Props> = ({
     selectedNumberEntry
   );
 
-  const fillColor = (_plotId: string) => {
-    // TEMP VISUAL-ONLY OVERRIDE: canvas always renders the "available" green,
-    // regardless of the plot's real status/type. Does not touch the status
-    // field, any API call, or non-canvas UI (tooltips/labels still show the
-    // real status text).
-    return STATUS_COLORS.available;
+  // Fill follows the plot's live backend status (/map/plots, merged in
+  // PlotInfoContext); plots without a status keep the "available" green.
+  const fillColor = (plotId: string) => {
+    const status = String(getPlot(plotId)?.status || "").toLowerCase() as PlotInformation["status"];
+    return STATUS_COLORS[status] || STATUS_COLORS.available;
+  };
+
+  // This layout's backend rows are matched to polygons by series plot number
+  // (see plotInfoService's merge), not by geometry id, so the host board and
+  // booking must be told that same identity.
+  const seriesIdentity = (target: { displayPlotNumber?: number; plotNumber: number }) => {
+    const plotNo = String(target.displayPlotNumber ?? target.plotNumber);
+    return { plotNo, phase: (Number(plotNo) > 134 ? 2 : 1) as 1 | 2 };
   };
 
   // Backend externalId prefix for layouts whose raw source ids are not
@@ -559,7 +573,7 @@ const DxfCanvas: React.FC<Props> = ({
   const sendSelectToParent = (
     target: PlotNumberEntry & { displayPlotNumber?: number }
   ) => {
-    onSelectPlot?.(`${parentExternalIdPrefix}${target.id}`);
+    onSelectPlot?.(`${parentExternalIdPrefix}${target.id}`, seriesIdentity(target));
     if (!(window.parent && window.parent !== window)) return;
     try {
       window.parent.postMessage(
@@ -612,6 +626,12 @@ const DxfCanvas: React.FC<Props> = ({
     });
   };
 
+  // The board -> map message handler is registered once per phase view, so it
+  // calls the latest render's focus function (current width/height/convert)
+  // instead of the one captured when it was registered.
+  const latestFocus = useRef(focusPlotOnCanvas);
+  latestFocus.current = focusPlotOnCanvas;
+
   const handleNumberPlotClick = (plot: PlotNumberEntry) => {
     setSelectedNumberPlotId(plot.id);
     onPlotHit?.({
@@ -659,6 +679,7 @@ const DxfCanvas: React.FC<Props> = ({
     const query = String(rawQuery || "").replace(/\D/g, "");
     if (!query) {
       setHighlightedNumbers(new Set());
+      setSearchNotFound(null);
       return;
     }
 
@@ -666,18 +687,19 @@ const DxfCanvas: React.FC<Props> = ({
       window.parent.postMessage({ type: "merit-map-search", query }, "*");
     }
 
-    const matchesLabel = (plot: PlotNumberEntry & { displayPlotNumber?: number }) => {
-      const pdf = String(plot.plotNumber);
-      const series = String(plot.displayPlotNumber ?? "");
-      if (pdf === query || series === query) return true;
-      if (query.length >= 2 && (pdf.startsWith(query) || series.startsWith(query))) {
-        return true;
-      }
-      return false;
-    };
-    const exact = numberPlots.filter(matchesLabel);
-    if (exact.length === 0) return;
-    const target = exact[0];
+    // Exact matches only (never a prefix: "1" must not land on 10/11/101).
+    // The public series number wins (Anne Phase 2 = 135-272, what the Plot
+    // Board and API use); the number printed on the block is the fallback,
+    // both limited to the phase currently shown.
+    const target =
+      numberPlots.find((p) => String(p.displayPlotNumber ?? p.plotNumber) === query) ||
+      numberPlots.find((p) => String(p.plotNumber) === query) ||
+      null;
+    if (!target) {
+      setSearchNotFound(query);
+      return;
+    }
+    setSearchNotFound(null);
 
     focusPlotOnCanvas(target);
     setSelectedNumberPlotId(target.id);
@@ -737,7 +759,11 @@ const DxfCanvas: React.FC<Props> = ({
 
       <SearchBox
         onSearch={zoomToPlotQuery}
-        onClear={() => setHighlightedNumbers(new Set())}
+        onClear={() => {
+          setHighlightedNumbers(new Set());
+          setSearchNotFound(null);
+        }}
+        notFound={searchNotFound}
       />
 
       <svg
@@ -928,7 +954,7 @@ const DxfCanvas: React.FC<Props> = ({
         onClose={() => setSelectedNumberPlotId(null)}
         onBook={(plot) => {
           if (onBookPlot) {
-            onBookPlot(plot.id);
+            onBookPlot(plot.id, selectedNumberEntry ? seriesIdentity(selectedNumberEntry) : undefined);
             return;
           }
           const payload = {

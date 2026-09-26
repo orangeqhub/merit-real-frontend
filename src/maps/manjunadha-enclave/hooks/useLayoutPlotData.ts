@@ -48,11 +48,8 @@ export function layoutKeyFromUrl(fallback: string): string {
  * whatever the Excel/seed had -- is the only thing that drives the colour;
  * nothing is invented).
  */
-export function plotFillColor(_row: LayoutPlotRow | null | undefined): string {
-  // TEMP VISUAL-ONLY OVERRIDE: canvas always renders the "available" green,
-  // regardless of the plot's real status. Does not touch the status field,
-  // any API call, or non-canvas UI (tooltips/labels still show real status).
-  return STATUS_COLORS.available;
+export function plotFillColor(row: LayoutPlotRow | null | undefined): string {
+  return (row?.status && STATUS_COLORS[row.status]) || STATUS_COLORS.available;
 }
 
 /**
@@ -72,11 +69,10 @@ export function useLayoutPlotData(fallbackLayoutKey: string): {
   const load = useCallback(async () => {
     const layout = layoutKeyFromUrl(fallbackLayoutKey);
     try {
-      const data = await mapBookingService.listPlots({ layout, pageSize: 1000 });
-      const items: unknown[] = Array.isArray(data?.items) ? data.items : [];
+      const items: unknown[] = await mapBookingService.listAllPlots({ layout });
       const map: Record<string, LayoutPlotRow> = {};
       for (const it of items as Array<Record<string, unknown>>) {
-        const plotNo = String(it.plotNo ?? "");
+        const plotNo = String(it.plotNo ?? "").trim();
         if (!plotNo) continue;
         map[plotNo] = {
           id: String(it.externalId || it.id || ""),
@@ -90,11 +86,8 @@ export function useLayoutPlotData(fallbackLayoutKey: string): {
           plotType: it.plotType ? String(it.plotType) : null,
         };
       }
-      setRows((prev) => {
-        const next = { ...prev };
-        for (const [k, v] of Object.entries(map)) next[k] = v;
-        return next;
-      });
+      // A successful fetch is the complete current state of this layout.
+      setRows(map);
     } catch {
       // keep last known rows; the map still renders geometry offline
     } finally {

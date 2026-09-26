@@ -5,13 +5,15 @@ import "./SearchBox.css";
 interface Props {
   onSearch?: (query: string) => void;
   onClear?: () => void;
+  /** Query that matched no plot (shown under the input), or null. */
+  notFound?: string | null;
 }
 
 function normalizeQuery(raw: string) {
   return String(raw || "").replace(/\D/g, "");
 }
 
-export default function SearchBox({ onSearch, onClear }: Props) {
+export default function SearchBox({ onSearch, onClear, notFound }: Props) {
   const [value, setValue] = useState("");
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,7 +35,9 @@ export default function SearchBox({ onSearch, onClear }: Props) {
         onChange={handleChange}
         inputMode="numeric"
         autoComplete="off"
+        aria-label="Search plot number"
       />
+      {notFound && <div className="search-box-error">Plot {notFound} not found</div>}
     </div>
   );
 }

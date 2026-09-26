@@ -237,7 +237,7 @@ const DxfCanvas: React.FC<Props> = ({
           }) ||
           null;
         if (!target) return;
-        focusPlotOnCanvas(target);
+        latestFocus.current(target);
         setSelectedNumberPlotId(target.id);
       }
     }
@@ -316,6 +316,14 @@ const DxfCanvas: React.FC<Props> = ({
           if (v.y > maxY) maxY = v.y;
         }
       }
+      // The drawn venture boundary (open spaces, frontage roads) reaches past
+      // the plots; Fit must frame the whole rendered layout, not just plots.
+      for (const r of layout.boundary || []) {
+        if (r.minX < minX) minX = r.minX;
+        if (r.minY < minY) minY = r.minY;
+        if (r.maxX > maxX) maxX = r.maxX;
+        if (r.maxY > maxY) maxY = r.maxY;
+      }
     }
 
     // Image-based layouts have no linework or plots: use the image box.
@@ -342,7 +350,7 @@ const DxfCanvas: React.FC<Props> = ({
       width: maxX - minX,
       height: maxY - minY,
     };
-  }, [lineEntities, layout.imageUnderlay]);
+  }, [lineEntities, layout.imageUnderlay, layout.boundary]);
 
   /* -----------------------------
       Centered Fit (10% padding)
@@ -410,6 +418,7 @@ const DxfCanvas: React.FC<Props> = ({
   const [snapPoint, setSnapPoint] = useState<Point | null>(null);
   const [selectedNumberPlotId, setSelectedNumberPlotId] = useState<string | null>(null);
   const [highlightedNumbers, setHighlightedNumbers] = useState<Set<number>>(new Set());
+  const [searchNotFound, setSearchNotFound] = useState<string | null>(null);
   const [regionHover, setRegionHover] = useState<RegionInfo | null>(null);
   const [regionHoverPos, setRegionHoverPos] = useState({ x: 0, y: 0 });
   const [plotHover, setPlotHover] = useState<PlotInformation | null>(null);
@@ -434,7 +443,7 @@ const DxfCanvas: React.FC<Props> = ({
     zoomByFactor,
     setZoom,
     setOffset,
-  } = usePanZoom(true, width, height);
+  } = usePanZoom(true, width, height, svgRef);
 
   const zoomRef = useRef(zoom);
   zoomRef.current = zoom;
@@ -608,12 +617,11 @@ const DxfCanvas: React.FC<Props> = ({
     selectedNumberEntry
   );
 
-  const fillColor = (_plotId: string) => {
-    // TEMP VISUAL-ONLY OVERRIDE: canvas always renders the "available" green,
-    // regardless of the plot's real status/type. Does not touch the status
-    // field, any API call, or non-canvas UI (tooltips/labels still show the
-    // real status text).
-    return STATUS_COLORS.available;
+  // Fill follows the plot's live backend status (/map/plots, merged in
+  // PlotInfoContext); plots without a status keep the "available" green.
+  const fillColor = (plotId: string) => {
+    const status = String(getPlot(plotId)?.status || "").toLowerCase() as PlotInformation["status"];
+    return STATUS_COLORS[status] || STATUS_COLORS.available;
   };
 
   // Backend externalId prefix for layouts whose raw source ids are not
@@ -682,6 +690,12 @@ const DxfCanvas: React.FC<Props> = ({
     });
   };
 
+  // The board -> map message handler is registered once per phase view, so it
+  // calls the latest render's focus function (current width/height/convert)
+  // instead of the one captured when it was registered.
+  const latestFocus = useRef(focusPlotOnCanvas);
+  latestFocus.current = focusPlotOnCanvas;
+
   const handleNumberPlotClick = (plot: PlotNumberEntry) => {
     setSelectedNumberPlotId(plot.id);
     onPlotHit?.({
@@ -730,6 +744,7 @@ const DxfCanvas: React.FC<Props> = ({
     const query = String(rawQuery || "").replace(/\D/g, "");
     if (!query) {
       setHighlightedNumbers(new Set());
+      setSearchNotFound(null);
       return;
     }
 
@@ -737,18 +752,18 @@ const DxfCanvas: React.FC<Props> = ({
       window.parent.postMessage({ type: "merit-map-search", query }, "*");
     }
 
-    const matchesLabel = (plot: PlotNumberEntry & { displayPlotNumber?: number }) => {
-      const pdf = String(plot.plotNumber);
-      const series = String(plot.displayPlotNumber ?? "");
-      if (pdf === query || series === query) return true;
-      if (query.length >= 2 && (pdf.startsWith(query) || series.startsWith(query))) {
-        return true;
-      }
-      return false;
-    };
-    const exact = numberPlots.filter(matchesLabel);
-    if (exact.length === 0) return;
-    const target = exact[0];
+    // Exact matches only (never a prefix: "1" must not land on 10/11/101).
+    // The public series number wins; the number printed on the block is the
+    // fallback, both limited to the phase currently shown.
+    const target =
+      numberPlots.find((p) => String(p.displayPlotNumber ?? p.plotNumber) === query) ||
+      numberPlots.find((p) => String(p.plotNumber) === query) ||
+      null;
+    if (!target) {
+      setSearchNotFound(query);
+      return;
+    }
+    setSearchNotFound(null);
 
     focusPlotOnCanvas(target);
     setSelectedNumberPlotId(target.id);
@@ -808,7 +823,11 @@ const DxfCanvas: React.FC<Props> = ({
 
       <SearchBox
         onSearch={zoomToPlotQuery}
-        onClear={() => setHighlightedNumbers(new Set())}
+        onClear={() => {
+          setHighlightedNumbers(new Set());
+          setSearchNotFound(null);
+        }}
+        notFound={searchNotFound}
       />
 
       <NorthIndicator />

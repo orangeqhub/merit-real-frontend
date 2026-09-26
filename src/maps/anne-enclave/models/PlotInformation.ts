@@ -30,11 +30,14 @@ export const PLOT_STATUSES: PlotStatus[] = [
   "sold",
 ];
 
+// Available keeps this layout's own green; the other statuses use the same
+// colours as the site's status legend (PLOT_STATUS_COLORS in
+// src/services/mapBookingService.js) so map, legend and Plot Board agree.
 export const STATUS_COLORS: Record<PlotStatus, string> = {
   available: "#22C55E",
-  booked: "#22C55E",
-  registered: "#22C55E",
-  sold: "#22C55E",
+  booked: "#FFD54F",
+  registered: "#42A5F5",
+  sold: "#EF5350",
 };
 
 export const TYPE_COLORS: Record<string, string> = {

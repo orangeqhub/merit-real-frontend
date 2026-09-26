@@ -58,6 +58,10 @@ const ATTRIBUTION = "Esri, Maxar, Earthstar Geographics, and the GIS User Commun
 // area runs out above zoom 18 -- higher zooms return blank tiles. This is a
 // data-coverage ceiling, not an invented scale.
 const MAX_REAL_IMAGERY_ZOOM = 18;
+// The fitted layout already sits at ~z18, so the map itself must allow
+// zooming further: Leaflet upscales the z18 imagery (maxNativeZoom) instead
+// of requesting blank z19+ tiles, while the vector plots stay sharp.
+const MAX_MAP_ZOOM = 21;
 
 function treeIcon(seed: number) {
   const scale = 0.85 + (seed % 5) * 0.06;
@@ -266,8 +270,13 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
-    const q = query.trim().toUpperCase().replace(/\s+/g, "");
-    if (!q) return;
+    const raw = query.trim().toUpperCase().replace(/\s+/g, "");
+    // Exact match on the printed number; "024" is plot 24, "67&68" stays as is.
+    const q = /^\d+$/.test(raw) ? String(Number(raw)) : raw;
+    if (!q) {
+      setSearchError(null);
+      return;
+    }
     try {
       if (window.parent && window.parent !== window) {
         // Let the host board filter + select the same plot (its search box
@@ -308,10 +317,19 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
           touchZoom
           keyboard
           minZoom={2}
-          maxZoom={MAX_REAL_IMAGERY_ZOOM}
+          maxZoom={MAX_MAP_ZOOM}
+          // Fractional snap so Fit frames the whole layout tightly instead of
+          // rounding down to a whole zoom level; +/- still step one level.
+          zoomSnap={0.25}
+          zoomDelta={1}
           style={{ width: "100%", height: "100%", background: "#111" }}
         >
-          <TileLayer url={IMAGERY_URL} maxZoom={MAX_REAL_IMAGERY_ZOOM} attribution={ATTRIBUTION} />
+          <TileLayer
+            url={IMAGERY_URL}
+            maxNativeZoom={MAX_REAL_IMAGERY_ZOOM}
+            maxZoom={MAX_MAP_ZOOM}
+            attribution={ATTRIBUTION}
+          />
           <AttributionControl position="bottomright" prefix={false} />
           <MapRefSetter mapRef={mapRef} />
           <MapResizeHandler />
@@ -529,6 +547,7 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
             onChange={(e) => {
               setQuery(e.target.value);
               setSearchError(null);
+              if (!e.target.value.trim()) setSelectedId(null);
             }}
             placeholder="Search Plot... (e.g. 24, 67&68)"
             className="manjunadha-search-input"

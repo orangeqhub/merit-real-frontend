@@ -126,7 +126,14 @@ export function assignPlotPhases(plots: PlotNumberEntry[]): PhasedPlot[] {
 
   for (const plot of singles) {
     const x = Number(plot.center?.x) || 0;
-    if (phaseDivides() && x < (phaseDividerX() ?? 0)) phase2.push(plot);
+    // A plot with no twin belongs to the phase whose boundary it sits in.
+    // The x-divider alone put Anne's four east-side singles (Plan-8 135-138,
+    // outside the Phase 1 border) into Phase 1, so they claimed series
+    // 135-138 -- already Phase 2's plots 1-4 -- and 269-272 went unused.
+    const inPhase2 = hasPhase1Boundary()
+      ? !isInsidePhase1Boundary(plot)
+      : phaseDivides() && x < (phaseDividerX() ?? 0);
+    if (inPhase2) phase2.push(plot);
     else phase1.push(plot);
   }
 

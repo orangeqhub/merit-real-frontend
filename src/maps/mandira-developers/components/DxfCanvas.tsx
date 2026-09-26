@@ -54,6 +54,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
   const [hoverPos, setHoverPos] = useState({ x: 0, y: 0 });
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [searchError, setSearchError] = useState<string | null>(null);
   const [hoveredFeature, setHoveredFeature] = useState<FeatureInfo | null>(null);
   const [featureHoverPos, setFeatureHoverPos] = useState({ x: 0, y: 0 });
 
@@ -62,8 +63,9 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     if (feature) setFeatureHoverPos({ x, y });
   };
 
-  const { zoom, offset, onWheel, onMouseDown, onMouseMove, onMouseUp, zoomByFactor, setZoom, setOffset } =
-    usePanZoom(true);
+  const svgRef = useRef<SVGSVGElement | null>(null);
+  const { zoom, offset, onMouseDown, onMouseMove, onMouseUp, zoomByFactor, setZoom, setOffset } =
+    usePanZoom(true, width, height, svgRef);
 
   // Dynamically calculated, never hardcoded -- deduped on plotNumber so a
   // future data change can never silently double-count a plot.
@@ -197,8 +199,18 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
 
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
-    const n = Number(query.trim());
-    if (!Number.isFinite(n)) return;
+    const q = query.trim();
+    if (!q) {
+      setSearchError(null);
+      return;
+    }
+    // Exact plot-number match only: "1" must never land on 10, 11 or 101.
+    const n = /^\d+$/.test(q) ? Number(q) : NaN;
+    if (!plots.some((p) => p.plotNumber === n)) {
+      setSearchError(`Plot ${q} not found`);
+      return;
+    }
+    setSearchError(null);
     zoomToPlot(n);
   };
 
@@ -239,17 +251,26 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
   // plot -- select + zoom to it here the same way this app's own search
   // does, so the map highlights/re-centers on the same plot the board just
   // highlighted.
+  // Latest render's zoomToPlot/selection, so a board selection after a
+  // resize never zooms with a stale width/height/convert.
+  const latest = useRef({ zoomToPlot, selectedId });
+  latest.current = { zoomToPlot, selectedId };
   useEffect(() => {
     function onMessage(event: MessageEvent) {
       const data = event?.data;
       if (!data || typeof data !== "object" || data.type !== "merit-map-select-plot") return;
-      const plotNo = data.plotNo != null ? Number(String(data.plotNo).replace(/\D/g, "")) : NaN;
-      selectedFromParent.current = true;
-      if (!Number.isFinite(plotNo)) {
+      const raw = data.plotNo != null ? String(data.plotNo).trim() : "";
+      const plotNo = /^\d+$/.test(raw) ? Number(raw) : NaN;
+      const target = plots.find((p) => p.plotNumber === plotNo);
+      // Only arm the echo guard when the selection really changes; otherwise
+      // the effect above never runs to clear it and the next genuine map
+      // click would be swallowed.
+      selectedFromParent.current = (target?.id ?? null) !== latest.current.selectedId;
+      if (!target) {
         setSelectedId(null);
         return;
       }
-      zoomToPlot(plotNo);
+      latest.current.zoomToPlot(plotNo);
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
@@ -329,14 +350,26 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
 
       <form
         onSubmit={handleSearch}
-        style={{ position: "absolute", top: 12, right: 68, zIndex: 5 }}
+        style={{ position: "absolute", top: 12, right: 68, zIndex: 5, display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 4 }}
       >
         <input
+          type="search"
+          inputMode="numeric"
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setSearchError(null);
+            if (!e.target.value.trim()) setSelectedId(null);
+          }}
           placeholder="Search Plot..."
+          aria-label="Search plot number"
           style={{ padding: "8px 12px", borderRadius: 6, border: "none", width: 220 }}
         />
+        {searchError && (
+          <div style={{ color: "#fca5a5", fontSize: 11, background: "rgba(24,24,27,0.82)", padding: "2px 6px", borderRadius: 4 }}>
+            {searchError}
+          </div>
+        )}
       </form>
 
       {(hoveredPlot || selectedPlot) && (
@@ -414,10 +447,10 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
       )}
 
       <svg
+        ref={svgRef}
         width={width}
         height={height}
         viewBox={`0 0 ${width} ${height}`}
-        onWheel={onWheel}
         onMouseDown={onMouseDown}
         onMouseMove={onMouseMove}
         onMouseUp={onMouseUp}

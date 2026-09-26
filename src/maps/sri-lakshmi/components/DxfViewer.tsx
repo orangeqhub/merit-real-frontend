@@ -98,8 +98,10 @@ const DxfViewerMap = ({ onSelectPlot, onBookPlot }: DxfViewerProps) => {
       ref={hostRef}
       style={{
         width: "100%",
-        height: isEmbed ? "100%" : "100vh",
-        minHeight: isEmbed ? 320 : undefined,
+        // Natively mounted inside the host page: fill the host container (a
+        // 100vh box would overflow it and push the fitted layout off-centre).
+        height: "100%",
+        minHeight: 320,
         overflow: "hidden",
         background: "#111",
       }}

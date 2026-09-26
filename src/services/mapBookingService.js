@@ -28,6 +28,20 @@ export const mapBookingService = {
     };
   },
 
+  /**
+   * Every MapPlots row of one layout (walks all pages, so no layout is ever
+   * silently truncated at the API's 500-row page cap).
+   */
+  async listAllPlots({ layout, phase } = {}) {
+    const first = await this.listPlots({ layout, phase, page: 1, pageSize: 500 });
+    const items = [...first.items];
+    for (let page = 2; page <= first.totalPages; page += 1) {
+      const next = await this.listPlots({ layout, phase, page, pageSize: 500 });
+      items.push(...next.items);
+    }
+    return items;
+  },
+
   async getPlot(id, { layout } = {}) {
     const qs = layout ? `?layout=${encodeURIComponent(layout)}` : '';
     return api(`/map/plots/${encodeURIComponent(id)}${qs}`, { silent: true });

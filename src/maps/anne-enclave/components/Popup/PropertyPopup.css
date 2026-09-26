@@ -1,6 +1,8 @@
 .property-popup {
   position: absolute;
-  right: 16px;
+  /* Left of the zoom / Fit control column (right: 12px, 40px wide) so an
+     open popup never covers those buttons. */
+  right: 64px;
   top: 72px;
   z-index: 1200;
   width: 320px;
@@ -94,7 +96,7 @@
 @media (max-width: 768px) {
   .property-popup {
     width: 280px;
-    right: 12px;
+    right: 64px;
     top: 80px;
   }
 

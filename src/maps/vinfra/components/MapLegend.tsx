@@ -1,4 +1,6 @@
 import { useState, type FC } from "react";
+// Same colours the plot polygons are filled with (plotFillColor).
+import { STATUS_COLORS } from "../hooks/useLayoutPlotData";
 
 /** Small collapsible legend for the map's color system, matching the
  * pattern used across the other Merit interactive layouts. */
@@ -71,19 +73,19 @@ const MapLegend: FC = () => {
           </div>
           <div style={{ fontWeight: 700, opacity: 0.8, marginTop: 6 }}>Plot Status</div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#22C55E")}
+            {swatch(STATUS_COLORS.available)}
             <span>Available</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#F97316")}
+            {swatch(STATUS_COLORS.booked)}
             <span>Booked</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#2563EB")}
+            {swatch(STATUS_COLORS.registered)}
             <span>Registered</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#DC2626")}
+            {swatch(STATUS_COLORS.sold)}
             <span>Sold</span>
           </div>
         </div>

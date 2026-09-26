@@ -20,6 +20,7 @@ import {
 import { MAP_LAYOUTS, getMapLayoutByKey } from '../../config/mapLayouts';
 
 import { notifyMapDataUpdated } from '../../utils/mapDataSync';
+import { loadPlotIdentityIndex } from '../../maps/plotIdentity';
 import { formatInr } from '../../utils/formatIndianNumber';
 import { toast } from '../../store/toastStore';
 
@@ -84,6 +85,9 @@ export default function MapPlots() {
   const [lastResult, setLastResult] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
+  // Verified-geometry identity for the loaded workbook's layout (null for
+  // layouts matched by phase + plot number only, e.g. Anne Enclave).
+  const [identity, setIdentity] = useState(null);
 
   const rows = useMemo(() => {
     if (!workbook) return [];
@@ -105,8 +109,14 @@ export default function MapPlots() {
     [rows]
   );
 
+  const notOnMap = useMemo(
+    () => (identity ? rows.filter((r) => !identity.isOnMap(r.plotNo)).map((r) => r.plotNo) : []),
+    [rows, identity]
+  );
+
   function clearBoard() {
     setWorkbook(null);
+    setIdentity(null);
     setDraftCosts({});
     setDirty(false);
     setLastResult(null);
@@ -130,6 +140,7 @@ export default function MapPlots() {
     if (nextKey === layoutKey) return;
     setLayoutKey(nextKey);
     setWorkbook(null);
+    setIdentity(null);
     setDraftCosts({});
     setPreviewPhase(1);
     setDirty(false);
@@ -146,6 +157,7 @@ export default function MapPlots() {
       // Scoped to the selected layout: two-phase workbooks must contain
       // Phase 1 + Phase 2 sheets; single-phase layouts take one sheet.
       const parsed = await parseMapPlotWorkbook(file, layout.key);
+      setIdentity(twoPhase ? null : await loadPlotIdentityIndex(layout.key));
       setWorkbook(parsed);
       initDrafts(parsed);
       setDirty(true);
@@ -170,7 +182,11 @@ export default function MapPlots() {
       const raw = draftCosts[draftKey(phaseNum, mapped.plotNo)];
       const editedCost =
         raw === '' || raw == null ? mapped.plotCost : Number(raw);
+      // Stable identity from the map geometry lets the backend create this
+      // layout's plot row if it doesn't exist yet (see src/maps/plotIdentity.js).
+      const externalId = identity?.externalIdFor(mapped.plotNo) || null;
       return {
+        ...(externalId ? { externalId } : {}),
         plotNo: mapped.plotNo,
         plotArea: mapped.plotArea,
         facing: mapped.facing,
@@ -205,9 +221,13 @@ export default function MapPlots() {
             layout: layout.key,
           });
 
+      const inserted = Number(result?.inserted || 0);
       const updated = Number(result?.updated || 0);
+      const unchanged = Number(result?.unchanged || 0);
       const skipped = Number(result?.skipped || 0);
-      const totalRows = Number(result?.totalRows) || updated + skipped;
+      const totalRows = Number(result?.totalRows) || inserted + updated + unchanged + skipped;
+      // Every open map / Plot Board (this tab and other tabs) refetches the
+      // layout from the API right away.
       notifyMapDataUpdated();
       try {
         window.postMessage({ type: 'merit-map-data-updated' }, '*');
@@ -220,13 +240,15 @@ export default function MapPlots() {
         layoutKey: layout.key,
         title: layout.title,
         totalRows,
+        inserted,
         updated,
+        unchanged,
         skipped,
         errors: result?.errors || [],
       });
       toast.success(
-        `Saved ${updated} plots${twoPhase ? ' (Phase 1 + Phase 2)' : ''}` +
-          ` for ${layout.title}` +
+        `Saved ${layout.title}${twoPhase ? ' (Phase 1 + Phase 2)' : ''}: ` +
+          `${inserted} added, ${updated} updated, ${unchanged} unchanged` +
           (skipped ? `, skipped ${skipped}` : '') +
           '. Visible on Map Layout.'
       );
@@ -269,7 +291,7 @@ export default function MapPlots() {
             onChange={handleWorkbookUpload}
           />
           <Link
-            to="/map-layout"
+            to={`/map-layout/${encodeURIComponent(layout.key)}`}
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -365,7 +387,13 @@ export default function MapPlots() {
             ✓ <strong>{lastResult.totalRows}</strong> processed
           </p>
           <p className="text-gray-700">
+            ✓ <strong>{lastResult.inserted}</strong> added
+          </p>
+          <p className="text-gray-700">
             ✓ <strong>{lastResult.updated}</strong> updated
+          </p>
+          <p className="text-gray-700">
+            = <strong>{lastResult.unchanged}</strong> unchanged
           </p>
           <p className={lastResult.skipped ? 'text-amber-700' : 'text-gray-700'}>
             ⚠ <strong>{lastResult.skipped}</strong> skipped/unmatched
@@ -385,6 +413,16 @@ export default function MapPlots() {
             }: ${rows.length} rows · ${pricedCount} with cost${dirty ? ' · pending save' : ''}`
           : 'Board is empty. Upload an Excel workbook (.xlsx) for the selected layout.'}
       </p>
+
+      {notOnMap.length > 0 && (
+        <p className="mb-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-xs text-amber-800">
+          {notOnMap.length} row{notOnMap.length === 1 ? '' : 's'} (plot{' '}
+          {notOnMap.slice(0, 8).join(', ')}
+          {notOnMap.length > 8 ? ', …' : ''}) {notOnMap.length === 1 ? 'is' : 'are'} not drawn on the{' '}
+          {layout.shortTitle || layout.title} map. They only update an existing plot record and are
+          otherwise skipped.
+        </p>
+      )}
 
       {!workbook ? (
         <div className="rounded-2xl border border-dashed border-gray-300 bg-gray-50 px-6 py-14 text-center">

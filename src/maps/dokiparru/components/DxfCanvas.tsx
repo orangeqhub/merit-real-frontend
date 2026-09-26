@@ -59,6 +59,9 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
       return;
     }
 
+    // Natively mounted (no iframe): the host board is told directly.
+    onSelectPlot?.(`dk-${plot.id}`);
+
     if (!(window.parent && window.parent !== window)) return;
 
     try {
@@ -77,8 +80,6 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     } catch {
       // Ignore cross-origin / not embedded errors.
     }
-
-    onSelectPlot?.(`dk-${plot.id}`);
   };
 
   // Report this layout's verified plot list to the parent frontend.
@@ -149,7 +150,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
 
       selectedFromParent.current = true;
 
-      zoomToPlot(Number(target.plotNumber));
+      latest.current.zoomToPlot(Number(target.plotNumber));
     }
 
     window.addEventListener("message", onMessage);
@@ -179,6 +180,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [query, setQuery] = useState("");
+  const [searchError, setSearchError] = useState<string | null>(null);
 
   const svgRef = useRef<SVGSVGElement | null>(null);
 
@@ -192,7 +194,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     zoomByFactor,
     setZoom,
     setOffset,
-  } = usePanZoom(true, width, height);
+  } = usePanZoom(true, width, height, svgRef);
 
   const layoutBounds = useMemo(() => {
     let minX = Infinity;
@@ -403,14 +405,27 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     sendSelectToParent(plot);
   };
 
+  // Latest render's zoomToPlot for the board -> map message handler, so a
+  // board selection after a resize never zooms with a stale convert().
+  const latest = useRef({ zoomToPlot });
+  latest.current = { zoomToPlot };
+
   const handleSearch = (e: FormEvent) => {
     e.preventDefault();
 
-    const n = Number(query.trim());
-
-    if (!Number.isFinite(n)) {
+    const q = query.trim();
+    if (!q) {
+      setSearchError(null);
       return;
     }
+
+    // Exact plot-number match only: "1" must never land on 10, 11 or 101.
+    const n = /^\d+$/.test(q) ? Number(q) : NaN;
+    if (!plots.some((p) => p.plotNumber === n)) {
+      setSearchError(`Plot ${q} not found`);
+      return;
+    }
+    setSearchError(null);
 
     try {
       if (
@@ -609,13 +624,22 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
           right: 68,
           zIndex: 5,
           pointerEvents: "none",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "flex-end",
+          gap: 4,
         }}
       >
         <input
+          type="search"
+          inputMode="numeric"
+          aria-label="Search plot number"
           value={query}
-          onChange={(e) =>
-            setQuery(e.target.value)
-          }
+          onChange={(e) => {
+            setQuery(e.target.value);
+            setSearchError(null);
+            if (!e.target.value.trim()) setSelectedId(null);
+          }}
           placeholder="Search Plot..."
           className="dokiparru-search-input"
           style={{
@@ -627,6 +651,11 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
             pointerEvents: "auto",
           }}
         />
+        {searchError && (
+          <div style={{ color: "#fca5a5", fontSize: 11, background: "rgba(24,24,27,0.82)", padding: "2px 6px", borderRadius: 4 }}>
+            {searchError}
+          </div>
+        )}
       </form>
 
       {/* =========================================================

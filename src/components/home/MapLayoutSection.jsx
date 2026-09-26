@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, useCallback, lazy, Suspense } from 'react';
+import { useEffect, useMemo, useRef, useState, useCallback, lazy, Suspense } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, ChevronDown, Map as MapIcon } from 'lucide-react';
 import {
@@ -73,6 +73,20 @@ function statusCounts(plots) {
 
 function plotNoKey(plotNo) {
   return String(plotNo ?? '').trim().toLowerCase();
+}
+
+/** Search query in the same normalized form as plotNoKey ("024" -> "24"). */
+function normalizePlotQuery(value) {
+  const q = String(value ?? '').trim().toLowerCase().replace(/\s+/g, '');
+  return /^\d+$/.test(q) ? String(Number(q)) : q;
+}
+
+/** Exact plot identity match -- "1" never selects 10/11/101; "67" does
+ * select the merged "67&68" tile it is part of. */
+function isExactPlotMatch(plotNo, query) {
+  if (!query) return false;
+  const key = normalizePlotQuery(plotNo);
+  return key === query || key.split('&').includes(query);
 }
 
 function plotNoNumeric(plotNo) {
@@ -283,6 +297,18 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   // already knows what's selected, so there's nothing to post back.
   function postSelectToMap(plot, { fromMap = false } = {}) {
     if (fromMap) return;
+    if (nativeMap) {
+      // Natively mounted maps listen for the same message on this window.
+      window.postMessage(
+        {
+          type: 'merit-map-select-plot',
+          plotNo: plot ? String(plot.plotNo) : null,
+          externalId: plot ? String(plot.externalId || plot.id || '') : null,
+        },
+        window.location.origin
+      );
+      return;
+    }
     try {
       const frame = document.querySelector(`iframe[data-layout-key="${layout.key}"]`);
       frame?.contentWindow?.postMessage(
@@ -340,23 +366,38 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
     postSelectToMap(plot, opts);
   }
 
+  // Guards against an older request (e.g. the previous layout's) resolving
+  // after a newer one and overwriting the board with the wrong layout's plots.
+  const loadSeq = useRef(0);
+
   async function loadPlots() {
+    const seq = ++loadSeq.current;
     setLoading(true);
     setLoadError('');
     try {
-      const data = await mapBookingService.listPlots({ pageSize: 500, layout: layout.key });
-      const items = buildMasterPlotList(data.items || [], !hasPhase2);
+      const rows = await mapBookingService.listAllPlots({ layout: layout.key });
+      if (seq !== loadSeq.current) return;
+      const items = buildMasterPlotList(rows, !hasPhase2);
       setSyncedPlots(items);
       if (!items.length) {
-        setLoadError('No plots in API. Seed map plots or check backend.');
+        setLoadError(
+          `No plot records for ${layout.shortTitle || layout.title} yet. ` +
+            "Import this layout's Excel workbook in Admin → Map Plots."
+        );
       }
     } catch (err) {
+      if (seq !== loadSeq.current) return;
       setSyncedPlots([]);
       setLoadError(err.message || 'Unable to load plots from API.');
     } finally {
-      setLoading(false);
+      if (seq === loadSeq.current) setLoading(false);
     }
   }
+
+  // The data-updated listener below is registered once, so it must call the
+  // CURRENT layout's loader, not the one from the first render.
+  const loadPlotsRef = useRef(loadPlots);
+  loadPlotsRef.current = loadPlots;
 
   function reloadViewer() {
     setViewerWarning('');
@@ -387,7 +428,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
 
   useEffect(() => {
     return onMapDataUpdated(() => {
-      loadPlots();
+      loadPlotsRef.current();
       reloadViewer();
     });
   }, []);
@@ -469,7 +510,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
       }
 
       if (data.type === 'merit-map-search') {
-        const query = String(data.query || '').replace(/\D/g, '');
+        const query = normalizePlotQuery(data.query);
         if (!query) {
           setPhase1Search('');
           setPhase2Search('');
@@ -481,8 +522,8 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
         setPhase2Search(query);
         const p1 = allPlots.filter((p) => p.phase === 1);
         const p2 = allPlots.filter((p) => p.phase === 2);
-        const match1 = p1.find((p) => plotNoKey(p.plotNo) === query) || p1.find((p) => matchesBoardPlotSearch(p.plotNo, query)) || null;
-        const match2 = p2.find((p) => plotNoKey(p.plotNo) === query) || p2.find((p) => matchesBoardPlotSearch(p.plotNo, query)) || null;
+        const match1 = p1.find((p) => isExactPlotMatch(p.plotNo, query)) || null;
+        const match2 = p2.find((p) => isExactPlotMatch(p.plotNo, query)) || null;
         // fromMap: true -- the map's own search already selected/zoomed to
         // this plot there, so posting a select-plot message back would be
         // redundant (and update-order between the two would be racy).
@@ -573,27 +614,43 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   // matching logic (by externalId, falling back to plotNo), just invoked
   // directly via callback props instead of a cross-frame message, since
   // there's no iframe boundary for a natively-mounted layout.
+  // A map whose rows are keyed by series number (Anne Enclave) also passes
+  // that identity ({ plotNo, phase }); it wins over the geometry id so the
+  // board, details and booking always use the row the map is showing.
+  const findNativePlot = useCallback(
+    (id, identity) => {
+      if (identity?.plotNo) {
+        const byIdentity = allPlots.find(
+          (p) => plotNoKey(p.plotNo) === plotNoKey(identity.plotNo) && (!identity.phase || p.phase === identity.phase)
+        );
+        if (byIdentity) return byIdentity;
+      }
+      return allPlots.find((p) => p.externalId === id || String(p.id) === id) || null;
+    },
+    [allPlots]
+  );
+
   const handleNativeSelect = useCallback(
-    (externalId) => {
+    (externalId, identity) => {
       const id = String(externalId || '').trim();
       if (!id) {
         setSelected1(null);
         return;
       }
-      const match = allPlots.find((p) => p.externalId === id || String(p.id) === id) || null;
+      const match = findNativePlot(id, identity);
       if (match) selectPlot(match, match.phase || 1, { fromMap: true });
     },
-    [allPlots]
+    [findNativePlot]
   );
 
   const handleNativeBook = useCallback(
-    (externalId) => {
+    (externalId, identity) => {
       const id = String(externalId || '').trim();
       if (!id) return;
-      const match = allPlots.find((p) => p.externalId === id || String(p.id) === id) || null;
+      const match = findNativePlot(id, identity);
       handleBook(match || { externalId: id, id, plotType: 'residential', status: 'available' });
     },
-    [allPlots]
+    [findNativePlot]
   );
 
   return (
@@ -677,7 +734,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
               <MapIcon size={14} /> Interactive layout
             </span>
             <a
-              href={mapLayoutIframeUrl(layout.key)}
+              href={nativeMap ? `/map-layout/${encodeURIComponent(layout.key)}` : mapLayoutIframeUrl(layout.key)}
               target="_blank"
               rel="noreferrer"
               className="hover:text-white"
@@ -865,14 +922,15 @@ function PlotBoard({ id, title, plots, filtered, search, onSearchChange, selecte
               onChange={(e) => {
                 const value = e.target.value;
                 onSearchChange(value);
-                const q = value.trim().replace(/\D/g, '');
+                const q = normalizePlotQuery(value);
                 if (!q) {
                   onSelect(null);
                   return;
                 }
-                const exact = plots.find((p) => plotNoKey(p.plotNo) === q);
-                const prefix = exact || plots.find((p) => matchesBoardPlotSearch(p.plotNo, q));
-                if (prefix) onSelect(prefix);
+                // The tile list below still narrows as you type; only an exact
+                // plot number selects (and zooms the map to) a plot.
+                const exact = plots.find((p) => isExactPlotMatch(p.plotNo, q));
+                if (exact) onSelect(exact);
               }}
               placeholder="Search plot no…"
               onFocus={onToggle}

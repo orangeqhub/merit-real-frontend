@@ -1,4 +1,6 @@
 import { useState, type FC } from "react";
+// Same colours the plot polygons are filled with (plotFillColor).
+import { STATUS_COLORS } from "../hooks/useLayoutPlotData";
 
 const MapLegend: FC = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -70,19 +72,19 @@ const MapLegend: FC = () => {
           </div>
           <div style={{ fontWeight: 700, opacity: 0.8, marginTop: 6 }}>Plot status</div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#22C55E")}
+            {swatch(STATUS_COLORS.available)}
             <span>Available</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#f59e0b")}
+            {swatch(STATUS_COLORS.booked)}
             <span>Booked</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#3b82f6")}
+            {swatch(STATUS_COLORS.registered)}
             <span>Registered</span>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-            {swatch("#ef4444")}
+            {swatch(STATUS_COLORS.sold)}
             <span>Sold</span>
           </div>
         </div>
