@@ -12,6 +12,7 @@ import { getMapLayoutByKey, mapLayoutIframeUrl } from '../../config/mapLayouts';
 import { onMapDataUpdated } from '../../utils/mapDataSync';
 import { getPlotLayoutMeta, matchesBoardPlotSearch } from '../../utils/plotLayoutIndex';
 import { savePendingBookPlot } from '../../utils/pendingBookPlot';
+import { canonicalPlotRecords, plotRecordKey } from '../../utils/plotRecords';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from '../../store/toastStore';
 import { formatInr, formatIndianNumber } from '../../utils/formatIndianNumber';
@@ -166,17 +167,13 @@ function normalizePlotForBoard(plot, forceSinglePhase = false) {
   };
 }
 
-/** Dedupe by external id �?" master dataset keeps all unique API rows. */
+/** One board tile per plot identity (phase + plot number), using the same
+ * canonical row every native map shows for that plot (utils/plotRecords). */
 function buildMasterPlotList(items, forceSinglePhase = false) {
   const normalized = (items || [])
     .map((plot) => normalizePlotForBoard(plot, forceSinglePhase))
     .filter(Boolean);
-  const byExternal = Object.create(null);
-  for (const item of normalized) {
-    const key = String(item.externalId || item.id || `${item.phase}-${item.plotNo}`);
-    byExternal[key] = item;
-  }
-  return Object.values(byExternal).sort(
+  return [...canonicalPlotRecords(normalized).values()].sort(
     (a, b) => plotNoNumeric(a.plotNo) - plotNoNumeric(b.plotNo)
   );
 }
@@ -370,23 +367,27 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   // after a newer one and overwriting the board with the wrong layout's plots.
   const loadSeq = useRef(0);
 
-  async function loadPlots() {
+  // `background` = a refresh of an already-shown board (import, focus, poll):
+  // no "Loading…" flash, and a failed refresh keeps the plots already shown.
+  async function loadPlots({ background = false } = {}) {
     const seq = ++loadSeq.current;
-    setLoading(true);
-    setLoadError('');
+    if (!background) {
+      setLoading(true);
+      setLoadError('');
+    }
     try {
       const rows = await mapBookingService.listAllPlots({ layout: layout.key });
       if (seq !== loadSeq.current) return;
       const items = buildMasterPlotList(rows, !hasPhase2);
       setSyncedPlots(items);
-      if (!items.length) {
-        setLoadError(
-          `No plot records for ${layout.shortTitle || layout.title} yet. ` +
-            "Import this layout's Excel workbook in Admin → Map Plots."
-        );
-      }
+      setLoadError(
+        items.length
+          ? ''
+          : `No plot records for ${layout.shortTitle || layout.title} yet. ` +
+              "Import this layout's Excel workbook in Admin → Map Plots."
+      );
     } catch (err) {
-      if (seq !== loadSeq.current) return;
+      if (seq !== loadSeq.current || background) return;
       setSyncedPlots([]);
       setLoadError(err.message || 'Unable to load plots from API.');
     } finally {
@@ -427,9 +428,9 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   }, [layout.key]);
 
   useEffect(() => {
+    // Shared trigger with every native map (import, focus, visibility, poll).
     return onMapDataUpdated(() => {
-      loadPlotsRef.current();
-      reloadViewer();
+      loadPlotsRef.current({ background: true });
     });
   }, []);
 
@@ -574,6 +575,17 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
   }, [iframeKey, nativeMap, layout.key]);
 
   const counts = useMemo(() => statusCounts(allPlots), [allPlots]);
+
+  // The details panel always shows the CURRENT record of the selected plot
+  // (resolved by identity from the latest API data), never the object that
+  // was captured when it was clicked -- so an Excel import refreshes it.
+  const currentRecord = (plot) => {
+    if (!plot) return null;
+    const key = plotRecordKey(plot.phase, plot.plotNo);
+    return allPlots.find((p) => plotRecordKey(p.phase, p.plotNo) === key) || plot;
+  };
+  const current1 = currentRecord(selected1);
+  const current2 = currentRecord(selected2);
 
   const phase1Plots = useMemo(() => allPlots.filter((p) => p.phase === 1), [allPlots]);
   const phase2Plots = useMemo(() => allPlots.filter((p) => p.phase === 2), [allPlots]);
@@ -804,7 +816,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
               filtered={filteredPhase1}
               search={phase1Search}
               onSearchChange={setPhase1Search}
-              selected={selected1}
+              selected={current1}
               onSelect={(plot) => selectPlot(plot, 1)}
               open={phase1Open}
               onToggle={() => setPhase1Open((v) => !v)}
@@ -822,7 +834,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
               filtered={filteredPhase2}
               search={phase2Search}
               onSearchChange={setPhase2Search}
-              selected={selected2}
+              selected={current2}
               onSelect={(plot) => selectPlot(plot, 2)}
               open={phase2Open}
               onToggle={() => setPhase2Open((v) => !v)}
@@ -842,7 +854,7 @@ export default function MapLayoutSection({ compact = true, layoutKey = 'anne-enc
             filtered={filteredPhase1}
             search={phase1Search}
             onSearchChange={setPhase1Search}
-            selected={selected1}
+            selected={current1}
             onSelect={(plot) => selectPlot(plot, 1)}
             open={phase1Open}
             onToggle={() => setPhase1Open((v) => !v)}

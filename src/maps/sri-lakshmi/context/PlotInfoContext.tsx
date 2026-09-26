@@ -9,6 +9,7 @@ import {
 } from "react";
 import { PlotInformation } from "../models/PlotInformation";
 import { plotInfoService } from "../services/plotInfoService";
+import { onMapDataUpdated } from "../../../utils/mapDataSync";
 
 interface PlotInfoContextValue {
   plotsById: Record<string, PlotInformation>;
@@ -19,7 +20,6 @@ interface PlotInfoContextValue {
 }
 
 const PlotInfoContext = createContext<PlotInfoContextValue | null>(null);
-const MAP_DATA_VERSION_KEY = "merit_map_data_version";
 
 export function PlotInfoProvider({ children }: { children: ReactNode }) {
   const [plotsById, setPlotsById] = useState<Record<string, PlotInformation>>(
@@ -47,30 +47,17 @@ export function PlotInfoProvider({ children }: { children: ReactNode }) {
       if (!cancelled) applyPlots(plots);
     });
 
-    const onCustom = () => {
+    // Same refresh trigger as the Plot Board (import, focus, visibility, poll),
+    // so the map card and the board always reload together.
+    const unsubscribe = onMapDataUpdated(() => {
       plotInfoService.getAll({ force: true }).then((plots) => {
         if (!cancelled) applyPlots(plots);
       });
-    };
-    const onStorage = (event: StorageEvent) => {
-      if (event.key === MAP_DATA_VERSION_KEY) onCustom();
-    };
-    const onFocus = () => onCustom();
-    const onMessage = (event: MessageEvent) => {
-      if (event?.data?.type === "merit-map-data-updated") onCustom();
-    };
-
-    window.addEventListener("merit-map-data-updated", onCustom as EventListener);
-    window.addEventListener("storage", onStorage);
-    window.addEventListener("focus", onFocus);
-    window.addEventListener("message", onMessage);
+    });
 
     return () => {
       cancelled = true;
-      window.removeEventListener("merit-map-data-updated", onCustom as EventListener);
-      window.removeEventListener("storage", onStorage);
-      window.removeEventListener("focus", onFocus);
-      window.removeEventListener("message", onMessage);
+      unsubscribe();
     };
   }, [applyPlots]);
 

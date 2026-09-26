@@ -6,8 +6,8 @@
     "locationNoResults": "స్థానాలు కనుగొనబడలేదు",
     "locationError": "స్థానాలను వెతకడం సాధ్యం కాలేదు.",
     "detectLocation": "నా స్థానాన్ని గుర్తించు",
-    "minPricePlaceholder": "కనీస ధర",
-    "maxPricePlaceholder": "గరిష్ట ధర",
+    "minBudgetPlaceholder": "కనీస బడ్జెట్ ₹",
+    "maxBudgetPlaceholder": "గరిష్ట బడ్జెట్ ₹",
     "sale": "అమ్మకం"
   },
   "category": {

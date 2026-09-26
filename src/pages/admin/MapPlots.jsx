@@ -44,7 +44,8 @@ function rowFromSheet(row, phase, index) {
     phase,
     plotType: row.plotType || 'residential',
     status: row.status || null,
-    customerName: row.customerName || null,
+    // '' = the sheet's Customer cell is blank (clears it); null = no column.
+    customerName: row.customerName ?? null,
     plotArea: row.plotArea,
     facing: row.facing || '',
     ratePerSqYd: row.ratePerSqYd,
@@ -196,7 +197,7 @@ export default function MapPlots() {
         // Only forwarded when the workbook actually carries these columns, so
         // pricing-only sheets never touch a plot's status/customer.
         ...(mapped.status ? { status: mapped.status } : {}),
-        ...(mapped.customerName ? { customerName: mapped.customerName } : {}),
+        ...(mapped.customerName != null ? { customerName: mapped.customerName } : {}),
       };
     });
   }

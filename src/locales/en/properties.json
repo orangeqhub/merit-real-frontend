@@ -6,8 +6,8 @@
     "locationNoResults": "No locations found",
     "locationError": "Unable to search locations right now.",
     "detectLocation": "Detect my location",
-    "minPricePlaceholder": "Min Price",
-    "maxPricePlaceholder": "Max Price",
+    "minBudgetPlaceholder": "Min budget ₹",
+    "maxBudgetPlaceholder": "Max budget ₹",
     "sale": "Sale"
   },
   "category": {

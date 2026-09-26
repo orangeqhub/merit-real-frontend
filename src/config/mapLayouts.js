@@ -33,8 +33,8 @@ export const MAP_LAYOUTS = [
     phase2Total: 138,
     phasesLabel: 'Phase 1 & Phase 2',
     mapBaseUrl: MAP_LAYOUT_URL,
-    image: PROJECT_IMAGES.anneEnclaveAerial,
-    imageAlt: 'Aerial view of the Sky Line Infra Anne Enclave plotted layout',
+    image: PROJECT_IMAGES.anneEnclaveEntrance,
+    imageAlt: 'Entrance gate of the Sky Line Infra Anne Enclave layout',
   },
   {
     key: 'sri-lakshmi',
@@ -47,8 +47,8 @@ export const MAP_LAYOUTS = [
     phase2Total: 0,
     phasesLabel: 'Single Phase',
     mapBaseUrl: SRILAKSHMI_MAP_URL,
-    image: PROJECT_IMAGES.field,
-    imageAlt: 'Open plotted development field for the Sri Lakshmi layout',
+    image: PROJECT_IMAGES.sriLakshmiDivineCityLayout,
+    imageAlt: "Srilakshmi's Divine City layout plan at Boppudi, Chilakaluripet (PUDA LP No. 2/2025)",
   },
   {
     key: 'dokiparru',
@@ -61,9 +61,8 @@ export const MAP_LAYOUTS = [
     phase2Total: 0,
     phasesLabel: 'Single Phase',
     mapBaseUrl: DOKIPARRU_MAP_URL,
-    // Real aerial photograph of a residential development (free stock, Google).
-    image: PROJECT_IMAGES.eliteSkyCityCover,
-    imageAlt: 'Aerial photograph of a residential plotted development for the Elite Sky City layout',
+    image: PROJECT_IMAGES.eliteSkyCityLayout,
+    imageAlt: 'Elite Sky City (Dokiparru) site layout plan, L.P.No. 69/2025/1168/MDKDRU/DPMS',
   },
   {
     key: 'manjunadha-enclave',
@@ -77,7 +76,7 @@ export const MAP_LAYOUTS = [
     phasesLabel: 'Single Phase',
     mapBaseUrl: MANJUNADHA_MAP_URL,
     image: PROJECT_IMAGES.manjunadhaEnclaveLayout,
-    imageAlt: 'Digitized Manjunadha Enclave layout plan',
+    imageAlt: 'Manjunadha Enclave layout plan, Vejendla village, Chebrolu Mandal, Guntur District',
   },
   {
     key: 'vinfra',
@@ -90,10 +89,8 @@ export const MAP_LAYOUTS = [
     phase2Total: 0,
     phasesLabel: 'Single Phase',
     mapBaseUrl: VINFRA_MAP_URL,
-    // Real aerial photograph of lush green fields (free stock, Google) matching
-    // the "Vanam" (garden/forest) theme of this layout.
-    image: PROJECT_IMAGES.orrNandanaVanamCover,
-    imageAlt: 'Aerial photograph of green fields for the ORR Nandana Vanam layout',
+    image: PROJECT_IMAGES.orrNandanaVanamLayout,
+    imageAlt: 'V Infra ORR Nandana Vanam @ Saripudi layout plan, LP No. 25/2025/1168/MDKDRU/DPMS',
   },
   {
     key: 'mandira-developers',
@@ -106,10 +103,8 @@ export const MAP_LAYOUTS = [
     phase2Total: 0,
     phasesLabel: 'Single Phase',
     mapBaseUrl: MANDIRA_MAP_URL,
-    // Real aerial photograph of residential homes, roads and trees (free stock,
-    // Google) for the Mandira Developers Quantum City layout.
-    image: PROJECT_IMAGES.mandiraDevelopersCover,
-    imageAlt: 'Aerial photograph of a residential neighbourhood for the Mandira Developers Quantum City layout',
+    image: PROJECT_IMAGES.mandiraDevelopersLayout,
+    imageAlt: 'Mandira Developers Quantum City layout plan on the Hyderabad–Guntur Road (NH 167 AG)',
   },
 ];
 

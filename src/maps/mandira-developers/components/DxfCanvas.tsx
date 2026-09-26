@@ -13,7 +13,11 @@ import usePanZoom from "../hooks/usePanZoom";
 import {
   useLayoutPlotData,
   plotFillColor,
+  cardArea,
+  plotTypeLabel,
   STATUS_LABELS,
+  plotIdentity,
+  type PlotIdentity,
 } from "../hooks/useLayoutPlotData";
 import RoadLayer from "./layers/RoadLayer";
 import RegionLayer from "./layers/RegionLayer";
@@ -26,8 +30,8 @@ import { worldToLatLng, metersPerPixelToZoom, METERS_PER_WORLD_UNIT, type MapVie
 interface Props {
   width: number;
   height: number;
-  onSelectPlot?: (externalId: string | null) => void;
-  onBookPlot?: (externalId: string) => void;
+  onSelectPlot?: (externalId: string | null, identity?: PlotIdentity) => void;
+  onBookPlot?: (externalId: string, identity?: PlotIdentity) => void;
 }
 
 // External-id prefix that makes every Mandira plot id globally unique
@@ -243,7 +247,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     } catch {
       // ignore cross-origin / not embedded
     }
-    onSelectPlot?.(selectedPlot ? `${EXTERNAL_ID_PREFIX}${selectedPlot.id}` : null);
+    onSelectPlot?.(selectedPlot ? `${EXTERNAL_ID_PREFIX}${selectedPlot.id}` : null, selectedPlot ? plotIdentity(selectedPlot) : undefined);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId]);
 
@@ -297,7 +301,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
         <PlotTooltip
           plot={{
             plotNumber: hoveredPlot.plotNumber,
-            areaSqYd: hoveredPlot.areaSqYd,
+            areaSqYd: cardArea(liveFor(hoveredPlot), hoveredPlot.areaSqYd),
             status: liveFor(hoveredPlot)?.status ?? null,
             facing: liveFor(hoveredPlot)?.facing ?? null,
             ratePerSqYd: liveFor(hoveredPlot)?.ratePerSqYd ?? null,
@@ -396,7 +400,13 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
                 <div style={{ fontWeight: 700, marginBottom: 4 }}>Plot {p.plotNumber}</div>
                 <div>Type: {info?.plotType ? info.plotType[0].toUpperCase() + info.plotType.slice(1) : "—"}</div>
                 <div>Customer: {info?.customerName || "—"}</div>
-                <div>Area: {p.areaSqYd != null ? p.areaSqYd.toFixed(2) : "-"} Sq.Yds</div>
+                {(() => {
+                  // Backend record is authoritative (see cardArea); geometry area
+                  // only for a plot that has no record yet.
+                  const area = cardArea(info, p.areaSqYd);
+                  return <div>Area: {area != null ? Number(area).toFixed(2) : "—"} Sq.Yds</div>;
+                })()}
+                {plotTypeLabel(info) && <div>Type: {plotTypeLabel(info)}</div>}
                 <div>Facing: {info?.facing || "—"}</div>
                 <div>Status: {status ? STATUS_LABELS[status] || status[0].toUpperCase() + status.slice(1) : "—"}</div>
                 <div>Rate/Sq.Yd: {info?.ratePerSqYd && Number(info.ratePerSqYd) > 0 ? `₹${Number(info.ratePerSqYd).toLocaleString("en-IN")}` : "—"}</div>
@@ -422,7 +432,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
                       } catch {
                         // ignore cross-origin / not embedded
                       }
-                      onBookPlot?.(`${EXTERNAL_ID_PREFIX}${p.id}`);
+                      onBookPlot?.(`${EXTERNAL_ID_PREFIX}${p.id}`, plotIdentity(p));
                     }}
                     style={{
                       marginTop: 10,

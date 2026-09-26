@@ -7,6 +7,12 @@ import { resolveAssetUrl } from '../../api/client';
 import { useLanguageStore } from '../../store/languageStore';
 import { HERO_IMAGES } from '../../data/projectImages';
 import HeroLocationSearch from './HeroLocationSearch';
+import { formatIndianNumber } from '../../utils/formatIndianNumber';
+
+/** Budget fields keep digits only (typed or pasted "₹25,00,000" -> "2500000"). */
+function budgetDigits(value) {
+  return String(value || '').replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+}
 
 const EMPTY_LOCATION = { query: '', label: '', latitude: null, longitude: null, city: null, state: null, country: null };
 
@@ -23,7 +29,8 @@ export default function HeroCarousel() {
   const [tabHidden, setTabHidden] = useState(typeof document !== 'undefined' && document.hidden);
   const touchStartX = useRef(null);
   const [location, setLocation] = useState(EMPTY_LOCATION);
-  const [form, setForm] = useState({ minPrice: '', maxPrice: '' });
+  // Budget range as digit strings ('' = no limit on that side).
+  const [budget, setBudget] = useState({ min: '', max: '' });
 
   const prefersReducedMotion = useMemo(
     () => typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -93,8 +100,11 @@ export default function HeroCarousel() {
     if (location.latitude != null) params.set('lat', String(location.latitude));
     if (location.longitude != null) params.set('lng', String(location.longitude));
     params.set('transactionType', 'sale');
-    if (form.minPrice) params.set('minPrice', form.minPrice);
-    if (form.maxPrice) params.set('maxPrice', form.maxPrice);
+    let min = budget.min ? Number(budget.min) : null;
+    let max = budget.max ? Number(budget.max) : null;
+    if (min != null && max != null && min > max) [min, max] = [max, min];
+    if (min != null) params.set('minPrice', String(min));
+    if (max != null) params.set('maxPrice', String(max));
     navigate(`/properties?${params.toString()}`);
   }
 
@@ -180,24 +190,22 @@ export default function HeroCarousel() {
         >
           <HeroLocationSearch value={location} onChange={setLocation} />
 
-          <input
-            type="number"
-            min="0"
-            value={form.minPrice}
-            onChange={(e) => setForm((f) => ({ ...f, minPrice: e.target.value }))}
-            placeholder={t('hero.minPricePlaceholder')}
-            aria-label={t('hero.minPricePlaceholder')}
-            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
-          />
-          <input
-            type="number"
-            min="0"
-            value={form.maxPrice}
-            onChange={(e) => setForm((f) => ({ ...f, maxPrice: e.target.value }))}
-            placeholder={t('hero.maxPricePlaceholder')}
-            aria-label={t('hero.maxPricePlaceholder')}
-            className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
-          />
+          {['min', 'max'].map((side) => (
+            <input
+              key={side}
+              type="text"
+              inputMode="numeric"
+              autoComplete="off"
+              value={budget[side] ? formatIndianNumber(Number(budget[side])) : ''}
+              onChange={(e) => {
+                const digits = budgetDigits(e.target.value);
+                setBudget((b) => ({ ...b, [side]: digits }));
+              }}
+              placeholder={t(side === 'min' ? 'hero.minBudgetPlaceholder' : 'hero.maxBudgetPlaceholder')}
+              aria-label={t(side === 'min' ? 'hero.minBudgetPlaceholder' : 'hero.maxBudgetPlaceholder')}
+              className="min-h-[42px] min-w-0 flex-1 rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-700 md:min-h-[48px] md:px-4 md:text-base"
+            />
+          ))}
 
           <button
             type="submit"

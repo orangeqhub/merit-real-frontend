@@ -4,7 +4,9 @@
  * into the production build (deployment-safe — no remote hosting).
  */
 import anneEnclaveAerial from '../assets/properties/anne-enclave-aerial.jpg';
-import manjunadhaEnclaveLayout from '../assets/properties/manjunadha-enclave-layout.png';
+import anneEnclaveEntrance from '../assets/properties/anne-enclave-entrance.jpg';
+import manjunadhaEnclaveLayout from '../assets/properties/manjunadha-enclave-layout.jpg';
+import sriLakshmiDivineCityLayout from '../assets/properties/sri-lakshmi-divine-city-layout.jpg';
 import building from '../assets/properties/building.jpg';
 import field from '../assets/properties/field.jpg';
 import villa from '../assets/properties/villa.jpg';
@@ -15,24 +17,26 @@ import cityHyderabad from '../assets/properties/city-hyderabad.jpg';
 import cityMangalagiri from '../assets/properties/city-mangalagiri.jpg';
 import cityTenali from '../assets/properties/city-tenali.jpg';
 import cityOngole from '../assets/properties/city-ongole.jpg';
-import eliteSkyCityCover from '../assets/properties/elite-sky-city-aerial.jpg';
-import orrNandanaVanamCover from '../assets/properties/orr-nandana-vanam-aerial.jpg';
-import mandiraDevelopersCover from '../assets/properties/mandira-developers-aerial.jpg';
+import eliteSkyCityLayout from '../assets/properties/elite-sky-city-layout.jpg';
+import orrNandanaVanamLayout from '../assets/properties/orr-nandana-vanam-layout.jpg';
+import mandiraDevelopersLayout from '../assets/properties/mandira-developers-layout.jpg';
 
 /** Individual named project images. */
 export const PROJECT_IMAGES = {
   anneEnclaveAerial,
+  // Entrance-gate render from the developer's brochure.
+  anneEnclaveEntrance,
   manjunadhaEnclaveLayout,
+  // PUDA-approved layout plan (LP No. 2/2025) supplied by the developer.
+  sriLakshmiDivineCityLayout,
   building,
   field,
   villa,
   villaExterior,
-  // Real aerial photographs (free-to-use stock, sourced via Google), one per
-  // layout, so Elite Sky City / ORR Nandana Vanam / Mandira Developers no
-  // longer share the generic `building` placeholder.
-  eliteSkyCityCover,
-  orrNandanaVanamCover,
-  mandiraDevelopersCover,
+  // Developer-supplied layout plans used as the map-layout cover images.
+  eliteSkyCityLayout,
+  orrNandanaVanamLayout,
+  mandiraDevelopersLayout,
 };
 
 /** Images for the popular-locations strip, keyed by city name. */

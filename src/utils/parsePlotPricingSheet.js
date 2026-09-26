@@ -145,10 +145,23 @@ function parseSheetMatrix(matrix, sheetLabel) {
     'total amount',
     'total amt',
     'total price',
+    'costfromsheet',
+    'cost from sheet',
     'total',
   ]);
   const statusCol = pickColumn(headerRow, ['status', 'plot status', 'availability']);
   const customerCol = pickColumn(headerRow, ['customer', 'customer name', 'allottee']);
+  // Explicit plot type column ("Type": Residential / Mortgage / Amenities /
+  // Commercial). Older sheets carry the type in the rate cell instead.
+  const typeCol = pickColumn(headerRow, ['type', 'plot type', 'land use']);
+  const plotTypeFor = (line, rateRaw) => {
+    const typeCell = typeCol != null ? String(line[typeCol] ?? '').trim() : '';
+    return typeCell ? detectPlotType(typeCell) : detectPlotType(rateRaw);
+  };
+  // Present-but-blank Customer = clear it ('');  no Customer column = null
+  // (the import then leaves the stored customer untouched).
+  const customerFor = (line) =>
+    customerCol != null ? String(line[customerCol] ?? '').trim() : null;
 
   if (plotCol == null) {
     const rows = [];
@@ -157,7 +170,7 @@ function parseSheetMatrix(matrix, sheetLabel) {
       const hasData = line.some((cell) => cell != null && String(cell).trim() !== '');
       if (!hasData) continue;
       const rateRaw = rateCol != null ? line[rateCol] : '';
-      const plotType = detectPlotType(rateRaw);
+      const plotType = plotTypeFor(line, rateRaw);
       const plotArea = areaCol != null ? parseLooseNumber(line[areaCol]) : null;
       const ratePerSqYd = plotType === 'residential' ? parseLooseNumber(rateRaw) : null;
       let plotCost = totalCol != null ? parseLooseNumber(line[totalCol]) : null;
@@ -173,8 +186,7 @@ function parseSheetMatrix(matrix, sheetLabel) {
         plotType,
         rateRaw: rateRaw != null ? String(rateRaw) : '',
         status: statusCol != null ? mapSheetStatus(line[statusCol]) : null,
-        customerName:
-          customerCol != null ? String(line[customerCol] || '').trim() || null : null,
+        customerName: customerFor(line),
       });
     }
     return rows;
@@ -191,7 +203,7 @@ function parseSheetMatrix(matrix, sheetLabel) {
     if (/total/i.test(plotNo)) continue;
 
     const rateRaw = rateCol != null ? line[rateCol] : '';
-    const plotType = detectPlotType(rateRaw);
+    const plotType = plotTypeFor(line, rateRaw);
     const plotArea = areaCol != null ? parseLooseNumber(line[areaCol]) : null;
     const ratePerSqYd = plotType === 'residential' ? parseLooseNumber(rateRaw) : null;
     let plotCost = totalCol != null ? parseLooseNumber(line[totalCol]) : null;
@@ -208,8 +220,7 @@ function parseSheetMatrix(matrix, sheetLabel) {
       plotType,
       rateRaw: rateRaw != null ? String(rateRaw) : '',
       status: statusCol != null ? mapSheetStatus(line[statusCol]) : null,
-      customerName:
-        customerCol != null ? String(line[customerCol] || '').trim() || null : null,
+      customerName: customerFor(line),
     });
   }
 

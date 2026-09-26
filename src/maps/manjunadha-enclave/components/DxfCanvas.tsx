@@ -11,7 +11,11 @@ import PlotTooltip from "./PlotTooltip";
 import {
   useLayoutPlotData,
   plotFillColor,
+  cardArea,
+  plotTypeLabel,
   STATUS_LABELS,
+  plotIdentity,
+  type PlotIdentity,
 } from "../hooks/useLayoutPlotData";
 
 // Ensure Leaflet Map class is available for react-leaflet (Vite ESM quirk).
@@ -22,8 +26,8 @@ if (typeof window !== "undefined" && L && !(window as unknown as { L?: typeof L 
 interface Props {
   width: number;
   height: number;
-  onSelectPlot?: (externalId: string | null) => void;
-  onBookPlot?: (externalId: string) => void;
+  onSelectPlot?: (externalId: string | null, identity?: PlotIdentity) => void;
+  onBookPlot?: (externalId: string, identity?: PlotIdentity) => void;
 }
 
 /* ============================================================================
@@ -237,7 +241,7 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
       selectedFromParent.current = false;
       return;
     }
-    onSelectPlot?.(plot.id);
+    onSelectPlot?.(plot.id, plotIdentity(plot));
     if (!(window.parent && window.parent !== window)) return;
     try {
       window.parent.postMessage(
@@ -426,7 +430,7 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
         <PlotTooltip
           plot={{
             plotNumber: hoveredPlot.plotNumber,
-            areaSqYd: hoveredPlot.areaSqYd,
+            areaSqYd: cardArea(liveFor(hoveredPlot), hoveredPlot.areaSqYd),
             status: liveFor(hoveredPlot)?.status ?? null,
             facing: liveFor(hoveredPlot)?.facing ?? null,
             ratePerSqYd: liveFor(hoveredPlot)?.ratePerSqYd ?? null,
@@ -596,7 +600,13 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
               <>
                 <div style={{ fontWeight: 700, marginBottom: 4 }}>Plot {p.plotNumber}</div>
                 <div>Customer: {info?.customerName || "—"}</div>
-                <div>Area: {p.areaSqYd != null ? p.areaSqYd.toFixed(2) : "-"} Sq.Yds</div>
+                {(() => {
+                  // Backend record is authoritative (see cardArea); geometry area
+                  // only for a plot that has no record yet.
+                  const area = cardArea(info, p.areaSqYd);
+                  return <div>Area: {area != null ? Number(area).toFixed(2) : "—"} Sq.Yds</div>;
+                })()}
+                {plotTypeLabel(info) && <div>Type: {plotTypeLabel(info)}</div>}
                 <div style={{ color: "#9ca3af", marginTop: 2 }}>
                   Facing: {info?.facing || "—"}
                 </div>
@@ -636,7 +646,7 @@ const DxfCanvas: FC<Props> = ({ onSelectPlot, onBookPlot }) => {
                 } catch {
                   // ignore cross-origin / not embedded
                 }
-                onBookPlot?.(selectedPlot.id);
+                onBookPlot?.(selectedPlot.id, plotIdentity(selectedPlot));
               }}
               style={{
                 marginTop: 10,

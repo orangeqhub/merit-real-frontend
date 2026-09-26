@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { mapBookingService } from "../../../services/mapBookingService";
 import { onMapDataUpdated } from "../../../utils/mapDataSync";
+import { canonicalPlotRecords } from "../../../utils/plotRecords";
 
 export interface LayoutPlotRow {
   id: string;
@@ -53,6 +54,38 @@ export function plotFillColor(row: LayoutPlotRow | null | undefined): string {
 }
 
 /**
+ * Area for the hover/click card: the backend record is authoritative once the
+ * plot has one (Excel-imported value, "—" when the sheet had none); the
+ * geometry-computed area is only shown for a plot with no record at all.
+ */
+export function cardArea(row: LayoutPlotRow | null | undefined, geometryArea: number | null | undefined): number | null {
+  if (row) return row.plotArea;
+  return geometryArea ?? null;
+}
+
+/** Plot identity shared with the Plot Board and booking (single-phase layout). */
+export interface PlotIdentity {
+  plotNo: string;
+  phase: 1 | 2;
+}
+
+export function plotIdentity(plot: { plotNumber: number | string }): PlotIdentity {
+  return { plotNo: String(plot.plotNumber), phase: 1 };
+}
+
+const TYPE_LABELS: Record<string, string> = {
+  residential: "Residential",
+  amenities: "Amenities",
+  commercial: "Commercial",
+  mortgage: "Mortgage",
+};
+
+export function plotTypeLabel(row: LayoutPlotRow | null | undefined): string | null {
+  if (!row?.plotType) return null;
+  return TYPE_LABELS[row.plotType] || row.plotType;
+}
+
+/**
  * Live, layout-scoped plot data for the embedded map canvas. Fetches the
  * same `/map/plots?layout=<key>` source of truth the main website's board
  * and details card use, keyed by plotNo (the number printed on the map),
@@ -71,7 +104,8 @@ export function useLayoutPlotData(fallbackLayoutKey: string): {
     try {
       const items: unknown[] = await mapBookingService.listAllPlots({ layout });
       const map: Record<string, LayoutPlotRow> = {};
-      for (const it of items as Array<Record<string, unknown>>) {
+      // Same canonical row per plot as the Plot Board (utils/plotRecords).
+      for (const it of canonicalPlotRecords(items).values() as Iterable<Record<string, unknown>>) {
         const plotNo = String(it.plotNo ?? "").trim();
         if (!plotNo) continue;
         map[plotNo] = {

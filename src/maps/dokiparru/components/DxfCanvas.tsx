@@ -11,7 +11,10 @@ import usePanZoom from "../hooks/usePanZoom";
 import {
   useLayoutPlotData,
   plotFillColor,
+  cardArea,
   STATUS_LABELS,
+  plotIdentity,
+  type PlotIdentity,
 } from "../hooks/useLayoutPlotData";
 import RoadLayer from "./layers/RoadLayer";
 import RegionLayer from "./layers/RegionLayer";
@@ -31,8 +34,8 @@ import {
 interface Props {
   width: number;
   height: number;
-  onSelectPlot?: (externalId: string | null) => void;
-  onBookPlot?: (externalId: string) => void;
+  onSelectPlot?: (externalId: string | null, identity?: PlotIdentity) => void;
+  onBookPlot?: (externalId: string, identity?: PlotIdentity) => void;
 }
 
 const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
@@ -60,7 +63,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
     }
 
     // Natively mounted (no iframe): the host board is told directly.
-    onSelectPlot?.(`dk-${plot.id}`);
+    onSelectPlot?.(`dk-${plot.id}`, plotIdentity(plot));
 
     if (!(window.parent && window.parent !== window)) return;
 
@@ -483,8 +486,10 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
             plotNumber:
               hoveredPlot.plotNumber,
 
-            areaSqYd:
-              hoveredPlot.areaSqYd,
+            areaSqYd: cardArea(
+              liveFor(hoveredPlot),
+              hoveredPlot.areaSqYd
+            ),
 
             status:
               liveFor(hoveredPlot)?.status ??
@@ -711,15 +716,7 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
              * geometry mapping only if backend data is
              * temporarily unavailable.
              */
-            const area =
-              info?.plotArea != null &&
-              Number.isFinite(
-                Number(info.plotArea)
-              )
-                ? Number(info.plotArea)
-                : p.areaSqYd != null
-                  ? Number(p.areaSqYd)
-                  : null;
+            const area = cardArea(info, p.areaSqYd);
 
             /*
              * TYPE
@@ -942,7 +939,8 @@ const DxfCanvas: FC<Props> = ({ width, height, onSelectPlot, onBookPlot }) => {
                         }
 
                         onBookPlot?.(
-                          `dk-${selectedPlot.id}`
+                          `dk-${selectedPlot.id}`,
+                          plotIdentity(selectedPlot)
                         );
                       }}
                       style={{

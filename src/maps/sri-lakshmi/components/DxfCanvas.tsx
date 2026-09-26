@@ -72,9 +72,9 @@ interface Props {
     status: string;
   }) => void;
   /** Additive: mirrors the merit-map-select postMessage payload for a natively-mounted host. */
-  onSelectPlot?: (externalId: string | null) => void;
+  onSelectPlot?: (externalId: string | null, identity?: { plotNo: string; phase: 1 | 2 }) => void;
   /** Additive: natively-mounted host's own booking navigation, in place of the iframe/redirect fallback. */
-  onBookPlot?: (externalId: string) => void;
+  onBookPlot?: (externalId: string, identity?: { plotNo: string; phase: 1 | 2 }) => void;
 }
 
 const DxfCanvas: React.FC<Props> = ({
@@ -624,6 +624,14 @@ const DxfCanvas: React.FC<Props> = ({
     return STATUS_COLORS[status] || STATUS_COLORS.available;
   };
 
+  // Plot identity shared with the Plot Board and booking. This layout can hold
+  // two DB rows for one printed number (duplicate polygons), so the board and
+  // booking resolve the plot by its number, not by this polygon's source id.
+  const seriesIdentity = (target: { displayPlotNumber?: number; plotNumber: number | string }) => ({
+    plotNo: String(target.displayPlotNumber ?? target.plotNumber),
+    phase: 1 as const,
+  });
+
   // Backend externalId prefix for layouts whose raw source ids are not
   // globally unique (scripts/seedMapPlots.js prefixes exactly these), so the
   // parent board can reliably match this MapPlots row by externalId.
@@ -637,7 +645,7 @@ const DxfCanvas: React.FC<Props> = ({
     target: PlotNumberEntry & { displayPlotNumber?: number }
   ) => {
     const externalId = `${parentExternalIdPrefix}${target.id}`;
-    onSelectPlot?.(externalId);
+    onSelectPlot?.(externalId, seriesIdentity(target));
     if (!(window.parent && window.parent !== window)) return;
     try {
       window.parent.postMessage(
@@ -1074,7 +1082,7 @@ const DxfCanvas: React.FC<Props> = ({
           // shared booking page without the prefix.
           const bookingExternalId = `sl-${plot.id}`;
           if (onBookPlot) {
-            onBookPlot(bookingExternalId);
+            onBookPlot(bookingExternalId, selectedNumberEntry ? seriesIdentity(selectedNumberEntry) : undefined);
             return;
           }
           const payload = {

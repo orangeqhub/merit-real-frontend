@@ -2,6 +2,7 @@ import { PlotInformation } from "../models/PlotInformation";
 import { createPlotInfoSeed } from "../layouts/seed";
 import { getLayoutKeyFromUrl, setActiveLayoutFromUrl, DEFAULT_LAYOUT } from "../layouts";
 import { mapBookingService } from "../../../services/mapBookingService";
+import { canonicalPlotRecords } from "../../../utils/plotRecords";
 import { api } from "../../../api/client";
 import { getAccessToken } from "../../../api/session";
 
@@ -57,34 +58,15 @@ function mapApiPlot(p: Record<string, unknown>): PlotInformation {
   };
 }
 
-async function fetchRemotePage(page: number, pageSize: number): Promise<{
-  items: PlotInformation[];
-  totalPages: number;
-} | null> {
+async function fetchRemoteAll(): Promise<PlotInformation[] | null> {
   try {
-    const data = await mapBookingService.listPlots({
-      layout: layoutKeyScope(),
-      page,
-      pageSize,
-    });
-    const items = Array.isArray(data?.items) ? data.items.map(mapApiPlot) : [];
-    const totalPages = Math.max(1, Number(data?.totalPages) || 1);
-    return { items, totalPages };
+    const rows = await mapBookingService.listAllPlots({ layout: layoutKeyScope() });
+    // One record per plot identity -- the same row the Plot Board shows for it
+    // (a layout can still hold duplicate DB rows for one plot number).
+    return [...canonicalPlotRecords(rows).values()].map((row) => mapApiPlot(row as Record<string, unknown>));
   } catch {
     return null;
   }
-}
-
-async function fetchRemoteAll(): Promise<PlotInformation[] | null> {
-  const first = await fetchRemotePage(1, 500);
-  if (!first) return null;
-  const all = [...first.items];
-  for (let page = 2; page <= first.totalPages; page += 1) {
-    const next = await fetchRemotePage(page, 500);
-    if (!next) break;
-    all.push(...next.items);
-  }
-  return all;
 }
 function mergeSeedWithRemote(
   remote: PlotInformation[]
@@ -115,7 +97,7 @@ function mergeSeedWithRemote(
       ...prev,
       status: plot.status || "",
       customerName: plot.customerName || "",
-      plotArea: plot.plotArea || prev.plotArea,
+      plotArea: plot.plotArea || 0,
       facing: plot.facing || "",
       remarks: plot.remarks || "",
       plotCost: plot.plotCost || 0,
@@ -138,7 +120,10 @@ export const plotInfoService = {
       setStore(mergeSeedWithRemote(remote));
       return cloneAll();
     }
-    if (options.force || !getStore().length) {
+    // A failed refresh keeps the last good data (never blanks the map card);
+    // geometry placeholders are only used before any data has loaded.
+    void options;
+    if (!getStore().length) {
       setStore(createPlotInfoSeed());
     }
     return cloneAll();
